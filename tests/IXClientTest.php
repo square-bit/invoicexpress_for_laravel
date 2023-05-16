@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Http;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 use Squarebit\InvoiceXpress\Models\IXClient;
 use Squarebit\InvoiceXpress\Models\IXItem;
+use Squarebit\InvoiceXpress\Models\IXSequence;
 
 it('can call entity actions', function (string $entity, string $action) {
     /** @var IXClient $client */
@@ -35,4 +36,10 @@ it('can call entity actions', function (string $entity, string $action) {
     ['item', IXItem::CREATE],
     ['item', IXItem::UPDATE],
     ['item', IXItem::DELETE],
+
+    ['sequence', IXSequence::LIST],
+    ['sequence', IXSequence::GET],
+    ['sequence', IXSequence::CREATE],
+    ['sequence', IXSequence::UPDATE],
+    ['sequence', IXSequence::REGISTER],
 ]);

@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Squarebit\InvoiceXpress\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class InvoiceXpressCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'invoicexpress-for-laravel';
 
     public $description = 'My command';
 

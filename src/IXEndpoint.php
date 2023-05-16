@@ -25,15 +25,15 @@ class IXEndpoint
 
     public function getUrl(?array $queryParams = null): string
     {
-        $url = 'https://' .
-            config('invoicexpress-for-laravel.account.name') .
-            '.' .
-            config('invoicexpress-for-laravel.service_endpoint') .
-            '/' .
+        $url = 'https://'.
+            config('invoicexpress-for-laravel.account.name').
+            '.'.
+            config('invoicexpress-for-laravel.service_endpoint').
+            '/'.
             $this->endpointData['path'];
 
         if (filled($queryParams)) {
-            $url .= '?' . http_build_query($queryParams);
+            $url .= '?'.http_build_query($queryParams);
         }
 
         return $url;

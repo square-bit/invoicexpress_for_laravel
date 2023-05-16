@@ -7,6 +7,7 @@ namespace Squarebit\InvoiceXpress\Models;
  * https://invoicexpress.com/api-v2/clients
  */
 
+use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\Traits\IXApiCreate;
 use Squarebit\InvoiceXpress\Traits\IXApiGet;
 use Squarebit\InvoiceXpress\Traits\IXApiList;
@@ -23,6 +24,9 @@ class IXClient extends IXEntity
     public const FIND_BY_NAME = 'find-by-name';
     public const LIST_INVOICES = 'list-invoices';
 
+    /**
+     * @throws RequestException
+     */
     public function findByName(string $name): ?array
     {
         return $this->call(
@@ -31,6 +35,9 @@ class IXClient extends IXEntity
         );
     }
 
+    /**
+     * @throws RequestException
+     */
     public function listInvoices(int $id): ?array
     {
         return $this->call(

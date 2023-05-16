@@ -11,15 +11,20 @@ use Illuminate\Http\Client\RequestException;
 class IXClient extends IXEntity
 {
     protected static string $endpointConfig = 'client';
+
     public const LIST = 'list';
+
     public const GET = 'get';
+
     public const UPDATE = 'update';
+
     public const CREATE = 'create';
+
     public const FIND_BY_NAME = 'find-by-name';
+
     public const LIST_INVOICES = 'list-invoices';
 
     /**
-     * @return array|null
      * @throws RequestException
      */
     public function list(): ?array
@@ -28,8 +33,6 @@ class IXClient extends IXEntity
     }
 
     /**
-     * @param  int  $id
-     * @return array|null
      * @throws RequestException
      */
     public function get(int $id): ?array
@@ -42,6 +45,7 @@ class IXClient extends IXEntity
 
     /**
      * Updates the current Client. Must get() one first
+     *
      * @throws RequestException
      */
     public function update(int $id, array $data = []): void
@@ -76,6 +80,7 @@ class IXClient extends IXEntity
      *          send_options: strin
      *      }
      * }
+     *
      * @throws RequestException
      */
     public function create(array $data): array

@@ -12,7 +12,7 @@ it('can call clients actions', function (string $action) {
 
     Http::preventStrayRequests();
     Http::fake([
-        UriTemplate::expand($endpoint->getUrl(), []) => Http::response('ok')
+        UriTemplate::expand($endpoint->getUrl(), []) => Http::response('ok'),
     ]);
 
     expect($client->exec($action))
@@ -24,4 +24,4 @@ it('can call clients actions', function (string $action) {
     IXClient::UPDATE,
     IXClient::FIND_BY_NAME,
     IXClient::LIST_INVOICES,
-]);;
+]);

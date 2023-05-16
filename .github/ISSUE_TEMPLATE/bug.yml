@@ -36,7 +36,7 @@ body:
       attributes:
         label: Laravel Version
         description: What version of Laravel are you running? Please be as specific as possible
-        placeholder: 10
+        placeholder: 10.x
       validations:
         required: true
     - type: dropdown

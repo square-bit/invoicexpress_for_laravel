@@ -4,7 +4,9 @@
 
 use Squarebit\InvoiceXpress\Models\IXClient;
 use Squarebit\InvoiceXpress\Models\IXItem;
+use Squarebit\InvoiceXpress\Models\IXSaft;
 use Squarebit\InvoiceXpress\Models\IXSequence;
+use Squarebit\InvoiceXpress\Models\IXTax;
 
 return [
     'account' => [
@@ -80,7 +82,7 @@ return [
                 'method' => 'GET',
             ],
             IXSequence::UPDATE => [
-                'path' => 'sequences/{id}.json',
+                'path' => 'sequences/{id}/set_current.json',
                 'method' => 'PUT',
             ],
             IXSequence::CREATE => [
@@ -90,6 +92,40 @@ return [
             IXSequence::REGISTER => [
                 'path' => 'sequences/{id}/register.json',
                 'method' => 'PUT',
+            ],
+        ],
+        // ######################################################
+        // TAX
+        // ######################################################
+        'tax' => [
+            IXTax::LIST => [
+                'path' => 'taxes.json',
+                'method' => 'GET',
+            ],
+            IXTax::GET => [
+                'path' => 'taxes/{id}.json',
+                'method' => 'GET',
+            ],
+            IXTax::UPDATE => [
+                'path' => 'taxes/{id}.json',
+                'method' => 'PUT',
+            ],
+            IXTax::CREATE => [
+                'path' => 'taxes.json',
+                'method' => 'POST',
+            ],
+            IXTax::DELETE => [
+                'path' => 'taxes/{id}.json',
+                'method' => 'DELETE',
+            ],
+        ],
+        // ######################################################
+        // SAFT
+        // ######################################################
+        'saft' => [
+            IXSaft::GET => [
+                'path' => 'api/export_saft.json',
+                'method' => 'GET',
             ],
         ],
     ],

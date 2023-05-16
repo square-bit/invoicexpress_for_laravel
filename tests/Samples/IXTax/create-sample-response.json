@@ -1,0 +1,10 @@
+{
+  "tax": {
+    "id": 31540,
+    "name": "IVA23",
+    "value": 23.0,
+    "region": "PT",
+    "code": "NOR",
+    "default_tax": 1
+  }
+}

@@ -1,11 +1,6 @@
 {
-  "item": {
-    "name": "Item name",
-    "description": "Item description",
-    "unit_price": "9.99",
-    "unit": "service",
-    "tax": {
-      "name": "IVA23"
-    }
+  "sequence": {
+    "serie": "2023",
+    "default_sequence": "1"
   }
 }

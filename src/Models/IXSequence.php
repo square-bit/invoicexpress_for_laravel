@@ -20,6 +20,7 @@ class IXSequence extends IXEntity
     use IXApiUpdate;
 
     protected static string $endpointConfig = 'sequence';
+
     public const REGISTER = 'register';
 
     public function register(): array

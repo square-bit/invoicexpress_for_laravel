@@ -21,7 +21,9 @@ class IXClient extends IXEntity
     use IXApiUpdate;
 
     protected static string $endpointConfig = 'client';
+
     public const FIND_BY_NAME = 'find-by-name';
+
     public const LIST_INVOICES = 'list-invoices';
 
     /**

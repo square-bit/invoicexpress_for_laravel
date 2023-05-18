@@ -10,12 +10,7 @@ class IXEndpoint
         public string $object,
         public string $action,
     ) {
-        $this->endpointData = config(implode('.', [
-            'invoicexpress-for-laravel',
-            'endpoints',
-            $object,
-            $action,
-        ]));
+        $this->endpointData = IXEndpointsConfig::get($object . '.' . $action);
     }
 
     public function getMethod(): string

@@ -11,11 +11,11 @@ trait IXApiGet
     /**
      * @throws RequestException
      */
-    public function get(int $id): ?array
+    public function get(int | array $id): ?array
     {
         return $this->call(
             action: 'get',
-            urlParams: ['id' => $id]
+            urlParams: is_int($id) ? compact('id') : $id
         );
     }
 }

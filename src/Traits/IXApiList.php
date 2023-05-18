@@ -11,8 +11,11 @@ trait IXApiList
     /**
      * @throws RequestException
      */
-    public function list(): ?array
+    public function list(array $queryParams = []): ?array
     {
-        return $this->call('list');
+        return $this->call(
+            action: 'list',
+            queryParams: $queryParams
+        );
     }
 }

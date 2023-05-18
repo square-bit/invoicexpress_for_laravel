@@ -4,18 +4,18 @@ namespace Squarebit\InvoiceXpress\Traits;
 
 use Illuminate\Http\Client\RequestException;
 
-trait IXApiDelete
+trait IXApiGetQRCode
 {
-    public const DELETE = 'delete';
+    public const GET_QRCODE = 'get-qrcode';
 
     /**
      * @throws RequestException
      */
-    public function delete(int | array $id): ?array
+    public function getQRCode(int $id): ?array
     {
         return $this->call(
-            action: 'delete',
-            urlParams: is_int($id) ? compact('id') : $id
+            action: 'get-qrcode',
+            urlParams: compact('id')
         );
     }
 }

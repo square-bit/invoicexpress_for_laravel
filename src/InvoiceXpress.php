@@ -3,6 +3,7 @@
 namespace Squarebit\InvoiceXpress;
 
 use Squarebit\InvoiceXpress\Models\IXClient;
+use Squarebit\InvoiceXpress\Models\IXInvoice;
 use Squarebit\InvoiceXpress\Models\IXItem;
 use Squarebit\InvoiceXpress\Models\IXSaft;
 use Squarebit\InvoiceXpress\Models\IXSequence;
@@ -33,5 +34,10 @@ class InvoiceXpress
     public function saft(): IXSaft
     {
         return new IXSaft();
+    }
+
+    public function invoice(): IXInvoice
+    {
+        return new IXInvoice();
     }
 }

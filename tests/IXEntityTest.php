@@ -2,7 +2,6 @@
 
 use GuzzleHttp\UriTemplate\UriTemplate;
 use Illuminate\Support\Facades\Http;
-use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 use Squarebit\InvoiceXpress\API\IXClient;
 use Squarebit\InvoiceXpress\API\IXEndpoint;
 use Squarebit\InvoiceXpress\API\IXEstimate;
@@ -10,6 +9,7 @@ use Squarebit\InvoiceXpress\API\IXGuide;
 use Squarebit\InvoiceXpress\API\IXInvoice;
 use Squarebit\InvoiceXpress\API\IXItem;
 use Squarebit\InvoiceXpress\API\IXSequence;
+use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can call entity actions', function (string $entity, string $action) {
     /** @var IXEndpoint $ixEntity */

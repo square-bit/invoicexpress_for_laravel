@@ -11,6 +11,7 @@ trait FindIXEntity
      * Use to extract a (sub)key from the json(array) response
      */
     protected ?string $apiResponseObject = null;
+
     /*
      * The entity's ID
      */

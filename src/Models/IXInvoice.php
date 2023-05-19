@@ -9,11 +9,14 @@ namespace Squarebit\InvoiceXpress\Models;
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\Enums\InvoiceTypeEnum;
+use Squarebit\InvoiceXpress\Traits\IXApiCancelPayment;
 use Squarebit\InvoiceXpress\Traits\IXApiChangeState;
 use Squarebit\InvoiceXpress\Traits\IXApiCreate;
+use Squarebit\InvoiceXpress\Traits\IXApiGeneratePayment;
 use Squarebit\InvoiceXpress\Traits\IXApiGeneratePDF;
 use Squarebit\InvoiceXpress\Traits\IXApiGet;
 use Squarebit\InvoiceXpress\Traits\IXApiGetQRCode;
+use Squarebit\InvoiceXpress\Traits\IXApiGetRelatedDocuments;
 use Squarebit\InvoiceXpress\Traits\IXApiList;
 use Squarebit\InvoiceXpress\Traits\IXApiSendByEmail;
 use Squarebit\InvoiceXpress\Traits\IXApiUpdate;
@@ -28,10 +31,10 @@ class IXInvoice extends IXEntity
     use IXApiGeneratePDF;
     use IXApiChangeState;
     use IXApiGetQRCode;
+    use IXApiGeneratePayment;
+    use IXApiCancelPayment;
+    use IXApiGetRelatedDocuments;
 
-    public const RELATED_DOCUMENTS = 'related-documents';
-    public const GENERATE_PAYMENT = 'generate-payment';
-    public const CANCEL_PAYMENT = 'cancel-payment';
     protected static string $endpointConfig = 'invoice';
 
     /**
@@ -120,39 +123,5 @@ class IXInvoice extends IXEntity
     public function listVatMossCreditNote(array $queryParams = []): ?array
     {
         return $this->listType(InvoiceTypeEnum::VatMossCreditNote, $queryParams);
-    }
-
-    /**
-     * @throws RequestException
-     */
-    public function getRelatedDocuments(int $id): ?array
-    {
-        return $this->call(
-            action: 'get',
-            urlParams: compact('id')
-        );
-    }
-
-    /**
-     * @throws RequestException
-     */
-    public function generatePayment(int $id, array $data): ?array
-    {
-        return $this->call(
-            action: 'generate-payment',
-            urlParams: compact('id')
-        );
-    }
-
-    /**
-     * @throws RequestException
-     */
-    public function cancelPayment(int $id, array $data): ?array
-    {
-        return $this->call(
-            action: 'cancel-payment',
-            urlParams: compact('id'),
-            bodyData: $data
-        );
     }
 }

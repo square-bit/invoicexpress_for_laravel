@@ -6,6 +6,7 @@ use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use Squarebit\InvoiceXpress\Exceptions\UnknownAPIMethodException;
 use Squarebit\InvoiceXpress\IXEndpoint;
 
 class IXEntity
@@ -17,10 +18,15 @@ class IXEntity
         return new IXEndpoint(static::$endpointConfig, $action);
     }
 
+    /**
+     * @throws \Throwable
+     */
     public function exec(string $action, array $urlParams = [], array $queryParams = [], array $bodyData = []): Response
     {
         $endpoint = $this->getEndpoint($action);
         $method = $endpoint->getMethod();
+
+        throw_unless($method, UnknownAPIMethodException::class, "Unknown action '$action'");
 
         return match ($method) {
             'GET', 'HEAD' => $this->http()

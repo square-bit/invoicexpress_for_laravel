@@ -17,7 +17,10 @@ class InvoiceXpressServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('invoicexpress-for-laravel')
-            ->hasConfigFile()
+            ->hasConfigFile([
+                'invoicexpress-for-laravel',
+                'ix-endpoints',
+            ])
             ->hasViews()
             ->hasMigration('create_invoicexpress-for-laravel_table')
             ->hasCommand(InvoiceXpressCommand::class);

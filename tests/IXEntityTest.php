@@ -4,6 +4,9 @@ use GuzzleHttp\UriTemplate\UriTemplate;
 use Illuminate\Support\Facades\Http;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 use Squarebit\InvoiceXpress\Models\IXClient;
+use Squarebit\InvoiceXpress\Models\IXEstimate;
+use Squarebit\InvoiceXpress\Models\IXGuide;
+use Squarebit\InvoiceXpress\Models\IXInvoice;
 use Squarebit\InvoiceXpress\Models\IXItem;
 use Squarebit\InvoiceXpress\Models\IXSequence;
 
@@ -30,6 +33,32 @@ it('can call entity actions', function (string $entity, string $action) {
     ['client', IXClient::UPDATE],
     ['client', IXClient::FIND_BY_NAME],
     ['client', IXClient::LIST_INVOICES],
+
+    ['estimate', IXEstimate::LIST],
+    ['estimate', IXEstimate::GET],
+    ['estimate', IXEstimate::CREATE],
+    ['estimate', IXEstimate::UPDATE],
+    ['estimate', IXEstimate::SEND_BY_EMAIL],
+    ['estimate', IXEstimate::CHANGE_STATE],
+    ['estimate', IXEstimate::GENERATE_PDF],
+
+    ['guide', IXGuide::LIST],
+    ['guide', IXGuide::GET],
+    ['guide', IXGuide::CREATE],
+    ['guide', IXGuide::UPDATE],
+    ['guide', IXGuide::SEND_BY_EMAIL],
+    ['guide', IXGuide::CHANGE_STATE],
+    ['guide', IXGuide::GENERATE_PDF],
+    ['guide', IXGuide::GET_QRCODE],
+
+    ['invoice', IXInvoice::LIST],
+    ['invoice', IXInvoice::GET],
+    ['invoice', IXInvoice::CREATE],
+    ['invoice', IXInvoice::UPDATE],
+    ['invoice', IXInvoice::SEND_BY_EMAIL],
+    ['invoice', IXInvoice::CHANGE_STATE],
+    ['invoice', IXInvoice::GENERATE_PDF],
+    ['invoice', IXInvoice::GET_QRCODE],
 
     ['item', IXItem::LIST],
     ['item', IXItem::GET],

@@ -3,6 +3,8 @@
 namespace Squarebit\InvoiceXpress;
 
 use Squarebit\InvoiceXpress\Models\IXClient;
+use Squarebit\InvoiceXpress\Models\IXEstimate;
+use Squarebit\InvoiceXpress\Models\IXGuide;
 use Squarebit\InvoiceXpress\Models\IXInvoice;
 use Squarebit\InvoiceXpress\Models\IXItem;
 use Squarebit\InvoiceXpress\Models\IXSaft;
@@ -39,5 +41,15 @@ class InvoiceXpress
     public function invoice(): IXInvoice
     {
         return new IXInvoice();
+    }
+
+    public function guide(): IXGuide
+    {
+        return new IXGuide();
+    }
+
+    public function estimate(): IXEstimate
+    {
+        return new IXEstimate();
     }
 }

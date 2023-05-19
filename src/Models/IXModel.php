@@ -6,9 +6,7 @@ use ArrayAccess;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Squarebit\InvoiceXpress\API\IXEndpoint;
-use Squarebit\InvoiceXpress\Traits\FindIXModel;
 use Squarebit\InvoiceXpress\Traits\HasAttributes;
-use Squarebit\InvoiceXpress\Traits\UpdateIXModel;
 
 abstract class IXModel implements Arrayable, ArrayAccess, Jsonable
 {

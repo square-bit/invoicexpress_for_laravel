@@ -3,7 +3,6 @@
 namespace Squarebit\InvoiceXpress\Traits;
 
 use Illuminate\Http\Client\RequestException;
-use Illuminate\Support\Arr;
 use Squarebit\InvoiceXpress\Models\EntityList;
 
 trait ListIXModel

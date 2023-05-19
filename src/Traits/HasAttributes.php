@@ -2,11 +2,24 @@
 
 namespace Squarebit\InvoiceXpress\Traits;
 
+use Illuminate\Database\Eloquent\JsonEncodingException;
 use Illuminate\Database\Eloquent\MissingAttributeException;
 
 trait HasAttributes
 {
     protected array $attributes = [];
+
+    public function getAttributes(): array
+    {
+        return $this->attributes;
+    }
+
+    public function setAttributes(array $data): static
+    {
+        $this->attributes = $data;
+
+        return $this;
+    }
 
     public function getAttribute($key): mixed
     {
@@ -85,5 +98,34 @@ trait HasAttributes
     public function __unset(string $key)
     {
         $this->offsetUnset($key);
+    }
+
+    public function toArray(): array
+    {
+        return array_merge($this->attributes);
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return $this->toArray();
+    }
+
+    public function toJson($options = 0): ?string
+    {
+        $json = json_encode($this->jsonSerialize(), $options);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw JsonEncodingException::forModel($this, json_last_error_msg());
+        }
+
+        return $json;
+    }
+
+    /**
+     * Convert the model to its string representation.
+     */
+    public function __toString(): string
+    {
+        return $this->toJson() ?? '';
     }
 }

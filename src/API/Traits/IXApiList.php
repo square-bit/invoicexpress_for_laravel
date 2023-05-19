@@ -11,11 +11,14 @@ trait IXApiList
     /**
      * @throws RequestException
      */
-    public function list(array $queryParams = []): ?array
+    public function list(int $page = 1, int $perPage = 30): ?array
     {
         return $this->call(
             action: static::LIST,
-            queryParams: $queryParams
+            queryParams: [
+                'page' => $page,
+                'per_page' => $perPage,
+            ]
         );
     }
 }

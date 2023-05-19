@@ -4,7 +4,7 @@ namespace Squarebit\InvoiceXpress\Models;
 
 use Squarebit\InvoiceXpress\API\IXItem;
 
-class Item extends APIModel
+class Item extends IXModel
 {
     protected ?string $apiResponseObject = 'item';
 

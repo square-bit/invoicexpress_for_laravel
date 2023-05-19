@@ -4,14 +4,14 @@ namespace Squarebit\InvoiceXpress\Traits;
 
 use Illuminate\Http\Client\RequestException;
 
-trait UpdateIXEntity
+trait UpdateIXModel
 {
     public function save(): ?bool
     {
         try {
-            $this->update(
+            $this->getEndpoint()->update(
                 $this->id,
-                [$this->apiResponseObject => $this->attributes]
+                [$this->dataRootObjectName => $this->attributes]
             );
 
             return true;

@@ -2,16 +2,22 @@
 
 namespace Squarebit\InvoiceXpress\Models;
 
+use ArrayAccess;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
 use Squarebit\InvoiceXpress\API\IXEndpoint;
-use Squarebit\InvoiceXpress\Traits\FindIXEntity;
+use Squarebit\InvoiceXpress\Traits\FindIXModel;
 use Squarebit\InvoiceXpress\Traits\HasAttributes;
-use Squarebit\InvoiceXpress\Traits\UpdateIXEntity;
+use Squarebit\InvoiceXpress\Traits\UpdateIXModel;
 
-abstract class APIModel
+abstract class IXModel implements Arrayable, ArrayAccess, Jsonable
 {
     use HasAttributes;
-    use FindIXEntity;
-    use UpdateIXEntity;
+
+    /*
+     * The entity's ID
+     */
+    public ?int $id;
 
     abstract public function getEndpoint(): IXEndpoint;
 

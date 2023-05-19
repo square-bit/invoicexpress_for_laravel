@@ -11,7 +11,7 @@ trait IXApiUpdate
     /**
      * @throws RequestException
      */
-    public function update(int | array $id, array $data = []): void
+    public function update(int|array $id, array $data = []): void
     {
         $this->call(
             action: 'update',

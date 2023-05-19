@@ -8,7 +8,7 @@ class IXEndpointsConfig
 {
     protected static ?array $endpoints;
 
-    public static function get(?string $data = null): null | string | int | array
+    public static function get(?string $data = null): null|string|int|array
     {
         static::$endpoints ??= config('ix-endpoints');
 

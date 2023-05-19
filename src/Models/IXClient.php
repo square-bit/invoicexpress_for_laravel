@@ -9,8 +9,11 @@ namespace Squarebit\InvoiceXpress\Models;
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\Traits\IXApiCreate;
+use Squarebit\InvoiceXpress\Traits\IXApiFindByCode;
+use Squarebit\InvoiceXpress\Traits\IXApiFindByName;
 use Squarebit\InvoiceXpress\Traits\IXApiGet;
 use Squarebit\InvoiceXpress\Traits\IXApiList;
+use Squarebit\InvoiceXpress\Traits\IXApiListInvoices;
 use Squarebit\InvoiceXpress\Traits\IXApiUpdate;
 
 class IXClient extends IXEntity
@@ -19,32 +22,9 @@ class IXClient extends IXEntity
     use IXApiGet;
     use IXApiCreate;
     use IXApiUpdate;
+    use IXApiFindByCode;
+    use IXApiFindByName;
+    use IXApiListInvoices;
 
     protected static string $endpointConfig = 'client';
-
-    public const FIND_BY_NAME = 'find-by-name';
-
-    public const LIST_INVOICES = 'list-invoices';
-
-    /**
-     * @throws RequestException
-     */
-    public function findByName(string $name): ?array
-    {
-        return $this->call(
-            action: 'find-by-name',
-            queryParams: ['client_name' => $name]
-        );
-    }
-
-    /**
-     * @throws RequestException
-     */
-    public function listInvoices(int $id): ?array
-    {
-        return $this->call(
-            action: 'list-invoices',
-            urlParams: ['id' => $id],
-        );
-    }
 }

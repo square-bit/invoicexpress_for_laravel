@@ -14,7 +14,7 @@ trait IXApiGetQRCode
     public function getQRCode(int $id): ?array
     {
         return $this->call(
-            action: 'get-qrcode',
+            action: static::GET_QRCODE,
             urlParams: compact('id')
         );
     }

@@ -15,7 +15,7 @@ trait IXApiChangeState
     public function changeState(InvoiceTypeEnum $type, int $id, array $data): ?array
     {
         return $this->call(
-            action: 'change-state',
+            action: static::CHANGE_STATE,
             urlParams: [
                 'type' => $type->value,
                 'id' => $id,

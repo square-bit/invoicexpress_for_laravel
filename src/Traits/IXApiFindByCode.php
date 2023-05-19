@@ -4,17 +4,17 @@ namespace Squarebit\InvoiceXpress\Traits;
 
 use Illuminate\Http\Client\RequestException;
 
-trait IXApiGeneratePayment
+trait IXApiFindByCode
 {
-    public const GENERATE_PAYMENT = 'generate-payment';
+    public const FIND_BY_CODE = 'find-by-code';
 
     /**
      * @throws RequestException
      */
-    public function generatePayment(int $id, array $data): ?array
+    public function findByCode(int $id, array $data): ?array
     {
         return $this->call(
-            action: static::GENERATE_PAYMENT,
+            action: static::FIND_BY_CODE,
             urlParams: compact('id'),
             bodyData: $data
         );

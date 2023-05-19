@@ -14,7 +14,7 @@ trait IXApiGetRelatedDocuments
     public function getRelatedDocuments(int $id): ?array
     {
         return $this->call(
-            action: 'get',
+            action: static::RELATED_DOCUMENTS,
             urlParams: compact('id')
         );
     }

@@ -21,7 +21,7 @@ class IXEntity
     /**
      * @throws \Throwable
      */
-    public function exec(string $action, array $urlParams = [], array $queryParams = [], array $bodyData = []): Response
+    public function request(string $action, array $urlParams = [], array $queryParams = [], array $bodyData = []): Response
     {
         $endpoint = $this->getEndpoint($action);
         $method = $endpoint->getMethod();
@@ -52,7 +52,7 @@ class IXEntity
      */
     public function call(string $action, array $urlParams = [], array $queryParams = [], array $bodyData = []): ?array
     {
-        return $this->exec($action, $urlParams, $queryParams, $bodyData)
+        return $this->request($action, $urlParams, $queryParams, $bodyData)
             ->throw()
             ->json();
     }

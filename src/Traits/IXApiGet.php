@@ -14,7 +14,7 @@ trait IXApiGet
     public function get(int | array $id): ?array
     {
         return $this->call(
-            action: 'get',
+            action: static::GET,
             urlParams: is_int($id) ? compact('id') : $id
         );
     }

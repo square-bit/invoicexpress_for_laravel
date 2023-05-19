@@ -14,7 +14,7 @@ trait IXApiDelete
     public function delete(int | array $id): ?array
     {
         return $this->call(
-            action: 'delete',
+            action: static::DELETE,
             urlParams: is_int($id) ? compact('id') : $id
         );
     }

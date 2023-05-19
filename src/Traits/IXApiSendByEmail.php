@@ -15,7 +15,7 @@ trait IXApiSendByEmail
     public function sendByEmail(InvoiceTypeEnum $type, int $id): array
     {
         return $this->call(
-            action: 'send-by-email',
+            action: static::SEND_BY_EMAIL,
             urlParams: [
                 'type' => $type->value,
                 'id' => $id,

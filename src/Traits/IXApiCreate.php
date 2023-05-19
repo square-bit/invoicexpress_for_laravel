@@ -14,7 +14,7 @@ trait IXApiCreate
     public function create(array $data): array
     {
         return $this->call(
-            action: 'create',
+            action: static::CREATE,
             bodyData: $data);
     }
 }

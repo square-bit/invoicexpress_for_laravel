@@ -18,6 +18,16 @@ class IXEndpoint
         return $this->endpointData['method'];
     }
 
+    public function getReturns(): ?array
+    {
+        return $this->endpointData['returns'] ?? null;
+    }
+
+    public function getThrows(): ?array
+    {
+        return $this->endpointData['throws'] ?? null;
+    }
+
     public function getUrl(?array $queryParams = null): string
     {
         $url = 'https://'.

@@ -14,7 +14,7 @@ trait IXApiList
     public function list(array $queryParams = []): ?array
     {
         return $this->call(
-            action: 'list',
+            action: static::LIST,
             queryParams: $queryParams
         );
     }

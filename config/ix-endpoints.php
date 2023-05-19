@@ -19,26 +19,44 @@ return [
         IXClient::LIST => [
             'path' => 'clients.json',
             'method' => 'GET',
+            'returns' => [200],
+            'throws' => [401],
         ],
         IXClient::GET => [
             'path' => 'clients/{id}.json',
             'method' => 'GET',
+            'returns' => [200],
+            'throws' => [401, 404],
         ],
         IXClient::UPDATE => [
             'path' => 'clients/{id}.json',
             'method' => 'PUT',
+            'returns' => [200],
+            'throws' => [401, 404, 422],
         ],
         IXClient::CREATE => [
             'path' => 'clients.json',
             'method' => 'POST',
+            'returns' => [200],
+            'throws' => [401, 422],
         ],
         IXClient::FIND_BY_NAME => [
             'path' => 'clients/find-by-name.json',
             'method' => 'GET',
+            'returns' => [200],
+            'throws' => [401, 404],
+        ],
+        IXClient::FIND_BY_CODE => [
+            'path' => 'clients/find-by-code.json',
+            'method' => 'GET',
+            'returns' => [200],
+            'throws' => [401, 404],
         ],
         IXClient::LIST_INVOICES => [
             'path' => 'clients/{id}/invoices.json',
             'method' => 'POST',
+            'returns' => [200],
+            'throws' => [401, 404],
         ],
     ],
     // ######################################################

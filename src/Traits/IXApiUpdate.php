@@ -14,7 +14,7 @@ trait IXApiUpdate
     public function update(int | array $id, array $data = []): void
     {
         $this->call(
-            action: 'update',
+            action: static::UPDATE,
             urlParams: is_int($id) ? compact('id') : $id,
             bodyData: $data);
     }

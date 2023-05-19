@@ -14,7 +14,7 @@ trait IXApiCancelPayment
     public function cancelPayment(int $id, array $data): ?array
     {
         return $this->call(
-            action: 'cancel-payment',
+            action: static::CANCEL_PAYMENT,
             urlParams: compact('id'),
             bodyData: $data
         );

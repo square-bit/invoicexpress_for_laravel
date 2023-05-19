@@ -11,7 +11,7 @@ trait IXApiGet
     /**
      * @throws RequestException
      */
-    public function get(int | array $id): ?array
+    public function get(int|array $id): ?array
     {
         return $this->call(
             action: static::GET,

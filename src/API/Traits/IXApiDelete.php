@@ -11,7 +11,7 @@ trait IXApiDelete
     /**
      * @throws RequestException
      */
-    public function delete(int | array $id): ?array
+    public function delete(int|array $id): ?array
     {
         return $this->call(
             action: static::DELETE,

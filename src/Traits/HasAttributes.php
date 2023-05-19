@@ -53,7 +53,7 @@ trait HasAttributes
     public function offsetExists(mixed $offset): bool
     {
         try {
-            return !is_null($this->getAttribute($offset));
+            return ! is_null($this->getAttribute($offset));
         } catch (MissingAttributeException) {
             return false;
         }
@@ -69,7 +69,6 @@ trait HasAttributes
 
     /**
      * Set the value for a given offset.
-     * @return void
      */
     public function offsetSet(mixed $offset, mixed $value): void
     {

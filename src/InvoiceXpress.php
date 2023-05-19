@@ -2,14 +2,14 @@
 
 namespace Squarebit\InvoiceXpress;
 
-use Squarebit\InvoiceXpress\Models\IXClient;
-use Squarebit\InvoiceXpress\Models\IXEstimate;
-use Squarebit\InvoiceXpress\Models\IXGuide;
-use Squarebit\InvoiceXpress\Models\IXInvoice;
-use Squarebit\InvoiceXpress\Models\IXItem;
-use Squarebit\InvoiceXpress\Models\IXSaft;
-use Squarebit\InvoiceXpress\Models\IXSequence;
-use Squarebit\InvoiceXpress\Models\IXTax;
+use Squarebit\InvoiceXpress\API\IXClient;
+use Squarebit\InvoiceXpress\API\IXEstimate;
+use Squarebit\InvoiceXpress\API\IXGuide;
+use Squarebit\InvoiceXpress\API\IXInvoice;
+use Squarebit\InvoiceXpress\API\IXItem;
+use Squarebit\InvoiceXpress\API\IXSaft;
+use Squarebit\InvoiceXpress\API\IXSequence;
+use Squarebit\InvoiceXpress\API\IXTax;
 
 class InvoiceXpress
 {

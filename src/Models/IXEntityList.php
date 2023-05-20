@@ -7,11 +7,17 @@ use Illuminate\Support\Collection;
 class IXEntityList
 {
     protected IXModel $model;
+
     protected Collection $items;
+
     protected array $pagination;
+
     protected int $currentPage;
+
     protected int $perPage;
+
     protected int $totalEntries;
+
     protected int $totalPages;
 
     public function __construct(IXModel $model, Collection $list, array $pagination)

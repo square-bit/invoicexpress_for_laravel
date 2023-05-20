@@ -8,7 +8,6 @@ namespace Squarebit\InvoiceXpress\API;
  */
 
 use Illuminate\Http\Client\RequestException;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiCancelPayment;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiChangeState;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiCreate;
@@ -20,6 +19,7 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiGetRelatedDocuments;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiSendByEmail;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
+use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
 
 class IXInvoiceEndpoint extends IXEndpoint
 {

@@ -2,13 +2,13 @@
 
 use GuzzleHttp\UriTemplate\UriTemplate;
 use Illuminate\Support\Facades\Http;
-use Squarebit\InvoiceXpress\API\IXClient;
+use Squarebit\InvoiceXpress\API\IXClientEndpoint;
 use Squarebit\InvoiceXpress\API\IXEndpoint;
-use Squarebit\InvoiceXpress\API\IXEstimate;
-use Squarebit\InvoiceXpress\API\IXGuide;
-use Squarebit\InvoiceXpress\API\IXInvoice;
-use Squarebit\InvoiceXpress\API\IXItem;
-use Squarebit\InvoiceXpress\API\IXSequence;
+use Squarebit\InvoiceXpress\API\IXEstimateEndpoint;
+use Squarebit\InvoiceXpress\API\IXGuideEndpoint;
+use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
+use Squarebit\InvoiceXpress\API\IXItemEndpoint;
+use Squarebit\InvoiceXpress\API\IXSequenceEndpoint;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can call entity actions', function (string $entity, string $action) {
@@ -28,48 +28,48 @@ it('can call entity actions', function (string $entity, string $action) {
         ->not()->toThrow(Exception::class)
         ->toEqual($responseSample);
 })->with([
-    ['client', IXClient::LIST],
-    ['client', IXClient::GET],
-    ['client', IXClient::CREATE],
-    ['client', IXClient::UPDATE],
-    ['client', IXClient::FIND_BY_NAME],
-    ['client', IXClient::LIST_INVOICES],
+    ['client', IXClientEndpoint::LIST],
+    ['client', IXClientEndpoint::GET],
+    ['client', IXClientEndpoint::CREATE],
+    ['client', IXClientEndpoint::UPDATE],
+    ['client', IXClientEndpoint::FIND_BY_NAME],
+    ['client', IXClientEndpoint::LIST_INVOICES],
 
-    ['estimate', IXEstimate::LIST],
-    ['estimate', IXEstimate::GET],
-    ['estimate', IXEstimate::CREATE],
-    ['estimate', IXEstimate::UPDATE],
-    ['estimate', IXEstimate::SEND_BY_EMAIL],
-    ['estimate', IXEstimate::CHANGE_STATE],
-    ['estimate', IXEstimate::GENERATE_PDF],
+    ['estimate', IXEstimateEndpoint::LIST],
+    ['estimate', IXEstimateEndpoint::GET],
+    ['estimate', IXEstimateEndpoint::CREATE],
+    ['estimate', IXEstimateEndpoint::UPDATE],
+    ['estimate', IXEstimateEndpoint::SEND_BY_EMAIL],
+    ['estimate', IXEstimateEndpoint::CHANGE_STATE],
+    ['estimate', IXEstimateEndpoint::GENERATE_PDF],
 
-    ['guide', IXGuide::LIST],
-    ['guide', IXGuide::GET],
-    ['guide', IXGuide::CREATE],
-    ['guide', IXGuide::UPDATE],
-    ['guide', IXGuide::SEND_BY_EMAIL],
-    ['guide', IXGuide::CHANGE_STATE],
-    ['guide', IXGuide::GENERATE_PDF],
-    ['guide', IXGuide::GET_QRCODE],
+    ['guide', IXGuideEndpoint::LIST],
+    ['guide', IXGuideEndpoint::GET],
+    ['guide', IXGuideEndpoint::CREATE],
+    ['guide', IXGuideEndpoint::UPDATE],
+    ['guide', IXGuideEndpoint::SEND_BY_EMAIL],
+    ['guide', IXGuideEndpoint::CHANGE_STATE],
+    ['guide', IXGuideEndpoint::GENERATE_PDF],
+    ['guide', IXGuideEndpoint::GET_QRCODE],
 
-    ['invoice', IXInvoice::LIST],
-    ['invoice', IXInvoice::GET],
-    ['invoice', IXInvoice::CREATE],
-    ['invoice', IXInvoice::UPDATE],
-    ['invoice', IXInvoice::SEND_BY_EMAIL],
-    ['invoice', IXInvoice::CHANGE_STATE],
-    ['invoice', IXInvoice::GENERATE_PDF],
-    ['invoice', IXInvoice::GET_QRCODE],
+    ['invoice', IXInvoiceEndpoint::LIST],
+    ['invoice', IXInvoiceEndpoint::GET],
+    ['invoice', IXInvoiceEndpoint::CREATE],
+    ['invoice', IXInvoiceEndpoint::UPDATE],
+    ['invoice', IXInvoiceEndpoint::SEND_BY_EMAIL],
+    ['invoice', IXInvoiceEndpoint::CHANGE_STATE],
+    ['invoice', IXInvoiceEndpoint::GENERATE_PDF],
+    ['invoice', IXInvoiceEndpoint::GET_QRCODE],
 
-    ['item', IXItem::LIST],
-    ['item', IXItem::GET],
-    ['item', IXItem::CREATE],
-    ['item', IXItem::UPDATE],
-    ['item', IXItem::DELETE],
+    ['item', IXItemEndpoint::LIST],
+    ['item', IXItemEndpoint::GET],
+    ['item', IXItemEndpoint::CREATE],
+    ['item', IXItemEndpoint::UPDATE],
+    ['item', IXItemEndpoint::DELETE],
 
-    ['sequence', IXSequence::LIST],
-    ['sequence', IXSequence::GET],
-    ['sequence', IXSequence::CREATE],
-    ['sequence', IXSequence::UPDATE],
-    ['sequence', IXSequence::REGISTER],
+    ['sequence', IXSequenceEndpoint::LIST],
+    ['sequence', IXSequenceEndpoint::GET],
+    ['sequence', IXSequenceEndpoint::CREATE],
+    ['sequence', IXSequenceEndpoint::UPDATE],
+    ['sequence', IXSequenceEndpoint::REGISTER],
 ]);

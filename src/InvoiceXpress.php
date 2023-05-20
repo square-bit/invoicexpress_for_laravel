@@ -2,54 +2,54 @@
 
 namespace Squarebit\InvoiceXpress;
 
-use Squarebit\InvoiceXpress\API\IXClient;
-use Squarebit\InvoiceXpress\API\IXEstimate;
-use Squarebit\InvoiceXpress\API\IXGuide;
-use Squarebit\InvoiceXpress\API\IXInvoice;
-use Squarebit\InvoiceXpress\API\IXItem;
-use Squarebit\InvoiceXpress\API\IXSaft;
-use Squarebit\InvoiceXpress\API\IXSequence;
-use Squarebit\InvoiceXpress\API\IXTax;
+use Squarebit\InvoiceXpress\API\IXClientEndpoint;
+use Squarebit\InvoiceXpress\API\IXEstimateEndpoint;
+use Squarebit\InvoiceXpress\API\IXGuideEndpoint;
+use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
+use Squarebit\InvoiceXpress\API\IXItemEndpoint;
+use Squarebit\InvoiceXpress\API\IXSaftEndpoint;
+use Squarebit\InvoiceXpress\API\IXSequenceEndpoint;
+use Squarebit\InvoiceXpress\API\IXTaxEndpoint;
 
 class InvoiceXpress
 {
-    public function client(): IXClient
+    public function client(): IXClientEndpoint
     {
-        return new IXClient();
+        return new IXClientEndpoint();
     }
 
-    public function item(): IXItem
+    public function item(): IXItemEndpoint
     {
-        return new IXItem();
+        return new IXItemEndpoint();
     }
 
-    public function sequence(): IXSequence
+    public function sequence(): IXSequenceEndpoint
     {
-        return new IXSequence();
+        return new IXSequenceEndpoint();
     }
 
-    public function tax(): IXTax
+    public function tax(): IXTaxEndpoint
     {
-        return new IXTax();
+        return new IXTaxEndpoint();
     }
 
-    public function saft(): IXSaft
+    public function saft(): IXSaftEndpoint
     {
-        return new IXSaft();
+        return new IXSaftEndpoint();
     }
 
-    public function invoice(): IXInvoice
+    public function invoice(): IXInvoiceEndpoint
     {
-        return new IXInvoice();
+        return new IXInvoiceEndpoint();
     }
 
-    public function guide(): IXGuide
+    public function guide(): IXGuideEndpoint
     {
-        return new IXGuide();
+        return new IXGuideEndpoint();
     }
 
-    public function estimate(): IXEstimate
+    public function estimate(): IXEstimateEndpoint
     {
-        return new IXEstimate();
+        return new IXEstimateEndpoint();
     }
 }

@@ -28,34 +28,24 @@ class IXInvoiceEndpoint extends IXEndpoint
 {
     /** @uses IXApiList<InvoiceData> */
     use IXApiList;
-
     /** @uses IXApiList<InvoiceData> */
     use IXApiGet;
-
     /** @uses IXApiList<InvoiceData> */
     use IXApiCreate;
-
     /** @uses IXApiList<InvoiceData> */
     use IXApiUpdate;
-
     /** @uses IXApiList<InvoiceData> */
     use IXApiSendByEmail;
-
     /** @uses IXApiList<InvoiceData> */
     use IXApiGeneratePDF;
-
     /** @uses IXApiList<InvoiceData> */
     use IXApiChangeState;
-
     /** @uses IXApiList<InvoiceData> */
     use IXApiGetQRCode;
-
     /** @uses IXApiList<InvoiceData> */
     use IXApiGeneratePayment;
-
     /** @uses IXApiList<InvoiceData> */
     use IXApiCancelPayment;
-
     /** @uses IXApiList<InvoiceData> */
     use IXApiGetRelatedDocuments;
 

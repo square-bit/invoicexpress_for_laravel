@@ -35,8 +35,6 @@ class IXClientEndpoint extends IXEndpoint
     /** @uses IXApiUpdate<ClientData> */
     use IXApiUpdate;
 
-    use IXApiDelete;
-
     /** @uses IXApiFindByCode<ClientData> */
     use IXApiFindByCode;
 
@@ -45,6 +43,7 @@ class IXClientEndpoint extends IXEndpoint
 
     /** @uses IXApiListInvoices<ClientData> */
     use IXApiListInvoices;
+    use IXApiDelete;
 
     public const ENDPOINT_CONFIG = 'client';
 

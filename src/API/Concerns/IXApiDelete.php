@@ -3,19 +3,20 @@
 namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
+use Throwable;
 
 trait IXApiDelete
 {
     public const DELETE = 'delete';
 
     /**
-     * @throws RequestException
+     * @throws RequestException|Throwable
      */
-    public function delete(int|array $id): ?array
+    public function delete(int $id): void
     {
-        return $this->call(
+        $this->call(
             action: static::DELETE,
-            urlParams: is_int($id) ? compact('id') : $id
+            urlParams: compact('id')
         );
     }
 }

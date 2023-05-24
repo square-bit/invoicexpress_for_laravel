@@ -11,12 +11,11 @@ trait IXApiFindByName
     /**
      * @throws RequestException
      */
-    public function findByName(int $id, array $data): ?array
+    public function findByName(string $name): ?array
     {
         return $this->call(
             action: static::FIND_BY_NAME,
-            urlParams: compact('id'),
-            bodyData: $data
+            queryParams: ['client_name' => $name]
         );
     }
 }

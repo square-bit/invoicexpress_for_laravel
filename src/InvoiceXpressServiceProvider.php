@@ -22,7 +22,7 @@ class InvoiceXpressServiceProvider extends PackageServiceProvider
                 'ix-endpoints',
             ])
             ->hasViews()
-            ->hasMigration('create_invoicexpress-for-laravel_table')
+            ->hasMigration('create_ix_clients_table')
             ->hasCommand(InvoiceXpressCommand::class);
     }
 }

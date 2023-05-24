@@ -7,7 +7,6 @@ namespace Squarebit\InvoiceXpress\API;
  * https://invoicexpress.com/api-v2/invoices
  */
 
-use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiCancelPayment;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiChangeState;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiCreate;
@@ -19,109 +18,67 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiGetRelatedDocuments;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiSendByEmail;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
+use Squarebit\InvoiceXpress\API\Data\InvoiceData;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
+/**
+ * @template-extends IXEndpoint<InvoiceData>
+ */
 class IXInvoiceEndpoint extends IXEndpoint
 {
+    /** @uses IXApiList<InvoiceData> */
     use IXApiList;
+
+    /** @uses IXApiList<InvoiceData> */
     use IXApiGet;
+
+    /** @uses IXApiList<InvoiceData> */
     use IXApiCreate;
+
+    /** @uses IXApiList<InvoiceData> */
     use IXApiUpdate;
+
+    /** @uses IXApiList<InvoiceData> */
     use IXApiSendByEmail;
+
+    /** @uses IXApiList<InvoiceData> */
     use IXApiGeneratePDF;
+
+    /** @uses IXApiList<InvoiceData> */
     use IXApiChangeState;
+
+    /** @uses IXApiList<InvoiceData> */
     use IXApiGetQRCode;
+
+    /** @uses IXApiList<InvoiceData> */
     use IXApiGeneratePayment;
+
+    /** @uses IXApiList<InvoiceData> */
     use IXApiCancelPayment;
+
+    /** @uses IXApiList<InvoiceData> */
     use IXApiGetRelatedDocuments;
 
-    protected static string $endpointConfig = 'invoice';
+    public const ENDPOINT_CONFIG = 'invoice';
+    protected const JSON_ROOT_OBJECT_KEY = 'invoice';
 
-    /**
-     * @throws RequestException
-     */
-    public function listType(InvoiceTypeEnum $type, array $queryParams = []): ?array
+    protected function responseToDataObject(array $data): InvoiceData
     {
-        return $this->list(array_merge($queryParams, ['type[]' => $type->value]));
+        return InvoiceData::from($data);
     }
 
-    /**
-     * @throws RequestException
-     */
-    public function listInvoice(array $queryParams = []): ?array
+    protected function getEndpointName(): string
     {
-        return $this->listType(InvoiceTypeEnum::Invoice, $queryParams);
+        return static::ENDPOINT_CONFIG;
     }
 
-    /**
-     * @throws RequestException
-     */
-    public function listInvoiceReceipt(array $queryParams = []): ?array
+    protected function getJsonRootObjectKey(): string
     {
-        return $this->listType(InvoiceTypeEnum::InvoiceReceipt, $queryParams);
+        return static::JSON_ROOT_OBJECT_KEY;
     }
 
-    /**
-     * @throws RequestException
-     */
-    public function listSimplifiedInvoice(array $queryParams = []): ?array
+    protected function getEntityType(): EntityTypeEnum
     {
-        return $this->listType(InvoiceTypeEnum::SimplifiedInvoice, $queryParams);
-    }
-
-    /**
-     * @throws RequestException
-     */
-    public function listVatMossInvoice(array $queryParams = []): ?array
-    {
-        return $this->listType(InvoiceTypeEnum::VatMossInvoice, $queryParams);
-    }
-
-    /**
-     * @throws RequestException
-     */
-    public function listCreditNote(array $queryParams = []): ?array
-    {
-        return $this->listType(InvoiceTypeEnum::CreditNote, $queryParams);
-    }
-
-    /**
-     * @throws RequestException
-     */
-    public function listDebitNote(array $queryParams = []): ?array
-    {
-        return $this->listType(InvoiceTypeEnum::DebitNote, $queryParams);
-    }
-
-    /**
-     * @throws RequestException
-     */
-    public function listReceipt(array $queryParams = []): ?array
-    {
-        return $this->listType(InvoiceTypeEnum::Receipt, $queryParams);
-    }
-
-    /**
-     * @throws RequestException
-     */
-    public function listCashInvoice(array $queryParams = []): ?array
-    {
-        return $this->listType(InvoiceTypeEnum::CashInvoice, $queryParams);
-    }
-
-    /**
-     * @throws RequestException
-     */
-    public function listVatMossReceipt(array $queryParams = []): ?array
-    {
-        return $this->listType(InvoiceTypeEnum::VatMossReceipt, $queryParams);
-    }
-
-    /**
-     * @throws RequestException
-     */
-    public function listVatMossCreditNote(array $queryParams = []): ?array
-    {
-        return $this->listType(InvoiceTypeEnum::VatMossCreditNote, $queryParams);
+        return EntityTypeEnum::Invoices;
     }
 }

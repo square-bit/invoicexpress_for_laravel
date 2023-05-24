@@ -1,7 +1,8 @@
 {
   "client": {
-    "id": "1",
     "name": "Ricardo Pereira",
+    "code": "TEST_RP",
+    "language": "pt",
     "email": "someone@example.com",
     "address": "Lisbon",
     "city": "Lisbon",
@@ -14,12 +15,10 @@
     "preferred_contact": {
       "name": "Ricardo Pereira",
       "email": "someone@example.com",
-      "phone": "2233442233"
+      "phone": "2233442233",
+      "mobile" : null
     },
-    "observations": "Computer Processed",
-    "open_account_link": "https://www.app.invoicexpress.com/suppliers/1f7bba947948c50e04af20d329db5bc67c38cf89",
-    "send_options": "1",
-    "payment_days": "0",
-    "tax_exemption_code": "M00"
+    "observations": "Observations",
+    "send_options": 1
   }
 }

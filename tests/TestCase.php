@@ -4,6 +4,7 @@ namespace Squarebit\InvoiceXpress\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\LaravelData\LaravelDataServiceProvider;
 use Squarebit\InvoiceXpress\InvoiceXpressServiceProvider;
 
 class TestCase extends Orchestra
@@ -21,6 +22,7 @@ class TestCase extends Orchestra
     {
         return [
             InvoiceXpressServiceProvider::class,
+            LaravelDataServiceProvider::class,
         ];
     }
 

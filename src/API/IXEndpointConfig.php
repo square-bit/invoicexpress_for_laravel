@@ -10,7 +10,7 @@ class IXEndpointConfig
         public string $object,
         public string $action,
     ) {
-        $this->endpointData = IXEndpointsConfig::get($object.'.'.$action);
+        $this->endpointData = IXEndpointsConfig::get($object . '.' . $action);
     }
 
     public function getMethod(): string
@@ -28,19 +28,20 @@ class IXEndpointConfig
         return $this->endpointData['throws'] ?? null;
     }
 
-    public function getUrl(?array $queryParams = null): string
+    public function getUrl(?array $queryParams = []): string
     {
-        $url = 'https://'.
-            config('invoicexpress-for-laravel.account.name').
-            '.'.
-            config('invoicexpress-for-laravel.service_endpoint').
-            '/'.
-            $this->endpointData['path'];
+        $queryParams = array_merge(
+            ['api_key' => config('invoicexpress-for-laravel.account.api_key')],
+            $queryParams
+        );
 
-        if (filled($queryParams)) {
-            $url .= '?'.http_build_query($queryParams);
-        }
-
-        return $url;
+        return 'https://' .
+            config('invoicexpress-for-laravel.account.name') .
+            '.' .
+            config('invoicexpress-for-laravel.service_endpoint') .
+            '/' .
+            $this->endpointData['path'] .
+            '?' .
+            http_build_query($queryParams);
     }
 }

@@ -1,9 +1,39 @@
 <?php
 
-use function Pest\testDirectory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Assert;
 use Squarebit\InvoiceXpress\Tests\TestCase;
+use function Pest\testDirectory;
 
+uses(RefreshDatabase::class);
 uses(TestCase::class)->in(__DIR__);
+
+expect()->extend('toMatchArrayRecursive', function (array $array) {
+    $valueAsArray = (array) $this->value;
+
+    foreach ($array as $key => $value) {
+        Assert::assertArrayHasKey($key, $valueAsArray);
+
+        if (is_array($value)) {
+            Assert::assertIsArray($valueAsArray[$key]);
+            expect($valueAsArray[$key])->toMatchArrayRecursive($value);
+
+            continue;
+        }
+
+        Assert::assertEquals(
+            $value,
+            $valueAsArray[$key],
+            sprintf(
+                'Failed asserting that an array has a key %s with the value %s.',
+                $key,
+                $valueAsArray[$key],
+            ),
+        );
+    }
+
+    return $this;
+});
 
 function getRequestSample(string $ixEntity, string $action): ?array
 {
@@ -19,12 +49,12 @@ function getSample(string $ixEntity, string $action, string $type): ?array
 {
     try {
         return json_decode(
-            file_get_contents(testDirectory('Samples/'.$ixEntity.'/'.$action.'-sample-'.$type.'.json')),
+            file_get_contents(testDirectory('Samples/' . $ixEntity . '/' . $action . '-sample-' . $type . '.json')),
             true,
             512,
             JSON_THROW_ON_ERROR
         );
-    } catch (\Throwable) {
+    } catch (Throwable) {
         return [];
     }
 }

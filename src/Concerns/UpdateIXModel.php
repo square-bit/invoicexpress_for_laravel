@@ -6,7 +6,7 @@ use Illuminate\Http\Client\RequestException;
 
 trait UpdateIXModel
 {
-    public function update(): ?bool
+    public function updateIX(): ?bool
     {
         try {
             $this->getEndpoint()->update(

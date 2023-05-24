@@ -3,19 +3,29 @@
 namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
+use Spatie\LaravelData\Data;
+use Throwable;
 
+/**
+ * @template TData of Data
+ */
 trait IXApiGet
 {
     public const GET = 'get';
 
     /**
+     * @param  int  $id
+     * @return TData
      * @throws RequestException
+     * @throws Throwable
      */
-    public function get(int|array $id): ?array
+    public function get(int $id): Data
     {
-        return $this->call(
+        $data = $this->call(
             action: static::GET,
-            urlParams: is_int($id) ? compact('id') : $id
+            urlParams: compact('id')
         );
+
+        return $this->responseToDataObject($data[$this->getJsonRootObjectKey()]);
     }
 }

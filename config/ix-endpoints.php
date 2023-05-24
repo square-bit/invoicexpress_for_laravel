@@ -58,6 +58,10 @@ return [
             'returns' => [200],
             'throws' => [401, 404],
         ],
+        IXClientEndpoint::DELETE => [
+            'path' => 'clients/{id}.json',
+            'method' => 'DELETE',
+        ],
     ],
     // ######################################################
     // ITEM

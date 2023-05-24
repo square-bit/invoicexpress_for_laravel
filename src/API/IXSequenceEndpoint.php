@@ -11,8 +11,9 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiCreate;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
+use Squarebit\InvoiceXpress\API\Contracts\IXModelEndpoint;
 
-class IXSequenceEndpoint extends IXEndpoint
+class IXSequenceEndpoint //extends IXEndpoint
 {
     use IXApiList;
     use IXApiGet;

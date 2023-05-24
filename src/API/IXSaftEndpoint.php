@@ -9,7 +9,7 @@ namespace Squarebit\InvoiceXpress\API;
 
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
 
-class IXSaftEndpoint extends IXEndpoint
+class IXSaftEndpoint //extends IXEndpoint
 {
     use IXApiGet;
 

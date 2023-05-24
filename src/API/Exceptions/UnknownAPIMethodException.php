@@ -2,6 +2,8 @@
 
 namespace Squarebit\InvoiceXpress\API\Exceptions;
 
-class UnknownAPIMethodException extends \Exception
+use Exception;
+
+class UnknownAPIMethodException extends Exception
 {
 }

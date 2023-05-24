@@ -9,6 +9,7 @@ use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
 use Squarebit\InvoiceXpress\API\IXItemEndpoint;
 use Squarebit\InvoiceXpress\API\IXSaftEndpoint;
 use Squarebit\InvoiceXpress\API\IXSequenceEndpoint;
+use Squarebit\InvoiceXpress\API\IXSimplifiedInvoiceEndpoint;
 use Squarebit\InvoiceXpress\API\IXTaxEndpoint;
 
 class InvoiceXpress
@@ -51,5 +52,10 @@ class InvoiceXpress
     public function estimate(): IXEstimateEndpoint
     {
         return new IXEstimateEndpoint();
+    }
+
+    public function simplifiedInvoice(): IXSimplifiedInvoiceEndpoint
+    {
+        return new IXSimplifiedInvoiceEndpoint();
     }
 }

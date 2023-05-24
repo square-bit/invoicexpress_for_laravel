@@ -12,7 +12,12 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiDelete;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
+use Squarebit\InvoiceXpress\API\Data\TaxData;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
+/**
+ * @template-extends IXEndpoint<TaxData>
+ */
 class IXTaxEndpoint extends IXEndpoint
 {
     use IXApiList;
@@ -21,5 +26,26 @@ class IXTaxEndpoint extends IXEndpoint
     use IXApiCreate;
     use IXApiDelete;
 
-    protected static string $endpointConfig = 'tax';
+    public const ENDPOINT_CONFIG = 'tax';
+    protected const JSON_ROOT_OBJECT_KEY = 'tax';
+
+    protected function responseToDataObject(array $data): TaxData
+    {
+        return TaxData::from($data[self::JSON_ROOT_OBJECT_KEY]);
+    }
+
+    protected function getEndpointName(): string
+    {
+        return self::ENDPOINT_CONFIG;
+    }
+
+    protected function getJsonRootObjectKey(): string
+    {
+        return static::JSON_ROOT_OBJECT_KEY;
+    }
+
+    protected function getEntityType(): EntityTypeEnum
+    {
+        return EntityTypeEnum::Taxes;
+    }
 }

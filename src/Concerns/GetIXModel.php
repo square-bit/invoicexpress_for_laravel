@@ -4,7 +4,7 @@ namespace Squarebit\InvoiceXpress\Concerns;
 
 use Illuminate\Http\Client\RequestException;
 
-trait FindIXModel
+trait GetIXModel
 {
     /*
      * Used to store the root object name from the Get response.
@@ -18,15 +18,14 @@ trait FindIXModel
      */
     private ?string $dataRootObjectName;
 
-    public function get(int $id): ?static
+    public function get(int $id): ?array
     {
         try {
             $modelData = $this->getEndpoint()->get($id);
             $this->id = $id;
             $this->dataRootObjectName = array_keys($modelData)[0] ?? null;
-            $this->attributes = $modelData[$this->dataRootObjectName] ?? [];
 
-            return $this;
+            return $modelData[$this->dataRootObjectName] ?? [];
         } catch (RequestException) {
         }
 

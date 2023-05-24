@@ -6,48 +6,60 @@ use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use Spatie\LaravelData\Data;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
+use Throwable;
 
-class IXEndpoint
+/**
+ * @template TData of Data
+ */
+abstract class IXEndpoint
 {
-    protected static string $endpointConfig = '';
+    /**
+     * @param  array  $data
+     * @return TData
+     */
+    abstract protected function responseToDataObject(array $data): Data;
 
-    public function getEndpoint(string $action): IXEndpointConfig
+    abstract protected function getEndpointName(): string;
+
+    abstract protected function getEntityType(): EntityTypeEnum;
+
+    abstract protected function getJsonRootObjectKey(): string;
+
+    public function getEndpointConfig(string $action): IXEndpointConfig
     {
-        return new IXEndpointConfig(static::$endpointConfig, $action);
+        return new IXEndpointConfig($this->getEndpointName(), $action);
     }
 
     /**
-     * @throws \Throwable
+     * @throws Throwable
      */
-    public function request(string $action, array $urlParams = [], array $queryParams = [], array $bodyData = []): Response
-    {
-        $endpoint = $this->getEndpoint($action);
-        $method = $endpoint->getMethod();
+    public function request(
+        string $action,
+        array $urlParams = [],
+        array $queryParams = [],
+        array $bodyData = []
+    ): Response {
+        $endpointConfig = $this->getEndpointConfig($action);
+        $urlParams = $this->getUrlParameters($urlParams);
+        $method = strtolower($endpointConfig->getMethod());
 
         throw_unless($method, UnknownAPIMethodException::class, "Unknown action '$action'");
 
         return match ($method) {
-            'GET', 'HEAD' => $this->http()
+            'get', 'head' => $this->http()
                 ->withUrlParameters($urlParams)
-                ->$method(
-                    $endpoint->getUrl(),
-                    array_merge(
-                        ['api_key' => config('invoicexpress-for-laravel.account.api_key')],
-                        $queryParams
-                    )
-                ),
+                ->$method($endpointConfig->getUrl($queryParams)),
             default => $this->http()
                 ->withUrlParameters($urlParams)
-                ->$method(
-                    $endpoint->getUrl(['api_key' => config('invoicexpress-for-laravel.account.api_key')]),
-                    $bodyData
-                ),
+                ->$method($endpointConfig->getUrl($queryParams), $bodyData),
         };
     }
 
     /**
-     * @throws RequestException
+     * @throws RequestException|Throwable
      */
     public function call(string $action, array $urlParams = [], array $queryParams = [], array $bodyData = []): ?array
     {
@@ -60,5 +72,12 @@ class IXEndpoint
     {
         return Http::acceptJson()
             ->asJson();
+    }
+
+    public function getUrlParameters(array $urlParams = []): array
+    {
+        $urlParams['type'] ??= $this->getEntityType()->value;
+
+        return $urlParams;
     }
 }

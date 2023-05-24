@@ -15,7 +15,6 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiGetQRCode;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiSendByEmail;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
-use Squarebit\InvoiceXpress\API\Contracts\IXModelEndpoint;
 
 class IXGuideEndpoint //extends IXEndpoint
 {

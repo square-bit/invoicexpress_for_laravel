@@ -27,6 +27,7 @@ class IXTaxEndpoint extends IXEndpoint
     use IXApiDelete;
 
     public const ENDPOINT_CONFIG = 'tax';
+
     protected const JSON_ROOT_OBJECT_KEY = 'tax';
 
     protected function responseToDataObject(array $data): TaxData

@@ -7,6 +7,7 @@ use Illuminate\Http\Client\RequestException;
 trait IXApiFindByCode
 {
     public const FIND_BY_CODE = 'find-by-code';
+
     protected const CLIENT_CODE = 'client_code';
 
     /**

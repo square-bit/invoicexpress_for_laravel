@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\ClientData;
-use Squarebit\InvoiceXpress\API\Enums\IXItemUnitEnum;
 use Squarebit\InvoiceXpress\Enums\IXClientLanguageEnum;
 use Squarebit\InvoiceXpress\Enums\IXClientSendOptionsEnum;
 use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
@@ -30,7 +29,7 @@ it('can create / update /delete a client', function (array $clientData) {
         ->and(fn () => InvoiceXpress::client()->delete($gotClient->id))
         /** Deleting Client throws an exception but deletes it anyway if it has no documents
          *  See https://github.com/square-bit/invoicexpress_for_laravel/issues/1
-        */
+         */
         // ->not()->toThrow(Exception::class)
         ->toThrow(Exception::class)
         ->and(fn () => InvoiceXpress::client()->get($gotClient->id))

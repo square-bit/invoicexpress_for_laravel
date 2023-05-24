@@ -9,8 +9,11 @@ use Throwable;
 trait IXApiList
 {
     public const LIST = 'list';
+
     protected const PAGE = 1;
+
     protected const PER_PAGE = 30;
+
     protected const PAGINATION_TAG = 'pagination';
 
     /**

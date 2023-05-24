@@ -25,21 +25,29 @@ class IXClientEndpoint extends IXEndpoint
 {
     /** @uses IXApiList<ClientData> */
     use IXApiList;
+
     /** @uses IXApiGet<ClientData> */
     use IXApiGet;
+
     /** @uses IXApiCreate<ClientData> */
     use IXApiCreate;
+
     /** @uses IXApiUpdate<ClientData> */
     use IXApiUpdate;
+
     use IXApiDelete;
+
     /** @uses IXApiFindByCode<ClientData> */
     use IXApiFindByCode;
+
     /** @uses IXApiFindByName<ClientData> */
     use IXApiFindByName;
+
     /** @uses IXApiListInvoices<ClientData> */
     use IXApiListInvoices;
 
     public const ENDPOINT_CONFIG = 'client';
+
     protected const JSON_ROOT_OBJECT_KEY = 'client';
 
     protected function responseToDataObject(array $data): ClientData

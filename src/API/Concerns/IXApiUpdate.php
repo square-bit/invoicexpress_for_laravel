@@ -6,7 +6,6 @@ use Illuminate\Http\Client\RequestException;
 use Spatie\LaravelData\Data;
 use Throwable;
 
-
 /**
  * @template T of Data
  */
@@ -15,7 +14,8 @@ trait IXApiUpdate
     public const UPDATE = 'update';
 
     /**
-     * @param T $modelData
+     * @param  T  $modelData
+     *
      * @throws RequestException
      * @throws Throwable
      */

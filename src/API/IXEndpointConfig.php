@@ -10,7 +10,7 @@ class IXEndpointConfig
         public string $object,
         public string $action,
     ) {
-        $this->endpointData = IXEndpointsConfig::get($object . '.' . $action);
+        $this->endpointData = IXEndpointsConfig::get($object.'.'.$action);
     }
 
     public function getMethod(): string
@@ -35,13 +35,13 @@ class IXEndpointConfig
             $queryParams
         );
 
-        return 'https://' .
-            config('invoicexpress-for-laravel.account.name') .
-            '.' .
-            config('invoicexpress-for-laravel.service_endpoint') .
-            '/' .
-            $this->endpointData['path'] .
-            '?' .
+        return 'https://'.
+            config('invoicexpress-for-laravel.account.name').
+            '.'.
+            config('invoicexpress-for-laravel.service_endpoint').
+            '/'.
+            $this->endpointData['path'].
+            '?'.
             http_build_query($queryParams);
     }
 }

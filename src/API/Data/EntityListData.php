@@ -8,6 +8,7 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 /**
  * @template T of EntityData
+ *
  * @property array<T>
  */
 #[MapName(SnakeCaseMapper::class)]

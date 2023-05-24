@@ -22,16 +22,21 @@ class IXItemEndpoint extends IXEndpoint
 {
     /** @uses IXApiList<ItemData> */
     use IXApiList;
+
     /** @uses IXApiGet<ItemData> */
     use IXApiGet;
+
     /** @uses IXApiUpdate<ItemData> */
     use IXApiUpdate;
+
     /** @uses IXApiCreate<ItemData> */
     use IXApiCreate;
+
     /** @uses IXApiDelete<ItemData> */
     use IXApiDelete;
 
     public const ENDPOINT_CONFIG = 'item';
+
     protected const JSON_ROOT_OBJECT_KEY = 'item';
 
     protected function responseToDataObject(array $data): ItemData

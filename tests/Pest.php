@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use function Pest\testDirectory;
 use PHPUnit\Framework\Assert;
 use Squarebit\InvoiceXpress\Tests\TestCase;
-use function Pest\testDirectory;
 
 uses(RefreshDatabase::class);
 uses(TestCase::class)->in(__DIR__);
@@ -49,7 +49,7 @@ function getSample(string $ixEntity, string $action, string $type): ?array
 {
     try {
         return json_decode(
-            file_get_contents(testDirectory('Samples/' . $ixEntity . '/' . $action . '-sample-' . $type . '.json')),
+            file_get_contents(testDirectory('Samples/'.$ixEntity.'/'.$action.'-sample-'.$type.'.json')),
             true,
             512,
             JSON_THROW_ON_ERROR

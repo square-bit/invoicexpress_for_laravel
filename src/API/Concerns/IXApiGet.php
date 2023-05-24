@@ -14,8 +14,8 @@ trait IXApiGet
     public const GET = 'get';
 
     /**
-     * @param  int  $id
      * @return TData
+     *
      * @throws RequestException
      * @throws Throwable
      */

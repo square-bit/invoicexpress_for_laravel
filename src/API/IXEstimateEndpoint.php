@@ -14,7 +14,6 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiSendByEmail;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
-use Squarebit\InvoiceXpress\API\Contracts\IXModelEndpoint;
 
 class IXEstimateEndpoint //extends IXEndpoint
 {

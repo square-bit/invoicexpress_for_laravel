@@ -17,7 +17,6 @@ use Throwable;
 abstract class IXEndpoint
 {
     /**
-     * @param  array  $data
      * @return TData
      */
     abstract protected function responseToDataObject(array $data): Data;

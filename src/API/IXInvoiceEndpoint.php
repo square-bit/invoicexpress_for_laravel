@@ -60,6 +60,7 @@ class IXInvoiceEndpoint extends IXEndpoint
     use IXApiGetRelatedDocuments;
 
     public const ENDPOINT_CONFIG = 'invoice';
+
     protected const JSON_ROOT_OBJECT_KEY = 'invoice';
 
     protected function responseToDataObject(array $data): InvoiceData

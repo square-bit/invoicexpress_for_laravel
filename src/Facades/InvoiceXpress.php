@@ -9,11 +9,11 @@ use Squarebit\InvoiceXpress\API\IXGuideEndpoint;
 use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
 use Squarebit\InvoiceXpress\API\IXItemEndpoint;
 use Squarebit\InvoiceXpress\API\IXSaftEndpoint;
-use Squarebit\InvoiceXpress\API\IXSequenceEndpoint;
 use Squarebit\InvoiceXpress\API\IXTaxEndpoint;
 
 /**
  * @see \Squarebit\InvoiceXpress\InvoiceXpress
+ *
  * @method static IXClientEndpoint client()
  * @method static IXItemEndpoint item()
  * @method static IXTaxEndpoint tax()

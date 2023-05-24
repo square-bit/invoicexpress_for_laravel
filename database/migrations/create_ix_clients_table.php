@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Schema;
 use Squarebit\InvoiceXpress\Enums\IXClientLanguageEnum;
 use Squarebit\InvoiceXpress\Enums\IXClientSendOptionsEnum;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('ix_clients', function (Blueprint $table) {

@@ -12,7 +12,7 @@ use Squarebit\InvoiceXpress\API\Enums\TaxRegionEnum;
 class TaxData extends EntityData
 {
     public function __construct(
-        public Optional | int $id,
+        public Optional|int $id,
         public string $name,
         public ?string $value,
         public ?TaxRegionEnum $region,

@@ -10,8 +10,8 @@ use Spatie\LaravelData\Optional;
 class PdfData extends EntityData
 {
     public function __construct(
-        public Optional | string $pdfUrl,
-        public Optional | bool $message,
+        public Optional|string $pdfUrl,
+        public Optional|bool $message,
     ) {
     }
 }

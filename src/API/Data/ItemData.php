@@ -10,7 +10,7 @@ use Spatie\LaravelData\Optional;
 class ItemData extends EntityData
 {
     public function __construct(
-        public Optional | int $id,
+        public Optional|int $id,
         public string $name,
         public ?string $description,
         public float $unitPrice,

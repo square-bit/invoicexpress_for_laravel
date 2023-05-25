@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Http;
 use Spatie\LaravelData\Data;
 use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
-use Throwable;
 
 /**
  * @template TData of Data

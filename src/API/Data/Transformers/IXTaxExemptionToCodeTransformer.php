@@ -9,9 +9,7 @@ use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
 class IXTaxExemptionToCodeTransformer implements Transformer
 {
     /**
-     * @param  DataProperty  $property
      * @param  IXTaxExemptionCodeEnum  $value
-     * @return string
      */
     public function transform(DataProperty $property, mixed $value): string
     {

@@ -8,7 +8,7 @@ use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can create / update /delete a client', function (array $clientData) {
-    // create the item
+    // create the client
     /** @var ClientData $client */
     $client = InvoiceXpress::client()->create(ClientData::from($clientData));
 

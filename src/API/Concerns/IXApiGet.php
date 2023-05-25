@@ -3,11 +3,11 @@
 namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
-use Spatie\LaravelData\Data;
+use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Throwable;
 
 /**
- * @template TData of Data
+ * @template TData of EntityData
  */
 trait IXApiGet
 {
@@ -19,7 +19,7 @@ trait IXApiGet
      * @throws RequestException
      * @throws Throwable
      */
-    public function get(int $id): Data
+    public function get(int $id): EntityData
     {
         $data = $this->call(
             action: static::GET,

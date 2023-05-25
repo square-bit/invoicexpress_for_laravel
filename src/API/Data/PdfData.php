@@ -3,17 +3,15 @@
 namespace Squarebit\InvoiceXpress\API\Data;
 
 use Spatie\LaravelData\Attributes\MapName;
-use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
+use Spatie\LaravelData\Optional;
 
 #[MapName(SnakeCaseMapper::class)]
-class PaginationData extends Data
+class PdfData extends EntityData
 {
     public function __construct(
-        public int $currentPage,
-        public int $totalPages,
-        public int $totalEntries,
-        public int $perPage,
+        public Optional | string $pdfUrl,
+        public Optional | bool $message,
     ) {
     }
 }

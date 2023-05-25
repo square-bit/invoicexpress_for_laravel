@@ -3,24 +3,30 @@
 namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
+use Squarebit\InvoiceXpress\API\Data\EntityData;
 
+/**
+ * @template TData of EntityData
+ */
 trait IXApiChangeState
 {
     public const CHANGE_STATE = 'change-state';
 
     /**
+     * @param  TData  $modelData
+     * @return TData
+     *
      * @throws RequestException
+     * @throws
      */
-    public function changeState(InvoiceTypeEnum $type, int $id, array $data): ?array
+    public function changeState(int $id, EntityData $modelData): EntityData
     {
-        return $this->call(
+        $data = $this->call(
             action: static::CHANGE_STATE,
-            urlParams: [
-                'type' => $type->value,
-                'id' => $id,
-            ],
-            bodyData: $data
+            urlParams: compact('id'),
+            bodyData: [$this->getJsonRootObjectKey() => $modelData]
         );
+
+        return $this->responseToDataObject($data[$this->getJsonRootObjectKey()]);
     }
 }

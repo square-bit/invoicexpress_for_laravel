@@ -7,7 +7,7 @@ use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Spatie\LaravelData\Data;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 use Throwable;
 
@@ -23,7 +23,7 @@ abstract class IXEndpoint
 
     abstract protected function getEndpointName(): string;
 
-    abstract protected function getEntityType(): EntityTypeEnum;
+    abstract protected function getEntityType(): DocumentTypeEnum;
 
     abstract protected function getJsonRootObjectKey(): string;
 
@@ -33,7 +33,7 @@ abstract class IXEndpoint
     }
 
     /**
-     * @throws Throwable
+     * @throws RequestException | UnknownAPIMethodException
      */
     public function request(
         string $action,
@@ -58,7 +58,7 @@ abstract class IXEndpoint
     }
 
     /**
-     * @throws RequestException|Throwable
+     * @throws RequestException|UnknownAPIMethodException
      */
     public function call(string $action, array $urlParams = [], array $queryParams = [], array $bodyData = []): ?array
     {

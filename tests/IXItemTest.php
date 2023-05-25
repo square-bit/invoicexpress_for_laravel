@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
-use Squarebit\InvoiceXpress\API\Enums\IXItemUnitEnum;
+use Squarebit\InvoiceXpress\API\Enums\ItemUnitEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can create / update /delete an item', function (array $itemData) {
@@ -33,7 +33,7 @@ it('can create / update /delete an item', function (array $itemData) {
             'name' => fake()->colorName,
             'description' => fake()->text(128),
             'unit_price' => fake()->randomFloat(2, 0, 100),
-            'unit' => collect(IXItemUnitEnum::values())->random(),
+            'unit' => collect(ItemUnitEnum::values())->random(),
             'tax' => [
                 'name' => 'IVA23',
             ],

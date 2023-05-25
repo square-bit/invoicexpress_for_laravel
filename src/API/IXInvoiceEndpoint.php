@@ -10,6 +10,7 @@ namespace Squarebit\InvoiceXpress\API;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiCancelPayment;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiChangeState;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiCreate;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiDelete;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGeneratePayment;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGeneratePDF;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
@@ -19,7 +20,7 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiSendByEmail;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
 /**
  * @template-extends IXEndpoint<InvoiceData>
@@ -59,6 +60,8 @@ class IXInvoiceEndpoint extends IXEndpoint
     /** @uses IXApiList<InvoiceData> */
     use IXApiGetRelatedDocuments;
 
+    use IXApiDelete;
+
     public const ENDPOINT_CONFIG = 'invoice';
 
     protected const JSON_ROOT_OBJECT_KEY = 'invoice';
@@ -78,8 +81,8 @@ class IXInvoiceEndpoint extends IXEndpoint
         return static::JSON_ROOT_OBJECT_KEY;
     }
 
-    protected function getEntityType(): EntityTypeEnum
+    protected function getEntityType(): DocumentTypeEnum
     {
-        return EntityTypeEnum::Invoices;
+        return DocumentTypeEnum::Invoices;
     }
 }

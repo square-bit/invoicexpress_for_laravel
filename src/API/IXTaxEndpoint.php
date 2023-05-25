@@ -13,7 +13,7 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
 use Squarebit\InvoiceXpress\API\Data\TaxData;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
 /**
  * @template-extends IXEndpoint<TaxData>
@@ -45,8 +45,8 @@ class IXTaxEndpoint extends IXEndpoint
         return static::JSON_ROOT_OBJECT_KEY;
     }
 
-    protected function getEntityType(): EntityTypeEnum
+    protected function getEntityType(): DocumentTypeEnum
     {
-        return EntityTypeEnum::Taxes;
+        return DocumentTypeEnum::Taxes;
     }
 }

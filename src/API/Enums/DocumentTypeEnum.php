@@ -2,7 +2,7 @@
 
 namespace Squarebit\InvoiceXpress\API\Enums;
 
-enum EntityTypeEnum: string
+enum DocumentTypeEnum: string
 {
     case Clients = 'clients';
     case Items = 'items';

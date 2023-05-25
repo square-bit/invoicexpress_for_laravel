@@ -13,7 +13,7 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
 /**
  * @extends  IXEndpoint<ItemData>
@@ -54,8 +54,8 @@ class IXItemEndpoint extends IXEndpoint
         return static::JSON_ROOT_OBJECT_KEY;
     }
 
-    protected function getEntityType(): EntityTypeEnum
+    protected function getEntityType(): DocumentTypeEnum
     {
-        return EntityTypeEnum::Items;
+        return DocumentTypeEnum::Items;
     }
 }

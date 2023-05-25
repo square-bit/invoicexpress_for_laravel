@@ -6,10 +6,14 @@ use Illuminate\Support\Carbon;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Attributes\WithCast;
+use Spatie\LaravelData\Attributes\WithTransformer;
 use Spatie\LaravelData\DataCollection;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
-use Squarebit\InvoiceXpress\API\Casts\IXDateCast;
-use Squarebit\InvoiceXpress\API\Casts\IXTaxExemptionCodeCast;
+use Spatie\LaravelData\Optional;
+use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
+use Squarebit\InvoiceXpress\API\Data\Casts\IXDateCast;
+use Squarebit\InvoiceXpress\API\Data\Casts\IXTaxExemptionCodeCast;
+use Squarebit\InvoiceXpress\API\Data\Transformers\IXTaxExemptionToCodeTransformer;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
 use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
 
@@ -17,31 +21,34 @@ use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
 class InvoiceData extends EntityData
 {
     public function __construct(
-        public ?int $id, // 2137287,
-        public ?string $status, // 'final',
-        public ?bool $archived, // false,
-        public InvoiceTypeEnum $type, // 'Invoice',
-        public ?string $sequenceNumber, // '6/G',
-        public ?string $invertedSequenceNumber, // 'G/6',
-        public ?string $atcud, // 'ABCD1234-6',
-        public ?string $sequenceId, // '12345',
+        public Optional | int $id,
+        public ?string $status,
+        public ?bool $archived,
+        public Optional | InvoiceTypeEnum $type,
+        public Optional | string $sequenceNumber,
+        public Optional | string $invertedSequenceNumber,
+        public Optional | string $atcud,
+        public ?string $sequenceId,
         #[WithCast(IXTaxExemptionCodeCast::class)]
-        public ?IXTaxExemptionCodeEnum $taxExemption, // 'M00',
+        #[WithTransformer(IXTaxExemptionToCodeTransformer::class)]
+        public Optional | IXTaxExemptionCodeEnum $taxExemption,
         #[WithCast(IXDateCast::class)]
-        public ?Carbon $date, // '04/08/2016',
+        #[WithTransformer(DateTimeInterfaceTransformer::class, format: 'd/m/Y')]
+        public Optional | Carbon $date,
         #[WithCast(IXDateCast::class)]
-        public ?Carbon $dueDate, // '19/08/2016',
-        public ?string $reference, // 'foo',
-        public ?string $observations, // 'foo',
-        public ?string $retention, // 'foo',
-        public ?string $permalink,
-        public ?string $saftHash, // 'J4ay',
-        public ?string $sum, // 24.39,
-        public ?string $discount, // 0,
-        public ?string $beforeTaxes, // 24.39,
-        public ?string $taxes, // 5.61,
-        public ?string $total, // 30,
-        public ?string $currency, // 'Euro',
+        #[WithTransformer(DateTimeInterfaceTransformer::class, format: 'd/m/Y')]
+        public Optional | Carbon $dueDate,
+        public ?string $reference,
+        public ?string $observations,
+        public ?string $retention,
+        public Optional | string $permalink,
+        public Optional | string $saftHash,
+        public Optional | string $sum,
+        public ?string $discount,
+        public Optional | string $beforeTaxes,
+        public Optional | string $taxes,
+        public Optional | string $total,
+        public ?string $currency,
         public ClientData $client,
         #[DataCollectionOf(ItemData::class)]
         public DataCollection $items,

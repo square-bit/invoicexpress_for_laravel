@@ -9,12 +9,12 @@ namespace Squarebit\InvoiceXpress\API;
 
 use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
-class IXSimplifiedInvoiceEndpoint extends IXInvoiceEndpoint
+class IXInvoiceReceiptEndpoint extends IXInvoiceEndpoint
 {
-    protected const JSON_ROOT_OBJECT_KEY = 'simplified_invoice';
+    protected const JSON_ROOT_OBJECT_KEY = 'invoice_receipt';
 
     protected function getEntityType(): DocumentTypeEnum
     {
-        return DocumentTypeEnum::SimplifiedInvoices;
+        return DocumentTypeEnum::InvoiceReceipts;
     }
 }

@@ -3,22 +3,23 @@
 namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
+use Squarebit\InvoiceXpress\API\Data\PdfData;
+use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
 trait IXApiGeneratePDF
 {
     public const GENERATE_PDF = 'generate-pdf';
+    private const ROOT_OBJECT_KEY = 'output';
 
     /**
-     * @throws RequestException
+     * @throws RequestException|UnknownAPIMethodException
      */
-    public function generatePDF(InvoiceTypeEnum $type, int $id): array
+    public function generatePDF(int $id): PdfData
     {
-        return $this->call(
-            action: static::SEND_BY_EMAIL,
-            urlParams: [
-                'type' => $type->value,
-                'id' => $id,
-            ]);
+        $data = $this->call(
+            action: static::GENERATE_PDF,
+            urlParams: compact('id'));
+
+        return PdfData::from($data[self::ROOT_OBJECT_KEY]);
     }
 }

@@ -4,7 +4,7 @@ namespace Squarebit\InvoiceXpress\API\Enums;
 
 use Squarebit\InvoiceXpress\Concerns\EnumEnhancements;
 
-enum IXItemUnitEnum: string
+enum ItemUnitEnum: string
 {
     use EnumEnhancements;
 

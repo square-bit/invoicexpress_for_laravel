@@ -1,6 +1,6 @@
 <?php
 
-namespace Squarebit\InvoiceXpress\API\Casts;
+namespace Squarebit\InvoiceXpress\API\Data\Casts;
 
 use Illuminate\Support\Carbon;
 use Spatie\LaravelData\Casts\Cast;

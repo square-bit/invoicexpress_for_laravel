@@ -3,11 +3,11 @@
 namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
-use Spatie\LaravelData\Data;
+use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Throwable;
 
 /**
- * @template T of Data
+ * @template T of EntityData
  */
 trait IXApiUpdate
 {
@@ -19,11 +19,11 @@ trait IXApiUpdate
      * @throws RequestException
      * @throws Throwable
      */
-    public function update(int|array $id, Data $modelData): void
+    public function update(int $id, EntityData $modelData): void
     {
         $this->call(
             action: static::UPDATE,
-            urlParams: is_int($id) ? compact('id') : $id,
+            urlParams: compact('id'),
             bodyData: [$this->getJsonRootObjectKey() => $modelData]);
     }
 }

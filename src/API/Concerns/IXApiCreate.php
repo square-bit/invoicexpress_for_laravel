@@ -3,11 +3,11 @@
 namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
-use Spatie\LaravelData\Data;
+use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Throwable;
 
 /**
- * @template TData of Data
+ * @template TData of EntityData
  */
 trait IXApiCreate
 {
@@ -20,7 +20,7 @@ trait IXApiCreate
      * @throws RequestException
      * @throws Throwable
      */
-    public function create(Data $modelData)
+    public function create(EntityData $modelData): EntityData
     {
         $data = $this->call(
             action: static::CREATE,

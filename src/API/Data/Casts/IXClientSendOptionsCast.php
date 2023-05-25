@@ -1,6 +1,6 @@
 <?php
 
-namespace Squarebit\InvoiceXpress\API\Casts;
+namespace Squarebit\InvoiceXpress\API\Data\Casts;
 
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Support\DataProperty;

@@ -8,6 +8,7 @@ use Squarebit\InvoiceXpress\API\Data\EmailData;
 trait IXApiSendByEmail
 {
     public const SEND_BY_EMAIL = 'send-by-email';
+
     private const SEND_BY_EMAIL_ROOT_OBJECT_KEY = 'message';
 
     /**

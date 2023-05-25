@@ -2,21 +2,22 @@
 
 namespace Squarebit\InvoiceXpress\API\Concerns;
 
-use Exception;
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
 use Squarebit\InvoiceXpress\API\Data\PartialPaymentData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
-use Squarebit\InvoiceXpress\API\IXReceiptEndpoint;
 use Squarebit\InvoiceXpress\API\IXSimplifiedInvoiceEndpoint;
 
 trait IXApiGenerateCancelPayment
 {
     public const GENERATE_PAYMENT = 'generate-payment';
+
     public const CANCEL_PAYMENT = 'cancel-payment';
+
     private const PARTIAL_PAYMENT_ROOT_OBJECT_KEY = 'partial_payment';
+
     private const PARTIAL_PAYMENT_RESPONSE_ROOT_OBJECT_KEY = 'receipt';
 
     /**
@@ -46,7 +47,7 @@ trait IXApiGenerateCancelPayment
 
         $data->
 
-        $response =  $this->call(
+        $response = $this->call(
             action: static::CANCEL_PAYMENT,
             urlParams: compact('id'),
             bodyData: [self::PARTIAL_PAYMENT_RESPONSE_ROOT_OBJECT_KEY => $data]

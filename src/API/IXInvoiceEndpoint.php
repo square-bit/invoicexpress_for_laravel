@@ -7,7 +7,6 @@ namespace Squarebit\InvoiceXpress\API;
  * https://invoicexpress.com/api-v2/invoices
  */
 
-use Squarebit\InvoiceXpress\API\Concerns\IXApiCancelPayment;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiChangeState;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiCreate;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiDelete;

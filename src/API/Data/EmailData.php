@@ -21,7 +21,6 @@ class EmailData extends EntityData
         public ?string $bcc, // 'bcc.client@company.com',
         #[WithTransformer(BoolToIntTransformer::class)]
         public bool $logo = true, // '0/false' - Don't include logo, '1/true' - Include logo
-    )
-    {
+    ) {
     }
 }

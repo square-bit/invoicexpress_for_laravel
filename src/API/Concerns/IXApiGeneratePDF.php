@@ -9,6 +9,7 @@ use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 trait IXApiGeneratePDF
 {
     public const GENERATE_PDF = 'generate-pdf';
+
     private const PDF_ROOT_OBJECT_KEY = 'output';
 
     /**

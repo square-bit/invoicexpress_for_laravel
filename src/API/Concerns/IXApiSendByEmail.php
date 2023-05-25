@@ -3,22 +3,22 @@
 namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
+use Squarebit\InvoiceXpress\API\Data\EmailData;
 
 trait IXApiSendByEmail
 {
     public const SEND_BY_EMAIL = 'send-by-email';
+    private const SEND_BY_EMAIL_ROOT_OBJECT_KEY = 'message';
 
     /**
      * @throws RequestException
      */
-    public function sendByEmail(InvoiceTypeEnum $type, int $id): array
+    public function sendByEmail(int $id, EmailData $modelData): void
     {
-        return $this->call(
+        $this->call(
             action: static::SEND_BY_EMAIL,
-            urlParams: [
-                'type' => $type->value,
-                'id' => $id,
-            ]);
+            urlParams: compact('id'),
+            bodyData: [self::SEND_BY_EMAIL_ROOT_OBJECT_KEY => $modelData]
+        );
     }
 }

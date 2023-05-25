@@ -4,11 +4,8 @@ use GuzzleHttp\UriTemplate\UriTemplate;
 use Illuminate\Support\Facades\Http;
 use Squarebit\InvoiceXpress\API\IXClientEndpoint;
 use Squarebit\InvoiceXpress\API\IXEndpoint;
-use Squarebit\InvoiceXpress\API\IXEstimateEndpoint;
-use Squarebit\InvoiceXpress\API\IXGuideEndpoint;
 use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
 use Squarebit\InvoiceXpress\API\IXItemEndpoint;
-use Squarebit\InvoiceXpress\API\IXSequenceEndpoint;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can call endpoint actions (FAKED)', function (string $entity, string $action) {
@@ -60,6 +57,42 @@ it('can call endpoint actions (FAKED)', function (string $entity, string $action
     ['invoice', IXInvoiceEndpoint::CHANGE_STATE],
     ['invoice', IXInvoiceEndpoint::GENERATE_PDF],
     ['invoice', IXInvoiceEndpoint::GET_QRCODE],
+
+    ['simplifiedInvoice', IXInvoiceEndpoint::LIST],
+    ['simplifiedInvoice', IXInvoiceEndpoint::GET],
+    ['simplifiedInvoice', IXInvoiceEndpoint::CREATE],
+    ['simplifiedInvoice', IXInvoiceEndpoint::UPDATE],
+    ['simplifiedInvoice', IXInvoiceEndpoint::SEND_BY_EMAIL],
+    ['simplifiedInvoice', IXInvoiceEndpoint::CHANGE_STATE],
+    ['simplifiedInvoice', IXInvoiceEndpoint::GENERATE_PDF],
+    ['simplifiedInvoice', IXInvoiceEndpoint::GET_QRCODE],
+
+    ['invoiceReceipt', IXInvoiceEndpoint::LIST],
+    ['invoiceReceipt', IXInvoiceEndpoint::GET],
+    ['invoiceReceipt', IXInvoiceEndpoint::CREATE],
+    ['invoiceReceipt', IXInvoiceEndpoint::UPDATE],
+    ['invoiceReceipt', IXInvoiceEndpoint::SEND_BY_EMAIL],
+    ['invoiceReceipt', IXInvoiceEndpoint::CHANGE_STATE],
+    ['invoiceReceipt', IXInvoiceEndpoint::GENERATE_PDF],
+    ['invoiceReceipt', IXInvoiceEndpoint::GET_QRCODE],
+
+    ['creditNote', IXInvoiceEndpoint::LIST],
+    ['creditNote', IXInvoiceEndpoint::GET],
+    ['creditNote', IXInvoiceEndpoint::CREATE],
+    ['creditNote', IXInvoiceEndpoint::UPDATE],
+    ['creditNote', IXInvoiceEndpoint::SEND_BY_EMAIL],
+    ['creditNote', IXInvoiceEndpoint::CHANGE_STATE],
+    ['creditNote', IXInvoiceEndpoint::GENERATE_PDF],
+    ['creditNote', IXInvoiceEndpoint::GET_QRCODE],
+
+    ['debitNote', IXInvoiceEndpoint::LIST],
+    ['debitNote', IXInvoiceEndpoint::GET],
+    ['debitNote', IXInvoiceEndpoint::CREATE],
+    ['debitNote', IXInvoiceEndpoint::UPDATE],
+    ['debitNote', IXInvoiceEndpoint::SEND_BY_EMAIL],
+    ['debitNote', IXInvoiceEndpoint::CHANGE_STATE],
+    ['debitNote', IXInvoiceEndpoint::GENERATE_PDF],
+    ['debitNote', IXInvoiceEndpoint::GET_QRCODE],
 
     ['item', IXItemEndpoint::LIST],
     ['item', IXItemEndpoint::GET],

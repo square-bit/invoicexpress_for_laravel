@@ -3,19 +3,25 @@
 namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
+use Squarebit\InvoiceXpress\API\Data\QRCodeData;
+use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
 trait IXApiGetQRCode
 {
     public const GET_QRCODE = 'get-qrcode';
+    private const QR_CODE_ROOT_OBJECT_KEY = 'qr_code';
 
     /**
-     * @throws RequestException
+     * @throws RequestException|UnknownAPIMethodException
      */
-    public function getQRCode(int $id): ?array
+    public function getQRCode(int $id): array|QRCodeData
     {
-        return $this->call(
+        $data = $this->call(
             action: static::GET_QRCODE,
             urlParams: compact('id')
         );
+        return $data;
+
+        return QRCodeData::from($data[self::QR_CODE_ROOT_OBJECT_KEY]);
     }
 }

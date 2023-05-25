@@ -172,11 +172,11 @@ return [
             'method' => 'PUT',
         ],
         IXInvoiceEndpoint::RELATED_DOCUMENTS => [
-            'path' => 'document/{id}/related_documents.json',
+            'path' => 'documents/{id}/related_documents.json',
             'method' => 'GET',
         ],
         IXInvoiceEndpoint::GENERATE_PAYMENT => [
-            'path' => 'document/{id}/partial_payments.json',
+            'path' => 'documents/{id}/partial_payments.json',
             'method' => 'POST',
         ],
         IXInvoiceEndpoint::CANCEL_PAYMENT => [

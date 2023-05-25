@@ -9,18 +9,21 @@ use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 trait IXApiGeneratePDF
 {
     public const GENERATE_PDF = 'generate-pdf';
-
-    private const ROOT_OBJECT_KEY = 'output';
+    private const PDF_ROOT_OBJECT_KEY = 'output';
 
     /**
      * @throws RequestException|UnknownAPIMethodException
      */
-    public function generatePDF(int $id): PdfData
+    public function generatePDF(int $id, bool $secondCopy = false): ?PdfData
     {
         $data = $this->call(
             action: static::GENERATE_PDF,
-            urlParams: compact('id'));
+            urlParams: compact('id'),
+            queryParams: ['second_copy' => $secondCopy]
+        );
 
-        return PdfData::from($data[self::ROOT_OBJECT_KEY]);
+        return is_null($data)
+            ? null
+            : PdfData::from($data[self::PDF_ROOT_OBJECT_KEY]);
     }
 }

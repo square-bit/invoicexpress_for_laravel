@@ -15,6 +15,8 @@ use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
  */
 abstract class IXEndpoint
 {
+    protected ?int $lastResponseCode;
+
     /**
      * @return TData
      */
@@ -61,7 +63,10 @@ abstract class IXEndpoint
      */
     public function call(string $action, array $urlParams = [], array $queryParams = [], array $bodyData = []): ?array
     {
-        return $this->request($action, $urlParams, $queryParams, $bodyData)
+        $response = $this->request($action, $urlParams, $queryParams, $bodyData);
+        $this->lastResponseCode = $response->status();
+
+        return $response
             ->throw()
             ->json();
     }
@@ -77,5 +82,10 @@ abstract class IXEndpoint
         $urlParams['type'] ??= $this->getEntityType()->value;
 
         return $urlParams;
+    }
+
+    public function getResponseCode(): ?int
+    {
+        return $this->lastResponseCode;
     }
 }

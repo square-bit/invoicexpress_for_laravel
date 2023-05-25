@@ -4,6 +4,7 @@ namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\EntityData;
+use Squarebit\InvoiceXpress\API\Data\StateData;
 
 /**
  * @template TData of EntityData
@@ -13,20 +14,20 @@ trait IXApiChangeState
     public const CHANGE_STATE = 'change-state';
 
     /**
-     * @param  TData  $modelData
+     * @param  TData  $data
      * @return TData
      *
      * @throws RequestException
      * @throws
      */
-    public function changeState(int $id, EntityData $modelData): EntityData
+    public function changeState(int $id, StateData $data): EntityData
     {
-        $data = $this->call(
+        $response = $this->call(
             action: static::CHANGE_STATE,
             urlParams: compact('id'),
-            bodyData: [$this->getJsonRootObjectKey() => $modelData]
+            bodyData: [$this->getJsonRootObjectKey() => $data]
         );
 
-        return $this->responseToDataObject($data[$this->getJsonRootObjectKey()]);
+        return $this->responseToDataObject($response[$this->getJsonRootObjectKey()]);
     }
 }

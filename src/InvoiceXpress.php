@@ -3,6 +3,8 @@
 namespace Squarebit\InvoiceXpress;
 
 use Squarebit\InvoiceXpress\API\IXClientEndpoint;
+use Squarebit\InvoiceXpress\API\IXCreditNoteEndpoint;
+use Squarebit\InvoiceXpress\API\IXDebitNoteEndpoint;
 use Squarebit\InvoiceXpress\API\IXEstimateEndpoint;
 use Squarebit\InvoiceXpress\API\IXGuideEndpoint;
 use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
@@ -15,6 +17,8 @@ use Squarebit\InvoiceXpress\API\IXTaxEndpoint;
 
 class InvoiceXpress
 {
+    public const DATE_FORMAT = 'd/m/Y';
+
     public function client(): IXClientEndpoint
     {
         return new IXClientEndpoint();
@@ -63,5 +67,15 @@ class InvoiceXpress
     public function invoiceReceipt(): IXInvoiceReceiptEndpoint
     {
         return new IXInvoiceReceiptEndpoint();
+    }
+
+    public function creditNote(): IXCreditNoteEndpoint
+    {
+        return new IXCreditNoteEndpoint();
+    }
+
+    public function debitNote(): IXDebitNoteEndpoint
+    {
+        return new IXDebitNoteEndpoint();
     }
 }

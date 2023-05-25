@@ -11,7 +11,7 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiCancelPayment;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiChangeState;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiCreate;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiDelete;
-use Squarebit\InvoiceXpress\API\Concerns\IXApiGeneratePayment;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiGenerateCancelPayment;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGeneratePDF;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGetQRCode;
@@ -30,34 +30,31 @@ class IXInvoiceEndpoint extends IXEndpoint
     /** @uses IXApiList<InvoiceData> */
     use IXApiList;
 
-    /** @uses IXApiList<InvoiceData> */
+    /** @uses IXApiGet<InvoiceData> */
     use IXApiGet;
 
-    /** @uses IXApiList<InvoiceData> */
+    /** @uses IXApiCreate<InvoiceData> */
     use IXApiCreate;
 
-    /** @uses IXApiList<InvoiceData> */
+    /** @uses IXApiUpdate<InvoiceData> */
     use IXApiUpdate;
 
-    /** @uses IXApiList<InvoiceData> */
+    /** @uses IXApiSendByEmail<InvoiceData> */
     use IXApiSendByEmail;
 
-    /** @uses IXApiList<InvoiceData> */
+    /** @uses IXApiGeneratePDF<InvoiceData> */
     use IXApiGeneratePDF;
 
-    /** @uses IXApiList<InvoiceData> */
+    /** @uses IXApiChangeState<InvoiceData> */
     use IXApiChangeState;
 
-    /** @uses IXApiList<InvoiceData> */
+    /** @uses IXApiGetQRCode<InvoiceData> */
     use IXApiGetQRCode;
 
-    /** @uses IXApiList<InvoiceData> */
-    use IXApiGeneratePayment;
+    /** @uses IXApiGenerateCancelPayment<InvoiceData> */
+    use IXApiGenerateCancelPayment;
 
-    /** @uses IXApiList<InvoiceData> */
-    use IXApiCancelPayment;
-
-    /** @uses IXApiList<InvoiceData> */
+    /** @uses IXApiGetRelatedDocuments<InvoiceData> */
     use IXApiGetRelatedDocuments;
 
     use IXApiDelete;

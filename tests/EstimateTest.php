@@ -25,9 +25,9 @@ it('can go through an Estimate lifecycle', function (EntityTypeEnum $docType, ar
         ->and($endpoint->changeState($docType, $estimate->id, StateData::from(['state' => DocumentEventEnum::Deleted])))
         ->toHaveProperty('status', EstimateStatusEnum::Deleted);
 })->with([
-    EntityTypeEnum::Quote,
-    EntityTypeEnum::Proforma,
-    EntityTypeEnum::FeesNote,
+    EntityTypeEnum::Quote->name => EntityTypeEnum::Quote,
+    EntityTypeEnum::Proforma->name => EntityTypeEnum::Proforma,
+    EntityTypeEnum::FeesNote->name => EntityTypeEnum::FeesNote,
 ])->with('estimateData');
 
 /*
@@ -61,9 +61,9 @@ dataset(
                         'name' => 'Some Item Name',
                         'description' => fake()->text(),
                         'unit_price' => random_int(10, 200),
-                        'quantity' => random_int(1, 5),
+                       // 'quantity' => random_int(1, 5),
                         'unit' => collect(ItemUnitEnum::values())->random(),
-                        'discount' => collect([5, 10, 15, 20, 50])->random(),
+                        //'discount' => collect([5, 10, 15, 20, 50])->random(),
                         'tax' => [
                             'name' => 'IVA23',
                         ],

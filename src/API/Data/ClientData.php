@@ -8,7 +8,6 @@ use Spatie\LaravelData\Attributes\WithTransformer;
 use Spatie\LaravelData\Casts\EnumCast;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
-use Squarebit\InvoiceXpress\API\Data\Casts\IXClientSendOptionsCast;
 use Squarebit\InvoiceXpress\API\Data\Casts\IXTaxExemptionCodeCast;
 use Squarebit\InvoiceXpress\API\Data\Transformers\EnumToNameTransformer;
 use Squarebit\InvoiceXpress\API\Enums\ClientSendOptionsEnum;

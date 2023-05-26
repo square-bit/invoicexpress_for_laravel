@@ -21,13 +21,13 @@ class IXSequenceEndpoint //extends IXEndpoint
     use IXApiUpdate;
 
     public const ENDPOINT_CONFIG = 'item';
+
     public const REGISTER = 'register';
 
     protected function getEndpointName(): string
     {
         return self::ENDPOINT_CONFIG;
     }
-
 
     public function register(): array
     {

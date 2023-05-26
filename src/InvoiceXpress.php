@@ -3,16 +3,12 @@
 namespace Squarebit\InvoiceXpress;
 
 use Squarebit\InvoiceXpress\API\IXClientEndpoint;
-use Squarebit\InvoiceXpress\API\IXCreditNoteEndpoint;
-use Squarebit\InvoiceXpress\API\IXDebitNoteEndpoint;
 use Squarebit\InvoiceXpress\API\IXEstimateEndpoint;
 use Squarebit\InvoiceXpress\API\IXGuideEndpoint;
 use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
-use Squarebit\InvoiceXpress\API\IXInvoiceReceiptEndpoint;
 use Squarebit\InvoiceXpress\API\IXItemEndpoint;
 use Squarebit\InvoiceXpress\API\IXSaftEndpoint;
 use Squarebit\InvoiceXpress\API\IXSequenceEndpoint;
-use Squarebit\InvoiceXpress\API\IXSimplifiedInvoiceEndpoint;
 use Squarebit\InvoiceXpress\API\IXTaxEndpoint;
 
 class InvoiceXpress

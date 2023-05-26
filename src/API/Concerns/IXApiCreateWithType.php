@@ -15,7 +15,6 @@ trait IXApiCreateWithType
     public const CREATE = 'create';
 
     /**
-     * @param  DocumentTypeEnum  $documentType
      * @param  TData  $data
      * @return TData
      *

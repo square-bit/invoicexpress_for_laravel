@@ -47,7 +47,6 @@ class IXItemEndpoint extends IXEndpoint
         return ItemData::from($data);
     }
 
-
     protected function getDocumentType(): DocumentTypeEnum
     {
         return DocumentTypeEnum::Item;

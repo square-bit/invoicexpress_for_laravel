@@ -12,13 +12,10 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiDelete;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiFindByCode;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiFindByName;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
-use Squarebit\InvoiceXpress\API\Concerns\IXApiGetWithType;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiListInvoices;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
-use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdateWithType;
 use Squarebit\InvoiceXpress\API\Data\ClientData;
-use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
 /**

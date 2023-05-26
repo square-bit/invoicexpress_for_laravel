@@ -25,13 +25,13 @@ it('can create / update /delete a client', function (array $clientData) {
     $gotClient = InvoiceXpress::clients()->get($gotClient->id);
     expect($gotClient->address)
         ->toEqual($description)
-        ->and(fn() => InvoiceXpress::clients()->delete($gotClient->id))
+        ->and(fn () => InvoiceXpress::clients()->delete($gotClient->id))
         /** Deleting Client throws an exception but deletes it anyway if it has no documents
          *  See https://github.com/square-bit/invoicexpress_for_laravel/issues/1
          */
         // ->not()->toThrow(Exception::class)
         ->toThrow(Exception::class)
-        ->and(fn() => InvoiceXpress::clients()->get($gotClient->id))
+        ->and(fn () => InvoiceXpress::clients()->get($gotClient->id))
         ->toThrow(RequestException::class);
 })->with([
     [

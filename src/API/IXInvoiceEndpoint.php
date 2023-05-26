@@ -13,14 +13,13 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiCreateWithType;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiDelete;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGenerateCancelPayment;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGeneratePDF;
-use Squarebit\InvoiceXpress\API\Concerns\IXApiGetWithType;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGetQRCode;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGetRelatedDocuments;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiGetWithType;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiSendByEmail;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdateWithType;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
 /**
  * @template-extends IXEndpoint<InvoiceData>

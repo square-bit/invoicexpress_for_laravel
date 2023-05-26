@@ -8,13 +8,15 @@ use Squarebit\InvoiceXpress\API\Data\PartialPaymentData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
 use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
-use Squarebit\InvoiceXpress\API\IXSimplifiedInvoiceEndpoint;
 
 trait IXApiGenerateCancelPayment
 {
     public const GENERATE_PAYMENT = 'generate-payment';
+
     public const CANCEL_PAYMENT = 'cancel-payment';
+
     private const PARTIAL_PAYMENT_ROOT_OBJECT_KEY = 'partial_payment';
+
     private const PARTIAL_PAYMENT_RESPONSE_ROOT_OBJECT_KEY = 'receipt';
 
     /**

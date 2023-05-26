@@ -21,7 +21,6 @@ trait IXApiUpdate
     abstract protected function getDocumentType(): DocumentTypeEnum;
 
     /**
-     * @param  int  $id
      * @param  T  $data
      *
      * @throws RequestException

@@ -29,7 +29,8 @@ trait IXApiGetWithType
                 'id' => $id,
             ],
         );
-dd($data);
+        dd($data);
+
         return $this->responseToDataObject($data[$documentType->value]);
     }
 }

@@ -15,7 +15,7 @@ use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
 class ClientData extends EntityData
 {
     public function __construct(
-        public Optional | int $id,
+        public Optional|int $id,
         public string $name,
         public ?string $code,
         public ?string $language,

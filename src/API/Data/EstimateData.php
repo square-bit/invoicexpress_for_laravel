@@ -15,7 +15,7 @@ use Squarebit\InvoiceXpress\API\Data\Casts\IXDateCast;
 use Squarebit\InvoiceXpress\API\Data\Casts\IXTaxExemptionCodeCast;
 use Squarebit\InvoiceXpress\API\Data\Transformers\EnumToNameTransformer;
 use Squarebit\InvoiceXpress\API\Enums\EstimateTypeEnum;
-use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
+use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\InvoiceXpress;
 
 #[MapName(SnakeCaseMapper::class)]
@@ -32,7 +32,7 @@ class EstimateData extends EntityData
         public ?string $sequenceId,
         #[WithCast(IXTaxExemptionCodeCast::class)]
         #[WithTransformer(EnumToNameTransformer::class)]
-        public Optional|IXTaxExemptionCodeEnum $taxExemption,
+        public Optional|TaxExemptionCodeEnum $taxExemption,
         #[WithCast(IXDateCast::class)]
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: InvoiceXpress::DATE_FORMAT)]
         public Optional|Carbon $date,

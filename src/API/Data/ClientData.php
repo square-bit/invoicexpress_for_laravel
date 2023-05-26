@@ -4,12 +4,14 @@ namespace Squarebit\InvoiceXpress\API\Data;
 
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Attributes\WithCast;
+use Spatie\LaravelData\Attributes\WithTransformer;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
 use Squarebit\InvoiceXpress\API\Data\Casts\IXClientSendOptionsCast;
 use Squarebit\InvoiceXpress\API\Data\Casts\IXTaxExemptionCodeCast;
-use Squarebit\InvoiceXpress\Enums\IXClientSendOptionsEnum;
-use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
+use Squarebit\InvoiceXpress\API\Data\Transformers\EnumToNameTransformer;
+use Squarebit\InvoiceXpress\API\Enums\ClientSendOptionsEnum;
+use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 
 #[MapName(SnakeCaseMapper::class)]
 class ClientData extends EntityData
@@ -31,10 +33,11 @@ class ClientData extends EntityData
         public ?array $preferredContact,
         public ?string $observations,
         #[WithCast(IXClientSendOptionsCast::class)]
-        public ?IXClientSendOptionsEnum $sendOptions,
+        public ?ClientSendOptionsEnum $sendOptions,
         public ?string $paymentDays,
         #[WithCast(IXTaxExemptionCodeCast::class)]
-        public ?IXTaxExemptionCodeEnum $taxExemptionCode,
+        #[WithTransformer(EnumToNameTransformer::class)]
+        public ?TaxExemptionCodeEnum $taxExemptionCode,
         public ?string $openAccountLink,
     ) {
     }

@@ -2,56 +2,56 @@
 
 namespace Squarebit\InvoiceXpress;
 
-use Squarebit\InvoiceXpress\API\IXClientEndpoint;
-use Squarebit\InvoiceXpress\API\IXEstimateEndpoint;
-use Squarebit\InvoiceXpress\API\IXGuideEndpoint;
-use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
-use Squarebit\InvoiceXpress\API\IXItemEndpoint;
-use Squarebit\InvoiceXpress\API\IXSaftEndpoint;
-use Squarebit\InvoiceXpress\API\IXSequenceEndpoint;
-use Squarebit\InvoiceXpress\API\IXTaxEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\ClientsEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\EstimatesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\GuidesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\ItemsEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\SaftEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\SequencesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\TaxesEndpoint;
 
 class InvoiceXpress
 {
     public const DATE_FORMAT = 'd/m/Y';
 
-    public function clients(): IXClientEndpoint
+    public function clients(): ClientsEndpoint
     {
-        return new IXClientEndpoint();
+        return new ClientsEndpoint();
     }
 
-    public function items(): IXItemEndpoint
+    public function items(): ItemsEndpoint
     {
-        return new IXItemEndpoint();
+        return new ItemsEndpoint();
     }
 
-    public function sequences(): IXSequenceEndpoint
+    public function sequences(): SequencesEndpoint
     {
-        return new IXSequenceEndpoint();
+        return new SequencesEndpoint();
     }
 
-    public function taxes(): IXTaxEndpoint
+    public function taxes(): TaxesEndpoint
     {
-        return new IXTaxEndpoint();
+        return new TaxesEndpoint();
     }
 
-    public function saft(): IXSaftEndpoint
+    public function saft(): SaftEndpoint
     {
-        return new IXSaftEndpoint();
+        return new SaftEndpoint();
     }
 
-    public function invoices(): IXInvoiceEndpoint
+    public function invoices(): InvoicesEndpoint
     {
-        return new IXInvoiceEndpoint();
+        return new InvoicesEndpoint();
     }
 
-    public function guides(): IXGuideEndpoint
+    public function guides(): GuidesEndpoint
     {
-        return new IXGuideEndpoint();
+        return new GuidesEndpoint();
     }
 
-    public function estimates(): IXEstimateEndpoint
+    public function estimates(): EstimatesEndpoint
     {
-        return new IXEstimateEndpoint();
+        return new EstimatesEndpoint();
     }
 }

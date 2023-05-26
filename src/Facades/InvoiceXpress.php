@@ -3,24 +3,24 @@
 namespace Squarebit\InvoiceXpress\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Squarebit\InvoiceXpress\API\IXClientEndpoint;
-use Squarebit\InvoiceXpress\API\IXEstimateEndpoint;
-use Squarebit\InvoiceXpress\API\IXGuideEndpoint;
-use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
-use Squarebit\InvoiceXpress\API\IXItemEndpoint;
-use Squarebit\InvoiceXpress\API\IXSaftEndpoint;
-use Squarebit\InvoiceXpress\API\IXTaxEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\ClientsEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\EstimatesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\GuidesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\ItemsEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\SaftEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\TaxesEndpoint;
 
 /**
  * @see \Squarebit\InvoiceXpress\InvoiceXpress
  *
- * @method static IXClientEndpoint clients()
- * @method static IXItemEndpoint items()
- * @method static IXTaxEndpoint taxes()
- * @method static IXSaftEndpoint saft()
- * @method static IXInvoiceEndpoint invoices()
- * @method static IXGuideEndpoint guides()
- * @method static IXEstimateEndpoint estimates()
+ * @method static ClientsEndpoint clients()
+ * @method static ItemsEndpoint items()
+ * @method static TaxesEndpoint taxes()
+ * @method static SaftEndpoint saft()
+ * @method static InvoicesEndpoint invoices()
+ * @method static GuidesEndpoint guides()
+ * @method static EstimatesEndpoint estimates()
  */
 class InvoiceXpress extends Facade
 {

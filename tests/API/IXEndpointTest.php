@@ -2,14 +2,14 @@
 
 use GuzzleHttp\UriTemplate\UriTemplate;
 use Illuminate\Support\Facades\Http;
-use Squarebit\InvoiceXpress\API\IXClientEndpoint;
-use Squarebit\InvoiceXpress\API\IXEndpoint;
-use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
-use Squarebit\InvoiceXpress\API\IXItemEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\ClientsEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\Endpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\ItemsEndpoint;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can call endpoint actions (FAKED)', function (string $entity, string $action) {
-    /** @var IXEndpoint $ixEntity */
+    /** @var Endpoint $ixEntity */
     $ixEntity = InvoiceXpress::$entity();
     $endpoint = $ixEntity->getEndpointConfig($action);
 
@@ -25,12 +25,12 @@ it('can call endpoint actions (FAKED)', function (string $entity, string $action
         ->not()->toThrow(Exception::class)
         ->toEqual($responseSample);
 })->with([
-    ['clients', IXClientEndpoint::LIST],
-    ['clients', IXClientEndpoint::GET],
-    ['clients', IXClientEndpoint::CREATE],
-    ['clients', IXClientEndpoint::UPDATE],
-    ['clients', IXClientEndpoint::FIND_BY_NAME],
-    ['clients', IXClientEndpoint::LIST_INVOICES],
+    ['clients', ClientsEndpoint::LIST],
+    ['clients', ClientsEndpoint::GET],
+    ['clients', ClientsEndpoint::CREATE],
+    ['clients', ClientsEndpoint::UPDATE],
+    ['clients', ClientsEndpoint::FIND_BY_NAME],
+    ['clients', ClientsEndpoint::LIST_INVOICES],
 
     //    ['estimate', IXEstimateEndpoint::LIST],
     //    ['estimate', IXEstimateEndpoint::GET],
@@ -49,20 +49,20 @@ it('can call endpoint actions (FAKED)', function (string $entity, string $action
     //    ['guide', IXGuideEndpoint::GENERATE_PDF],
     //    ['guide', IXGuideEndpoint::GET_QRCODE],
 
-    ['invoices', IXInvoiceEndpoint::LIST],
-    ['invoices', IXInvoiceEndpoint::GET],
-    ['invoices', IXInvoiceEndpoint::CREATE],
-    ['invoices', IXInvoiceEndpoint::UPDATE],
-    ['invoices', IXInvoiceEndpoint::SEND_BY_EMAIL],
-    ['invoices', IXInvoiceEndpoint::CHANGE_STATE],
-    ['invoices', IXInvoiceEndpoint::GENERATE_PDF],
-    ['invoices', IXInvoiceEndpoint::GET_QRCODE],
+    ['invoices', InvoicesEndpoint::LIST],
+    ['invoices', InvoicesEndpoint::GET],
+    ['invoices', InvoicesEndpoint::CREATE],
+    ['invoices', InvoicesEndpoint::UPDATE],
+    ['invoices', InvoicesEndpoint::SEND_BY_EMAIL],
+    ['invoices', InvoicesEndpoint::CHANGE_STATE],
+    ['invoices', InvoicesEndpoint::GENERATE_PDF],
+    ['invoices', InvoicesEndpoint::GET_QRCODE],
 
-    ['items', IXItemEndpoint::LIST],
-    ['items', IXItemEndpoint::GET],
-    ['items', IXItemEndpoint::CREATE],
-    ['items', IXItemEndpoint::UPDATE],
-    ['items', IXItemEndpoint::DELETE],
+    ['items', ItemsEndpoint::LIST],
+    ['items', ItemsEndpoint::GET],
+    ['items', ItemsEndpoint::CREATE],
+    ['items', ItemsEndpoint::UPDATE],
+    ['items', ItemsEndpoint::DELETE],
 
     //    ['sequence', IXSequenceEndpoint::LIST],
     //    ['sequence', IXSequenceEndpoint::GET],

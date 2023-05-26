@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\ClientData;
-use Squarebit\InvoiceXpress\Enums\IXClientLanguageEnum;
-use Squarebit\InvoiceXpress\Enums\IXClientSendOptionsEnum;
-use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
+use Squarebit\InvoiceXpress\API\Enums\ClientLanguageEnum;
+use Squarebit\InvoiceXpress\API\Enums\ClientSendOptionsEnum;
+use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can create / update /delete a client', function (array $clientData) {
@@ -38,7 +38,7 @@ it('can create / update /delete a client', function (array $clientData) {
         [
             'name' => fake()->name(),
             'code' => fake()->randomNumber(8),
-            'language' => collect(IXClientLanguageEnum::values())->random(),
+            'language' => collect(ClientLanguageEnum::values())->random(),
             'email' => fake()->email(),
             'address' => fake()->streetAddress(),
             'city' => fake()->city(),
@@ -54,9 +54,9 @@ it('can create / update /delete a client', function (array $clientData) {
                 'phone' => fake()->e164PhoneNumber(),
             ],
             'observations' => fake()->text(),
-            'send_options' => collect(IXClientSendOptionsEnum::values())->random(),
+            'send_options' => collect(ClientSendOptionsEnum::values())->random(),
             'payment_days' => fake()->numberBetween(0, 60),
-            'tax_exemption_code' => collect(IXTaxExemptionCodeEnum::names())->random(),
+            'tax_exemption_code' => collect(TaxExemptionCodeEnum::names())->random(),
         ],
     ],
 ]);

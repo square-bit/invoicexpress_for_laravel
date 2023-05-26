@@ -2,63 +2,63 @@
 
 // config for Squarebit/InvoiceXpress
 
-use Squarebit\InvoiceXpress\API\IXClientEndpoint;
-use Squarebit\InvoiceXpress\API\IXEstimateEndpoint;
-use Squarebit\InvoiceXpress\API\IXGuideEndpoint;
-use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
-use Squarebit\InvoiceXpress\API\IXItemEndpoint;
-use Squarebit\InvoiceXpress\API\IXSaftEndpoint;
-use Squarebit\InvoiceXpress\API\IXSequenceEndpoint;
-use Squarebit\InvoiceXpress\API\IXTaxEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\ClientsEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\EstimatesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\GuidesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\ItemsEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\SaftEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\SequencesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\TaxesEndpoint;
 
 return [
     // ######################################################
     // CLIENT
     // ######################################################
     'client' => [
-        IXClientEndpoint::LIST => [
+        ClientsEndpoint::LIST => [
             'path' => 'clients.json',
             'method' => 'GET',
             'returns' => [200],
             'throws' => [401],
         ],
-        IXClientEndpoint::GET => [
+        ClientsEndpoint::GET => [
             'path' => 'clients/{id}.json',
             'method' => 'GET',
             'returns' => [200],
             'throws' => [401, 404],
         ],
-        IXClientEndpoint::UPDATE => [
+        ClientsEndpoint::UPDATE => [
             'path' => 'clients/{id}.json',
             'method' => 'PUT',
             'returns' => [200],
             'throws' => [401, 404, 422],
         ],
-        IXClientEndpoint::CREATE => [
+        ClientsEndpoint::CREATE => [
             'path' => 'clients.json',
             'method' => 'POST',
             'returns' => [200],
             'throws' => [401, 422],
         ],
-        IXClientEndpoint::FIND_BY_NAME => [
+        ClientsEndpoint::FIND_BY_NAME => [
             'path' => 'clients/find-by-name.json',
             'method' => 'GET',
             'returns' => [200],
             'throws' => [401, 404],
         ],
-        IXClientEndpoint::FIND_BY_CODE => [
+        ClientsEndpoint::FIND_BY_CODE => [
             'path' => 'clients/find-by-code.json',
             'method' => 'GET',
             'returns' => [200],
             'throws' => [401, 404],
         ],
-        IXClientEndpoint::LIST_INVOICES => [
+        ClientsEndpoint::LIST_INVOICES => [
             'path' => 'clients/{id}/invoices.json',
             'method' => 'POST',
             'returns' => [200],
             'throws' => [401, 404],
         ],
-        IXClientEndpoint::DELETE => [
+        ClientsEndpoint::DELETE => [
             'path' => 'clients/{id}.json',
             'method' => 'DELETE',
         ],
@@ -67,23 +67,23 @@ return [
     // ITEM
     // ######################################################
     'item' => [
-        IXItemEndpoint::LIST => [
+        ItemsEndpoint::LIST => [
             'path' => 'items.json',
             'method' => 'GET',
         ],
-        IXItemEndpoint::GET => [
+        ItemsEndpoint::GET => [
             'path' => 'items/{id}.json',
             'method' => 'GET',
         ],
-        IXItemEndpoint::UPDATE => [
+        ItemsEndpoint::UPDATE => [
             'path' => 'items/{id}.json',
             'method' => 'PUT',
         ],
-        IXItemEndpoint::CREATE => [
+        ItemsEndpoint::CREATE => [
             'path' => 'items.json',
             'method' => 'POST',
         ],
-        IXItemEndpoint::DELETE => [
+        ItemsEndpoint::DELETE => [
             'path' => 'items/{id}.json',
             'method' => 'DELETE',
         ],
@@ -92,23 +92,23 @@ return [
     // SEQUENCE
     // ######################################################
     'sequence' => [
-        IXSequenceEndpoint::LIST => [
+        SequencesEndpoint::LIST => [
             'path' => 'sequences.json',
             'method' => 'GET',
         ],
-        IXSequenceEndpoint::GET => [
+        SequencesEndpoint::GET => [
             'path' => 'sequences/{id}.json',
             'method' => 'GET',
         ],
-        IXSequenceEndpoint::UPDATE => [
+        SequencesEndpoint::UPDATE => [
             'path' => 'sequences/{id}/set_current.json',
             'method' => 'PUT',
         ],
-        IXSequenceEndpoint::CREATE => [
+        SequencesEndpoint::CREATE => [
             'path' => 'sequences.json',
             'method' => 'POST',
         ],
-        IXSequenceEndpoint::REGISTER => [
+        SequencesEndpoint::REGISTER => [
             'path' => 'sequences/{id}/register.json',
             'method' => 'PUT',
         ],
@@ -117,23 +117,23 @@ return [
     // TAX
     // ######################################################
     'tax' => [
-        IXTaxEndpoint::LIST => [
+        TaxesEndpoint::LIST => [
             'path' => 'taxes.json',
             'method' => 'GET',
         ],
-        IXTaxEndpoint::GET => [
+        TaxesEndpoint::GET => [
             'path' => 'taxes/{id}.json',
             'method' => 'GET',
         ],
-        IXTaxEndpoint::UPDATE => [
+        TaxesEndpoint::UPDATE => [
             'path' => 'taxes/{id}.json',
             'method' => 'PUT',
         ],
-        IXTaxEndpoint::CREATE => [
+        TaxesEndpoint::CREATE => [
             'path' => 'taxes.json',
             'method' => 'POST',
         ],
-        IXTaxEndpoint::DELETE => [
+        TaxesEndpoint::DELETE => [
             'path' => 'taxes/{id}.json',
             'method' => 'DELETE',
         ],
@@ -142,7 +142,7 @@ return [
     // SAFT
     // ######################################################
     'saft' => [
-        IXSaftEndpoint::GET => [
+        SaftEndpoint::GET => [
             'path' => 'api/export_saft.json',
             'method' => 'GET',
         ],
@@ -151,47 +151,47 @@ return [
     // INVOICE
     // ######################################################
     'invoice' => [
-        IXInvoiceEndpoint::GET => [
+        InvoicesEndpoint::GET => [
             'path' => '{type}/{id}.json',
             'method' => 'GET',
         ],
-        IXInvoiceEndpoint::LIST => [
+        InvoicesEndpoint::LIST => [
             'path' => 'invoices.json',
             'method' => 'GET',
         ],
-        IXInvoiceEndpoint::CREATE => [
+        InvoicesEndpoint::CREATE => [
             'path' => '{type}.json',
             'method' => 'POST',
         ],
-        IXInvoiceEndpoint::UPDATE => [
+        InvoicesEndpoint::UPDATE => [
             'path' => '{type}/{id}.json',
             'method' => 'PUT',
         ],
-        IXInvoiceEndpoint::CHANGE_STATE => [
+        InvoicesEndpoint::CHANGE_STATE => [
             'path' => '{type}/{id}/change-state.json',
             'method' => 'PUT',
         ],
-        IXInvoiceEndpoint::RELATED_DOCUMENTS => [
+        InvoicesEndpoint::RELATED_DOCUMENTS => [
             'path' => 'document/{id}/related_documents.json',
             'method' => 'GET',
         ],
-        IXInvoiceEndpoint::GENERATE_PAYMENT => [
+        InvoicesEndpoint::GENERATE_PAYMENT => [
             'path' => 'documents/{id}/partial_payments.json',
             'method' => 'POST',
         ],
-        IXInvoiceEndpoint::CANCEL_PAYMENT => [
+        InvoicesEndpoint::CANCEL_PAYMENT => [
             'path' => '/receipts/{id}/change-state.json',
             'method' => 'PUT',
         ],
-        IXInvoiceEndpoint::GET_QRCODE => [
+        InvoicesEndpoint::GET_QRCODE => [
             'path' => '/api/qr_codes/{id}.json',
             'method' => 'GET',
         ],
-        IXInvoiceEndpoint::SEND_BY_EMAIL => [
+        InvoicesEndpoint::SEND_BY_EMAIL => [
             'path' => '{type}/{id}/email-document.json',
             'method' => 'PUT',
         ],
-        IXInvoiceEndpoint::GENERATE_PDF => [
+        InvoicesEndpoint::GENERATE_PDF => [
             'path' => '/api/pdf/{id}.json',
             'method' => 'GET',
         ],
@@ -200,31 +200,31 @@ return [
     // ESTIMATE
     // ######################################################
     'estimate' => [
-        IXEstimateEndpoint::GET => [
+        EstimatesEndpoint::GET => [
             'path' => '{type}/{id}.json',
             'method' => 'GET',
         ],
-        IXEstimateEndpoint::LIST => [
+        EstimatesEndpoint::LIST => [
             'path' => 'estimates.json',
             'method' => 'GET',
         ],
-        IXEstimateEndpoint::CREATE => [
+        EstimatesEndpoint::CREATE => [
             'path' => '{type}.json',
             'method' => 'POST',
         ],
-        IXEstimateEndpoint::UPDATE => [
+        EstimatesEndpoint::UPDATE => [
             'path' => '{type}/{id}.json',
             'method' => 'PUT',
         ],
-        IXEstimateEndpoint::CHANGE_STATE => [
+        EstimatesEndpoint::CHANGE_STATE => [
             'path' => '{type}/{id}/change-state.json',
             'method' => 'PUT',
         ],
-        IXEstimateEndpoint::SEND_BY_EMAIL => [
+        EstimatesEndpoint::SEND_BY_EMAIL => [
             'path' => '{type}/{id}/email-document.json',
             'method' => 'PUT',
         ],
-        IXEstimateEndpoint::GENERATE_PDF => [
+        EstimatesEndpoint::GENERATE_PDF => [
             'path' => '/api/pdf/{id}.json',
             'method' => 'GET',
         ],
@@ -233,35 +233,35 @@ return [
     // GUIDE
     // ######################################################
     'guide' => [
-        IXGuideEndpoint::GET => [
+        GuidesEndpoint::GET => [
             'path' => '{type}/{id}.json',
             'method' => 'GET',
         ],
-        IXGuideEndpoint::LIST => [
+        GuidesEndpoint::LIST => [
             'path' => 'guides.json',
             'method' => 'GET',
         ],
-        IXGuideEndpoint::CREATE => [
+        GuidesEndpoint::CREATE => [
             'path' => '{type}.json',
             'method' => 'POST',
         ],
-        IXGuideEndpoint::UPDATE => [
+        GuidesEndpoint::UPDATE => [
             'path' => '{type}/{id}.json',
             'method' => 'PUT',
         ],
-        IXGuideEndpoint::CHANGE_STATE => [
+        GuidesEndpoint::CHANGE_STATE => [
             'path' => '{type}/{id}/change-state.json',
             'method' => 'PUT',
         ],
-        IXGuideEndpoint::SEND_BY_EMAIL => [
+        GuidesEndpoint::SEND_BY_EMAIL => [
             'path' => '{type}/{id}/email-document.json',
             'method' => 'PUT',
         ],
-        IXGuideEndpoint::GENERATE_PDF => [
+        GuidesEndpoint::GENERATE_PDF => [
             'path' => '/api/pdf/{id}.json',
             'method' => 'GET',
         ],
-        IXGuideEndpoint::GET_QRCODE => [
+        GuidesEndpoint::GET_QRCODE => [
             'path' => '/api/qr_codes/{id}.json',
             'method' => 'GET',
         ],

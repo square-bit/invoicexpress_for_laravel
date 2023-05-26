@@ -4,12 +4,12 @@ namespace Squarebit\InvoiceXpress\API\Data\Casts;
 
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Support\DataProperty;
-use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
+use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 
 class IXTaxExemptionCodeCast implements Cast
 {
-    public function cast(DataProperty $property, mixed $value, array $context): IXTaxExemptionCodeEnum
+    public function cast(DataProperty $property, mixed $value, array $context): TaxExemptionCodeEnum
     {
-        return IXTaxExemptionCodeEnum::fromName($value);
+        return TaxExemptionCodeEnum::fromName($value);
     }
 }

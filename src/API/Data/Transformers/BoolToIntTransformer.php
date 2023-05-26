@@ -4,12 +4,12 @@ namespace Squarebit\InvoiceXpress\API\Data\Transformers;
 
 use Spatie\LaravelData\Support\DataProperty;
 use Spatie\LaravelData\Transformers\Transformer;
-use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
+use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 
 class BoolToIntTransformer implements Transformer
 {
     /**
-     * @param  IXTaxExemptionCodeEnum  $value
+     * @param  \Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum  $value
      */
     public function transform(DataProperty $property, mixed $value): int
     {

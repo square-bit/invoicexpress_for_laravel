@@ -16,9 +16,6 @@ trait ChangesState
     public const CHANGE_STATE = 'change-state';
 
     /**
-     * @param  DocumentTypeEnum  $documentType
-     * @param  int  $id
-     * @param  StateData  $data
      * @return TData
      *
      * @throws RequestException

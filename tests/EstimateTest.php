@@ -15,11 +15,11 @@ it('can go through an Estimate lifecycle', function (DocumentTypeEnum $docType, 
     expect($estimate = $endpoint->create($docType, $dataObject))
         ->not()->toThrow(Exception::class);
     dump($estimate->toArray());
-        expect($estimate->toArray())
+    expect($estimate->toArray())
         ->toMatchArrayRecursive($data);
 
     $modified = $estimate->reference = fake()->text(32);
-    expect(fn() => $endpoint->update($docType, $estimate->id, $estimate))
+    expect(fn () => $endpoint->update($docType, $estimate->id, $estimate))
         ->not()->toThrow(Exception::class)
         ->and($estimate = $endpoint->get($docType, $estimate->id))
         ->toHaveProperty('reference', $modified)

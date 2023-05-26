@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Squarebit\InvoiceXpress\Concerns;
 
 use BackedEnum;
@@ -33,7 +31,7 @@ trait EnumEnhancements
     {
         $cases = static::cases();
 
-        return isset($cases[0]) && $cases[0] instanceof BackedEnum
+        return $cases[0] instanceof BackedEnum
             ? array_column($cases, 'value', 'name')
             : array_column($cases, 'name');
     }

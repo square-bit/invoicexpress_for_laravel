@@ -13,7 +13,7 @@ use Squarebit\InvoiceXpress\API\Concerns\Gets;
 use Squarebit\InvoiceXpress\API\Concerns\Lists;
 use Squarebit\InvoiceXpress\API\Concerns\Updates;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
 /**
  * @extends  Endpoint<ItemData>
@@ -47,8 +47,8 @@ class ItemsEndpoint extends Endpoint
         return ItemData::from($data);
     }
 
-    protected function getDocumentType(): DocumentTypeEnum
+    protected function getEntityType(): EntityTypeEnum
     {
-        return DocumentTypeEnum::Item;
+        return EntityTypeEnum::Item;
     }
 }

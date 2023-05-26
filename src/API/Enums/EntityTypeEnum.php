@@ -4,7 +4,7 @@ namespace Squarebit\InvoiceXpress\API\Enums;
 
 use Illuminate\Support\Str;
 
-enum DocumentTypeEnum: string
+enum EntityTypeEnum: string
 {
     case Client = 'client';
     case Item = 'item';
@@ -12,11 +12,14 @@ enum DocumentTypeEnum: string
     case Invoice = 'invoice';
     case SimplifiedInvoice = 'simplified_invoice';
     case InvoiceReceipt = 'invoice_receipt';
+    case VatMossInvoices = 'vat_moss_invoice';
     case CreditNote = 'credit_note';
     case DebitNote = 'debit_note';
     case Quote = 'quote';
     case Proforma = 'proforma';
     case FeesNote = 'fees_note';
+    case Saft = 'saft';
+    case Sequence = 'sequence';
 
     public function toUrlVariable(): string
     {

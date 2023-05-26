@@ -24,18 +24,18 @@ class EstimatesEndpoint extends Endpoint
 {
     use SendsByEmail;
 
-    /** @uses IXApiSendByEmail<EstimateData> */
+    /** @uses GeneratesPDF<EstimateData> */
     use GeneratesPDF;
 
-    /** @uses IXApiGetWithType<EstimateData> */
+    /** @uses GetsWithType<EstimateData> */
     use GetsWithType;
 
     use Lists;
 
-    /** @uses IXApiCreateWithType<EstimateData> */
+    /** @uses \Squarebit\InvoiceXpress\API\Concerns\CreatesWithType<EstimateData> */
     use CreatesWithType;
 
-    /** @uses IXApiUpdateWithType<EstimateData> */
+    /** @uses UpdatesWithType<EstimateData> */
     use UpdatesWithType;
 
     use ChangesState;

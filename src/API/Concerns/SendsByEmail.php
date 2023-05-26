@@ -4,7 +4,7 @@ namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\EmailData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
 trait SendsByEmail
 {
@@ -15,7 +15,7 @@ trait SendsByEmail
     /**
      * @throws RequestException
      */
-    public function sendByEmail(DocumentTypeEnum $documentType, int $id, EmailData $data): void
+    public function sendByEmail(EntityTypeEnum $documentType, int $id, EmailData $data): void
     {
         $this->call(
             action: static::SEND_BY_EMAIL,

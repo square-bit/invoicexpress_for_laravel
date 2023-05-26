@@ -4,45 +4,47 @@ use Squarebit\InvoiceXpress\API\Data\EntityListData;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
 use Squarebit\InvoiceXpress\API\Data\PartialPaymentData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
+use Squarebit\InvoiceXpress\API\Enums\DocumentEventEnum;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\ItemUnitEnum;
-use Squarebit\InvoiceXpress\API\Enums\DocumentEventEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can create / update / delete an invoice', function (DocumentTypeEnum $docType, array $data) {
+it('can create / update / delete an invoice', function (EntityTypeEnum $entityType, array $data) {
     $endpoint = InvoiceXpress::invoices();
     // create the invoice
     /** @var InvoiceData $invoiceData */
-    $invoiceData = InvoiceXpress::invoices()->create($docType, InvoiceData::from($data));
+    $invoiceData = InvoiceXpress::invoices()->create($entityType, InvoiceData::from($data));
+    expect($invoiceData->type->toEntityType())
+        ->toEqual($entityType);
 
     // get it
     /** @var InvoiceData $invoice */
-    $invoice = $endpoint->get($docType, $invoiceData->id);
+    $invoice = $endpoint->get($entityType, $invoiceData->id);
     expect($invoice->toArray())
         ->toMatchArrayRecursive($invoiceData->toArray());
 
     // update it
     $modified = $invoice->observations = fake()->text(128);
-    $endpoint->update($docType, $invoice->id, $invoice);
+    $endpoint->update($entityType, $invoice->id, $invoice);
 
     // confirm it was updated
     /** @var InvoiceData $invoice */
-    $invoice = $endpoint->get($docType, $invoice->id);
+    $invoice = $endpoint->get($entityType, $invoice->id);
     expect($invoice->observations)
         ->toEqual($modified);
 })->with([
-    'Invoice' => [DocumentTypeEnum::Invoice],
-    'SimplifiedInvoice' => [DocumentTypeEnum::SimplifiedInvoice],
-    'InvoiceReceipt' => [DocumentTypeEnum::InvoiceReceipt],
-    'CreditNote' => [DocumentTypeEnum::CreditNote],
-    'DebitNote' => [DocumentTypeEnum::DebitNote],
+    'Invoice' => [EntityTypeEnum::Invoice],
+    'SimplifiedInvoice' => [EntityTypeEnum::SimplifiedInvoice],
+    'InvoiceReceipt' => [EntityTypeEnum::InvoiceReceipt],
+    'CreditNote' => [EntityTypeEnum::CreditNote],
+    'DebitNote' => [EntityTypeEnum::DebitNote],
 ])->with('invoiceData');
 
 it('can go through an invoice lifecycle', function (array $data) {
     $endpoint = InvoiceXpress::invoices();
-    $docType = DocumentTypeEnum::Invoice;
+    $docType = EntityTypeEnum::Invoice;
     $invoice = $endpoint->create($docType, InvoiceData::from($data));
     $pay = random_int(1, 5);
 
@@ -50,7 +52,7 @@ it('can go through an invoice lifecycle', function (array $data) {
      * Finalize the invoice
      */
     expect($invoice = $endpoint->changeState(
-        DocumentTypeEnum::Invoice,
+        EntityTypeEnum::Invoice,
         $invoice->id,
         StateData::from(['state' => DocumentEventEnum::Finalized]))
     )->not()->toThrow(Exception::class)
@@ -64,7 +66,7 @@ it('can go through an invoice lifecycle', function (array $data) {
         /*
          * Cancel that partial payment (fails)
          */
-        ->and(fn () => $endpoint->cancelPayment(
+        ->and(fn() => $endpoint->cancelPayment(
             $docType,
             $receipt->id,
             StateData::from(['state' => DocumentEventEnum::Canceled]))
@@ -100,7 +102,7 @@ it('can go through an invoice lifecycle', function (array $data) {
 dataset(
     'invoiceData',
     [
-        [
+        'Sample invoice' => [
             [
                 'date' => now(),
                 'due_date' => now()->addDays(random_int(10, 30)),

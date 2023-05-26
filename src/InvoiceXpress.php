@@ -14,6 +14,7 @@ use Squarebit\InvoiceXpress\API\Endpoints\TaxesEndpoint;
 class InvoiceXpress
 {
     public const DATE_FORMAT = 'd/m/Y';
+    public const DATE_TIME_FORMAT = 'd/m/Y H:i:s';
 
     public function clients(): ClientsEndpoint
     {

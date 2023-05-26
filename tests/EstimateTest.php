@@ -3,19 +3,18 @@
 use Squarebit\InvoiceXpress\API\Data\EstimateData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
 use Squarebit\InvoiceXpress\API\Enums\DocumentEventEnum;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\EstimateStatusEnum;
 use Squarebit\InvoiceXpress\API\Enums\ItemUnitEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can go through an Estimate lifecycle', function (DocumentTypeEnum $docType, array $data) {
+it('can go through an Estimate lifecycle', function (EntityTypeEnum $docType, array $data) {
     $endpoint = InvoiceXpress::estimates();
 
     $dataObject = EstimateData::from($data);
     expect($estimate = $endpoint->create($docType, $dataObject))
-        ->not()->toThrow(Exception::class);
-    dump($estimate->toArray());
-        expect($estimate->toArray())
+        ->not()->toThrow(Exception::class)
+        ->and($estimate->toArray())
         ->toMatchArrayRecursive($data);
 
     $modified = $estimate->reference = fake()->text(32);
@@ -26,9 +25,9 @@ it('can go through an Estimate lifecycle', function (DocumentTypeEnum $docType, 
         ->and($endpoint->changeState($docType, $estimate->id, StateData::from(['state' => DocumentEventEnum::Deleted])))
         ->toHaveProperty('status', EstimateStatusEnum::Deleted);
 })->with([
-    DocumentTypeEnum::Quote,
-    DocumentTypeEnum::Proforma,
-    DocumentTypeEnum::FeesNote,
+    EntityTypeEnum::Quote,
+    EntityTypeEnum::Proforma,
+    EntityTypeEnum::FeesNote,
 ])->with('estimateData');
 
 /*
@@ -37,7 +36,7 @@ it('can go through an Estimate lifecycle', function (DocumentTypeEnum $docType, 
 dataset(
     'estimateData',
     [
-        [
+        'Sample estimate' => [
             [
                 'date' => now()->format(\Squarebit\InvoiceXpress\InvoiceXpress::DATE_FORMAT),
                 'due_date' => now()->addDays(random_int(10, 30))->format(\Squarebit\InvoiceXpress\InvoiceXpress::DATE_FORMAT),

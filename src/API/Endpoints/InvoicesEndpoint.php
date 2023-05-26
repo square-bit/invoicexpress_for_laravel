@@ -10,7 +10,7 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
 use Squarebit\InvoiceXpress\API\Concerns\ChangesState;
 use Squarebit\InvoiceXpress\API\Concerns\CreatesWithType;
 use Squarebit\InvoiceXpress\API\Concerns\Deletes;
-use Squarebit\InvoiceXpress\API\Concerns\GeneratesCancelPayment;
+use Squarebit\InvoiceXpress\API\Concerns\GeneratesAndCancelsPayment;
 use Squarebit\InvoiceXpress\API\Concerns\GeneratesPDF;
 use Squarebit\InvoiceXpress\API\Concerns\GetsQRCode;
 use Squarebit\InvoiceXpress\API\Concerns\GetsWithType;
@@ -25,34 +25,34 @@ use Squarebit\InvoiceXpress\API\Data\InvoiceData;
  */
 class InvoicesEndpoint extends Endpoint
 {
-    /** @uses IXApiList<InvoiceData> */
+    /** @uses Lists<InvoiceData> */
     use Lists;
 
-    /** @uses IXApiGet<InvoiceData> */
+    /** @uses GetsWithType<InvoiceData> */
     use GetsWithType;
 
-    /** @uses IXApiCreate<InvoiceData> */
+    /** @uses CreatesWithType<InvoiceData> */
     use CreatesWithType;
 
-    /** @uses IXApiUpdate<InvoiceData> */
+    /** @uses UpdatesWithType<InvoiceData> */
     use UpdatesWithType;
 
-    /** @uses IXApiSendByEmail<InvoiceData> */
+    /** @uses SendsByEmail<InvoiceData> */
     use SendsByEmail;
 
-    /** @uses IXApiGeneratePDF<InvoiceData> */
+    /** @uses GeneratesPDF<InvoiceData> */
     use GeneratesPDF;
 
-    /** @uses IXApiChangeState<InvoiceData> */
+    /** @uses ChangesState<InvoiceData> */
     use ChangesState;
 
-    /** @uses IXApiGetQRCode<InvoiceData> */
+    /** @uses GetsQRCode<InvoiceData> */
     use GetsQRCode;
 
-    /** @uses IXApiGenerateCancelPayment<InvoiceData> */
-    use GeneratesCancelPayment;
+    /** @uses GeneratesAndCancelsPayment<InvoiceData> */
+    use GeneratesAndCancelsPayment;
 
-    /** @uses IXApiGetRelatedDocuments<InvoiceData> */
+    /** @uses RelatedDocuments<InvoiceData> */
     use RelatedDocuments;
 
     use Deletes;

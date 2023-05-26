@@ -5,7 +5,7 @@ namespace Squarebit\InvoiceXpress\API\Concerns;
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
 /**
@@ -16,7 +16,7 @@ trait ChangesState
     public const CHANGE_STATE = 'change-state';
 
     /**
-     * @param  DocumentTypeEnum  $documentType
+     * @param  EntityTypeEnum  $documentType
      * @param  int  $id
      * @param  StateData  $data
      * @return TData
@@ -24,7 +24,7 @@ trait ChangesState
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */
-    public function changeState(DocumentTypeEnum $documentType, int $id, StateData $data): EntityData
+    public function changeState(EntityTypeEnum $documentType, int $id, StateData $data): EntityData
     {
         $response = $this->call(
             action: static::CHANGE_STATE,

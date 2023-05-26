@@ -16,7 +16,7 @@ use Squarebit\InvoiceXpress\API\Concerns\Lists;
 use Squarebit\InvoiceXpress\API\Concerns\ListsInvoices;
 use Squarebit\InvoiceXpress\API\Concerns\Updates;
 use Squarebit\InvoiceXpress\API\Data\ClientData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
 /**
  * @template-extends Endpoint<ClientData>
@@ -58,8 +58,8 @@ class ClientsEndpoint extends Endpoint
         return static::ENDPOINT_CONFIG;
     }
 
-    protected function getDocumentType(): DocumentTypeEnum
+    protected function getEntityType(): EntityTypeEnum
     {
-        return DocumentTypeEnum::Client;
+        return EntityTypeEnum::Client;
     }
 }

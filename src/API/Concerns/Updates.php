@@ -4,7 +4,7 @@ namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\EntityData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Throwable;
 
 /**
@@ -18,7 +18,7 @@ trait Updates
 
     public const UPDATE = 'update';
 
-    abstract protected function getDocumentType(): DocumentTypeEnum;
+    abstract protected function getEntityType(): EntityTypeEnum;
 
     /**
      * @param  T  $data
@@ -28,6 +28,6 @@ trait Updates
      */
     public function update(int $id, EntityData $data): void
     {
-        $this->updateWithType($this->getDocumentType(), $id, $data);
+        $this->updateWithType($this->getEntityType(), $id, $data);
     }
 }

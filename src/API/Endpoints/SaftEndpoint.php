@@ -7,11 +7,34 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/saf-t
  */
 
+use Spatie\LaravelData\Data;
+use Squarebit\InvoiceXpress\API\Concerns\Gets;
 use Squarebit\InvoiceXpress\API\Concerns\GetsWithType;
+use Squarebit\InvoiceXpress\API\Data\SaftData;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
-class SaftEndpoint //extends IXEndpoint
+/**
+ * @extends  Endpoint<SaftData>
+ */
+class SaftEndpoint extends Endpoint
 {
-    use GetsWithType;
+    /** @uses Gets<SaftData */
+    use Gets;
 
-    protected static string $endpointConfig = 'saft';
+    public const ENDPOINT_CONFIG = 'saft';
+
+    protected function responseToDataObject(array $data): SaftData
+    {
+        return SaftData::from($data);
+    }
+
+    protected function getEndpointName(): string
+    {
+        return self::ENDPOINT_CONFIG;
+    }
+
+    protected function getEntityType(): EntityTypeEnum
+    {
+        return EntityTypeEnum::Saft;
+    }
 }

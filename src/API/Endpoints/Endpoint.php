@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Spatie\LaravelData\Data;
 use Squarebit\InvoiceXpress\API\Endpoints\Config\IXEndpointConfig;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
 /**

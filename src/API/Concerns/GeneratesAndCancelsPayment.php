@@ -6,10 +6,10 @@ use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
 use Squarebit\InvoiceXpress\API\Data\PartialPaymentData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
-trait GeneratesCancelPayment
+trait GeneratesAndCancelsPayment
 {
     public const GENERATE_PAYMENT = 'generate-payment';
 
@@ -23,7 +23,7 @@ trait GeneratesCancelPayment
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */
-    public function generatePayment(DocumentTypeEnum $documentType, int $id, PartialPaymentData $data): InvoiceData
+    public function generatePayment(EntityTypeEnum $documentType, int $id, PartialPaymentData $data): InvoiceData
     {
         $this->checkAllowed($documentType, __FUNCTION__);
 
@@ -43,7 +43,7 @@ trait GeneratesCancelPayment
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */
-    public function cancelPayment(DocumentTypeEnum $documentType, int $id, StateData $data): InvoiceData
+    public function cancelPayment(EntityTypeEnum $documentType, int $id, StateData $data): InvoiceData
     {
         $this->checkAllowed($documentType, __FUNCTION__);
 
@@ -62,10 +62,10 @@ trait GeneratesCancelPayment
     /**
      * @throws UnknownAPIMethodException
      */
-    protected function checkAllowed(DocumentTypeEnum $documentType, string $methodName): void
+    protected function checkAllowed(EntityTypeEnum $documentType, string $methodName): void
     {
         throw_unless(
-            in_array($documentType, [DocumentTypeEnum::Invoice, DocumentTypeEnum::SimplifiedInvoice], true),
+            in_array($documentType, [EntityTypeEnum::Invoice, EntityTypeEnum::SimplifiedInvoice], true),
             UnknownAPIMethodException::class,
             "'{$methodName}' cannot be called on this type of Invoice."
         );

@@ -4,7 +4,7 @@ namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\EntityData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Throwable;
 
 /**
@@ -21,7 +21,7 @@ trait CreatesWithType
      * @throws RequestException
      * @throws Throwable
      */
-    public function create(DocumentTypeEnum $documentType, EntityData $data): EntityData
+    public function create(EntityTypeEnum $documentType, EntityData $data): EntityData
     {
         $response = $this->call(
             action: static::CREATE,

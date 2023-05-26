@@ -4,11 +4,11 @@ use Squarebit\InvoiceXpress\API\Data\EntityListData;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
 use Squarebit\InvoiceXpress\API\Data\PartialPaymentData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentStatusEnum;
+use Squarebit\InvoiceXpress\API\Enums\InvoiceStatusEnum;
 use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\ItemUnitEnum;
-use Squarebit\InvoiceXpress\API\Enums\StateEnum;
+use Squarebit\InvoiceXpress\API\Enums\DocumentEventEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can create / update / delete an invoice', function (DocumentTypeEnum $docType, array $data) {
@@ -52,10 +52,10 @@ it('can go through an invoice lifecycle', function (array $data) {
     expect($invoice = $endpoint->changeState(
         DocumentTypeEnum::Invoice,
         $invoice->id,
-        StateData::from(['state' => StateEnum::Finalized]))
+        StateData::from(['state' => DocumentEventEnum::Finalized]))
     )->not()->toThrow(Exception::class)
         ->toHaveKey('type', InvoiceTypeEnum::Invoice->value)
-        ->toHaveKey('status', DocumentStatusEnum::Final->value)
+        ->toHaveKey('status', InvoiceStatusEnum::Final->value)
         // Generate a partial Payment
         ->and($receipt = $endpoint->generatePayment($docType, $invoice->id,
             PartialPaymentData::from(['amount' => $pay])))
@@ -67,7 +67,7 @@ it('can go through an invoice lifecycle', function (array $data) {
         ->and(fn () => $endpoint->cancelPayment(
             $docType,
             $receipt->id,
-            StateData::from(['state' => StateEnum::Canceled]))
+            StateData::from(['state' => DocumentEventEnum::Canceled]))
         )->toThrow(Exception::class)
         /*
          * Cancel that partial payment (succeeds)
@@ -76,10 +76,10 @@ it('can go through an invoice lifecycle', function (array $data) {
             $docType,
             $receipt->id,
             StateData::from([
-                'state' => StateEnum::Canceled,
+                'state' => DocumentEventEnum::Canceled,
                 'message' => fake()->text(),
             ])))
-        ->toHaveProperty('status', DocumentStatusEnum::Canceled->value)
+        ->toHaveProperty('status', InvoiceStatusEnum::Canceled->value)
         /*
          * Retrieve related documents (should be exactly 1)
          */
@@ -103,7 +103,7 @@ dataset(
         [
             [
                 'date' => now(),
-                'dueDate' => now()->addDays(random_int(10, 30)),
+                'due_date' => now()->addDays(random_int(10, 30)),
                 'reference' => fake()->colorName,
                 'observations' => fake()->text(128),
                 'client' => [

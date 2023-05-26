@@ -4,7 +4,7 @@ namespace Squarebit\InvoiceXpress\API\Enums;
 
 use Squarebit\InvoiceXpress\Concerns\EnumEnhancements;
 
-enum DocumentStatusEnum: string
+enum EstimateStatusEnum: string
 {
     use EnumEnhancements;
 
@@ -13,4 +13,6 @@ enum DocumentStatusEnum: string
     case Canceled = 'canceled';
     case Deleted = 'deleted';
     case Final = 'final';
+    case Accepted = 'accepted';
+    case Refused = 'refused';
 }

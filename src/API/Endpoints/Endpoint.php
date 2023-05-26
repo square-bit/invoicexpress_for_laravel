@@ -78,9 +78,4 @@ abstract class Endpoint
     {
         return $this->lastResponseCode;
     }
-
-    protected function documentTypeToUrlVariable(DocumentTypeEnum $type): string
-    {
-        return Str::plural($type->value);
-    }
 }

@@ -1,18 +1,35 @@
 <?php
 
 use Squarebit\InvoiceXpress\API\Data\EstimateData;
+use Squarebit\InvoiceXpress\API\Data\StateData;
+use Squarebit\InvoiceXpress\API\Enums\DocumentEventEnum;
 use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\EstimateStatusEnum;
 use Squarebit\InvoiceXpress\API\Enums\ItemUnitEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can go through an Estimate lifecycle', function (array $data) {
+it('can go through an Estimate lifecycle', function (DocumentTypeEnum $docType, array $data) {
     $endpoint = InvoiceXpress::estimates();
 
     $dataObject = EstimateData::from($data);
-    expect($estimate = $endpoint->create(DocumentTypeEnum::FeesNote, $dataObject))
+    expect($estimate = $endpoint->create($docType, $dataObject))
         ->not()->toThrow(Exception::class);
+    dump($estimate->toArray());
+        expect($estimate->toArray())
+        ->toMatchArrayRecursive($data);
 
-})->with('estimateData');
+    $modified = $estimate->reference = fake()->text(32);
+    expect(fn() => $endpoint->update($docType, $estimate->id, $estimate))
+        ->not()->toThrow(Exception::class)
+        ->and($estimate = $endpoint->get($docType, $estimate->id))
+        ->toHaveProperty('reference', $modified)
+        ->and($endpoint->changeState($docType, $estimate->id, StateData::from(['state' => DocumentEventEnum::Deleted])))
+        ->toHaveProperty('status', EstimateStatusEnum::Deleted);
+})->with([
+    DocumentTypeEnum::Quote,
+    DocumentTypeEnum::Proforma,
+    DocumentTypeEnum::FeesNote,
+])->with('estimateData');
 
 /*
  * DATASETS
@@ -22,8 +39,8 @@ dataset(
     [
         [
             [
-                'date' => now(),
-                'dueDate' => now()->addDays(random_int(10, 30)),
+                'date' => now()->format(\Squarebit\InvoiceXpress\InvoiceXpress::DATE_FORMAT),
+                'due_date' => now()->addDays(random_int(10, 30))->format(\Squarebit\InvoiceXpress\InvoiceXpress::DATE_FORMAT),
                 'reference' => fake()->colorName,
                 'observations' => fake()->text(128),
                 'client' => [

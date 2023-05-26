@@ -5,7 +5,7 @@ use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\API\Enums\ItemUnitEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can create / update /delete an item', function (array $itemData) {
+it('can create / update /delete an Item', function (array $itemData) {
     // create the item
     $item = InvoiceXpress::items()->create(ItemData::from($itemData), ItemData::from($itemData));
     expect($item->toArray())->toMatchArrayRecursive($itemData);

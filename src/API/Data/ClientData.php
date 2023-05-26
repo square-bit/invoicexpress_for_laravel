@@ -5,6 +5,7 @@ namespace Squarebit\InvoiceXpress\API\Data;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Attributes\WithTransformer;
+use Spatie\LaravelData\Casts\EnumCast;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
 use Squarebit\InvoiceXpress\API\Data\Casts\IXClientSendOptionsCast;
@@ -32,7 +33,7 @@ class ClientData extends EntityData
         public ?string $fax,
         public ?array $preferredContact,
         public ?string $observations,
-        #[WithCast(IXClientSendOptionsCast::class)]
+        #[WithCast(EnumCast::class)]
         public ?ClientSendOptionsEnum $sendOptions,
         public ?string $paymentDays,
         #[WithCast(IXTaxExemptionCodeCast::class)]

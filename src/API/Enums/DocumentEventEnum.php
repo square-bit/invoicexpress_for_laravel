@@ -4,7 +4,7 @@ namespace Squarebit\InvoiceXpress\API\Enums;
 
 use Squarebit\InvoiceXpress\Concerns\EnumEnhancements;
 
-enum StateEnum: string
+enum DocumentEventEnum: string
 {
     use EnumEnhancements;
 
@@ -14,4 +14,6 @@ enum StateEnum: string
     case Canceled = 'canceled';
     case Settled = 'settled';
     case Unsettled = 'unsettled';
+    case Accept = 'accept';
+    case Refuse = 'refuse';
 }

@@ -18,7 +18,7 @@ class EntityListData extends Data
 {
     public function __construct(
         public array $items,
-        public Optional | PaginationData $pagination,
+        public Optional|PaginationData $pagination,
     ) {
     }
 

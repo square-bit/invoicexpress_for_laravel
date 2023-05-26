@@ -16,12 +16,11 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiSendByEmail;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
 use Squarebit\InvoiceXpress\API\Data\EstimateData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
 /**
  * @template-extends IXEndpoint<EstimateData>
  */
- class IXEstimateEndpoint extends IXEndpoint
+class IXEstimateEndpoint extends IXEndpoint
 {
     use IXApiSendByEmail;
 
@@ -30,6 +29,7 @@ use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
     /** @uses IXApiGet<EstimateData> */
     use IXApiGet;
+
     use IXApiList;
 
     /** @uses IXApiCreate<EstimateData> */
@@ -37,6 +37,7 @@ use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
     /** @uses IXApiUpdate<EstimateData> */
     use IXApiUpdate;
+
     use IXApiChangeState;
 
     public const ENDPOINT_CONFIG = 'estimate';
@@ -50,4 +51,4 @@ use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
     {
         return static::ENDPOINT_CONFIG;
     }
- }
+}

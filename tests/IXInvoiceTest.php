@@ -63,7 +63,7 @@ it('can go through an invoice lifecycle', function (array $data) {
         /*
          * Cancel that partial payment (fails)
          */
-        ->and(fn() => $endpoint->cancelPayment($receipt->id, StateData::from(['state' => StateEnum::Canceled])))
+        ->and(fn () => $endpoint->cancelPayment($receipt->id, StateData::from(['state' => StateEnum::Canceled])))
         ->toThrow(Exception::class)
         /*
          * Cancel that partial payment (succeeds)

@@ -12,23 +12,24 @@ use Throwable;
  */
 trait IXApiCreate
 {
+    use IXApiCreateWithType {
+        create as createWithType;
+    }
+
     public const CREATE = 'create';
 
+    abstract protected function getDocumentType(): DocumentTypeEnum;
+
     /**
+     * @param  int  $id
      * @param  TData  $data
      * @return TData
      *
      * @throws RequestException
      * @throws Throwable
      */
-    public function create(DocumentTypeEnum $documentType, EntityData $data): EntityData
+    public function create(EntityData $data): EntityData
     {
-        $response = $this->call(
-            action: static::CREATE,
-            urlParams: ['type' => $this->documentTypeToUrlVariable($documentType)],
-            bodyData: [$documentType->value => $data->toArray()]
-        );
-
-        return $this->responseToDataObject($response[$documentType->value]);
+        return $this->createWithType($this->getDocumentType(), $data);
     }
 }

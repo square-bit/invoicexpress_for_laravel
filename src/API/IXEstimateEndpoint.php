@@ -9,12 +9,12 @@ namespace Squarebit\InvoiceXpress\API;
 
 use Spatie\LaravelData\Data;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiChangeState;
-use Squarebit\InvoiceXpress\API\Concerns\IXApiCreate;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiCreateWithType;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGeneratePDF;
-use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiGetWithType;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiSendByEmail;
-use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdateWithType;
 use Squarebit\InvoiceXpress\API\Data\EstimateData;
 
 /**
@@ -27,16 +27,16 @@ class IXEstimateEndpoint extends IXEndpoint
     /** @uses IXApiSendByEmail<EstimateData> */
     use IXApiGeneratePDF;
 
-    /** @uses IXApiGet<EstimateData> */
-    use IXApiGet;
+    /** @uses IXApiGetWithType<EstimateData> */
+    use IXApiGetWithType;
 
     use IXApiList;
 
-    /** @uses IXApiCreate<EstimateData> */
-    use IXApiCreate;
+    /** @uses IXApiCreateWithType<EstimateData> */
+    use IXApiCreateWithType;
 
-    /** @uses IXApiUpdate<EstimateData> */
-    use IXApiUpdate;
+    /** @uses IXApiUpdateWithType<EstimateData> */
+    use IXApiUpdateWithType;
 
     use IXApiChangeState;
 

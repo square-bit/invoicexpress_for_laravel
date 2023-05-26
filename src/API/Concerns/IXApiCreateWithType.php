@@ -4,31 +4,29 @@ namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\EntityData;
-use Squarebit\InvoiceXpress\API\Data\StateData;
 use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
+use Throwable;
 
 /**
  * @template TData of EntityData
  */
-trait IXApiChangeState
+trait IXApiCreateWithType
 {
-    public const CHANGE_STATE = 'change-state';
+    public const CREATE = 'create';
 
     /**
+     * @param  DocumentTypeEnum  $documentType
      * @param  TData  $data
      * @return TData
      *
      * @throws RequestException
-     * @throws
+     * @throws Throwable
      */
-    public function changeState(DocumentTypeEnum $documentType, int $id, StateData $data): EntityData
+    public function create(DocumentTypeEnum $documentType, EntityData $data): EntityData
     {
         $response = $this->call(
-            action: static::CHANGE_STATE,
-            urlParams: [
-                'type' => $this->documentTypeToUrlVariable($documentType),
-                'id' => $id,
-            ],
+            action: static::CREATE,
+            urlParams: ['type' => $documentType->toUrlVariable()],
             bodyData: [$documentType->value => $data->toArray()]
         );
 

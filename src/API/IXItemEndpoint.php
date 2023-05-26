@@ -37,22 +37,16 @@ class IXItemEndpoint extends IXEndpoint
 
     public const ENDPOINT_CONFIG = 'item';
 
-    protected const JSON_ROOT_OBJECT_KEY = 'item';
+    protected function getEndpointName(): string
+    {
+        return self::ENDPOINT_CONFIG;
+    }
 
     protected function responseToDataObject(array $data): ItemData
     {
         return ItemData::from($data);
     }
 
-    protected function getEndpointName(): string
-    {
-        return self::ENDPOINT_CONFIG;
-    }
-
-    protected function getJsonRootObjectKey(): string
-    {
-        return static::JSON_ROOT_OBJECT_KEY;
-    }
 
     protected function getDocumentType(): DocumentTypeEnum
     {

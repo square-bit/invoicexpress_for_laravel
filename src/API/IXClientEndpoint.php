@@ -12,10 +12,13 @@ use Squarebit\InvoiceXpress\API\Concerns\IXApiDelete;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiFindByCode;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiFindByName;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiGetWithType;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiListInvoices;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdateWithType;
 use Squarebit\InvoiceXpress\API\Data\ClientData;
+use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
 /**
@@ -48,8 +51,6 @@ class IXClientEndpoint extends IXEndpoint
 
     public const ENDPOINT_CONFIG = 'client';
 
-    protected const JSON_ROOT_OBJECT_KEY = 'client';
-
     protected function responseToDataObject(array $data): ClientData
     {
         return ClientData::from($data);
@@ -58,11 +59,6 @@ class IXClientEndpoint extends IXEndpoint
     protected function getEndpointName(): string
     {
         return static::ENDPOINT_CONFIG;
-    }
-
-    protected function getJsonRootObjectKey(): string
-    {
-        return static::JSON_ROOT_OBJECT_KEY;
     }
 
     protected function getDocumentType(): DocumentTypeEnum

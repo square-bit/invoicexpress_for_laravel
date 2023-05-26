@@ -25,10 +25,6 @@ abstract class IXEndpoint
 
     abstract protected function getEndpointName(): string;
 
-    //abstract protected function getDocumentType(): DocumentTypeEnum;
-
-    //abstract protected function getJsonRootObjectKey(): string;
-
     public function getEndpointConfig(string $action): IXEndpointConfig
     {
         return new IXEndpointConfig($this->getEndpointName(), $action);
@@ -74,7 +70,6 @@ abstract class IXEndpoint
     protected function http(): PendingRequest
     {
         return Http::acceptJson()
-            ->dump()
             ->asJson();
     }
 

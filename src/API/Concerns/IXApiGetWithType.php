@@ -10,15 +10,9 @@ use Throwable;
 /**
  * @template TData of EntityData
  */
-trait IXApiGet
+trait IXApiGetWithType
 {
-    use IXApiGetWithType {
-        get as getWithType;
-    }
-
     public const GET = 'get';
-
-    abstract protected function getDocumentType(): DocumentTypeEnum;
 
     /**
      * @return TData
@@ -26,8 +20,16 @@ trait IXApiGet
      * @throws RequestException
      * @throws Throwable
      */
-    public function get(int $id): EntityData
+    public function get(DocumentTypeEnum $documentType, int $id): EntityData
     {
-        return $this->getWithType($this->getDocumentType(), $id);
+        $data = $this->call(
+            action: static::GET,
+            urlParams: [
+                'type' => $documentType->toUrlVariable(),
+                'id' => $id,
+            ],
+        );
+dd($data);
+        return $this->responseToDataObject($data[$documentType->value]);
     }
 }

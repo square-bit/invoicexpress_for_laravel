@@ -7,6 +7,7 @@ use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
 use Squarebit\InvoiceXpress\API\Data\Casts\IXClientSendOptionsCast;
+use Squarebit\InvoiceXpress\API\Data\Casts\IXTaxExemptionCodeCast;
 use Squarebit\InvoiceXpress\Enums\IXClientSendOptionsEnum;
 use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
 
@@ -14,7 +15,7 @@ use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
 class ClientData extends EntityData
 {
     public function __construct(
-        public Optional|int $id,
+        public Optional | int $id,
         public string $name,
         public ?string $code,
         public ?string $language,
@@ -32,7 +33,7 @@ class ClientData extends EntityData
         #[WithCast(IXClientSendOptionsCast::class)]
         public ?IXClientSendOptionsEnum $sendOptions,
         public ?string $paymentDays,
-        //#[WithCast(IXTaxExemptionCodeCast::class)]
+        #[WithCast(IXTaxExemptionCodeCast::class)]
         public ?IXTaxExemptionCodeEnum $taxExemptionCode,
         public ?string $openAccountLink,
     ) {

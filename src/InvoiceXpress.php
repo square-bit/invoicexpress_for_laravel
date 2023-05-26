@@ -19,22 +19,22 @@ class InvoiceXpress
 {
     public const DATE_FORMAT = 'd/m/Y';
 
-    public function client(): IXClientEndpoint
+    public function clients(): IXClientEndpoint
     {
         return new IXClientEndpoint();
     }
 
-    public function item(): IXItemEndpoint
+    public function items(): IXItemEndpoint
     {
         return new IXItemEndpoint();
     }
 
-    public function sequence(): IXSequenceEndpoint
+    public function sequences(): IXSequenceEndpoint
     {
         return new IXSequenceEndpoint();
     }
 
-    public function tax(): IXTaxEndpoint
+    public function taxes(): IXTaxEndpoint
     {
         return new IXTaxEndpoint();
     }
@@ -44,12 +44,12 @@ class InvoiceXpress
         return new IXSaftEndpoint();
     }
 
-    public function invoice(): IXInvoiceEndpoint
+    public function invoices(): IXInvoiceEndpoint
     {
         return new IXInvoiceEndpoint();
     }
 
-    public function guide(): IXGuideEndpoint
+    public function guides(): IXGuideEndpoint
     {
         return new IXGuideEndpoint();
     }
@@ -57,25 +57,5 @@ class InvoiceXpress
     public function estimates(): IXEstimateEndpoint
     {
         return new IXEstimateEndpoint();
-    }
-
-    public function simplifiedInvoice(): IXSimplifiedInvoiceEndpoint
-    {
-        return new IXSimplifiedInvoiceEndpoint();
-    }
-
-    public function invoiceReceipt(): IXInvoiceReceiptEndpoint
-    {
-        return new IXInvoiceReceiptEndpoint();
-    }
-
-    public function creditNote(): IXCreditNoteEndpoint
-    {
-        return new IXCreditNoteEndpoint();
-    }
-
-    public function debitNote(): IXDebitNoteEndpoint
-    {
-        return new IXDebitNoteEndpoint();
     }
 }

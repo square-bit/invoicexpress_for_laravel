@@ -10,25 +10,25 @@ use Throwable;
 /**
  * @template T of EntityData
  */
-trait IXApiUpdate
+trait IXApiUpdateWithType
 {
-    use IXApiUpdateWithType {
-        update as updateWithType;
-    }
-
     public const UPDATE = 'update';
 
-    abstract protected function getDocumentType(): DocumentTypeEnum;
-
     /**
-     * @param  int  $id
      * @param  T  $data
      *
      * @throws RequestException
      * @throws Throwable
      */
-    public function update(int $id, EntityData $data): void
+    public function update(DocumentTypeEnum $documentType, int $id, EntityData $data): void
     {
-        $this->updateWithType($this->getDocumentType(), $id, $data);
+        $this->call(
+            action: static::UPDATE,
+            urlParams: [
+                'type' => $documentType->toUrlVariable(),
+                'id' => $id,
+            ],
+            bodyData: [$documentType->value => $data->toArray()]
+        );
     }
 }

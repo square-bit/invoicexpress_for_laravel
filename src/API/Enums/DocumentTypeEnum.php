@@ -2,6 +2,8 @@
 
 namespace Squarebit\InvoiceXpress\API\Enums;
 
+use Illuminate\Support\Str;
+
 enum DocumentTypeEnum: string
 {
     case Client = 'client';
@@ -15,4 +17,9 @@ enum DocumentTypeEnum: string
     case Quote = 'quote';
     case Proforma = 'proforma';
     case FeesNote = 'fees_note';
+
+    public function toUrlVariable(): string
+    {
+        return Str::plural($this->value);
+    }
 }

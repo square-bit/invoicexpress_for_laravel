@@ -9,66 +9,71 @@ use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\ItemUnitEnum;
 use Squarebit\InvoiceXpress\API\Enums\StateEnum;
-use Squarebit\InvoiceXpress\API\IXCreditNoteEndpoint;
-use Squarebit\InvoiceXpress\API\IXDebitNoteEndpoint;
-use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
-use Squarebit\InvoiceXpress\API\IXInvoiceReceiptEndpoint;
-use Squarebit\InvoiceXpress\API\IXSimplifiedInvoiceEndpoint;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can create / update / delete an invoice', function (IXInvoiceEndpoint $endpoint, array $data) {
+it('can create / update / delete an invoice', function (DocumentTypeEnum $docType, array $data) {
+    $endpoint = InvoiceXpress::invoices();
     // create the invoice
     /** @var InvoiceData $invoiceData */
-    $invoiceData = $endpoint->create(DocumentTypeEnum::Invoice, DocumentTypeEnum::Invoice);
+    $invoiceData = InvoiceXpress::invoices()->create($docType, InvoiceData::from($data));
 
     // get it
     /** @var InvoiceData $invoice */
-    $invoice = $endpoint->get($invoiceData->id);
+    $invoice = $endpoint->get($docType, $invoiceData->id);
     expect($invoice->toArray())
         ->toMatchArrayRecursive($invoiceData->toArray());
 
     // update it
     $modified = $invoice->observations = fake()->text(128);
-    $endpoint->update($invoice->id, $invoice);
+    $endpoint->update($docType, $invoice->id, $invoice);
 
     // confirm it was updated
     /** @var InvoiceData $invoice */
-    $invoice = $endpoint->get($invoice->id);
+    $invoice = $endpoint->get($docType, $invoice->id);
     expect($invoice->observations)
         ->toEqual($modified);
 })->with([
-    'Invoice' => [(new IXInvoiceEndpoint())],
-    'SimplifiedInvoice' => [(new IXSimplifiedInvoiceEndpoint())],
-    'InvoiceReceipt' => [(new IXInvoiceReceiptEndpoint())],
-    'CreditNote' => [(new IXCreditNoteEndpoint())],
-    'DebitNote' => [(new IXDebitNoteEndpoint())],
+    'Invoice' => [DocumentTypeEnum::Invoice],
+    'SimplifiedInvoice' => [DocumentTypeEnum::SimplifiedInvoice],
+    'InvoiceReceipt' => [DocumentTypeEnum::InvoiceReceipt],
+    'CreditNote' => [DocumentTypeEnum::CreditNote],
+    'DebitNote' => [DocumentTypeEnum::DebitNote],
 ])->with('invoiceData');
 
 it('can go through an invoice lifecycle', function (array $data) {
-    $endpoint = InvoiceXpress::invoice();
-    $invoice = $endpoint->create(DocumentTypeEnum::Invoice, DocumentTypeEnum::Invoice);
+    $endpoint = InvoiceXpress::invoices();
+    $docType = DocumentTypeEnum::Invoice;
+    $invoice = $endpoint->create($docType, InvoiceData::from($data));
     $pay = random_int(1, 5);
 
     /*
      * Finalize the invoice
      */
-    expect($invoice = $endpoint->changeState($invoice->id, StateData::from(['state' => StateEnum::Finalized])))
-        ->not()->toThrow(Exception::class)
+    expect($invoice = $endpoint->changeState(
+        DocumentTypeEnum::Invoice,
+        $invoice->id,
+        StateData::from(['state' => StateEnum::Finalized]))
+    )->not()->toThrow(Exception::class)
         ->toHaveKey('type', InvoiceTypeEnum::Invoice->value)
         ->toHaveKey('status', DocumentStatusEnum::Final->value)
         // Generate a partial Payment
-        ->and($receipt = $endpoint->generatePayment($invoice->id, PartialPaymentData::from(['amount' => $pay])))
+        ->and($receipt = $endpoint->generatePayment($docType, $invoice->id,
+            PartialPaymentData::from(['amount' => $pay])))
         ->toHaveKey('type', InvoiceTypeEnum::Receipt->value)
         ->toHaveKey('total', $pay)
         /*
          * Cancel that partial payment (fails)
          */
-        ->and(fn () => $endpoint->cancelPayment($receipt->id, StateData::from(['state' => StateEnum::Canceled])))
-        ->toThrow(Exception::class)
+        ->and(fn() => $endpoint->cancelPayment(
+            $docType,
+            $receipt->id,
+            StateData::from(['state' => StateEnum::Canceled]))
+        )->toThrow(Exception::class)
         /*
          * Cancel that partial payment (succeeds)
          */
         ->and($receipt = $endpoint->cancelPayment(
+            $docType,
             $receipt->id,
             StateData::from([
                 'state' => StateEnum::Canceled,

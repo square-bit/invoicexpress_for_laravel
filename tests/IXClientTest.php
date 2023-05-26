@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\ClientData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Squarebit\InvoiceXpress\Enums\IXClientLanguageEnum;
 use Squarebit\InvoiceXpress\Enums\IXClientSendOptionsEnum;
 use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
@@ -11,29 +10,28 @@ use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 it('can create / update /delete a client', function (array $clientData) {
     // create the client
     /** @var ClientData $client */
-    $client = InvoiceXpress::client()->create(DocumentTypeEnum::Client, DocumentTypeEnum::Client);
-
+    $client = InvoiceXpress::clients()->create(ClientData::from($clientData));
     // get it
     /** @var ClientData $gotClient */
-    $gotClient = InvoiceXpress::client()->get($client->id);
+    $gotClient = InvoiceXpress::clients()->get($client->id);
     expect($gotClient->toArray())->toMatchArrayRecursive($clientData);
 
     // update it
     $description = $gotClient->address = fake()->streetAddress();
-    InvoiceXpress::client()->update($gotClient->id, $gotClient);
+    InvoiceXpress::clients()->update($gotClient->id, $gotClient);
 
     // confirm it was updated, delete it and confirm it is gone
     /** @var ClientData $gotClient */
-    $gotClient = InvoiceXpress::client()->get($gotClient->id);
+    $gotClient = InvoiceXpress::clients()->get($gotClient->id);
     expect($gotClient->address)
         ->toEqual($description)
-        ->and(fn () => InvoiceXpress::client()->delete($gotClient->id))
+        ->and(fn() => InvoiceXpress::clients()->delete($gotClient->id))
         /** Deleting Client throws an exception but deletes it anyway if it has no documents
          *  See https://github.com/square-bit/invoicexpress_for_laravel/issues/1
          */
         // ->not()->toThrow(Exception::class)
         ->toThrow(Exception::class)
-        ->and(fn () => InvoiceXpress::client()->get($gotClient->id))
+        ->and(fn() => InvoiceXpress::clients()->get($gotClient->id))
         ->toThrow(RequestException::class);
 })->with([
     [
@@ -58,7 +56,7 @@ it('can create / update /delete a client', function (array $clientData) {
             'observations' => fake()->text(),
             'send_options' => collect(IXClientSendOptionsEnum::values())->random(),
             'payment_days' => fake()->numberBetween(0, 60),
-            'tax_exemption_code' => collect(IXTaxExemptionCodeEnum::values())->random(),
+            'tax_exemption_code' => collect(IXTaxExemptionCodeEnum::names())->random(),
         ],
     ],
 ]);

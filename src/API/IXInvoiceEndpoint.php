@@ -9,15 +9,16 @@ namespace Squarebit\InvoiceXpress\API;
 
 use Squarebit\InvoiceXpress\API\Concerns\IXApiChangeState;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiCreate;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiCreateWithType;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiDelete;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGenerateCancelPayment;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGeneratePDF;
-use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiGetWithType;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGetQRCode;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiGetRelatedDocuments;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiSendByEmail;
-use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdateWithType;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
 use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
@@ -30,13 +31,13 @@ class IXInvoiceEndpoint extends IXEndpoint
     use IXApiList;
 
     /** @uses IXApiGet<InvoiceData> */
-    use IXApiGet;
+    use IXApiGetWithType;
 
     /** @uses IXApiCreate<InvoiceData> */
-    use IXApiCreate;
+    use IXApiCreateWithType;
 
     /** @uses IXApiUpdate<InvoiceData> */
-    use IXApiUpdate;
+    use IXApiUpdateWithType;
 
     /** @uses IXApiSendByEmail<InvoiceData> */
     use IXApiSendByEmail;
@@ -60,8 +61,6 @@ class IXInvoiceEndpoint extends IXEndpoint
 
     public const ENDPOINT_CONFIG = 'invoice';
 
-    protected const JSON_ROOT_OBJECT_KEY = 'invoice';
-
     protected function responseToDataObject(array $data): InvoiceData
     {
         return InvoiceData::from($data);
@@ -70,15 +69,5 @@ class IXInvoiceEndpoint extends IXEndpoint
     protected function getEndpointName(): string
     {
         return static::ENDPOINT_CONFIG;
-    }
-
-    protected function getJsonRootObjectKey(): string
-    {
-        return static::JSON_ROOT_OBJECT_KEY;
-    }
-
-    protected function getDocumentType(): DocumentTypeEnum
-    {
-        return DocumentTypeEnum::Invoice;
     }
 }

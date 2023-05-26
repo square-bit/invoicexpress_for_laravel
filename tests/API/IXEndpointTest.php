@@ -18,19 +18,19 @@ it('can call endpoint actions (FAKED)', function (string $entity, string $action
 
     Http::preventStrayRequests();
     Http::fake([
-        UriTemplate::expand($endpoint->getUrl()) => Http::response($responseSample, 200),
+        UriTemplate::expand($endpoint->getUrl(), []) => Http::response($responseSample, 200),
     ]);
 
     expect($ixEntity->call($action, bodyData: $requestSample))
         ->not()->toThrow(Exception::class)
         ->toEqual($responseSample);
 })->with([
-    ['client', IXClientEndpoint::LIST],
-    ['client', IXClientEndpoint::GET],
-    ['client', IXClientEndpoint::CREATE],
-    ['client', IXClientEndpoint::UPDATE],
-    ['client', IXClientEndpoint::FIND_BY_NAME],
-    ['client', IXClientEndpoint::LIST_INVOICES],
+    ['clients', IXClientEndpoint::LIST],
+    ['clients', IXClientEndpoint::GET],
+    ['clients', IXClientEndpoint::CREATE],
+    ['clients', IXClientEndpoint::UPDATE],
+    ['clients', IXClientEndpoint::FIND_BY_NAME],
+    ['clients', IXClientEndpoint::LIST_INVOICES],
 
     //    ['estimate', IXEstimateEndpoint::LIST],
     //    ['estimate', IXEstimateEndpoint::GET],
@@ -49,56 +49,20 @@ it('can call endpoint actions (FAKED)', function (string $entity, string $action
     //    ['guide', IXGuideEndpoint::GENERATE_PDF],
     //    ['guide', IXGuideEndpoint::GET_QRCODE],
 
-    ['invoice', IXInvoiceEndpoint::LIST],
-    ['invoice', IXInvoiceEndpoint::GET],
-    ['invoice', IXInvoiceEndpoint::CREATE],
-    ['invoice', IXInvoiceEndpoint::UPDATE],
-    ['invoice', IXInvoiceEndpoint::SEND_BY_EMAIL],
-    ['invoice', IXInvoiceEndpoint::CHANGE_STATE],
-    ['invoice', IXInvoiceEndpoint::GENERATE_PDF],
-    ['invoice', IXInvoiceEndpoint::GET_QRCODE],
+    ['invoices', IXInvoiceEndpoint::LIST],
+    ['invoices', IXInvoiceEndpoint::GET],
+    ['invoices', IXInvoiceEndpoint::CREATE],
+    ['invoices', IXInvoiceEndpoint::UPDATE],
+    ['invoices', IXInvoiceEndpoint::SEND_BY_EMAIL],
+    ['invoices', IXInvoiceEndpoint::CHANGE_STATE],
+    ['invoices', IXInvoiceEndpoint::GENERATE_PDF],
+    ['invoices', IXInvoiceEndpoint::GET_QRCODE],
 
-    ['simplifiedInvoice', IXInvoiceEndpoint::LIST],
-    ['simplifiedInvoice', IXInvoiceEndpoint::GET],
-    ['simplifiedInvoice', IXInvoiceEndpoint::CREATE],
-    ['simplifiedInvoice', IXInvoiceEndpoint::UPDATE],
-    ['simplifiedInvoice', IXInvoiceEndpoint::SEND_BY_EMAIL],
-    ['simplifiedInvoice', IXInvoiceEndpoint::CHANGE_STATE],
-    ['simplifiedInvoice', IXInvoiceEndpoint::GENERATE_PDF],
-    ['simplifiedInvoice', IXInvoiceEndpoint::GET_QRCODE],
-
-    ['invoiceReceipt', IXInvoiceEndpoint::LIST],
-    ['invoiceReceipt', IXInvoiceEndpoint::GET],
-    ['invoiceReceipt', IXInvoiceEndpoint::CREATE],
-    ['invoiceReceipt', IXInvoiceEndpoint::UPDATE],
-    ['invoiceReceipt', IXInvoiceEndpoint::SEND_BY_EMAIL],
-    ['invoiceReceipt', IXInvoiceEndpoint::CHANGE_STATE],
-    ['invoiceReceipt', IXInvoiceEndpoint::GENERATE_PDF],
-    ['invoiceReceipt', IXInvoiceEndpoint::GET_QRCODE],
-
-    ['creditNote', IXInvoiceEndpoint::LIST],
-    ['creditNote', IXInvoiceEndpoint::GET],
-    ['creditNote', IXInvoiceEndpoint::CREATE],
-    ['creditNote', IXInvoiceEndpoint::UPDATE],
-    ['creditNote', IXInvoiceEndpoint::SEND_BY_EMAIL],
-    ['creditNote', IXInvoiceEndpoint::CHANGE_STATE],
-    ['creditNote', IXInvoiceEndpoint::GENERATE_PDF],
-    ['creditNote', IXInvoiceEndpoint::GET_QRCODE],
-
-    ['debitNote', IXInvoiceEndpoint::LIST],
-    ['debitNote', IXInvoiceEndpoint::GET],
-    ['debitNote', IXInvoiceEndpoint::CREATE],
-    ['debitNote', IXInvoiceEndpoint::UPDATE],
-    ['debitNote', IXInvoiceEndpoint::SEND_BY_EMAIL],
-    ['debitNote', IXInvoiceEndpoint::CHANGE_STATE],
-    ['debitNote', IXInvoiceEndpoint::GENERATE_PDF],
-    ['debitNote', IXInvoiceEndpoint::GET_QRCODE],
-
-    ['item', IXItemEndpoint::LIST],
-    ['item', IXItemEndpoint::GET],
-    ['item', IXItemEndpoint::CREATE],
-    ['item', IXItemEndpoint::UPDATE],
-    ['item', IXItemEndpoint::DELETE],
+    ['items', IXItemEndpoint::LIST],
+    ['items', IXItemEndpoint::GET],
+    ['items', IXItemEndpoint::CREATE],
+    ['items', IXItemEndpoint::UPDATE],
+    ['items', IXItemEndpoint::DELETE],
 
     //    ['sequence', IXSequenceEndpoint::LIST],
     //    ['sequence', IXSequenceEndpoint::GET],

@@ -6,31 +6,31 @@ use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
 use Squarebit\InvoiceXpress\API\Data\PartialPaymentData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
+use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
-use Squarebit\InvoiceXpress\API\IXInvoiceEndpoint;
 use Squarebit\InvoiceXpress\API\IXSimplifiedInvoiceEndpoint;
 
 trait IXApiGenerateCancelPayment
 {
     public const GENERATE_PAYMENT = 'generate-payment';
-
     public const CANCEL_PAYMENT = 'cancel-payment';
-
     private const PARTIAL_PAYMENT_ROOT_OBJECT_KEY = 'partial_payment';
-
     private const PARTIAL_PAYMENT_RESPONSE_ROOT_OBJECT_KEY = 'receipt';
 
     /**
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */
-    public function generatePayment(int $id, PartialPaymentData $data): InvoiceData
+    public function generatePayment(DocumentTypeEnum $documentType, int $id, PartialPaymentData $data): InvoiceData
     {
-        $this->checkAllowed(__FUNCTION__);
+        $this->checkAllowed($documentType, __FUNCTION__);
 
         $response = $this->call(
             action: static::GENERATE_PAYMENT,
-            urlParams: compact('id'),
+            urlParams: [
+                'type' => $documentType->toUrlVariable(),
+                'id' => $id,
+            ],
             bodyData: [self::PARTIAL_PAYMENT_ROOT_OBJECT_KEY => $data]
         );
 
@@ -41,13 +41,16 @@ trait IXApiGenerateCancelPayment
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */
-    public function cancelPayment(int $id, StateData $data): InvoiceData
+    public function cancelPayment(DocumentTypeEnum $documentType, int $id, StateData $data): InvoiceData
     {
-        $this->checkAllowed(__FUNCTION__);
+        $this->checkAllowed($documentType, __FUNCTION__);
 
         $response = $this->call(
             action: static::CANCEL_PAYMENT,
-            urlParams: compact('id'),
+            urlParams: [
+                'type' => $documentType->toUrlVariable(),
+                'id' => $id,
+            ],
             bodyData: [self::PARTIAL_PAYMENT_RESPONSE_ROOT_OBJECT_KEY => $data]
         );
 
@@ -57,10 +60,10 @@ trait IXApiGenerateCancelPayment
     /**
      * @throws UnknownAPIMethodException
      */
-    protected function checkAllowed(string $methodName): void
+    protected function checkAllowed(DocumentTypeEnum $documentType, string $methodName): void
     {
         throw_unless(
-            in_array(get_class($this), [IXInvoiceEndpoint::class, IXSimplifiedInvoiceEndpoint::class]),
+            in_array($documentType, [DocumentTypeEnum::Invoice, DocumentTypeEnum::SimplifiedInvoice], true),
             UnknownAPIMethodException::class,
             "'{$methodName}' cannot be called on this type of Invoice."
         );

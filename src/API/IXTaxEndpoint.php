@@ -9,9 +9,9 @@ namespace Squarebit\InvoiceXpress\API;
 
 use Squarebit\InvoiceXpress\API\Concerns\IXApiCreate;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiDelete;
-use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiGetWithType;
 use Squarebit\InvoiceXpress\API\Concerns\IXApiList;
-use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdate;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiUpdateWithType;
 use Squarebit\InvoiceXpress\API\Data\TaxData;
 use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 
@@ -21,8 +21,8 @@ use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 class IXTaxEndpoint extends IXEndpoint
 {
     use IXApiList;
-    use IXApiGet;
-    use IXApiUpdate;
+    use IXApiGetWithType;
+    use IXApiUpdateWithType;
     use IXApiCreate;
     use IXApiDelete;
 

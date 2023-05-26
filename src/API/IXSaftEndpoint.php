@@ -7,11 +7,11 @@ namespace Squarebit\InvoiceXpress\API;
  * https://invoicexpress.com/api-v2/saf-t
  */
 
-use Squarebit\InvoiceXpress\API\Concerns\IXApiGet;
+use Squarebit\InvoiceXpress\API\Concerns\IXApiGetWithType;
 
 class IXSaftEndpoint //extends IXEndpoint
 {
-    use IXApiGet;
+    use IXApiGetWithType;
 
     protected static string $endpointConfig = 'saft';
 }

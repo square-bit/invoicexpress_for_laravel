@@ -45,8 +45,8 @@ class IXTaxEndpoint extends IXEndpoint
         return static::JSON_ROOT_OBJECT_KEY;
     }
 
-    protected function getEntityType(): DocumentTypeEnum
+    protected function getDocumentType(): DocumentTypeEnum
     {
-        return DocumentTypeEnum::Taxes;
+        return DocumentTypeEnum::Tax;
     }
 }

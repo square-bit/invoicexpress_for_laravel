@@ -65,8 +65,8 @@ class IXClientEndpoint extends IXEndpoint
         return static::JSON_ROOT_OBJECT_KEY;
     }
 
-    protected function getEntityType(): DocumentTypeEnum
+    protected function getDocumentType(): DocumentTypeEnum
     {
-        return DocumentTypeEnum::Clients;
+        return DocumentTypeEnum::Client;
     }
 }

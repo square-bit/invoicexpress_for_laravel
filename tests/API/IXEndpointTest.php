@@ -18,7 +18,7 @@ it('can call endpoint actions (FAKED)', function (string $entity, string $action
 
     Http::preventStrayRequests();
     Http::fake([
-        UriTemplate::expand($endpoint->getUrl(), $ixEntity->getUrlParameters()) => Http::response($responseSample, 200),
+        UriTemplate::expand($endpoint->getUrl()) => Http::response($responseSample, 200),
     ]);
 
     expect($ixEntity->call($action, bodyData: $requestSample))

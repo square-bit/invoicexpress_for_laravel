@@ -13,8 +13,8 @@ class IXDebitNoteEndpoint extends IXInvoiceEndpoint
 {
     protected const JSON_ROOT_OBJECT_KEY = 'debit_note';
 
-    protected function getEntityType(): DocumentTypeEnum
+    protected function getDocumentType(): DocumentTypeEnum
     {
-        return DocumentTypeEnum::DebitNotes;
+        return DocumentTypeEnum::DebitNote;
     }
 }

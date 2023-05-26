@@ -6,6 +6,7 @@ use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Spatie\LaravelData\Data;
 use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
@@ -24,9 +25,9 @@ abstract class IXEndpoint
 
     abstract protected function getEndpointName(): string;
 
-    abstract protected function getEntityType(): DocumentTypeEnum;
+    //abstract protected function getDocumentType(): DocumentTypeEnum;
 
-    abstract protected function getJsonRootObjectKey(): string;
+    //abstract protected function getJsonRootObjectKey(): string;
 
     public function getEndpointConfig(string $action): IXEndpointConfig
     {
@@ -43,12 +44,11 @@ abstract class IXEndpoint
         array $bodyData = []
     ): Response {
         $endpointConfig = $this->getEndpointConfig($action);
-        $urlParams = $this->getUrlParameters($urlParams);
         $method = strtolower($endpointConfig->getMethod());
 
         throw_unless($method, UnknownAPIMethodException::class, "Unknown action '$action'");
 
-        return match ($method) {
+        $response = match ($method) {
             'get', 'head' => $this->http()
                 ->withUrlParameters($urlParams)
                 ->$method($endpointConfig->getUrl($queryParams)),
@@ -56,6 +56,9 @@ abstract class IXEndpoint
                 ->withUrlParameters($urlParams)
                 ->$method($endpointConfig->getUrl($queryParams), $bodyData),
         };
+        $this->lastResponseCode = $response->status();
+
+        return $response;
     }
 
     /**
@@ -63,10 +66,7 @@ abstract class IXEndpoint
      */
     public function call(string $action, array $urlParams = [], array $queryParams = [], array $bodyData = []): ?array
     {
-        $response = $this->request($action, $urlParams, $queryParams, $bodyData);
-        $this->lastResponseCode = $response->status();
-
-        return $response
+        return $this->request($action, $urlParams, $queryParams, $bodyData)
             ->throw()
             ->json();
     }
@@ -74,18 +74,17 @@ abstract class IXEndpoint
     protected function http(): PendingRequest
     {
         return Http::acceptJson()
+            ->dump()
             ->asJson();
-    }
-
-    public function getUrlParameters(array $urlParams = []): array
-    {
-        $urlParams['type'] ??= $this->getEntityType()->value;
-
-        return $urlParams;
     }
 
     public function getResponseCode(): ?int
     {
         return $this->lastResponseCode;
+    }
+
+    protected function documentTypeToUrlVariable(DocumentTypeEnum $type): string
+    {
+        return Str::plural($type->value);
     }
 }

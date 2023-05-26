@@ -22,8 +22,6 @@ trait IXApiGetQRCode
             urlParams: compact('id')
         );
 
-        return $data;
-
         return QRCodeData::from($data[self::QR_CODE_ROOT_OBJECT_KEY]);
     }
 }

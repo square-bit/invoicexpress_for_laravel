@@ -172,7 +172,7 @@ return [
             'method' => 'PUT',
         ],
         IXInvoiceEndpoint::RELATED_DOCUMENTS => [
-            'path' => 'documents/{id}/related_documents.json',
+            'path' => 'document/{id}/related_documents.json',
             'method' => 'GET',
         ],
         IXInvoiceEndpoint::GENERATE_PAYMENT => [

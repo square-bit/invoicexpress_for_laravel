@@ -14,16 +14,16 @@ trait IXApiUpdate
     public const UPDATE = 'update';
 
     /**
-     * @param  T  $modelData
+     * @param  T  $data
      *
      * @throws RequestException
      * @throws Throwable
      */
-    public function update(int $id, EntityData $modelData): void
+    public function update(int $id, EntityData $data): void
     {
         $this->call(
             action: static::UPDATE,
             urlParams: compact('id'),
-            bodyData: [$this->getJsonRootObjectKey() => $modelData]);
+            bodyData: [$this->getJsonRootObjectKey() => $data->toArray()]);
     }
 }

@@ -54,8 +54,8 @@ class IXItemEndpoint extends IXEndpoint
         return static::JSON_ROOT_OBJECT_KEY;
     }
 
-    protected function getEntityType(): DocumentTypeEnum
+    protected function getDocumentType(): DocumentTypeEnum
     {
-        return DocumentTypeEnum::Items;
+        return DocumentTypeEnum::Item;
     }
 }

@@ -13,8 +13,8 @@ class IXSimplifiedInvoiceEndpoint extends IXInvoiceEndpoint
 {
     protected const JSON_ROOT_OBJECT_KEY = 'simplified_invoice';
 
-    protected function getEntityType(): DocumentTypeEnum
+    protected function getDocumentType(): DocumentTypeEnum
     {
-        return DocumentTypeEnum::SimplifiedInvoices;
+        return DocumentTypeEnum::SimplifiedInvoice;
     }
 }

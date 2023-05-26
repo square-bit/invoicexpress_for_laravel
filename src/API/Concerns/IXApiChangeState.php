@@ -25,7 +25,7 @@ trait IXApiChangeState
         $response = $this->call(
             action: static::CHANGE_STATE,
             urlParams: compact('id'),
-            bodyData: [$this->getJsonRootObjectKey() => $data]
+            bodyData: [$this->getJsonRootObjectKey() => $data->toArray()]
         );
 
         return $this->responseToDataObject($response[$this->getJsonRootObjectKey()]);

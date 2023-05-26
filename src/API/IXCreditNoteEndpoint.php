@@ -13,8 +13,8 @@ class IXCreditNoteEndpoint extends IXInvoiceEndpoint
 {
     protected const JSON_ROOT_OBJECT_KEY = 'credit_note';
 
-    protected function getEntityType(): DocumentTypeEnum
+    protected function getDocumentType(): DocumentTypeEnum
     {
-        return DocumentTypeEnum::CreditNotes;
+        return DocumentTypeEnum::CreditNote;
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\ClientData;
+use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Squarebit\InvoiceXpress\Enums\IXClientLanguageEnum;
 use Squarebit\InvoiceXpress\Enums\IXClientSendOptionsEnum;
 use Squarebit\InvoiceXpress\Enums\IXTaxExemptionCodeEnum;
@@ -10,7 +11,7 @@ use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 it('can create / update /delete a client', function (array $clientData) {
     // create the client
     /** @var ClientData $client */
-    $client = InvoiceXpress::client()->create(ClientData::from($clientData));
+    $client = InvoiceXpress::client()->create(DocumentTypeEnum::Client, DocumentTypeEnum::Client);
 
     // get it
     /** @var ClientData $gotClient */

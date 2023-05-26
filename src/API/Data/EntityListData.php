@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
+use Spatie\LaravelData\Optional;
 
 /**
  * @template T of EntityData
@@ -17,7 +18,7 @@ class EntityListData extends Data
 {
     public function __construct(
         public array $items,
-        public ?PaginationData $pagination,
+        public Optional | PaginationData $pagination,
     ) {
     }
 

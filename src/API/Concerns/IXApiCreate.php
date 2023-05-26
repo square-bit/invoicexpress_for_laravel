@@ -4,6 +4,7 @@ namespace Squarebit\InvoiceXpress\API\Concerns;
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\EntityData;
+use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Throwable;
 
 /**
@@ -14,19 +15,21 @@ trait IXApiCreate
     public const CREATE = 'create';
 
     /**
-     * @param  TData  $modelData
+     * @param  DocumentTypeEnum  $documentType
+     * @param  TData  $data
      * @return TData
      *
      * @throws RequestException
      * @throws Throwable
      */
-    public function create(EntityData $modelData): EntityData
+    public function create(DocumentTypeEnum $documentType, EntityData $data): EntityData
     {
-        $data = $this->call(
+        $response = $this->call(
             action: static::CREATE,
-            bodyData: [$this->getJsonRootObjectKey() => $modelData]
+            urlParams: ['type' => $this->documentTypeToUrlVariable($documentType)],
+            bodyData: [$documentType->value => $data->toArray()]
         );
 
-        return $this->responseToDataObject($data[$this->getJsonRootObjectKey()]);
+        return $this->responseToDataObject($response[$documentType->value]);
     }
 }

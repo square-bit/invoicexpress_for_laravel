@@ -7,7 +7,7 @@ use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can create / update /delete an item', function (array $itemData) {
     // create the item
-    $item = InvoiceXpress::item()->create(ItemData::from($itemData));
+    $item = InvoiceXpress::item()->create(ItemData::from($itemData), ItemData::from($itemData));
     expect($item->toArray())->toMatchArrayRecursive($itemData);
 
     // get it

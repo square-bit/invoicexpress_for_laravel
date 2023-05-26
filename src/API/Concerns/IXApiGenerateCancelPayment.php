@@ -45,8 +45,6 @@ trait IXApiGenerateCancelPayment
     {
         $this->checkAllowed(__FUNCTION__);
 
-        $data->
-
         $response = $this->call(
             action: static::CANCEL_PAYMENT,
             urlParams: compact('id'),

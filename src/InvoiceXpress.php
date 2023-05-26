@@ -54,7 +54,7 @@ class InvoiceXpress
         return new IXGuideEndpoint();
     }
 
-    public function estimate(): IXEstimateEndpoint
+    public function estimates(): IXEstimateEndpoint
     {
         return new IXEstimateEndpoint();
     }

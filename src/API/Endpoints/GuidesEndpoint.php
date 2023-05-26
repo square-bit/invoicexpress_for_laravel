@@ -7,7 +7,6 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/guides
  */
 
-use Spatie\LaravelData\Data;
 use Squarebit\InvoiceXpress\API\Concerns\ChangesState;
 use Squarebit\InvoiceXpress\API\Concerns\CreatesWithType;
 use Squarebit\InvoiceXpress\API\Concerns\GeneratesPDF;

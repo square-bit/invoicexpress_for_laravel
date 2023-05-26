@@ -10,8 +10,8 @@ use Spatie\LaravelData\Optional;
 class SaftData extends EntityData
 {
     public function __construct(
-        public Optional | string $url,
-        public Optional | string $message,
+        public Optional|string $url,
+        public Optional|string $message,
     ) {
     }
 }

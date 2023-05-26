@@ -7,9 +7,7 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/saf-t
  */
 
-use Spatie\LaravelData\Data;
 use Squarebit\InvoiceXpress\API\Concerns\Gets;
-use Squarebit\InvoiceXpress\API\Concerns\GetsWithType;
 use Squarebit\InvoiceXpress\API\Data\SaftData;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 

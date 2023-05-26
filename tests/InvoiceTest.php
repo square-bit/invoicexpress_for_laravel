@@ -5,7 +5,6 @@ use Squarebit\InvoiceXpress\API\Data\InvoiceData;
 use Squarebit\InvoiceXpress\API\Data\PartialPaymentData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
 use Squarebit\InvoiceXpress\API\Enums\DocumentEventEnum;
-use Squarebit\InvoiceXpress\API\Enums\DocumentTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceStatusEnum;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
@@ -67,7 +66,7 @@ it('can go through an invoice lifecycle', function (array $data) {
         /*
          * Cancel that partial payment (fails)
          */
-        ->and(fn() => $endpoint->cancelPayment(
+        ->and(fn () => $endpoint->cancelPayment(
             $docType,
             $receipt->id,
             StateData::from(['state' => DocumentEventEnum::Canceled]))

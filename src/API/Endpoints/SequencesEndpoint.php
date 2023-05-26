@@ -34,6 +34,7 @@ class SequencesEndpoint extends Endpoint
     use Updates;
 
     public const ENDPOINT_CONFIG = 'item';
+
     public const REGISTER = 'register';
 
     protected function getEndpointName(): string

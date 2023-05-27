@@ -20,6 +20,9 @@ enum EntityTypeEnum: string
     case FeesNote = 'fees_note';
     case Saft = 'saft';
     case Sequence = 'sequence';
+    case Shipping = 'shipping';
+    case Transport = 'transport';
+    case Devolution = 'devolution';
 
     public function toUrlVariable(): string
     {

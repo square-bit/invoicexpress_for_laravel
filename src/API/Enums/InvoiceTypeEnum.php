@@ -3,11 +3,13 @@
 namespace Squarebit\InvoiceXpress\API\Enums;
 
 use Illuminate\Support\Str;
+use Squarebit\InvoiceXpress\API\Enums\Concerns\ConvertsToEntityTypeEnum;
 use Squarebit\InvoiceXpress\Concerns\EnumEnhancements;
 
 enum InvoiceTypeEnum: string
 {
     use EnumEnhancements;
+    use ConvertsToEntityTypeEnum;
 
     case Invoice = 'Invoice';
     case InvoiceReceipt = 'InvoiceReceipt';
@@ -19,9 +21,4 @@ enum InvoiceTypeEnum: string
     case CashInvoice = 'CashInvoice';
     case VatMossReceipt = 'VatMossReceipt';
     case VatMossCreditNote = 'VatMossCreditNote';
-
-    public function toEntityType(): ?EntityTypeEnum
-    {
-        return EntityTypeEnum::tryFrom(Str::snake($this->value));
-    }
 }

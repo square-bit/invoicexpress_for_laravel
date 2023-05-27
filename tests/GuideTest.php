@@ -21,7 +21,7 @@ it('can go through an Guide lifecycle', function (EntityTypeEnum $docType, array
         ->toBeGreaterThan(0);
 
     $modified = $guide->reference = fake()->text(32);
-    expect(fn() => $endpoint->update($docType, $guide->id, $guide))
+    expect(fn () => $endpoint->update($docType, $guide->id, $guide))
         ->not()->toThrow(Exception::class)
         ->and($guide = $endpoint->get($docType, $guide->id))
         ->toHaveProperty('reference', $modified)
@@ -52,10 +52,10 @@ dataset(
                 'reference' => fake()->colorName,
                 'observations' => fake()->text(128),
                 'address_from' => [
-                    "detail" => "Rua 5",
-                    "city" => "Lisboa",
-                    "postal_code" => "1000-555",
-                    "country" => CountryEnum::Portugal->value,
+                    'detail' => 'Rua 5',
+                    'city' => 'Lisboa',
+                    'postal_code' => '1000-555',
+                    'country' => CountryEnum::Portugal->value,
                 ],
                 'address_to' => [
                     'detail' => 'Avenida 0',

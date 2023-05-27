@@ -2,7 +2,6 @@
 
 namespace Squarebit\InvoiceXpress\API\Enums;
 
-use Illuminate\Support\Str;
 use Squarebit\InvoiceXpress\API\Enums\Concerns\ConvertsToEntityTypeEnum;
 use Squarebit\InvoiceXpress\Concerns\EnumEnhancements;
 

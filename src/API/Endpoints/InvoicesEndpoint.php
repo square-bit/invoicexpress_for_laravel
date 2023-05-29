@@ -25,7 +25,7 @@ use Squarebit\InvoiceXpress\API\Data\InvoiceData;
  */
 class InvoicesEndpoint extends Endpoint
 {
-    /** @uses Lists<InvoiceData> */
+    /** @uses Lists<InvoiceQueryFilter> */
     use Lists;
 
     /** @uses GetsWithType<InvoiceData> */

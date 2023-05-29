@@ -23,25 +23,22 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
  */
 class ClientsEndpoint extends Endpoint
 {
-    /** @uses IXApiList<ClientData> */
+    /** @uses Lists<void> */
     use Lists;
 
-    /** @uses IXApiGet<ClientData> */
+    /** @uses Gets<ClientData> */
     use Gets;
 
-    /** @uses IXApiCreate<ClientData> */
+    /** @uses Creates<ClientData> */
     use Creates;
 
-    /** @uses IXApiUpdate<ClientData> */
+    /** @uses Updates<ClientData> */
     use Updates;
 
-    /** @uses IXApiFindByCode<ClientData> */
     use FindsByCode;
-
-    /** @uses IXApiFindByName<ClientData> */
     use FindsByName;
 
-    /** @uses IXApiListInvoices<ClientData> */
+    /** @uses ListsInvoices<ClientData> */
     use ListsInvoices;
 
     use Deletes;

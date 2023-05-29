@@ -69,6 +69,7 @@ abstract class Endpoint
     protected function http(): PendingRequest
     {
         return Http::acceptJson()
+            ->dump()
             ->asJson();
     }
 

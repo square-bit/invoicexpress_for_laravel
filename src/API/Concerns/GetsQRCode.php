@@ -13,9 +13,10 @@ trait GetsQRCode
     private const QR_CODE_ROOT_OBJECT_KEY = 'qr_code';
 
     /**
-     * @throws RequestException|UnknownAPIMethodException
+     * @throws RequestException
+     * @throws UnknownAPIMethodException
      */
-    public function getQRCode(int $id): array|QRCodeData
+    public function getQRCode(int $id): QRCodeData
     {
         $data = $this->call(
             action: static::GET_QRCODE,

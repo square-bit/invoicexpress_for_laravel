@@ -24,11 +24,22 @@ class GuidesEndpoint extends Endpoint
 {
     use SendsByEmail;
     use GeneratesPDF;
+
+    /** @uses GetsWithType<GuideData> */
     use GetsWithType;
+
+    /** @uses Lists<GuideQueryFilter> */
     use Lists;
+
+    /** @uses CreatesWithType<GuideData> */
     use CreatesWithType;
+
+    /** @uses UpdatesWithType<GuideData> */
     use UpdatesWithType;
+
+    /** @uses ChangesState<GuideData> */
     use ChangesState;
+
     use GetsQRCode;
 
     public const ENDPOINT_CONFIG = 'guide';

@@ -12,6 +12,7 @@ use Squarebit\InvoiceXpress\API\Concerns\Deletes;
 use Squarebit\InvoiceXpress\API\Concerns\Gets;
 use Squarebit\InvoiceXpress\API\Concerns\Lists;
 use Squarebit\InvoiceXpress\API\Concerns\Updates;
+use Squarebit\InvoiceXpress\API\Data\Filters\ItemListFilter;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
@@ -20,16 +21,16 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
  */
 class ItemsEndpoint extends Endpoint
 {
-    /** @uses IXApiList<ItemData> */
+    /** @uses Lists<ItemListFilter> */
     use Lists;
 
-    /** @uses IXApiGet<ItemData> */
+    /** @uses Gets<ItemData> */
     use Gets;
 
-    /** @uses IXApiUpdate<ItemData> */
+    /** @uses Updates<ItemData> */
     use Updates;
 
-    /** @uses IXApiCreate<ItemData> */
+    /** @uses Creates<ItemData> */
     use Creates;
 
     /** @uses IXApiDelete<ItemData> */

@@ -22,7 +22,11 @@ class InvoiceXpressServiceProvider extends PackageServiceProvider
                 'ix-endpoints',
             ])
             ->hasViews()
-            ->hasMigration('create_ix_clients_table')
+            ->hasMigrations([
+                'create_ix_items_table',
+                'create_ix_taxes_table',
+                'create_ix_clients_table',
+            ])->runsMigrations()
             ->hasCommand(InvoiceXpressCommand::class);
     }
 }

@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Squarebit\InvoiceXpress\API\Enums\TaxCodeEnum;
+use Squarebit\InvoiceXpress\API\Enums\TaxRegionEnum;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('ix_taxes', function (Blueprint $table) {
+            $table->unsignedBigInteger('id')->primary();
+
+            $table->string('name');
+            $table->float('value', 10, 2)->nullable();
+            $table->enum('region', TaxRegionEnum::values())->nullable();
+            $table->enum('code', TaxCodeEnum::values())->nullable();
+            $table->boolean('default_tax')->default(false);
+
+            $table->timestamps();
+        });
+    }
+};

@@ -4,9 +4,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use function Pest\testDirectory;
 use PHPUnit\Framework\Assert;
 use Squarebit\InvoiceXpress\Tests\TestCase;
+use Squarebit\InvoiceXpress\Tests\TestCaseWithDB;
 
-uses(RefreshDatabase::class);
-uses(TestCase::class)->in(__DIR__);
+uses(TestCase::class)->in('API');
+uses(TestCaseWithDB::class, RefreshDatabase::class)->in('Feature');
 
 expect()->extend('toMatchArrayRecursive', function (array $array) {
     $valueAsArray = (array) $this->value;

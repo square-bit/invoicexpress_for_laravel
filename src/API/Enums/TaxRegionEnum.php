@@ -2,8 +2,12 @@
 
 namespace Squarebit\InvoiceXpress\API\Enums;
 
+use Squarebit\InvoiceXpress\API\Enums\Concerns\EnumEnhancements;
+
 enum TaxRegionEnum: string
 {
+    use EnumEnhancements;
+
     case PortugalContinental = 'PT';
     case PortugalAcoresPT = 'PT-AC';
     case PortugalMadeiraPT = 'PT-MA';

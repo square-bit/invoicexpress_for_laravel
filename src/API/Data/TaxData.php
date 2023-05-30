@@ -14,7 +14,7 @@ class TaxData extends EntityData
     public function __construct(
         public Optional|int $id,
         public string $name,
-        public Optional|string $value,
+        public Optional|float $value,
         public Optional|TaxRegionEnum $region,
         public Optional|TaxCodeEnum $code,
         public Optional|bool $defaultTax,

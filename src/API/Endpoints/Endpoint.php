@@ -7,7 +7,7 @@ use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Spatie\LaravelData\Data;
-use Squarebit\InvoiceXpress\API\Endpoints\Config\IXEndpointConfig;
+use Squarebit\InvoiceXpress\API\Endpoints\Config\EndpointConfig;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
 /**
@@ -24,9 +24,9 @@ abstract class Endpoint
 
     abstract protected function getEndpointName(): string;
 
-    public function getEndpointConfig(string $action): IXEndpointConfig
+    public function getEndpointConfig(string $action): EndpointConfig
     {
-        return new IXEndpointConfig($this->getEndpointName(), $action);
+        return new EndpointConfig($this->getEndpointName(), $action);
     }
 
     /**
@@ -69,7 +69,6 @@ abstract class Endpoint
     protected function http(): PendingRequest
     {
         return Http::acceptJson()
-            ->dump()
             ->asJson();
     }
 

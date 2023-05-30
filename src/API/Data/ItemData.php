@@ -13,7 +13,7 @@ class ItemData extends EntityData
         public Optional|int $id,
         public string $name,
         public ?string $description,
-        public float $unitPrice,
+        public string $unitPrice,
         public ?string $unit,
         public TaxData $tax,
     ) {

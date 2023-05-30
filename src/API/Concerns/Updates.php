@@ -21,13 +21,11 @@ trait Updates
     abstract protected function getEntityType(): EntityTypeEnum;
 
     /**
-     * @param  T  $data
-     *
      * @throws RequestException
      * @throws Throwable
      */
-    public function update(int $id, EntityData $data): void
+    public function update(EntityData $data): void
     {
-        $this->updateWithType($this->getEntityType(), $id, $data);
+        $this->updateWithType($this->getEntityType(), $data);
     }
 }

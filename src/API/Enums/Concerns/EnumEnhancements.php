@@ -1,6 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
+ * Squarebit, Lda - Portugal - www.square-bit.com
+ */
 
-namespace Squarebit\InvoiceXpress\Concerns;
+namespace Squarebit\InvoiceXpress\API\Enums\Concerns;
 
 use BackedEnum;
 use ValueError;

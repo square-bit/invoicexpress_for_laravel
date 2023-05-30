@@ -13,8 +13,6 @@ use Spatie\LaravelData\DataCollection;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
 use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
-use Squarebit\InvoiceXpress\API\Data\Casts\IXTaxExemptionCodeCast;
-use Squarebit\InvoiceXpress\API\Data\Transformers\EnumToNameTransformer;
 use Squarebit\InvoiceXpress\API\Enums\GuideStatusEnum;
 use Squarebit\InvoiceXpress\API\Enums\GuideTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
@@ -76,8 +74,6 @@ class GuideData extends EntityData
         #[DataCollectionOf(ItemData::class)]
         public DataCollection $items,
 
-        #[WithCast(IXTaxExemptionCodeCast::class)]
-        #[WithTransformer(EnumToNameTransformer::class)]
         public Optional|TaxExemptionCodeEnum $taxExemption,
 
         public AddressData $addressFrom,

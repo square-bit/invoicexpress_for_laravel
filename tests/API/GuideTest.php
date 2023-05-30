@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
+ * Squarebit, Lda - Portugal - www.square-bit.com
+ */
 use Squarebit\InvoiceXpress\API\Data\GuideData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
 use Squarebit\InvoiceXpress\API\Enums\CountryEnum;
@@ -21,7 +24,7 @@ it('can go through an Guide lifecycle', function (EntityTypeEnum $docType, array
         ->toBeGreaterThan(0);
 
     $modified = $guide->reference = fake()->text(32);
-    expect(fn () => $endpoint->update($docType, $guide->id, $guide))
+    expect(fn () => $endpoint->update($docType, $guide))
         ->not()->toThrow(Exception::class)
         ->and($guide = $endpoint->get($docType, $guide->id))
         ->toHaveProperty('reference', $modified)
@@ -31,7 +34,8 @@ it('can go through an Guide lifecycle', function (EntityTypeEnum $docType, array
     EntityTypeEnum::Shipping->name => EntityTypeEnum::Shipping,
     EntityTypeEnum::Transport->name => EntityTypeEnum::Transport,
     EntityTypeEnum::Devolution->name => EntityTypeEnum::Devolution,
-])->with('guideData');
+])->with('guideData')
+    ->skip('Until InvoiceXpress solves the bugs');
 
 /*
  * DATASETS

@@ -2,7 +2,7 @@
 
 namespace Squarebit\InvoiceXpress\API\Enums;
 
-use Squarebit\InvoiceXpress\Concerns\EnumEnhancements;
+use Squarebit\InvoiceXpress\API\Enums\Concerns\EnumEnhancements;
 
 enum GuideStatusEnum: string
 {

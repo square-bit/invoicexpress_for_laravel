@@ -13,8 +13,6 @@ use Spatie\LaravelData\DataCollection;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
 use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
-use Squarebit\InvoiceXpress\API\Data\Casts\IXTaxExemptionCodeCast;
-use Squarebit\InvoiceXpress\API\Data\Transformers\EnumToNameTransformer;
 use Squarebit\InvoiceXpress\API\Enums\EstimateStatusEnum;
 use Squarebit\InvoiceXpress\API\Enums\EstimateTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
@@ -33,8 +31,7 @@ class EstimateData extends EntityData
         public Optional|string $invertedSequenceNumber,
         public Optional|string $atcud,
         public ?string $sequenceId,
-        #[WithCast(IXTaxExemptionCodeCast::class)]
-        #[WithTransformer(EnumToNameTransformer::class)]
+        #[WithCast(EnumCast::class)]
         public Optional|TaxExemptionCodeEnum $taxExemption,
         #[WithCast(DateTimeInterfaceCast::class, format: InvoiceXpress::DATE_FORMAT)]
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: InvoiceXpress::DATE_FORMAT)]

@@ -11,8 +11,6 @@ use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
-use Squarebit\InvoiceXpress\API\Data\Casts\PaymentMechanismCast;
-use Squarebit\InvoiceXpress\API\Data\Transformers\EnumToNameTransformer;
 use Squarebit\InvoiceXpress\API\Enums\PaymentMechanismEnum;
 use Squarebit\InvoiceXpress\InvoiceXpress;
 
@@ -31,8 +29,6 @@ class PartialPaymentData extends Data
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: InvoiceXpress::DATE_FORMAT)]
         public ?Carbon $paymentDate,
 
-        #[WithCast(PaymentMechanismCast::class)]
-        #[WithTransformer(EnumToNameTransformer::class)]
         public PaymentMechanismEnum $paymentMechanism = PaymentMechanismEnum::TB,
     ) {
     }

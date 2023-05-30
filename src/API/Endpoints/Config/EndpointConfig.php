@@ -2,7 +2,7 @@
 
 namespace Squarebit\InvoiceXpress\API\Endpoints\Config;
 
-class IXEndpointConfig
+class EndpointConfig
 {
     protected ?array $endpointData = null;
 
@@ -10,7 +10,7 @@ class IXEndpointConfig
         public string $object,
         public string $action,
     ) {
-        $this->endpointData = IXEndpointsConfig::get($object.'.'.$action);
+        $this->endpointData = EndpointsConfig::get($object.'.'.$action);
     }
 
     public function getMethod(): string

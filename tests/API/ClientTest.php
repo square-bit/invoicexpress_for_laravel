@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
+ * Squarebit, Lda - Portugal - www.square-bit.com
+ */
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\ClientData;
 use Squarebit\InvoiceXpress\API\Enums\ClientLanguageEnum;
@@ -18,7 +21,7 @@ it('can create / update /delete a client', function (array $clientData) {
 
     // update it
     $description = $gotClient->address = fake()->streetAddress();
-    InvoiceXpress::clients()->update($gotClient->id, $gotClient);
+    InvoiceXpress::clients()->update($gotClient);
 
     // confirm it was updated, delete it and confirm it is gone
     /** @var ClientData $gotClient */

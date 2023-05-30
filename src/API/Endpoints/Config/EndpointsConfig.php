@@ -4,7 +4,7 @@ namespace Squarebit\InvoiceXpress\API\Endpoints\Config;
 
 use Illuminate\Support\Arr;
 
-class IXEndpointsConfig
+class EndpointsConfig
 {
     protected static ?array $endpoints;
 

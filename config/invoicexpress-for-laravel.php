@@ -8,5 +8,8 @@ return [
         'api_key' => env('IX_API_KEY'),
     ],
     'service_endpoint' => 'app.invoicexpress.com',
+    'eloquent' => [
+        'persist' => true,
+    ],
 
 ];

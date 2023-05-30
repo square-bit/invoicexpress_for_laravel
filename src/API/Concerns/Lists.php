@@ -17,14 +17,13 @@ trait Lists
     protected const PAGINATION_TAG = 'pagination';
 
     /**
-     * @param  T|null  $filter
+     * @param  T|QueryFilter|null  $filter
      *
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */
     public function list(?QueryFilter $filter = null): EntityListData
     {
-
         $data = $this->call(
             action: static::LIST,
             queryParams: $filter?->toArray() ?? [],
@@ -37,13 +36,15 @@ trait Lists
     {
         // The response array contains 2 keys: 'pagination' and a variable one depending
         // on the entity being queried. We want this unknown one to be called 'items'
-        $pagination = $response[self::PAGINATION_TAG];
+        $pagination = $response[self::PAGINATION_TAG] ?? null;
         unset($response[self::PAGINATION_TAG]);
         $items = collect($response)
             ->flatten(1)
             ->map(fn ($item) => $this->responseToDataObject($item))
             ->all();
 
-        return EntityListData::from(compact('items', 'pagination'));
+        return $pagination
+            ? EntityListData::from(compact('items', 'pagination'))
+            : EntityListData::from(compact('items'));
     }
 }

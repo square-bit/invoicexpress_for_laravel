@@ -27,7 +27,7 @@ it('can create / update / delete an invoice', function (EntityTypeEnum $entityTy
 
     // update it
     $modified = $invoice->observations = fake()->text(128);
-    $endpoint->update($entityType, $invoice->id, $invoice);
+    $endpoint->update($entityType, $invoice);
 
     // confirm it was updated
     /** @var InvoiceData $invoice */

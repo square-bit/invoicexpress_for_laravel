@@ -4,8 +4,11 @@ use GuzzleHttp\UriTemplate\UriTemplate;
 use Illuminate\Support\Facades\Http;
 use Squarebit\InvoiceXpress\API\Endpoints\ClientsEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\Endpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\EstimatesEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\GuidesEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\ItemsEndpoint;
+use Squarebit\InvoiceXpress\API\Endpoints\SequencesEndpoint;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can call endpoint actions (FAKED)', function (string $entity, string $action) {
@@ -32,22 +35,22 @@ it('can call endpoint actions (FAKED)', function (string $entity, string $action
     ['clients', ClientsEndpoint::FIND_BY_NAME],
     ['clients', ClientsEndpoint::LIST_INVOICES],
 
-    //    ['estimate', IXEstimateEndpoint::LIST],
-    //    ['estimate', IXEstimateEndpoint::GET],
-    //    ['estimate', IXEstimateEndpoint::CREATE],
-    //    ['estimate', IXEstimateEndpoint::UPDATE],
-    //    ['estimate', IXEstimateEndpoint::SEND_BY_EMAIL],
-    //    ['estimate', IXEstimateEndpoint::CHANGE_STATE],
-    //    ['estimate', IXEstimateEndpoint::GENERATE_PDF],
-    //
-    //    ['guide', IXGuideEndpoint::LIST],
-    //    ['guide', IXGuideEndpoint::GET],
-    //    ['guide', IXGuideEndpoint::CREATE],
-    //    ['guide', IXGuideEndpoint::UPDATE],
-    //    ['guide', IXGuideEndpoint::SEND_BY_EMAIL],
-    //    ['guide', IXGuideEndpoint::CHANGE_STATE],
-    //    ['guide', IXGuideEndpoint::GENERATE_PDF],
-    //    ['guide', IXGuideEndpoint::GET_QRCODE],
+    ['estimates', EstimatesEndpoint::LIST],
+    ['estimates', EstimatesEndpoint::GET],
+    ['estimates', EstimatesEndpoint::CREATE],
+    ['estimates', EstimatesEndpoint::UPDATE],
+    ['estimates', EstimatesEndpoint::SEND_BY_EMAIL],
+    ['estimates', EstimatesEndpoint::CHANGE_STATE],
+    ['estimates', EstimatesEndpoint::GENERATE_PDF],
+
+    ['guides', GuidesEndpoint::LIST],
+    ['guides', GuidesEndpoint::GET],
+    ['guides', GuidesEndpoint::CREATE],
+    ['guides', GuidesEndpoint::UPDATE],
+    ['guides', GuidesEndpoint::SEND_BY_EMAIL],
+    ['guides', GuidesEndpoint::CHANGE_STATE],
+    ['guides', GuidesEndpoint::GENERATE_PDF],
+    ['guides', GuidesEndpoint::GET_QRCODE],
 
     ['invoices', InvoicesEndpoint::LIST],
     ['invoices', InvoicesEndpoint::GET],
@@ -64,9 +67,9 @@ it('can call endpoint actions (FAKED)', function (string $entity, string $action
     ['items', ItemsEndpoint::UPDATE],
     ['items', ItemsEndpoint::DELETE],
 
-    //    ['sequence', IXSequenceEndpoint::LIST],
-    //    ['sequence', IXSequenceEndpoint::GET],
-    //    ['sequence', IXSequenceEndpoint::CREATE],
-    //    ['sequence', IXSequenceEndpoint::UPDATE],
-    //    ['sequence', IXSequenceEndpoint::REGISTER],
+    ['sequences', SequencesEndpoint::LIST],
+    ['sequences', SequencesEndpoint::GET],
+    ['sequences', SequencesEndpoint::CREATE],
+    ['sequences', SequencesEndpoint::UPDATE],
+    ['sequences', SequencesEndpoint::REGISTER],
 ]);

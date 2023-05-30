@@ -6,4 +6,8 @@ use Spatie\LaravelData\Data;
 
 abstract class EntityData extends Data
 {
+    public function getId(): int
+    {
+        return $this->id;
+    }
 }

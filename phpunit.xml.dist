@@ -12,8 +12,12 @@
     <php>
         <env name="IX_ACCOUNT_NAME" value="integrislda" force="true"/>
         <env name="IX_API_KEY" value="be4ade9dbfab6555e6b765ccc5e3e33198ffb4e8" force="true"/>
-        <env name="DB_CONNECTION" value="sqlite"/>
-        <env name="DB_DATABASE" value=":memory:"/>
+        <env name="DB_CONNECTION" value="mysql"/>
+        <env name="DB_HOST" value="127.0.0.1"/>
+        <env name="DB_PORT" value="3306"/>
+        <env name="DB_DATABASE" value="ix_test"/>
+        <env name="DB_USERNAME" value="root"/>
+        <env name="DB_PASSWORD" value=""/>
     </php>
     <coverage>
         <report>

@@ -34,7 +34,7 @@ class SequencesEndpoint extends Endpoint
 
     use Registers;
 
-    public const ENDPOINT_CONFIG = 'item';
+    public const ENDPOINT_CONFIG = 'sequence';
 
     protected function getEndpointName(): string
     {

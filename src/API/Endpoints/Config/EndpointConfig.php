@@ -18,16 +18,6 @@ class EndpointConfig
         return $this->endpointData['method'];
     }
 
-    public function getReturns(): ?array
-    {
-        return $this->endpointData['returns'] ?? null;
-    }
-
-    public function getThrows(): ?array
-    {
-        return $this->endpointData['throws'] ?? null;
-    }
-
     public function getUrl(?array $queryParams = []): string
     {
         $queryParams = array_merge(

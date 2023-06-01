@@ -1,0 +1,11 @@
+{
+    "client": {
+        "email": "someone@example.com",
+        "save": "0"
+    },
+    "subject": "Invoice from company",
+    "body": "This is where the email body goes",
+    "cc": "cc.client@company.com",
+    "bcc": "bcc.client@company.com",
+    "logo": "0"
+}

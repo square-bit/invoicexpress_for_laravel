@@ -1,0 +1,50 @@
+{
+    "debit_note": {
+        "id": 123456789,
+        "status": "final",
+        "archived": false,
+        "type": "DebitNote",
+        "sequence_number": "5/A",
+        "inverted_sequence_number": "A/5",
+        "atcud": "ABCD1234-5",
+        "sequence_id": 987654321,
+        "date": "14/11/2022",
+        "due_date": "14/11/2022",
+        "reference": null,
+        "observations": null,
+        "retention": null,
+        "permalink": "https://www.app.invoicexpress.com/documents/123456789qwertyuiop",
+        "saft_hash": "p6Ex",
+        "sum": 2.02,
+        "discount": 0.0,
+        "before_taxes": 2.02,
+        "taxes": 0.47,
+        "total": 2.49,
+        "currency": "Euro",
+        "client": {
+            "id": 51452363,
+            "name": "Gabriel Cunha",
+            "email": "gabriel.cunha@rupeal.com",
+            "country": "Portugal"
+        },
+        "items": [
+            {
+                "name": "Pencil",
+                "description": "The best pencil in the world",
+                "unit_price": "2.0244",
+                "unit": null,
+                "quantity": "1.0",
+                "tax": {
+                    "id": 349454,
+                    "name": "IVA23",
+                    "value": 23.0
+                },
+                "discount": 0.0,
+                "subtotal": 2.0244,
+                "tax_amount": 0.465612,
+                "discount_amount": 0.0,
+                "total": 2.49
+            }
+        ]
+    }
+}

@@ -10,6 +10,7 @@ enum GuideStatusEnum: string
 
     case Draft = 'draft';
     case Sent = 'sent';
+    case Final = 'final';
     case Canceled = 'canceled';
     case SecondCopy = 'second_copy';
 }

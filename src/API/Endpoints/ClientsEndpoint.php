@@ -7,15 +7,15 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/clients
  */
 
-use Squarebit\InvoiceXpress\API\Concerns\Creates;
-use Squarebit\InvoiceXpress\API\Concerns\Deletes;
-use Squarebit\InvoiceXpress\API\Concerns\FindsByCode;
-use Squarebit\InvoiceXpress\API\Concerns\FindsByName;
-use Squarebit\InvoiceXpress\API\Concerns\Gets;
-use Squarebit\InvoiceXpress\API\Concerns\Lists;
-use Squarebit\InvoiceXpress\API\Concerns\ListsInvoices;
-use Squarebit\InvoiceXpress\API\Concerns\Updates;
 use Squarebit\InvoiceXpress\API\Data\ClientData;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Creates;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Deletes;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\FindsByCode;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\FindsByName;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Gets;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\ListsInvoices;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Updates;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
 /**
@@ -35,7 +35,10 @@ class ClientsEndpoint extends Endpoint
     /** @uses Updates<ClientData> */
     use Updates;
 
+    /** @uses FindsByCode<ClientData> */
     use FindsByCode;
+
+    /** @uses FindsByName<ClientData> */
     use FindsByName;
 
     /** @uses ListsInvoices<ClientData> */

@@ -7,13 +7,12 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/items
  */
 
-use Squarebit\InvoiceXpress\API\Concerns\Creates;
-use Squarebit\InvoiceXpress\API\Concerns\Deletes;
-use Squarebit\InvoiceXpress\API\Concerns\Gets;
-use Squarebit\InvoiceXpress\API\Concerns\Lists;
-use Squarebit\InvoiceXpress\API\Concerns\Updates;
-use Squarebit\InvoiceXpress\API\Data\Filters\ItemListFilter;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Creates;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Deletes;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Gets;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Updates;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
 /**

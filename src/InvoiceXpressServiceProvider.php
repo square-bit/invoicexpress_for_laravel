@@ -4,7 +4,6 @@ namespace Squarebit\InvoiceXpress;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Squarebit\InvoiceXpress\Commands\InvoiceXpressCommand;
 
 class InvoiceXpressServiceProvider extends PackageServiceProvider
 {
@@ -26,7 +25,7 @@ class InvoiceXpressServiceProvider extends PackageServiceProvider
                 'create_ix_items_table',
                 'create_ix_taxes_table',
                 'create_ix_clients_table',
-            ])->runsMigrations()
-            ->hasCommand(InvoiceXpressCommand::class);
+            ])->runsMigrations();
+
     }
 }

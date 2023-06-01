@@ -53,7 +53,7 @@ class InvoiceData extends EntityData
         public ClientData $client,
         #[DataCollectionOf(ItemData::class)]
         public DataCollection $items,
-        public ?string $mbReference,
+        public Optional|int|array $mbReference,
     ) {
     }
 }

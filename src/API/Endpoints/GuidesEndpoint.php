@@ -7,15 +7,15 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/guides
  */
 
-use Squarebit\InvoiceXpress\API\Concerns\ChangesState;
-use Squarebit\InvoiceXpress\API\Concerns\CreatesWithType;
-use Squarebit\InvoiceXpress\API\Concerns\GeneratesPDF;
-use Squarebit\InvoiceXpress\API\Concerns\GetsQRCode;
-use Squarebit\InvoiceXpress\API\Concerns\GetsWithType;
-use Squarebit\InvoiceXpress\API\Concerns\Lists;
-use Squarebit\InvoiceXpress\API\Concerns\SendsByEmail;
-use Squarebit\InvoiceXpress\API\Concerns\UpdatesWithType;
 use Squarebit\InvoiceXpress\API\Data\GuideData;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\ChangesState;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GeneratesPDF;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GetsQRCode;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GetsWithType;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\SendsByEmail;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
 
 /**
  * @template-extends Endpoint<GuideData>

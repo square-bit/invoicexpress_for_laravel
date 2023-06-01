@@ -9,6 +9,8 @@ use Squarebit\InvoiceXpress\InvoiceXpressServiceProvider;
 
 class TestCase extends Orchestra
 {
+    protected array $data = [];
+
     protected function setUp(): void
     {
         parent::setUp();

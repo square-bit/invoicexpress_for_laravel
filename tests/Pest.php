@@ -6,7 +6,7 @@ use PHPUnit\Framework\Assert;
 use Squarebit\InvoiceXpress\Tests\TestCase;
 use Squarebit\InvoiceXpress\Tests\TestCaseWithDB;
 
-uses(TestCase::class)->in('API');
+uses(TestCase::class)->in('API_REAL', 'API_FAKED');
 uses(TestCaseWithDB::class, RefreshDatabase::class)->in('Feature');
 
 expect()->extend('toMatchArrayRecursive', function (array $array) {
@@ -48,14 +48,8 @@ function getResponseSample(string $ixEntity, string $action): ?array
 
 function getSample(string $ixEntity, string $action, string $type): ?array
 {
-    try {
-        return json_decode(
-            file_get_contents(testDirectory('Samples/'.$ixEntity.'/'.$action.'-sample-'.$type.'.json')),
-            true,
-            512,
-            JSON_THROW_ON_ERROR
-        );
-    } catch (Throwable) {
-        return [];
-    }
+    return json_decode(
+        file_get_contents(testDirectory('Samples/'.$ixEntity.'/'.$action.'-sample-'.$type.'.json')),
+        true
+    );
 }

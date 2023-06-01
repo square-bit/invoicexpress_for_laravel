@@ -7,18 +7,17 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/invoices
  */
 
-use Squarebit\InvoiceXpress\API\Concerns\ChangesState;
-use Squarebit\InvoiceXpress\API\Concerns\CreatesWithType;
-use Squarebit\InvoiceXpress\API\Concerns\Deletes;
-use Squarebit\InvoiceXpress\API\Concerns\GeneratesAndCancelsPayment;
-use Squarebit\InvoiceXpress\API\Concerns\GeneratesPDF;
-use Squarebit\InvoiceXpress\API\Concerns\GetsQRCode;
-use Squarebit\InvoiceXpress\API\Concerns\GetsWithType;
-use Squarebit\InvoiceXpress\API\Concerns\Lists;
-use Squarebit\InvoiceXpress\API\Concerns\RelatedDocuments;
-use Squarebit\InvoiceXpress\API\Concerns\SendsByEmail;
-use Squarebit\InvoiceXpress\API\Concerns\UpdatesWithType;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\ChangesState;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GeneratesAndCancelsPayment;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GeneratesPDF;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GetsQRCode;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GetsWithType;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\RelatedDocuments;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\SendsByEmail;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
 
 /**
  * @template-extends Endpoint<InvoiceData>
@@ -54,8 +53,6 @@ class InvoicesEndpoint extends Endpoint
 
     /** @uses RelatedDocuments<InvoiceData> */
     use RelatedDocuments;
-
-    use Deletes;
 
     public const ENDPOINT_CONFIG = 'invoice';
 

@@ -8,14 +8,14 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  */
 
 use Spatie\LaravelData\Data;
-use Squarebit\InvoiceXpress\API\Concerns\ChangesState;
-use Squarebit\InvoiceXpress\API\Concerns\CreatesWithType;
-use Squarebit\InvoiceXpress\API\Concerns\GeneratesPDF;
-use Squarebit\InvoiceXpress\API\Concerns\GetsWithType;
-use Squarebit\InvoiceXpress\API\Concerns\Lists;
-use Squarebit\InvoiceXpress\API\Concerns\SendsByEmail;
-use Squarebit\InvoiceXpress\API\Concerns\UpdatesWithType;
 use Squarebit\InvoiceXpress\API\Data\EstimateData;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\ChangesState;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GeneratesPDF;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GetsWithType;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\SendsByEmail;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
 
 /**
  * @template-extends Endpoint<EstimateData>
@@ -32,7 +32,7 @@ class EstimatesEndpoint extends Endpoint
 
     use Lists;
 
-    /** @uses \Squarebit\InvoiceXpress\API\Concerns\CreatesWithType<EstimateData> */
+    /** @uses \Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType<EstimateData> */
     use CreatesWithType;
 
     /** @uses UpdatesWithType<EstimateData> */

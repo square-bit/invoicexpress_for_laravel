@@ -6,7 +6,8 @@ use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Attributes\WithTransformer;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
-use Squarebit\InvoiceXpress\API\Data\Filters\Base\IntervalFilter;
+use Squarebit\InvoiceXpress\API\Data\Filters\Base\DateIntervalFilter;
+use Squarebit\InvoiceXpress\API\Data\Filters\Base\NumberIntervalFilter;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\PaginationFilter;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\QueryFilter;
 use Squarebit\InvoiceXpress\API\Data\Transformers\BoolToStringTransformer;
@@ -25,11 +26,11 @@ class EstimateListFilter extends QueryFilter
         /** @var Optional|array<EstimateStatusEnum> */
         public Optional|array $status,
 
-        public Optional|IntervalFilter $date,
+        public Optional|DateIntervalFilter $date,
 
-        public Optional|IntervalFilter $dueDate,
+        public Optional|DateIntervalFilter $dueDate,
 
-        public Optional|IntervalFilter $totalBeforeTaxes,
+        public Optional|NumberIntervalFilter $totalBeforeTaxes,
 
         #[WithTransformer(BoolToStringTransformer::class)]
         public Optional|bool $nonArchived,

@@ -13,4 +13,5 @@ enum InvoiceStatusEnum: string
     case Canceled = 'canceled';
     case Deleted = 'deleted';
     case Final = 'final';
+    case Sent = 'sent'; // TODO this should be removed since it is an incoherence in the API
 }

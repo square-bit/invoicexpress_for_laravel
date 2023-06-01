@@ -15,7 +15,13 @@ class ItemData extends EntityData
         public ?string $description,
         public string $unitPrice,
         public ?string $unit,
+        public ?float $quantity,
         public TaxData $tax,
+        public Optional|float $discount,
+        public Optional|float $subtotal,
+        public Optional|float $tax_amount,
+        public Optional|float $discount_amount,
+        public Optional|float $total,
     ) {
     }
 }

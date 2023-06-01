@@ -1,0 +1,55 @@
+{
+  "debit_note": {
+    "id": 2137287,
+    "status": "final",
+    "archived": false,
+    "type": "DebitNote",
+    "sequence_number": "6/G",
+    "inverted_sequence_number": "G/6",
+    "atcud": "ABCD1234-6",
+    "sequence_id": "12345",
+    "tax_exemption": "M01",
+    "date": "04/08/2016",
+    "due_date": "19/08/2016",
+    "reference": "foo",
+    "observations": "foo",
+    "retention": "foo",
+    "permalink": "https://www.app.invoicexpress.com/documents/213728738ca780a8de4330cad4a5a556360304bd9c57011",
+    "saft_hash": "J4ay",
+    "sum": 24.39,
+    "discount": 0,
+    "before_taxes": 24.39,
+    "taxes": 5.61,
+    "total": 30,
+    "currency": "Euro",
+    "client": {
+      "id": 628535,
+      "name": "John",
+      "country": "Portugal"
+    },
+    "items": [
+      {
+        "name": "Large",
+        "description": "foo",
+        "unit_price": "24.3902",
+        "unit": "foo",
+        "quantity": "1.0",
+        "tax": {
+          "id": 69166,
+          "name": "IVA23",
+          "value": 23
+        },
+        "discount": 0,
+        "subtotal": 24.39,
+        "tax_amount": 5.61,
+        "discount_amount": 0,
+        "total": 30
+      }
+    ],
+    "mb_reference": {
+      "entity": "10611",
+      "value": 30,
+      "reference": "952000823"
+    }
+  }
+}

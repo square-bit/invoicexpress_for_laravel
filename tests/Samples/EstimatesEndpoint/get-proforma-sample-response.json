@@ -1,0 +1,50 @@
+{
+  "proforma": {
+    "id": 541791,
+    "status": "final",
+    "archived": false,
+    "type": "Proforma",
+    "sequence_number": "1/A",
+    "inverted_sequence_number": "A/1",
+    "atcud": "ABCD1234-1",
+    "date": "12/06/2017",
+    "due_date": "12/06/2017",
+    "reference": "foo",
+    "observations": "foo",
+    "retention": "foo",
+    "permalink": "https://www.app.invoicexpress.com/documents/541791f16ae45a73b703c684a221ef198c10020f3d56a1",
+    "saft_hash": "NfTN",
+    "sum": 10,
+    "discount": 0,
+    "before_taxes": 10,
+    "taxes": 2.3,
+    "total": 12.3,
+    "currency": "Euro",
+    "client": {
+      "id": 1310176,
+      "name": "John",
+      "country": "Portugal"
+    },
+    "items": [
+      {
+        "name": "iPhone",
+        "description": "foo",
+        "unit_price": "10.0",
+        "unit": "foo",
+        "quantity": "1.0",
+        "tax": {
+          "id": 31567,
+          "name": "IVA23",
+          "value": 23
+        },
+        "discount": 0,
+        "subtotal": 10,
+        "tax_amount": 2.3,
+        "discount_amount": 0,
+        "total": 12.3
+      }
+    ],
+    "sequence_id": "12345",
+    "tax_exemption": "M01"
+  }
+}

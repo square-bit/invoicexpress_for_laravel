@@ -1,0 +1,13 @@
+{
+  "item": {
+    "id": 402321,
+    "name": "Medium",
+    "description": "foo",
+    "unit_price": 16.2602,
+    "unit": "service",
+    "tax": {
+      "name": "IVA23",
+      "value": 23
+    }
+  }
+}

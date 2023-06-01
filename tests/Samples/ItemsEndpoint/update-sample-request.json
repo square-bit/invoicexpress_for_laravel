@@ -1,0 +1,10 @@
+{
+    "id": 402321,
+    "name": "Large",
+    "description": "Item description",
+    "unit_price": 19.99,
+    "unit": "service",
+    "tax": {
+      "name": "IVA23"
+    }
+}

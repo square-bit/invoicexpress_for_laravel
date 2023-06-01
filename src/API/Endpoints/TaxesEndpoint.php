@@ -7,13 +7,12 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/taxes
  */
 
-use Squarebit\InvoiceXpress\API\Concerns\Creates;
-use Squarebit\InvoiceXpress\API\Concerns\Deletes;
-use Squarebit\InvoiceXpress\API\Concerns\GetsWithType;
-use Squarebit\InvoiceXpress\API\Concerns\Lists;
-use Squarebit\InvoiceXpress\API\Concerns\UpdatesWithType;
-use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\API\Data\TaxData;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Creates;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Deletes;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Gets;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Updates;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
 /**
@@ -23,11 +22,11 @@ class TaxesEndpoint extends Endpoint
 {
     use Lists;
 
-    /** @uses GetsWithType<TaxData> */
-    use GetsWithType;
+    /** @uses Gets<TaxData> */
+    use Gets;
 
-    /** @uses UpdatesWithType<TaxData> */
-    use UpdatesWithType;
+    /** @uses Updates<TaxData> */
+    use Updates;
 
     /** @uses Creates<TaxData> */
     use Creates;
@@ -46,8 +45,8 @@ class TaxesEndpoint extends Endpoint
         return EntityTypeEnum::Tax;
     }
 
-    protected function responseToDataObject(array $data): ItemData
+    protected function responseToDataObject(array $data): TaxData
     {
-        return ItemData::from($data);
+        return TaxData::from($data);
     }
 }

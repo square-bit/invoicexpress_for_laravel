@@ -8,12 +8,12 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  */
 
 use Spatie\LaravelData\Data;
-use Squarebit\InvoiceXpress\API\Concerns\Creates;
-use Squarebit\InvoiceXpress\API\Concerns\Gets;
-use Squarebit\InvoiceXpress\API\Concerns\Lists;
-use Squarebit\InvoiceXpress\API\Concerns\Registers;
-use Squarebit\InvoiceXpress\API\Concerns\Updates;
 use Squarebit\InvoiceXpress\API\Data\SequenceData;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Creates;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Gets;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Registers;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\SetsCurrent;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
 /**
@@ -29,9 +29,7 @@ class SequencesEndpoint extends Endpoint
     /** @uses Creates<SequenceData> */
     use Creates;
 
-    /** @uses Updates<SequenceData> */
-    use Updates;
-
+    use SetsCurrent;
     use Registers;
 
     public const ENDPOINT_CONFIG = 'sequence';

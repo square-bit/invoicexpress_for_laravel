@@ -1,0 +1,64 @@
+{
+  "transport": {
+    "id": 541797,
+    "status": "final",
+    "archived": false,
+    "type": "Transport",
+    "sequence_number": "1/D",
+    "inverted_sequence_number": "D/1",
+    "atcud": "ABCD1234-28",
+    "date": "13/07/2017",
+    "due_date": "13/07/2017",
+    "reference": "foo",
+    "observations": "foo",
+    "retention": "foo",
+    "permalink": "https://www.app.invoicexpress.com/documents/541797d75bbee48911934cbd4a4294946a324295f52b08",
+    "saft_hash": "vaDf",
+    "sum": 1,
+    "discount": 0,
+    "before_taxes": 1,
+    "taxes": 0.07,
+    "total": 1.07,
+    "currency": "Euro",
+    "address_from": {
+      "country": "Portugal",
+      "postal_code": "1050-083",
+      "detail": "Avenida Duque D'Avila, 46 - 3ºA",
+      "city": "Lisboa"
+    },
+    "address_to": {
+      "country": "Portugal",
+      "postal_code": "4000-327",
+      "detail": "Avenida dos Aliados",
+      "city": "Porto"
+    },
+    "client": {
+      "id": 1310176,
+      "name": "John",
+      "country": "Portugal"
+    },
+    "items": [
+      {
+        "name": "iPhone",
+        "description": "foo",
+        "unit_price": "1.0",
+        "unit": "foo",
+        "quantity": "1.0",
+        "tax": {
+          "id": 31597,
+          "name": "IVA7",
+          "value": 7
+        },
+        "discount": 0,
+        "subtotal": 1,
+        "tax_amount": 0.07,
+        "discount_amount": 0,
+        "total": 1.07
+      }
+    ],
+    "sequence_id": "12345",
+    "tax_exemption": "M01",
+    "at_doc_code_id": "999",
+    "license_plate": "11-AA-22"
+  }
+}

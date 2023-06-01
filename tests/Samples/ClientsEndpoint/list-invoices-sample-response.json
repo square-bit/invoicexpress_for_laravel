@@ -1,0 +1,57 @@
+{
+    "invoices": [
+        {
+            "id": 541793,
+            "status": "final",
+            "archived": true,
+            "type": "Invoice",
+            "sequence_number": "28/A",
+            "inverted_sequence_number": "A/28",
+            "date": "27/06/2017",
+            "due_date": "27/06/2017",
+            "reference": "foo",
+            "observations": "foo",
+            "retention": "foo",
+            "permalink": "https://www.app.invoicexpress.com/documents/541793e1ab2ebd5c06def40c346ffbe0ff2b463eb1c0f0",
+            "saft_hash": "Tdik",
+            "sum": 1,
+            "discount": 0,
+            "before_taxes": 1,
+            "taxes": 0.07,
+            "total": 1.07,
+            "currency": "Euro",
+            "client": {
+                "id": 1310176,
+                "name": "John",
+                "country": "Portugal"
+            },
+            "items": [
+                {
+                    "name": " iPhone ",
+                    "description": "foo",
+                    "unit_price": "1.0",
+                    "unit": "foo",
+                    "quantity": "1.0",
+                    "tax": {
+                        "id": 31597,
+                        "name": "IVA7",
+                        "value": 7
+                    },
+                    "discount": 0,
+                    "subtotal": 1,
+                    "tax_amount": 0.07,
+                    "discount_amount": 0,
+                    "total": 1.07
+                }
+            ],
+            "sequence_id": "12345",
+            "tax_exemption": "M01"
+        }
+    ],
+    "pagination": {
+        "total_entries": 6,
+        "current_page": 1,
+        "total_pages": 1,
+        "per_page": 10
+    }
+}

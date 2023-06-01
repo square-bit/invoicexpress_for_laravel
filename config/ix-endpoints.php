@@ -19,44 +19,30 @@ return [
         ClientsEndpoint::LIST => [
             'path' => 'clients.json',
             'method' => 'GET',
-            'returns' => [200],
-            'throws' => [401],
         ],
         ClientsEndpoint::GET => [
             'path' => 'clients/{id}.json',
             'method' => 'GET',
-            'returns' => [200],
-            'throws' => [401, 404],
         ],
         ClientsEndpoint::UPDATE => [
             'path' => 'clients/{id}.json',
             'method' => 'PUT',
-            'returns' => [200],
-            'throws' => [401, 404, 422],
         ],
         ClientsEndpoint::CREATE => [
             'path' => 'clients.json',
             'method' => 'POST',
-            'returns' => [200],
-            'throws' => [401, 422],
         ],
         ClientsEndpoint::FIND_BY_NAME => [
             'path' => 'clients/find-by-name.json',
             'method' => 'GET',
-            'returns' => [200],
-            'throws' => [401, 404],
         ],
         ClientsEndpoint::FIND_BY_CODE => [
             'path' => 'clients/find-by-code.json',
             'method' => 'GET',
-            'returns' => [200],
-            'throws' => [401, 404],
         ],
         ClientsEndpoint::LIST_INVOICES => [
             'path' => 'clients/{id}/invoices.json',
             'method' => 'POST',
-            'returns' => [200],
-            'throws' => [401, 404],
         ],
         ClientsEndpoint::DELETE => [
             'path' => 'clients/{id}.json',
@@ -100,7 +86,7 @@ return [
             'path' => 'sequences/{id}.json',
             'method' => 'GET',
         ],
-        SequencesEndpoint::UPDATE => [
+        SequencesEndpoint::SET_CURRENT => [
             'path' => 'sequences/{id}/set_current.json',
             'method' => 'PUT',
         ],
@@ -142,7 +128,7 @@ return [
     // SAFT
     // ######################################################
     'saft' => [
-        SaftEndpoint::GET => [
+        SaftEndpoint::EXPORT_SAFT => [
             'path' => 'api/export_saft.json',
             'method' => 'GET',
         ],
@@ -180,11 +166,11 @@ return [
             'method' => 'POST',
         ],
         InvoicesEndpoint::CANCEL_PAYMENT => [
-            'path' => '/receipts/{id}/change-state.json',
+            'path' => 'receipts/{id}/change-state.json',
             'method' => 'PUT',
         ],
         InvoicesEndpoint::GET_QRCODE => [
-            'path' => '/api/qr_codes/{id}.json',
+            'path' => 'api/qr_codes/{id}.json',
             'method' => 'GET',
         ],
         InvoicesEndpoint::SEND_BY_EMAIL => [
@@ -192,7 +178,7 @@ return [
             'method' => 'PUT',
         ],
         InvoicesEndpoint::GENERATE_PDF => [
-            'path' => '/api/pdf/{id}.json',
+            'path' => 'api/pdf/{id}.json',
             'method' => 'GET',
         ],
     ],
@@ -225,7 +211,7 @@ return [
             'method' => 'PUT',
         ],
         EstimatesEndpoint::GENERATE_PDF => [
-            'path' => '/api/pdf/{id}.json',
+            'path' => 'api/pdf/{id}.json',
             'method' => 'GET',
         ],
     ],
@@ -258,11 +244,11 @@ return [
             'method' => 'PUT',
         ],
         GuidesEndpoint::GENERATE_PDF => [
-            'path' => '/api/pdf/{id}.json',
+            'path' => 'api/pdf/{id}.json',
             'method' => 'GET',
         ],
         GuidesEndpoint::GET_QRCODE => [
-            'path' => '/api/qr_codes/{id}.json',
+            'path' => 'api/qr_codes/{id}.json',
             'method' => 'GET',
         ],
     ],

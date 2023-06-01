@@ -4,7 +4,7 @@ namespace Squarebit\InvoiceXpress\API\Data\Filters;
 
 use Spatie\LaravelData\Attributes\WithTransformer;
 use Spatie\LaravelData\Optional;
-use Squarebit\InvoiceXpress\API\Data\Filters\Base\IntervalFilter;
+use Squarebit\InvoiceXpress\API\Data\Filters\Base\DateIntervalFilter;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\QueryFilter;
 use Squarebit\InvoiceXpress\API\Data\Transformers\BoolToStringTransformer;
 use Squarebit\InvoiceXpress\API\Enums\GuideStatusEnum;
@@ -21,7 +21,7 @@ class GuideListFilter extends QueryFilter
         /** @var Optional|array<GuideStatusEnum> */
         public Optional|array $status,
 
-        public Optional|IntervalFilter $loadedAt,
+        public Optional|DateIntervalFilter $loadedAt,
 
         #[WithTransformer(BoolToStringTransformer::class)]
         public Optional|bool $nonArchived,

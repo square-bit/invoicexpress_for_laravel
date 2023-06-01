@@ -7,19 +7,16 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/saf-t
  */
 
-use Squarebit\InvoiceXpress\API\Concerns\Gets;
 use Squarebit\InvoiceXpress\API\Data\SaftData;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
 /**
  * @extends  Endpoint<SaftData>
  */
 class SaftEndpoint extends Endpoint
 {
-    /** @uses Gets<SaftData */
-    use Gets;
-
     public const ENDPOINT_CONFIG = 'saft';
+
+    public const EXPORT_SAFT = 'export';
 
     protected function responseToDataObject(array $data): SaftData
     {
@@ -31,8 +28,16 @@ class SaftEndpoint extends Endpoint
         return self::ENDPOINT_CONFIG;
     }
 
-    protected function getEntityType(): EntityTypeEnum
+    public function export(int $year, int $month): SaftData
     {
-        return EntityTypeEnum::Saft;
+        $data = $this->call(
+            action: self::EXPORT_SAFT,
+            urlParams: [
+                'year' => $year,
+                'month' => $month,
+            ],
+        );
+
+        return $this->responseToDataObject($data);
     }
 }

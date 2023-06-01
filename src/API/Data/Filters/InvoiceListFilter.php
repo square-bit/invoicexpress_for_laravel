@@ -6,10 +6,12 @@ use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Attributes\WithTransformer;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
-use Squarebit\InvoiceXpress\API\Data\Filters\Base\IntervalFilter;
+use Squarebit\InvoiceXpress\API\Data\Filters\Base\DateIntervalFilter;
+use Squarebit\InvoiceXpress\API\Data\Filters\Base\NumberIntervalFilter;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\PaginationFilter;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\QueryFilter;
 use Squarebit\InvoiceXpress\API\Data\Transformers\BoolToStringTransformer;
+use Squarebit\InvoiceXpress\API\Data\Transformers\EnumArrayTransformer;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceStatusEnum;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
 
@@ -20,16 +22,18 @@ class InvoiceListFilter extends QueryFilter
         public Optional|string $text,
 
         /** @var Optional|array<InvoiceTypeEnum> */
+        #[WithTransformer(EnumArrayTransformer::class)]
         public Optional|array $type,
 
         /** @var Optional|array<InvoiceStatusEnum> */
+        #[WithTransformer(EnumArrayTransformer::class)]
         public Optional|array $status,
 
-        public Optional|IntervalFilter $date,
+        public Optional|DateIntervalFilter $date,
 
-        public Optional|IntervalFilter $dueDate,
+        public Optional|DateIntervalFilter $dueDate,
 
-        public Optional|IntervalFilter $totalBeforeTaxes,
+        public Optional|NumberIntervalFilter $totalBeforeTaxes,
 
         #[WithTransformer(BoolToStringTransformer::class)]
         public Optional|bool $nonArchived,

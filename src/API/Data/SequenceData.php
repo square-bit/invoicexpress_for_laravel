@@ -14,7 +14,7 @@ class SequenceData extends EntityData
     public function __construct(
         public Optional|int $id, // 146090,
 
-        public int $serie, // '2022',
+        public string $serie, // 'SR2022',
 
         #[WithTransformer(BoolToIntTransformer::class)]
         public bool $defaultSequence, // 1,

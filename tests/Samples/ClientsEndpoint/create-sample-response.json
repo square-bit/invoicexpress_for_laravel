@@ -1,0 +1,25 @@
+{
+    "client": {
+        "id": "1234",
+        "name": "Ricardo Pereira",
+        "code": "TEST_RP",
+        "language": "pt",
+        "email": "someone@example.com",
+        "address": "Lisbon",
+        "city": "Lisbon",
+        "postal_code": "1750-455",
+        "fiscal_id": "508025338",
+        "website": "www.invoicexpress.com",
+        "country": "Portugal",
+        "phone": "2313423424",
+        "fax": "2313423425",
+        "preferred_contact": {
+            "name": "Ricardo Pereira",
+            "email": "someone@example.com",
+            "phone": "2233442233",
+            "mobile" : null
+        },
+        "observations": "Observations",
+        "send_options": 1
+    }
+}

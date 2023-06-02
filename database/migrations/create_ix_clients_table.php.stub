@@ -28,9 +28,9 @@ return new class extends Migration
             $table->json('preferred_contact')->nullable();
             $table->string('observations')->nullable();
             $table->enum('send_options', ClientSendOptionsEnum::values())->nullable();
-            $table->unsignedInteger('payment_days');
+            $table->unsignedInteger('payment_days')->nullable();
             $table->enum('tax_exemption_code', TaxExemptionCodeEnum::names())->nullable();
-            $table->string('open_account_link');
+            $table->string('open_account_link')->nullable();
 
             $table->timestamps();
         });

@@ -9,7 +9,7 @@ return [
     ],
     'service_endpoint' => 'app.invoicexpress.com',
     'eloquent' => [
-        'persist' => true,
+        'persist' => false,
     ],
 
 ];

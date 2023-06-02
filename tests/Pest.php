@@ -8,7 +8,7 @@ use Squarebit\InvoiceXpress\Tests\TestCaseWithDB;
 
 const TEST_REAL_API = false;
 
-uses(TestCase::class)->in('API_REAL', 'API_FAKED');
+uses(TestCase::class)->in('API_REAL', 'API_FAKED', 'Unit');
 uses(TestCaseWithDB::class, RefreshDatabase::class)->in('Feature');
 
 expect()->extend('toMatchArrayRecursive', function (array $array) {

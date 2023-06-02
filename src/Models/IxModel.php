@@ -17,7 +17,7 @@ abstract class IxModel extends Model
 
     protected Endpoint $endpoint;
 
-    protected ?bool $persist = null;
+    protected bool $persist = false;
 
     public $incrementing = false;
 
@@ -28,15 +28,19 @@ abstract class IxModel extends Model
         parent::__construct($attributes);
 
         $this->endpoint = $this->getEndpoint();
-        $this->persist ??= config('invoicexpress-for-laravel.eloquent.persist');
+        $this->persist = config('invoicexpress-for-laravel.eloquent.persist');
     }
 
-    public static function persistLocally(bool $persist = true): static
+    public function persistLocally(bool $persist = true): static
     {
-        $instance = new static();
-        $instance->persist = $persist;
+        $this->persist = $persist;
 
-        return $instance;
+        return $this;
+    }
+
+    public function isPersistingLocally(): bool
+    {
+        return $this->persist;
     }
 
     public function getData(): EntityData
@@ -59,10 +63,7 @@ abstract class IxModel extends Model
         }
 
         $model = $instance->updateModelFromData($data);
-
-        if ($instance->persist) {
-            $model->saveLocally();
-        }
+        $model->saveLocally();
 
         return $model;
     }
@@ -81,17 +82,20 @@ abstract class IxModel extends Model
      */
     public function save(array $options = []): bool
     {
-        $this->saveRemotely();
+        if ($this->saveRemotely() === false) {
+            return false;
+        }
 
         return $this->persist ? $this->saveLocally($options) : true;
     }
 
     public function delete(): bool
     {
-        $ret = $this->deleteRemotely();
+        if ($this->deleteRemotely() === false) {
+            return false;
+        }
 
-        return $this->exists ? $this->deleteLocally() : $ret;
-
+        return $this->deleteLocally();
     }
 
     /**
@@ -99,7 +103,7 @@ abstract class IxModel extends Model
      * @throws Throwable
      * @throws InvalidDataClass
      */
-    public function refreshFromIX(): ?static
+    public function refreshFromRemote(): ?static
     {
         return $this->updateModelFromData($this->findRemotely($this->getData()->getId()));
     }

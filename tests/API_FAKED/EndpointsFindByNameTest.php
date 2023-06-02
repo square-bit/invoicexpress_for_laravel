@@ -13,7 +13,7 @@ it('can call FIND_BY_CODE on an endpoint - faked', function (string $entity, str
     $cfg = $endpoint->getEndpointConfig($action);
 
     $responseSample = getResponseSample(class_basename($endpoint), $action);
-    $name = $responseSample[array_keys($responseSample)[0]]['name'];
+    $name = reset($responseSample)['name'];
 
     Http::preventStrayRequests()
         ->fake([
@@ -24,7 +24,7 @@ it('can call FIND_BY_CODE on an endpoint - faked', function (string $entity, str
         ->not()->toThrow(Exception::class)
         ->toBeInstanceOf($entityDataClass)
         ->and($result->toArray())
-        ->toMatchArrayRecursive($responseSample[array_keys($responseSample)[0]]);
+        ->toMatchArrayRecursive(reset($responseSample));
 })->with([
     ['clients', ClientsEndpoint::FIND_BY_NAME, ClientData::class],
 ]);

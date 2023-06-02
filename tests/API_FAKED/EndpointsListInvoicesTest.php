@@ -26,7 +26,7 @@ it('can call LIST_INVOICES on an endpoint - faked', function (string $entity, st
         ->not()->toThrow(Exception::class)
         ->toBeInstanceOf($entityDataClass)
         ->and($result->items()->toArray())
-        ->toMatchArrayRecursive($responseSample[array_keys($responseSample)[0]]);
+        ->toMatchArrayRecursive(reset($responseSample));
 })->with([
     ['clients', ClientsEndpoint::LIST_INVOICES, EntityListData::class],
 ]);

@@ -24,7 +24,7 @@ it('can call GET_QRCODE on an endpoint - faked', function (string $entity, strin
     expect($result = $endpoint->getQRCode($id, fake()->boolean()))
         ->not()->toThrow(Exception::class)
         ->and($result->toArray())
-        ->toMatchArrayRecursive($responseSample[array_keys($responseSample)[0]]);
+        ->toMatchArrayRecursive(reset($responseSample));
 })->with([
     ['guides', GuidesEndpoint::GET_QRCODE],
     ['invoices', InvoicesEndpoint::GET_QRCODE],

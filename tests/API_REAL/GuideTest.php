@@ -35,6 +35,7 @@ it('can go through an Guide lifecycle', function (EntityTypeEnum $docType, array
     EntityTypeEnum::Transport->name => EntityTypeEnum::Transport,
     EntityTypeEnum::Devolution->name => EntityTypeEnum::Devolution,
 ])->with('guideData')
+    ->skip(! TEST_REAL_API)
     ->skip('Until InvoiceXpress solves the bugs');
 
 /*

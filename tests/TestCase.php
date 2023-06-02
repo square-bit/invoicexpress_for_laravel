@@ -3,6 +3,7 @@
 namespace Squarebit\InvoiceXpress\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Http;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\LaravelData\LaravelDataServiceProvider;
 use Squarebit\InvoiceXpress\InvoiceXpressServiceProvider;
@@ -18,6 +19,8 @@ class TestCase extends Orchestra
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Squarebit\\InvoiceXpress\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
+
+        Http::preventStrayRequests()->fake([]);
     }
 
     protected function getPackageProviders($app)

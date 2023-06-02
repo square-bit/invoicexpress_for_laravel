@@ -15,4 +15,5 @@ it('can get the SAFT', function (int $year, int $month) {
 
 })->with([
     [2023, 4],
-])->skip('SAFT not available in trial');
+])->skip(! TEST_REAL_API)
+    ->skip('SAFT not available in trial');

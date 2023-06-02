@@ -25,7 +25,7 @@ it('can call GENERATE_PDF on an endpoint - faked', function (string $entity, str
     expect($result = $endpoint->generatePDF($id, fake()->boolean()))
         ->not()->toThrow(Exception::class)
         ->and($result?->toArray())
-        ->toMatchArrayRecursive($responseSample ? $responseSample[array_keys($responseSample)[0]] : []);
+        ->toMatchArrayRecursive($responseSample ? reset($responseSample) : []);
 })->with([
     ['estimates', EstimatesEndpoint::GENERATE_PDF],
     ['guides', GuidesEndpoint::GENERATE_PDF],

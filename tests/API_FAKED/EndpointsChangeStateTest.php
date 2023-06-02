@@ -20,7 +20,7 @@ it('can call CHANGE_STATE on an endpoint - faked', function (string $entity, str
 
     $requestSample = getRequestSample(class_basename($endpoint), $action);
     $responseSample = getResponseSample(class_basename($endpoint), $action.($type ? '-'.$type->value : ''));
-    $id = $responseSample[array_keys($responseSample)[0]]['id'];
+    $id = reset($responseSample)['id'];
     $urlParams = ['id' => $id, 'type' => $type?->toUrlVariable()];
 
     Http::preventStrayRequests()
@@ -33,7 +33,7 @@ it('can call CHANGE_STATE on an endpoint - faked', function (string $entity, str
     expect($result = $endpoint->changeState($type, $id, $data))
         ->not()->toThrow(Exception::class)
         ->and($result->toArray())
-        ->toMatchArrayRecursive($responseSample[array_keys($responseSample)[0]]);
+        ->toMatchArrayRecursive(reset($responseSample));
 })->with([
     ['estimates', EstimatesEndpoint::CHANGE_STATE, EntityTypeEnum::Quote, EstimateData::class],
     ['estimates', EstimatesEndpoint::CHANGE_STATE, EntityTypeEnum::Proforma, EstimateData::class],

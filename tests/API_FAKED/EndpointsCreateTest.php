@@ -40,7 +40,7 @@ it('can call CREATE on an endpoint - faked', function (string $entity, string $a
         ->not()->toThrow(Exception::class)
         ->toBeInstanceOf($entityDataClass)
         ->and($result->toArray())
-        ->toMatchArrayRecursive($responseSample[array_keys($responseSample)[0]]);
+        ->toMatchArrayRecursive(reset($responseSample));
 })->with([
     ['items', ItemsEndpoint::CREATE, null, ItemData::class],
     ['clients', ClientsEndpoint::CREATE, null, ClientData::class],

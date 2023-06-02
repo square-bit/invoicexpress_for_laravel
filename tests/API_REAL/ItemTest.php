@@ -51,4 +51,4 @@ it('can create / update /delete an Item', function (array $itemData) {
             ],
         ],
     ],
-]);
+])->skip(! TEST_REAL_API);

@@ -41,4 +41,4 @@ it('can create / update /delete a Tax', function (array $taxData) {
             'default_tax' => 0,
         ],
     ],
-]);
+])->skip(! TEST_REAL_API);

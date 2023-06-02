@@ -13,7 +13,7 @@ it('can call REGISTER on an endpoint - faked', function (string $entity, string 
     $cfg = $endpoint->getEndpointConfig($action);
 
     $responseSample = getResponseSample(class_basename($endpoint), $action);
-    $id = $responseSample[array_keys($responseSample)[0]][0]['id'];
+    $id = reset($responseSample)[0]['id'];
     $urlParams = ['id' => $id];
 
     Http::preventStrayRequests()
@@ -25,7 +25,7 @@ it('can call REGISTER on an endpoint - faked', function (string $entity, string 
         ->not()->toThrow(Exception::class)
         ->toBeInstanceOf($entityDataClass)
         ->and($result->items()->toArray())
-        ->toMatchArrayRecursive($responseSample[array_keys($responseSample)[0]]);
+        ->toMatchArrayRecursive(reset($responseSample));
 })->with([
     ['sequences', SequencesEndpoint::REGISTER, EntityListData::class],
 ]);

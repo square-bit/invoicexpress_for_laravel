@@ -66,7 +66,8 @@ it('can create / get / list / update / delete an invoice', function (EntityTypeE
     'InvoiceReceipt' => [EntityTypeEnum::InvoiceReceipt],
     'CreditNote' => [EntityTypeEnum::CreditNote],
     'DebitNote' => [EntityTypeEnum::DebitNote],
-])->with('invoiceData');
+])->with('invoiceData')
+    ->skip(! TEST_REAL_API);
 
 it('can go through an invoice lifecycle', function (array $data) {
     $endpoint = InvoiceXpress::invoices();
@@ -117,7 +118,8 @@ it('can go through an invoice lifecycle', function (array $data) {
         // Check if it is the receipt previously created (generating a payment automatically creates a receipt)
         ->and($documentsList->items()->first())
         ->toHaveProperty('id', $receipt->id);
-})->with('invoiceData');
+})->with('invoiceData')
+    ->skip(! TEST_REAL_API);
 
 it('can email an Invoice', function (array $data) {
 
@@ -137,7 +139,8 @@ it('can email an Invoice', function (array $data) {
     ))->not()->toThrow(RequestException::class);
 
 })->with('invoiceData')
-    ->depends('it can go through an invoice lifecycle');
+    ->depends('it can go through an invoice lifecycle')
+    ->skip(! TEST_REAL_API);
 
 it('can generate an Invoice PDF', function () {
     $invoiceData = InvoiceXpress::invoices()->list()->items()->first();
@@ -146,7 +149,8 @@ it('can generate an Invoice PDF', function () {
         ->toBeInstanceOf(PdfData::class)
         ->pdfUrl->not()->toBeNull();
 
-})->depends('it can go through an invoice lifecycle');
+})->depends('it can go through an invoice lifecycle')
+    ->skip(! TEST_REAL_API);
 
 it('can get an Invoice QrCode', function () {
     $invoiceData = InvoiceXpress::invoices()
@@ -158,7 +162,8 @@ it('can get an Invoice QrCode', function () {
         ->toBeInstanceOf(QRCodeData::class)
         ->url->not()->toBeNull();
 
-})->depends('it can go through an invoice lifecycle');
+})->depends('it can go through an invoice lifecycle')
+    ->skip(! TEST_REAL_API);
 
 /*
  * DATASETS

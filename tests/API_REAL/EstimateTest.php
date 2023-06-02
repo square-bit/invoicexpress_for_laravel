@@ -44,7 +44,8 @@ it('can go through an Estimate lifecycle', function (EntityTypeEnum $docType, ar
     EntityTypeEnum::Quote->name => EntityTypeEnum::Quote,
     EntityTypeEnum::Proforma->name => EntityTypeEnum::Proforma,
     EntityTypeEnum::FeesNote->name => EntityTypeEnum::FeesNote,
-])->with('estimateData');
+])->with('estimateData')
+    ->skip(! TEST_REAL_API);
 
 /*
  * DATASETS

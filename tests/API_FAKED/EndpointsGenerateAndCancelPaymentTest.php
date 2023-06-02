@@ -8,17 +8,18 @@ use Squarebit\InvoiceXpress\API\Data\StateData;
 use Squarebit\InvoiceXpress\API\Endpoints\Endpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\API\Enums\PaymentMechanismEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can call GENERATE_PAYMENT on an endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, string $entityDataClass) {
+it('can call GENERATE_PAYMENT on an endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, PaymentMechanismEnum $payment) {
     /** @var Endpoint $endpoint */
     $endpoint = InvoiceXpress::$entity();
     $cfg = $endpoint->getEndpointConfig($action);
 
     $requestSample = getRequestSample(class_basename($endpoint), $action);
     $responseSample = getResponseSample(class_basename($endpoint), $action);
-    $id = $responseSample[array_keys($responseSample)[0]]['id'];
+    $id = reset($responseSample)['id'];
     $urlParams = ['id' => $id, 'type' => $type?->toUrlVariable()];
 
     Http::preventStrayRequests()
@@ -27,15 +28,16 @@ it('can call GENERATE_PAYMENT on an endpoint - faked', function (string $entity,
         ]);
 
     $data = PartialPaymentData::from($requestSample);
+    $data->paymentMechanism = $payment;
 
     expect($result = $endpoint->generatePayment($type, $id, $data))
         ->not()->toThrow(Exception::class)
         ->and($result->toArray())
-        ->toMatchArrayRecursive($responseSample[array_keys($responseSample)[0]]);
+        ->toMatchArrayRecursive(reset($responseSample));
 })->with([
-    ['invoices', InvoicesEndpoint::GENERATE_PAYMENT, EntityTypeEnum::Invoice, InvoiceData::class],
-    ['invoices', InvoicesEndpoint::GENERATE_PAYMENT, EntityTypeEnum::SimplifiedInvoice, InvoiceData::class],
-]);
+    ['invoices', InvoicesEndpoint::GENERATE_PAYMENT, EntityTypeEnum::Invoice],
+    ['invoices', InvoicesEndpoint::GENERATE_PAYMENT, EntityTypeEnum::SimplifiedInvoice],
+])->with(PaymentMechanismEnum::cases());
 
 it('can call CANCEL_PAYMENT on an endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, string $entityDataClass) {
     /** @var Endpoint $endpoint */
@@ -44,7 +46,7 @@ it('can call CANCEL_PAYMENT on an endpoint - faked', function (string $entity, s
 
     $requestSample = getRequestSample(class_basename($endpoint), $action);
     $responseSample = getResponseSample(class_basename($endpoint), $action);
-    $id = $responseSample[array_keys($responseSample)[0]]['id'];
+    $id = reset($responseSample)['id'];
     $urlParams = ['id' => $id, 'type' => $type?->toUrlVariable()];
 
     Http::preventStrayRequests()
@@ -57,7 +59,7 @@ it('can call CANCEL_PAYMENT on an endpoint - faked', function (string $entity, s
     expect($result = $endpoint->cancelPayment($type, $id, $data))
         ->not()->toThrow(Exception::class)
         ->and($result->toArray())
-        ->toMatchArrayRecursive($responseSample[array_keys($responseSample)[0]]);
+        ->toMatchArrayRecursive(reset($responseSample));
 })->with([
     ['invoices', InvoicesEndpoint::CANCEL_PAYMENT, EntityTypeEnum::Invoice, InvoiceData::class],
     ['invoices', InvoicesEndpoint::CANCEL_PAYMENT, EntityTypeEnum::SimplifiedInvoice, InvoiceData::class],
@@ -70,7 +72,7 @@ it('cannot call GENERATE_PAYMENT on an invalid endpoint - faked', function (stri
 
     $requestSample = getRequestSample(class_basename($endpoint), $action);
     $responseSample = getResponseSample(class_basename($endpoint), $action);
-    $id = $responseSample[array_keys($responseSample)[0]]['id'];
+    $id = reset($responseSample)['id'];
     $urlParams = ['id' => $id, 'type' => $type?->toUrlVariable()];
 
     Http::preventStrayRequests()
@@ -95,7 +97,7 @@ it('cannot call CANCEL_PAYMENT on an invalid endpoint - faked', function (string
 
     $requestSample = getRequestSample(class_basename($endpoint), $action);
     $responseSample = getResponseSample(class_basename($endpoint), $action);
-    $id = $responseSample[array_keys($responseSample)[0]]['id'];
+    $id = reset($responseSample)['id'];
     $urlParams = ['id' => $id, 'type' => $type?->toUrlVariable()];
 
     Http::preventStrayRequests()

@@ -2,7 +2,9 @@
 
 namespace Squarebit\InvoiceXpress\API\Data;
 
-class PdfData extends EntityData
+use Spatie\LaravelData\Data;
+
+class PdfData extends Data
 {
     public function __construct(
         public ?string $pdfUrl,

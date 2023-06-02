@@ -88,4 +88,4 @@ it('can create / get / findByCode|Name / list / update / delete a client', funct
             'tax_exemption_code' => collect(TaxExemptionCodeEnum::names())->random(),
         ],
     ],
-]);
+])->skip(! TEST_REAL_API);

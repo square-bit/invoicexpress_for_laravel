@@ -31,6 +31,14 @@ abstract class IxModel extends Model
         $this->persist ??= config('invoicexpress-for-laravel.eloquent.persist');
     }
 
+    public static function persistLocally(bool $persist = true): static
+    {
+        $instance = new static();
+        $instance->persist = $persist;
+
+        return $instance;
+    }
+
     public function getData(): EntityData
     {
         /** @var EntityData $data */
@@ -51,7 +59,10 @@ abstract class IxModel extends Model
         }
 
         $model = $instance->updateModelFromData($data);
-        $model->saveLocally();
+
+        if ($instance->persist) {
+            $model->saveLocally();
+        }
 
         return $model;
     }
@@ -60,7 +71,7 @@ abstract class IxModel extends Model
     {
         try {
             return $this->endpoint->get($id);
-        } catch (Throwable $e) {
+        } catch (RequestException) {
             return null;
         }
     }
@@ -68,22 +79,18 @@ abstract class IxModel extends Model
     /**
      * @throws Throwable
      */
-    public function save(array $options = [], bool $localOnly = false): bool
+    public function save(array $options = []): bool
     {
-        if (! $localOnly) {
-            $this->saveRemotely();
-        }
+        $this->saveRemotely();
 
-        return $this->saveLocally($options);
+        return $this->persist ? $this->saveLocally($options) : true;
     }
 
-    public function delete(bool $localOnly = false): bool
+    public function delete(): bool
     {
-        if (! $localOnly) {
-            $this->deleteRemotely();
-        }
+        $ret = $this->deleteRemotely();
 
-        return $this->deleteLocally();
+        return $this->exists ? $this->deleteLocally() : $ret;
 
     }
 
@@ -106,7 +113,7 @@ abstract class IxModel extends Model
         return $this->endpoint->create($this->getData());
     }
 
-    protected function saveRemotely(): ?static
+    protected function saveRemotely(): bool
     {
         try {
             if (filled($this->getData()->getId())) {
@@ -116,11 +123,11 @@ abstract class IxModel extends Model
                 // create
                 $this->updateModelFromData($this->createRemotely());
             }
-        } catch (RequestException|InvalidDataClass|Throwable $e) {
-            return null;
-        }
 
-        return $this;
+            return true;
+        } catch (RequestException|InvalidDataClass $e) {
+            return false;
+        }
     }
 
     protected function saveLocally(array $options = []): bool

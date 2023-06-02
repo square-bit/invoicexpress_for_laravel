@@ -26,7 +26,7 @@ it('can call GET on an endpoint - faked', function (string $entity, string $acti
     $cfg = $endpoint->getEndpointConfig($action);
 
     $responseSample = getResponseSample(class_basename($endpoint), $action.($type ? '-'.$type->value : ''));
-    $id = $responseSample[array_keys($responseSample)[0]]['id'];
+    $id = reset($responseSample)['id'];
     $urlParams = ['id' => $id, 'type' => $type?->toUrlVariable()];
 
     Http::preventStrayRequests()
@@ -39,7 +39,7 @@ it('can call GET on an endpoint - faked', function (string $entity, string $acti
         ->toBeInstanceOf($entityDataClass)
         ->when($type !== null, fn ($result) => $result->type->toEntityType()->toBe($type))
         ->and($result->toArray())
-        ->toMatchArrayRecursive($responseSample[array_keys($responseSample)[0]]);
+        ->toMatchArrayRecursive(reset($responseSample));
 })->with([
     ['items', ItemsEndpoint::GET, null, ItemData::class],
     ['clients', ClientsEndpoint::GET, null, ClientData::class],

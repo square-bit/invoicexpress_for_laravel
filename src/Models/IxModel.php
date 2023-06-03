@@ -11,6 +11,7 @@ use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Squarebit\InvoiceXpress\API\Endpoints\Endpoint;
 use Throwable;
 
+/** @phpstan-consistent-constructor */
 abstract class IxModel extends Model
 {
     use WithData{ getData as getDataBase; }
@@ -71,6 +72,7 @@ abstract class IxModel extends Model
     public function findRemotely(int $id): ?EntityData
     {
         try {
+            /** @phpstan-ignore-next-line */
             return $this->endpoint->get($id);
         } catch (RequestException) {
             return null;
@@ -114,6 +116,7 @@ abstract class IxModel extends Model
      */
     protected function createRemotely(): EntityData
     {
+        /** @phpstan-ignore-next-line */
         return $this->endpoint->create($this->getData());
     }
 
@@ -122,6 +125,7 @@ abstract class IxModel extends Model
         try {
             if (filled($this->getData()->getId())) {
                 // update
+                /** @phpstan-ignore-next-line */
                 $this->endpoint->update($this->getData());
             } else {
                 // create
@@ -158,6 +162,7 @@ abstract class IxModel extends Model
             return false;
         }
 
+        /** @phpstan-ignore-next-line */
         $this->endpoint->delete($this->getKey());
 
         return true;

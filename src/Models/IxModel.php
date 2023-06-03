@@ -62,7 +62,7 @@ abstract class IxModel extends Model
             return null;
         }
 
-        $model = $instance->updateModelFromData($data);
+        $model = $instance->fromData($data);
         $model->saveLocally();
 
         return $model;
@@ -105,7 +105,7 @@ abstract class IxModel extends Model
      */
     public function refreshFromRemote(): ?static
     {
-        return $this->updateModelFromData($this->findRemotely($this->getData()->getId()));
+        return $this->fromData($this->findRemotely($this->getData()->getId()));
     }
 
     /**
@@ -125,7 +125,7 @@ abstract class IxModel extends Model
                 $this->endpoint->update($this->getData());
             } else {
                 // create
-                $this->updateModelFromData($this->createRemotely());
+                $this->fromData($this->createRemotely());
             }
 
             return true;
@@ -172,7 +172,7 @@ abstract class IxModel extends Model
         return parent::delete();
     }
 
-    protected function updateModelFromData(EntityData $data): static
+    protected function fromData(EntityData $data): static
     {
         return $this->forceFill($data->toArray());
     }

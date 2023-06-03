@@ -1,7 +1,5 @@
 <?php
 
-// config for Squarebit/InvoiceXpress
-
 return [
     'account' => [
         'name' => env('IX_ACCOUNT_NAME'),
@@ -11,5 +9,4 @@ return [
     'eloquent' => [
         'persist' => false,
     ],
-
 ];

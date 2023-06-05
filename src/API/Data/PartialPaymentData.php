@@ -19,18 +19,29 @@ use Squarebit\InvoiceXpress\InvoiceXpress;
 class PartialPaymentData extends Data
 {
     public function __construct(
-        public ?string $note,
+        public Optional|string $note,
 
-        public ?string $serie,
+        public Optional|string $serie,
 
         #[Min(0)]
         public float $amount,
 
         #[WithCast(DateTimeInterfaceCast::class, format: InvoiceXpress::DATE_FORMAT)]
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: InvoiceXpress::DATE_FORMAT)]
-        public ?Carbon $paymentDate,
+        public Optional|Carbon $paymentDate,
 
         public Optional|PaymentMechanismEnum $paymentMechanism,
     ) {
+    }
+
+    public static function of(float $amount, ?Carbon $date = null, ?PaymentMechanismEnum $mechanism = null): static
+    {
+        return new self(
+            amount: $amount,
+            paymentDate: $date?->format(InvoiceXpress::DATE_FORMAT) ?? Optional::create(),
+            paymentMechanism: $mechanism?->value ?? Optional::create(),
+            note: Optional::create(),
+            serie: Optional::create()
+        );
     }
 }

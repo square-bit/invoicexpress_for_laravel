@@ -8,7 +8,6 @@ namespace Squarebit\InvoiceXpress\API\Endpoints\Concerns;
 
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\EntityListData;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
 trait Registers
@@ -16,8 +15,6 @@ trait Registers
     use Lists;
 
     public const REGISTER = 'register';
-
-    abstract protected function getEntityType(): EntityTypeEnum;
 
     /**
      * @throws RequestException

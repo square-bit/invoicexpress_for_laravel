@@ -3,9 +3,6 @@
 use GuzzleHttp\UriTemplate\UriTemplate;
 use Illuminate\Support\Facades\Http;
 use Squarebit\InvoiceXpress\API\Data\EmailData;
-use Squarebit\InvoiceXpress\API\Data\EstimateData;
-use Squarebit\InvoiceXpress\API\Data\GuideData;
-use Squarebit\InvoiceXpress\API\Data\InvoiceData;
 use Squarebit\InvoiceXpress\API\Endpoints\Endpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\EstimatesEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\GuidesEndpoint;
@@ -13,7 +10,7 @@ use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can call SEND_BY_EMAIL on an endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, string $entityDataClass) {
+it('can call SEND_BY_EMAIL on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type) {
     /** @var Endpoint $endpoint */
     $endpoint = InvoiceXpress::$entity();
     $cfg = $endpoint->getEndpointConfig($action);
@@ -32,15 +29,15 @@ it('can call SEND_BY_EMAIL on an endpoint - faked', function (string $entity, st
     expect($result = $endpoint->sendByEmail($type, $id, $data))
         ->not()->toThrow(Exception::class);
 })->with([
-    ['estimates', EstimatesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Quote, EstimateData::class],
-    ['estimates', EstimatesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Proforma, EstimateData::class],
-    ['estimates', EstimatesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::FeesNote, EstimateData::class],
-    ['guides', GuidesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Shipping, GuideData::class],
-    ['guides', GuidesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Transport, GuideData::class],
-    ['guides', GuidesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Devolution, GuideData::class],
-    ['invoices', InvoicesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Invoice, InvoiceData::class],
-    ['invoices', InvoicesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::SimplifiedInvoice, InvoiceData::class],
-    ['invoices', InvoicesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::InvoiceReceipt, InvoiceData::class],
-    ['invoices', InvoicesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::CreditNote, InvoiceData::class],
-    ['invoices', InvoicesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::DebitNote, InvoiceData::class],
+    ['estimates', EstimatesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Quote],
+    ['estimates', EstimatesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Proforma],
+    ['estimates', EstimatesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::FeesNote],
+    ['guides', GuidesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Shipping],
+    ['guides', GuidesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Transport],
+    ['guides', GuidesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Devolution],
+    ['invoices', InvoicesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::Invoice],
+    ['invoices', InvoicesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::SimplifiedInvoice],
+    ['invoices', InvoicesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::InvoiceReceipt],
+    ['invoices', InvoicesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::CreditNote],
+    ['invoices', InvoicesEndpoint::SEND_BY_EMAIL, EntityTypeEnum::DebitNote],
 ]);

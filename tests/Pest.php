@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use function Pest\testDirectory;
 use PHPUnit\Framework\Assert;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Tests\TestCase;
 use Squarebit\InvoiceXpress\Tests\TestCaseWithDB;
 
@@ -38,20 +39,20 @@ expect()->extend('toMatchArrayRecursive', function (array $array) {
     return $this;
 });
 
-function getRequestSample(string $ixEntity, string $action): ?array
+function getRequestSample(string $endpoint, string $action, ?EntityTypeEnum $entityType = null): ?array
 {
-    return getSample($ixEntity, $action, 'request');
+    return getSample($endpoint, $action.($entityType ? '-'.$entityType->value : ''), 'request');
 }
 
-function getResponseSample(string $ixEntity, string $action): ?array
+function getResponseSample(string $endpoint, string $action, ?EntityTypeEnum $entityType = null): ?array
 {
-    return getSample($ixEntity, $action, 'response');
+    return getSample($endpoint, $action.($entityType ? '-'.$entityType->value : ''), 'response');
 }
 
-function getSample(string $ixEntity, string $action, string $type): ?array
+function getSample(string $endpoint, string $action, string $type): ?array
 {
     return json_decode(
-        file_get_contents(testDirectory('Samples/'.$ixEntity.'/'.$action.'-sample-'.$type.'.json')),
+        file_get_contents(testDirectory('Samples/'.$endpoint.'/'.$action.'-sample-'.$type.'.json')),
         true
     );
 }

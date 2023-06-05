@@ -23,7 +23,7 @@ it('can set/unset persistance', function (bool $persistLocally) {
 
 class TestModel extends IxModel
 {
-    protected function getEndpoint(): Endpoint
+    public function getEndpoint(): Endpoint
     {
         return new ClientsEndpoint();
     }

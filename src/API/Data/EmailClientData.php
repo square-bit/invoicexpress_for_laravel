@@ -19,4 +19,12 @@ class EmailClientData extends Data
         public bool $save = false,
     ) {
     }
+
+    public static function fromEmail(string $email): static
+    {
+        return new self(
+            email: $email,
+            save: false
+        );
+    }
 }

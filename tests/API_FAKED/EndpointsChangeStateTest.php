@@ -13,13 +13,13 @@ use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can call CHANGE_STATE on an endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, string $entityDataClass) {
+it('can call CHANGE_STATE on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, string $entityDataClass) {
     /** @var Endpoint $endpoint */
     $endpoint = InvoiceXpress::$entity();
     $cfg = $endpoint->getEndpointConfig($action);
 
     $requestSample = getRequestSample(class_basename($endpoint), $action);
-    $responseSample = getResponseSample(class_basename($endpoint), $action.($type ? '-'.$type->value : ''));
+    $responseSample = getResponseSample(class_basename($endpoint), $action, $type);
     $id = reset($responseSample)['id'];
     $urlParams = ['id' => $id, 'type' => $type?->toUrlVariable()];
 

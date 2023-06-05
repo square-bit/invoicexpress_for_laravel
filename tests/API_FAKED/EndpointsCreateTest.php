@@ -20,13 +20,13 @@ use Squarebit\InvoiceXpress\API\Endpoints\TaxesEndpoint;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can call CREATE on an endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, string $entityDataClass) {
+it('can call CREATE on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, string $entityDataClass) {
     /** @var Endpoint $endpoint */
     $endpoint = InvoiceXpress::$entity();
     $cfg = $endpoint->getEndpointConfig($action);
 
     $requestSample = getRequestSample(class_basename($endpoint), $action);
-    $responseSample = getResponseSample(class_basename($endpoint), $action.($type ? '-'.$type->value : ''));
+    $responseSample = getResponseSample(class_basename($endpoint), $action, $type);
     $urlParams = ['type' => $type?->toUrlVariable()];
 
     Http::preventStrayRequests()
@@ -36,15 +36,15 @@ it('can call CREATE on an endpoint - faked', function (string $entity, string $a
 
     $data = $entityDataClass::from($requestSample);
 
-    expect($result = $endpoint->create($type ?: $data, $type ? $data : null))
+    expect($result = $endpoint->create($type, $data))
         ->not()->toThrow(Exception::class)
         ->toBeInstanceOf($entityDataClass)
         ->and($result->toArray())
         ->toMatchArrayRecursive(reset($responseSample));
 })->with([
-    ['items', ItemsEndpoint::CREATE, null, ItemData::class],
-    ['clients', ClientsEndpoint::CREATE, null, ClientData::class],
-    ['taxes', TaxesEndpoint::CREATE, null, TaxData::class],
+    ['items', ItemsEndpoint::CREATE, EntityTypeEnum::Item, ItemData::class],
+    ['clients', ClientsEndpoint::CREATE, EntityTypeEnum::Client, ClientData::class],
+    ['taxes', TaxesEndpoint::CREATE, EntityTypeEnum::Tax, TaxData::class],
     ['estimates', EstimatesEndpoint::CREATE, EntityTypeEnum::Quote, EstimateData::class],
     ['estimates', EstimatesEndpoint::CREATE, EntityTypeEnum::Proforma, EstimateData::class],
     ['estimates', EstimatesEndpoint::CREATE, EntityTypeEnum::FeesNote, EstimateData::class],
@@ -56,5 +56,5 @@ it('can call CREATE on an endpoint - faked', function (string $entity, string $a
     ['invoices', InvoicesEndpoint::CREATE, EntityTypeEnum::InvoiceReceipt, InvoiceData::class],
     ['invoices', InvoicesEndpoint::CREATE, EntityTypeEnum::CreditNote, InvoiceData::class],
     ['invoices', InvoicesEndpoint::CREATE, EntityTypeEnum::DebitNote, InvoiceData::class],
-    ['sequences', SequencesEndpoint::CREATE, null, SequenceData::class],
+    ['sequences', SequencesEndpoint::CREATE, EntityTypeEnum::Sequence, SequenceData::class],
 ]);

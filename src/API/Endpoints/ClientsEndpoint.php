@@ -8,14 +8,14 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  */
 
 use Squarebit\InvoiceXpress\API\Data\ClientData;
-use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Creates;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Deletes;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\FindsByCode;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\FindsByName;
-use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Gets;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GetsWithType;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\ListsInvoices;
-use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Updates;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
 /**
@@ -26,14 +26,14 @@ class ClientsEndpoint extends Endpoint
     /** @uses Lists<void> */
     use Lists;
 
-    /** @uses Gets<ClientData> */
-    use Gets;
+    /** @uses GetsWithType<ClientData> */
+    use GetsWithType;
 
-    /** @uses Creates<ClientData> */
-    use Creates;
+    /** @uses CreatesWithType<ClientData> */
+    use CreatesWithType;
 
-    /** @uses Updates<ClientData> */
-    use Updates;
+    /** @uses UpdatesWithType<ClientData> */
+    use UpdatesWithType;
 
     /** @uses FindsByCode<ClientData> */
     use FindsByCode;

@@ -29,6 +29,7 @@ class EstimateData extends EntityData
         public Optional|EstimateTypeEnum $type,
         public Optional|string $sequenceNumber,
         public Optional|string $invertedSequenceNumber,
+        public Optional|int $autoAddRelatedDocument,
         public Optional|string $atcud,
         public ?string $sequenceId,
         #[WithCast(EnumCast::class)]

@@ -18,7 +18,7 @@ use Squarebit\InvoiceXpress\API\Endpoints\TaxesEndpoint;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can call UPDATE on an endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, string $entityDataClass) {
+it('can call UPDATE on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, string $entityDataClass) {
     /** @var Endpoint $endpoint */
     $endpoint = InvoiceXpress::$entity();
     $cfg = $endpoint->getEndpointConfig($action);
@@ -34,13 +34,13 @@ it('can call UPDATE on an endpoint - faked', function (string $entity, string $a
 
     $data = $entityDataClass::from($requestSample);
 
-    expect($endpoint->update($type ?: $data, $type ? $data : null))
+    expect($endpoint->update($type, $data))
         ->not()->toThrow(Exception::class)
         ->and($endpoint->getResponseCode() === 200);
 })->with([
-    ['items', ItemsEndpoint::UPDATE, null, ItemData::class],
-    ['clients', ClientsEndpoint::UPDATE, null, ClientData::class],
-    ['taxes', TaxesEndpoint::UPDATE, null, TaxData::class],
+    ['items', ItemsEndpoint::UPDATE, EntityTypeEnum::Item, ItemData::class],
+    ['clients', ClientsEndpoint::UPDATE, EntityTypeEnum::Client, ClientData::class],
+    ['taxes', TaxesEndpoint::UPDATE, EntityTypeEnum::Tax, TaxData::class],
     ['estimates', EstimatesEndpoint::UPDATE, EntityTypeEnum::Quote, EstimateData::class],
     ['estimates', EstimatesEndpoint::UPDATE, EntityTypeEnum::Proforma, EstimateData::class],
     ['estimates', EstimatesEndpoint::UPDATE, EntityTypeEnum::FeesNote, EstimateData::class],

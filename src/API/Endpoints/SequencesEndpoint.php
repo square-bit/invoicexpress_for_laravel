@@ -9,12 +9,11 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
 
 use Spatie\LaravelData\Data;
 use Squarebit\InvoiceXpress\API\Data\SequenceData;
-use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Creates;
-use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Gets;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GetsWithType;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Registers;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\SetsCurrent;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
 /**
  * @extends  Endpoint<SequenceData>
@@ -23,11 +22,11 @@ class SequencesEndpoint extends Endpoint
 {
     use Lists;
 
-    /** @uses Gets<SequenceData> */
-    use Gets;
+    /** @uses GetsWithType<SequenceData> */
+    use GetsWithType;
 
-    /** @uses Creates<SequenceData> */
-    use Creates;
+    /** @uses CreatesWithType<SequenceData> */
+    use CreatesWithType;
 
     use SetsCurrent;
     use Registers;
@@ -37,11 +36,6 @@ class SequencesEndpoint extends Endpoint
     protected function getEndpointName(): string
     {
         return self::ENDPOINT_CONFIG;
-    }
-
-    protected function getEntityType(): EntityTypeEnum
-    {
-        return EntityTypeEnum::Sequence;
     }
 
     protected function responseToDataObject(array $data): Data

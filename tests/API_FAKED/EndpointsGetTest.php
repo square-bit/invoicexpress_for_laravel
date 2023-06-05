@@ -20,12 +20,12 @@ use Squarebit\InvoiceXpress\API\Endpoints\TaxesEndpoint;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can call GET on an endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, string $entityDataClass) {
+it('can call GET on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, string $entityDataClass) {
     /** @var Endpoint $endpoint */
     $endpoint = InvoiceXpress::$entity();
     $cfg = $endpoint->getEndpointConfig($action);
 
-    $responseSample = getResponseSample(class_basename($endpoint), $action.($type ? '-'.$type->value : ''));
+    $responseSample = getResponseSample(class_basename($endpoint), $action, $type);
     $id = reset($responseSample)['id'];
     $urlParams = ['id' => $id, 'type' => $type?->toUrlVariable()];
 
@@ -34,16 +34,16 @@ it('can call GET on an endpoint - faked', function (string $entity, string $acti
             UriTemplate::expand($cfg->getUrl(), $urlParams) => Http::response($responseSample),
         ]);
 
-    expect($result = $endpoint->get($type ?: $id, $type ? $id : null))
+    expect($result = $endpoint->get($type, $id))
         ->not()->toThrow(Exception::class)
         ->toBeInstanceOf($entityDataClass)
-        ->when($type !== null, fn ($result) => $result->type->toEntityType()->toBe($type))
+        ->when(property_exists($result, 'type'), fn ($result) => $result->type->toEntityType()->toBe($type))
         ->and($result->toArray())
         ->toMatchArrayRecursive(reset($responseSample));
 })->with([
-    ['items', ItemsEndpoint::GET, null, ItemData::class],
-    ['clients', ClientsEndpoint::GET, null, ClientData::class],
-    ['taxes', TaxesEndpoint::GET, null, TaxData::class],
+    ['items', ItemsEndpoint::GET, EntityTypeEnum::Item, ItemData::class],
+    ['clients', ClientsEndpoint::GET, EntityTypeEnum::Client, ClientData::class],
+    ['taxes', TaxesEndpoint::GET, EntityTypeEnum::Tax, TaxData::class],
     ['estimates', EstimatesEndpoint::GET, EntityTypeEnum::Quote, EstimateData::class],
     ['estimates', EstimatesEndpoint::GET, EntityTypeEnum::Proforma, EstimateData::class],
     ['estimates', EstimatesEndpoint::GET, EntityTypeEnum::FeesNote, EstimateData::class],
@@ -55,5 +55,5 @@ it('can call GET on an endpoint - faked', function (string $entity, string $acti
     ['invoices', InvoicesEndpoint::GET, EntityTypeEnum::InvoiceReceipt, InvoiceData::class],
     ['invoices', InvoicesEndpoint::GET, EntityTypeEnum::CreditNote, InvoiceData::class],
     ['invoices', InvoicesEndpoint::GET, EntityTypeEnum::DebitNote, InvoiceData::class],
-    ['sequences', SequencesEndpoint::GET, null, SequenceData::class],
+    ['sequences', SequencesEndpoint::GET, EntityTypeEnum::Sequence, SequenceData::class],
 ]);

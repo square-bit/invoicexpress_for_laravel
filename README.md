@@ -182,7 +182,7 @@ $itemsEndpoint->update($item->getData());
 | Guides (Transport)           | IxTransport         | GuidesEndpoint    |
 | Guides (Devolution)          | IxDevolution        | GuidesEndpoint    |
 | Sequences                    | IxSequence          | SequencesEndpoint |
-| SAF-T                        | IxSaft              | SaftEndpoint      |
+| SAF-T                        | -                   | SaftEndpoint      |
 
 ## Testing
 

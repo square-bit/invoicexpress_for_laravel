@@ -25,6 +25,10 @@ class InvoiceXpressServiceProvider extends PackageServiceProvider
                 'create_ix_items_table',
                 'create_ix_taxes_table',
                 'create_ix_clients_table',
+                'create_ix_invoices_table',
+                'create_ix_estimates_table',
+                'create_ix_guides_table',
+                'create_ix_sequences_table',
             ])->runsMigrations();
 
     }

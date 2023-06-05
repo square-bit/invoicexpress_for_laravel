@@ -2,6 +2,7 @@
 
 namespace Squarebit\InvoiceXpress\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Client\RequestException;
@@ -9,6 +10,8 @@ use Spatie\LaravelData\Exceptions\InvalidDataClass;
 use Spatie\LaravelData\WithData;
 use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Squarebit\InvoiceXpress\API\Endpoints\Endpoint;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\InvoiceXpress;
 use Throwable;
 
 /** @phpstan-consistent-constructor */
@@ -18,11 +21,15 @@ abstract class IxModel extends Model
 
     protected Endpoint $endpoint;
 
+    protected EntityTypeEnum $entityType;
+
     protected bool $persist = false;
 
     public $incrementing = false;
 
-    abstract protected function getEndpoint(): Endpoint;
+    protected $guarded = [];
+
+    abstract public function getEndpoint(): Endpoint;
 
     public function __construct(array $attributes = [])
     {
@@ -30,6 +37,11 @@ abstract class IxModel extends Model
 
         $this->endpoint = $this->getEndpoint();
         $this->persist = config('invoicexpress-for-laravel.eloquent.persist');
+    }
+
+    public function getEntityType(): EntityTypeEnum
+    {
+        return $this->entityType;
     }
 
     public function persistLocally(bool $persist = true): static
@@ -73,7 +85,7 @@ abstract class IxModel extends Model
     {
         try {
             /** @phpstan-ignore-next-line */
-            return $this->endpoint->get($id);
+            return $this->endpoint->get($this->entityType, $id);
         } catch (RequestException) {
             return null;
         }
@@ -117,7 +129,7 @@ abstract class IxModel extends Model
     protected function createRemotely(): EntityData
     {
         /** @phpstan-ignore-next-line */
-        return $this->endpoint->create($this->getData());
+        return $this->endpoint->create($this->entityType, $this->getData());
     }
 
     protected function saveRemotely(): bool
@@ -126,7 +138,7 @@ abstract class IxModel extends Model
             if (filled($this->getData()->getId())) {
                 // update
                 /** @phpstan-ignore-next-line */
-                $this->endpoint->update($this->getData());
+                $this->endpoint->update($this->entityType, $this->getData());
             } else {
                 // create
                 $this->fromData($this->createRemotely());
@@ -177,8 +189,13 @@ abstract class IxModel extends Model
         return parent::delete();
     }
 
-    protected function fromData(EntityData $data): static
+    public function fromData(EntityData $data): static
     {
-        return $this->forceFill($data->toArray());
+        return $this->fill($data->toArray());
+    }
+
+    protected function serializeDate(DateTimeInterface $date): string
+    {
+        return $date->format(InvoiceXpress::DATE_FORMAT);
     }
 }

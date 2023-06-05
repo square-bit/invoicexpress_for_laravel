@@ -8,12 +8,11 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  */
 
 use Squarebit\InvoiceXpress\API\Data\ItemData;
-use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Creates;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Deletes;
-use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Gets;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GetsWithType;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
-use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Updates;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
 
 /**
  * @extends  Endpoint<ItemData>
@@ -23,14 +22,14 @@ class ItemsEndpoint extends Endpoint
     /** @uses Lists<ItemListFilter> */
     use Lists;
 
-    /** @uses Gets<ItemData> */
-    use Gets;
+    /** @uses GetsWithType<ItemData> */
+    use GetsWithType;
 
-    /** @uses Updates<ItemData> */
-    use Updates;
+    /** @uses UpdatesWithType<ItemData> */
+    use UpdatesWithType;
 
-    /** @uses Creates<ItemData> */
-    use Creates;
+    /** @uses CreatesWithType<ItemData> */
+    use CreatesWithType;
 
     /** @uses IXApiDelete<ItemData> */
     use Deletes;
@@ -45,10 +44,5 @@ class ItemsEndpoint extends Endpoint
     protected function responseToDataObject(array $data): ItemData
     {
         return ItemData::from($data);
-    }
-
-    protected function getEntityType(): EntityTypeEnum
-    {
-        return EntityTypeEnum::Item;
     }
 }

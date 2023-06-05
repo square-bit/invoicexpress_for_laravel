@@ -12,9 +12,13 @@ enum EntityTypeEnum: string
     case Invoice = 'invoice';
     case SimplifiedInvoice = 'simplified_invoice';
     case InvoiceReceipt = 'invoice_receipt';
-    case VatMossInvoices = 'vat_moss_invoice';
+    case VatMossInvoice = 'vat_moss_invoice';
+    case VatMossCreditNote = 'vat_moss_credit_note';
+    case VatMossReceipt = 'vat_moss_receipt';
     case CreditNote = 'credit_note';
     case DebitNote = 'debit_note';
+    case Receipt = 'receipt';
+    case CashInvoice = 'cash_invoice';
     case Quote = 'quote';
     case Proforma = 'proforma';
     case FeesNote = 'fees_note';

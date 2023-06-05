@@ -12,7 +12,7 @@ use Squarebit\InvoiceXpress\API\Enums\PaymentMechanismEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
-it('can call GENERATE_PAYMENT on an endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, PaymentMechanismEnum $payment) {
+it('can call GENERATE_PAYMENT on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, PaymentMechanismEnum $payment) {
     /** @var Endpoint $endpoint */
     $endpoint = InvoiceXpress::$entity();
     $cfg = $endpoint->getEndpointConfig($action);
@@ -39,7 +39,7 @@ it('can call GENERATE_PAYMENT on an endpoint - faked', function (string $entity,
     ['invoices', InvoicesEndpoint::GENERATE_PAYMENT, EntityTypeEnum::SimplifiedInvoice],
 ])->with(PaymentMechanismEnum::cases());
 
-it('can call CANCEL_PAYMENT on an endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, string $entityDataClass) {
+it('can call CANCEL_PAYMENT on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, string $entityDataClass) {
     /** @var Endpoint $endpoint */
     $endpoint = InvoiceXpress::$entity();
     $cfg = $endpoint->getEndpointConfig($action);
@@ -65,7 +65,7 @@ it('can call CANCEL_PAYMENT on an endpoint - faked', function (string $entity, s
     ['invoices', InvoicesEndpoint::CANCEL_PAYMENT, EntityTypeEnum::SimplifiedInvoice, InvoiceData::class],
 ]);
 
-it('cannot call GENERATE_PAYMENT on an invalid endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, string $entityDataClass) {
+it('cannot call GENERATE_PAYMENT on an invalid endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, string $entityDataClass) {
     /** @var Endpoint $endpoint */
     $endpoint = InvoiceXpress::$entity();
     $cfg = $endpoint->getEndpointConfig($action);
@@ -90,7 +90,7 @@ it('cannot call GENERATE_PAYMENT on an invalid endpoint - faked', function (stri
     ['invoices', InvoicesEndpoint::GENERATE_PAYMENT, EntityTypeEnum::DebitNote, InvoiceData::class],
 ]);
 
-it('cannot call CANCEL_PAYMENT on an invalid endpoint - faked', function (string $entity, string $action, ?EntityTypeEnum $type, string $entityDataClass) {
+it('cannot call CANCEL_PAYMENT on an invalid endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, string $entityDataClass) {
     /** @var Endpoint $endpoint */
     $endpoint = InvoiceXpress::$entity();
     $cfg = $endpoint->getEndpointConfig($action);

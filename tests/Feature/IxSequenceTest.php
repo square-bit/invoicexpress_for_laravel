@@ -113,14 +113,12 @@ it('can fail to update a Sequence', function (bool $persistLocally) {
     ]);
 
     $instance = IxSequence::find($id);
-    expect($instance)->toBeInstanceOf(IxSequence::class);
-
-    expect($instance->setCurrent())->toBeFalse();
-
+    expect($instance)->toBeInstanceOf(IxSequence::class)
+        ->and($instance->setCurrent())->toBeFalse();
 })->with([
     'persist locally' => [true],
     "don't persist locally" => [false],
-])->depends('it can create a Sequence');
+]); //->depends('it can create a Sequence');
 
 it('can refresh a Sequence from API', function (bool $persistLocally) {
 

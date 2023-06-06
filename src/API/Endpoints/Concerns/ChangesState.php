@@ -25,17 +25,17 @@ trait ChangesState
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */
-    public function changeState(EntityTypeEnum $documentType, int $id, StateData $data): EntityData
+    public function changeState(EntityTypeEnum $entityType, int $id, StateData $data): EntityData
     {
         $response = $this->call(
             action: static::CHANGE_STATE,
             urlParams: [
-                'type' => $documentType->toUrlVariable(),
+                'type' => $entityType->toUrlVariable(),
                 'id' => $id,
             ],
-            bodyData: [$documentType->value => $data->toArray()]
+            bodyData: [$entityType->value => $data->toArray()]
         );
 
-        return $this->responseToDataObject($response[$documentType->value]);
+        return $this->responseToDataObject($response[$entityType->value]);
     }
 }

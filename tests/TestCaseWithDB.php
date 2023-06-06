@@ -2,6 +2,8 @@
 
 namespace Squarebit\InvoiceXpress\Tests;
 
+use Illuminate\Support\Facades\Http;
+
 class TestCaseWithDB extends TestCase
 {
     protected array $store = [];
@@ -10,6 +12,8 @@ class TestCaseWithDB extends TestCase
     {
         $this->turnStubsToMigrations();
         parent::setUp();
+
+        Http::allowStrayRequests();
     }
 
     protected function tearDown(): void

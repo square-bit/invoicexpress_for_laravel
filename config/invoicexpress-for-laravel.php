@@ -9,8 +9,4 @@ return [
     'eloquent' => [
         'persist' => false,
     ],
-    'email' => [
-        'cc' => null,
-        'bcc' => null,
-    ],
 ];

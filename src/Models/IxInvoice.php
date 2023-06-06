@@ -8,13 +8,11 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceStatusEnum;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
-use Squarebit\InvoiceXpress\Concerns\EmailsDocument;
 use Squarebit\InvoiceXpress\Concerns\PaysDocument;
 
 class IxInvoice extends IxAbstractInvoice
 {
     use PaysDocument;
-    use EmailsDocument;
 
     protected EntityTypeEnum $entityType = EntityTypeEnum::Invoice;
 

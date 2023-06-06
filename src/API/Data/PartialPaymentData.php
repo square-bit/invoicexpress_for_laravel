@@ -38,7 +38,7 @@ class PartialPaymentData extends Data
     {
         return new self(
             amount: $amount,
-            paymentDate: $date?->format(InvoiceXpress::DATE_FORMAT) ?? Optional::create(),
+            paymentDate: $date ?? Optional::create(),
             paymentMechanism: $mechanism?->value ?? Optional::create(),
             note: Optional::create(),
             serie: Optional::create()

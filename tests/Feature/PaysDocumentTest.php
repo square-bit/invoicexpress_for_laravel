@@ -9,7 +9,7 @@ use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
 use Squarebit\InvoiceXpress\Concerns\PaysDocument;
 use Squarebit\InvoiceXpress\Models\IxInvoice;
 use Squarebit\InvoiceXpress\Models\IxReceipt;
-use Squarebit\InvoiceXpress\Models\IxSimpifiedInvoice;
+use Squarebit\InvoiceXpress\Models\IxSimplifiedInvoice;
 
 it('pays the simplified invoice', function (string $model) {
 
@@ -25,5 +25,5 @@ it('pays the simplified invoice', function (string $model) {
 
 })->with([
     'IxInvoice' => [IxInvoice::class],
-    'IxSimpifiedInvoice' => [IxSimpifiedInvoice::class],
+    'IxSimpifiedInvoice' => [IxSimplifiedInvoice::class],
 ]);

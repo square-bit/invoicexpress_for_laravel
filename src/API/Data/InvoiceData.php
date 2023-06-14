@@ -30,18 +30,18 @@ class InvoiceData extends EntityData
         public ?string $sequenceId,
         public Optional|string $sequenceNumber,
         public Optional|string $invertedSequenceNumber,
-        public Optional|string $manualSequenceNumber,
-        public Optional|int $ownerInvoiceId,
+        public null|Optional|string $manualSequenceNumber,
+        public null|Optional|int $ownerInvoiceId,
         public Optional|string $atcud,
         #[WithCast(EnumCast::class)]
-        public Optional|TaxExemptionCodeEnum $taxExemption,
-        public Optional|TaxExemptionCodeEnum $taxExemptionReason,
+        public null|Optional|TaxExemptionCodeEnum $taxExemption,
+        public null|Optional|TaxExemptionCodeEnum $taxExemptionReason,
         #[WithCast(DateTimeInterfaceCast::class, format: InvoiceXpress::DATE_FORMAT)]
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: InvoiceXpress::DATE_FORMAT)]
-        public Optional|Carbon $date,
+        public ?Carbon $date,
         #[WithCast(DateTimeInterfaceCast::class, format: InvoiceXpress::DATE_FORMAT)]
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: InvoiceXpress::DATE_FORMAT)]
-        public Optional|Carbon $dueDate,
+        public ?Carbon $dueDate,
         public ?string $reference,
         public ?string $observations,
         public ?string $retention,
@@ -53,12 +53,13 @@ class InvoiceData extends EntityData
         public Optional|float $taxes,
         public Optional|float $total,
         public Optional|string $currency,
-        public Optional|string $currencyCode,
-        public Optional|float $rate,
+        public null|Optional|string $currencyCode,
+        public null|Optional|float $rate,
         public ClientData $client,
         #[DataCollectionOf(ItemData::class)]
         public DataCollection $items,
-        public Optional|int|array $mbReference,
+        public null|Optional|int|array $mbReference,
     ) {
+        $this->date ??= now();
     }
 }

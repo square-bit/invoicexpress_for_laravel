@@ -6,6 +6,7 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Client\RequestException;
+use InvalidArgumentException;
 use Spatie\LaravelData\Exceptions\InvalidDataClass;
 use Spatie\LaravelData\WithData;
 use Squarebit\InvoiceXpress\API\Data\EntityData;
@@ -17,11 +18,13 @@ use Throwable;
 /** @phpstan-consistent-constructor */
 abstract class IxModel extends Model
 {
-    use WithData{ getData as getDataBase; }
+    use WithData{ getData as getBaseData; }
 
     protected Endpoint $endpoint;
 
     protected EntityTypeEnum $entityType;
+
+    protected string $dataClass;
 
     protected bool $persist = false;
 
@@ -59,7 +62,7 @@ abstract class IxModel extends Model
     public function getData(): EntityData
     {
         /** @var EntityData $data */
-        $data = $this->getDataBase();
+        $data = $this->getBaseData();
 
         return $data;
     }
@@ -150,7 +153,7 @@ abstract class IxModel extends Model
         }
     }
 
-    protected function saveLocally(array $options = []): bool
+    public function saveLocally(array $options = []): bool
     {
         if (! $this->persist) {
             return true;
@@ -189,9 +192,19 @@ abstract class IxModel extends Model
         return parent::delete();
     }
 
-    public function fromData(EntityData $data): static
+    public function fromData(EntityData|array $data): static
     {
-        return $this->fill($data->toArray());
+        $dataClass = $this->dataClass;
+        $data = match (true) {
+            is_array($data) => $dataClass::from($data),
+            default => $data,
+        };
+
+        if (! $data instanceof $this->dataClass) {
+            throw new InvalidArgumentException("The given value is not a $this->dataClass instance.");
+        }
+
+        return $this->fill($data->all());
     }
 
     protected function serializeDate(DateTimeInterface $date): string

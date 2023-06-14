@@ -6,23 +6,20 @@
 
 use Illuminate\Support\Facades\Http;
 use Squarebit\InvoiceXpress\Concerns\SettlesDocument;
-use Squarebit\InvoiceXpress\Models\IxClient;
+use Squarebit\InvoiceXpress\Database\Factories\IxClientFactory;
 use Squarebit\InvoiceXpress\Models\IxCreditNote;
 use Squarebit\InvoiceXpress\Models\IxDebitNote;
 use Squarebit\InvoiceXpress\Models\IxInvoice;
 use Squarebit\InvoiceXpress\Models\IxInvoiceReceipt;
 use Squarebit\InvoiceXpress\Models\IxReceipt;
-use Squarebit\InvoiceXpress\Models\IxSimpifiedInvoice;
+use Squarebit\InvoiceXpress\Models\IxSimplifiedInvoice;
 
 it('settles document', function (string $model) {
     /** @var SettlesDocument $instance */
     $instance = new $model();
     $instance->id = random_int(1, 1000);
 
-    $client = new IxClient();
-    $client->email = fake()->email;
-
-    $instance->client = $client;
+    $instance->client = IxClientFactory::new()->make();
 
     Http::fake([
         '*' => Http::response(getResponseSample(
@@ -36,7 +33,7 @@ it('settles document', function (string $model) {
 
 })->with([
     'IxInvoice' => [IxInvoice::class],
-    'IxSimpifiedInvoice' => [IxSimpifiedInvoice::class],
+    'IxSimpifiedInvoice' => [IxSimplifiedInvoice::class],
     'IxInvoiceReceipt' => [IxInvoiceReceipt::class],
     'IxReceipt' => [IxReceipt::class],
     'IxCreditNote' => [IxCreditNote::class],

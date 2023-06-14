@@ -24,15 +24,15 @@ trait UpdatesWithType
      * @throws RequestException
      * @throws Throwable
      */
-    public function update(EntityTypeEnum $documentType, EntityData $data): void
+    public function update(EntityTypeEnum $entityType, EntityData $data): void
     {
         $this->call(
             action: static::UPDATE,
             urlParams: [
-                'type' => $documentType->toUrlVariable(),
+                'type' => $entityType->toUrlVariable(),
                 'id' => $data->getId(),
             ],
-            bodyData: [$documentType->value => $data->toArray()]
+            bodyData: [$entityType->value => $data->toArray()]
         );
     }
 }

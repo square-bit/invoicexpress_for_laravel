@@ -6,7 +6,7 @@
 
 use Illuminate\Support\Facades\Http;
 use Squarebit\InvoiceXpress\Concerns\CancelsDocument;
-use Squarebit\InvoiceXpress\Models\IxClient;
+use Squarebit\InvoiceXpress\Database\Factories\IxClientFactory;
 use Squarebit\InvoiceXpress\Models\IxCreditNote;
 use Squarebit\InvoiceXpress\Models\IxDebitNote;
 use Squarebit\InvoiceXpress\Models\IxDevolution;
@@ -17,7 +17,7 @@ use Squarebit\InvoiceXpress\Models\IxProforma;
 use Squarebit\InvoiceXpress\Models\IxQuote;
 use Squarebit\InvoiceXpress\Models\IxReceipt;
 use Squarebit\InvoiceXpress\Models\IxShipping;
-use Squarebit\InvoiceXpress\Models\IxSimpifiedInvoice;
+use Squarebit\InvoiceXpress\Models\IxSimplifiedInvoice;
 use Squarebit\InvoiceXpress\Models\IxTransport;
 
 it('cancels document', function (string $model) {
@@ -25,10 +25,7 @@ it('cancels document', function (string $model) {
     $instance = new $model();
     $instance->id = random_int(1, 1000);
 
-    $client = new IxClient();
-    $client->email = fake()->email;
-
-    $instance->client = $client;
+    $instance->client = IxClientFactory::new()->make();
 
     Http::fake([
         '*' => Http::response(getResponseSample(
@@ -42,7 +39,7 @@ it('cancels document', function (string $model) {
 
 })->with([
     'IxInvoice' => [IxInvoice::class],
-    'IxSimpifiedInvoice' => [IxSimpifiedInvoice::class],
+    'IxSimpifiedInvoice' => [IxSimplifiedInvoice::class],
     'IxInvoiceReceipt' => [IxInvoiceReceipt::class],
     'IxReceipt' => [IxReceipt::class],
     'IxCreditNote' => [IxCreditNote::class],

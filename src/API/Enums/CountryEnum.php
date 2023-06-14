@@ -2,8 +2,12 @@
 
 namespace Squarebit\InvoiceXpress\API\Enums;
 
+use Squarebit\InvoiceXpress\API\Enums\Concerns\EnumEnhancements;
+
 enum CountryEnum: string
 {
+    use EnumEnhancements;
+
     case Portugal = 'Portugal';
     case UnitedStates = 'United States';
     case Uk = 'UK';

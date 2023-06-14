@@ -6,7 +6,7 @@
 
 use Illuminate\Support\Facades\Http;
 use Squarebit\InvoiceXpress\Concerns\UnsettlesDocument;
-use Squarebit\InvoiceXpress\Models\IxClient;
+use Squarebit\InvoiceXpress\Database\Factories\IxClientFactory;
 use Squarebit\InvoiceXpress\Models\IxCreditNote;
 use Squarebit\InvoiceXpress\Models\IxDebitNote;
 
@@ -15,10 +15,7 @@ it('unsettles document', function (string $model) {
     $instance = new $model();
     $instance->id = random_int(1, 1000);
 
-    $client = new IxClient();
-    $client->email = fake()->email;
-
-    $instance->client = $client;
+    $instance->client = IxClientFactory::new()->make();
 
     Http::fake([
         '*' => Http::response(getResponseSample(

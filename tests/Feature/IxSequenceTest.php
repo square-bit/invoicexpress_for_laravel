@@ -45,7 +45,7 @@ it('can create a Sequence', function (bool $persistLocally) {
     "don't persist locally" => [false],
 ]);
 
-it('can find an IxModel', function (bool $persistLocally) {
+it('can find a Sequence', function (bool $persistLocally) {
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
 
     $instance = new IxSequence();

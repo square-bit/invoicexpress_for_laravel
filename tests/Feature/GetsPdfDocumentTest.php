@@ -6,7 +6,7 @@
 
 use Illuminate\Support\Facades\Http;
 use Squarebit\InvoiceXpress\Concerns\GetsPdfDocument;
-use Squarebit\InvoiceXpress\Models\IxClient;
+use Squarebit\InvoiceXpress\Database\Factories\IxClientFactory;
 use Squarebit\InvoiceXpress\Models\IxFeesNote;
 use Squarebit\InvoiceXpress\Models\IxProforma;
 use Squarebit\InvoiceXpress\Models\IxQuote;
@@ -16,10 +16,7 @@ it('gets pdf document', function (string $model) {
     $instance = new $model();
     $instance->id = random_int(1, 1000);
 
-    $client = new IxClient();
-    $client->email = fake()->email;
-
-    $instance->client = $client;
+    $instance->client = IxClientFactory::new()->make();
 
     $sample = getResponseSample(class_basename($instance->getEndpoint()), $instance->getEndpoint()::GENERATE_PDF);
     Http::fake([
@@ -42,10 +39,7 @@ it('fails to get pdf document', function (string $model) {
     $instance = new $model();
     $instance->id = random_int(1, 1000);
 
-    $client = new IxClient();
-    $client->email = fake()->email;
-
-    $instance->client = $client;
+    $instance->client = IxClientFactory::new()->make();
 
     $instance->setGetPdfMaxRetries(random_int(1, 3));
     $sample = getResponseSample(class_basename($instance->getEndpoint()), $instance->getEndpoint()::GENERATE_PDF);

@@ -19,7 +19,7 @@ trait EmailsDocument
         string $cc = null,
         string $bcc = null,
         bool $includeLogo = true
-    ): void {
+    ): static {
 
         $clientData = EmailClientData::fromEmail($client->email ?? $this->client['email']);
 
@@ -35,5 +35,7 @@ trait EmailsDocument
                 logo: $includeLogo
             )
         );
+
+        return $this;
     }
 }

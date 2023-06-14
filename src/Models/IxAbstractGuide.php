@@ -16,6 +16,8 @@ use Squarebit\InvoiceXpress\Concerns\DeletesDocument;
 use Squarebit\InvoiceXpress\Concerns\EmailsDocument;
 use Squarebit\InvoiceXpress\Concerns\FinalizesDocument;
 use Squarebit\InvoiceXpress\Concerns\GetsPdfDocument;
+use Squarebit\InvoiceXpress\Concerns\HasClient;
+use Squarebit\InvoiceXpress\Concerns\HasItems;
 
 class IxAbstractGuide extends IxModel
 {
@@ -24,6 +26,8 @@ class IxAbstractGuide extends IxModel
     use DeletesDocument;
     use CancelsDocument;
     use GetsPdfDocument;
+    use HasClient;
+    use HasItems;
 
     protected $casts = [
         'type' => GuideTypeEnum::class,
@@ -34,15 +38,12 @@ class IxAbstractGuide extends IxModel
         'items' => 'array',
         'address_from' => 'json',
         'address_to' => 'json',
-    ];
-
-    protected string $dataClass = GuideData::class;
-
-    protected array $dates = [
         'date' => 'date:d/m/Y',
         'due_date' => 'date:d/m/Y',
         'loaded_at' => 'datetime:d/m/y H:i:s',
     ];
+
+    protected string $dataClass = GuideData::class;
 
     protected $table = 'ix_guides';
 

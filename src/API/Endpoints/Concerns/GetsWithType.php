@@ -24,16 +24,16 @@ trait GetsWithType
      * @throws RequestException
      * @throws Throwable
      */
-    public function get(EntityTypeEnum $documentType, int $id): EntityData
+    public function get(EntityTypeEnum $entityType, int $id): EntityData
     {
         $data = $this->call(
             action: static::GET,
             urlParams: [
-                'type' => $documentType->toUrlVariable(),
+                'type' => $entityType->toUrlVariable(),
                 'id' => $id,
             ],
         );
 
-        return $this->responseToDataObject($data[$documentType->value]);
+        return $this->responseToDataObject($data[$entityType->value]);
     }
 }

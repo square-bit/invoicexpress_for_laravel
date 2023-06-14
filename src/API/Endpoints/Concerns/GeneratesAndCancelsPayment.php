@@ -27,14 +27,14 @@ trait GeneratesAndCancelsPayment
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */
-    public function generatePayment(EntityTypeEnum $documentType, int $id, PartialPaymentData $data): InvoiceData
+    public function generatePayment(EntityTypeEnum $entityType, int $id, PartialPaymentData $data): InvoiceData
     {
-        $this->checkAllowed($documentType, __FUNCTION__);
+        $this->checkAllowed($entityType, __FUNCTION__);
 
         $response = $this->call(
             action: static::GENERATE_PAYMENT,
             urlParams: [
-                'type' => $documentType->toUrlVariable(),
+                'type' => $entityType->toUrlVariable(),
                 'id' => $id,
             ],
             bodyData: [self::PARTIAL_PAYMENT_ROOT_OBJECT_KEY => $data]

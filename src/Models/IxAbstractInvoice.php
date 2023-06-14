@@ -13,7 +13,11 @@ use Squarebit\InvoiceXpress\Concerns\DeletesDocument;
 use Squarebit\InvoiceXpress\Concerns\EmailsDocument;
 use Squarebit\InvoiceXpress\Concerns\FinalizesDocument;
 use Squarebit\InvoiceXpress\Concerns\GetsPdfDocument;
+use Squarebit\InvoiceXpress\Concerns\HasClient;
+use Squarebit\InvoiceXpress\Concerns\HasItems;
 use Squarebit\InvoiceXpress\Concerns\SettlesDocument;
+use Squarebit\InvoiceXpress\Models\Casts\ClientCast;
+use Squarebit\InvoiceXpress\Models\Casts\ItemsCast;
 
 class IxAbstractInvoice extends IxModel
 {
@@ -23,8 +27,10 @@ class IxAbstractInvoice extends IxModel
     use DeletesDocument;
     use SettlesDocument;
     use GetsPdfDocument;
+    use HasClient;
+    use HasItems;
 
-    protected EntityTypeEnum $entityType = EntityTypeEnum::Invoice;
+    protected EntityTypeEnum $entityType;
 
     protected string $dataClass = InvoiceData::class;
 
@@ -35,14 +41,16 @@ class IxAbstractInvoice extends IxModel
         'type' => InvoiceTypeEnum::class,
         'tax_exemption' => TaxExemptionCodeEnum::class,
         'tax_exemption_reason' => TaxExemptionCodeEnum::class,
-        'client' => 'json',
-        'items' => 'array',
+        'date' => 'date:d/m/Y',
+        'due_date' => 'date:d/m/Y',
+        'client' => ClientCast::class,
+        'items' => ItemsCast::class,
         'mb_reference' => 'json',
     ];
 
-    protected array $dates = [
-        'date' => 'date:d/m/Y',
-        'due_date' => 'date:d/m/Y',
+    protected $appends = [
+        'client',
+        'items',
     ];
 
     public function getEndpoint(): InvoicesEndpoint

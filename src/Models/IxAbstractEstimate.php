@@ -18,6 +18,8 @@ use Squarebit\InvoiceXpress\Concerns\DeletesDocument;
 use Squarebit\InvoiceXpress\Concerns\EmailsDocument;
 use Squarebit\InvoiceXpress\Concerns\FinalizesDocument;
 use Squarebit\InvoiceXpress\Concerns\GetsPdfDocument;
+use Squarebit\InvoiceXpress\Concerns\HasClient;
+use Squarebit\InvoiceXpress\Concerns\HasItems;
 use Squarebit\InvoiceXpress\Concerns\RefusesDocument;
 
 class IxAbstractEstimate extends IxModel
@@ -29,6 +31,8 @@ class IxAbstractEstimate extends IxModel
     use RefusesDocument;
     use CancelsDocument;
     use GetsPdfDocument;
+    use HasClient;
+    use HasItems;
 
     protected EntityTypeEnum $entityType = EntityTypeEnum::Quote;
 
@@ -43,9 +47,6 @@ class IxAbstractEstimate extends IxModel
         'client' => 'json',
         'items' => 'array',
         'mb_reference' => 'json',
-    ];
-
-    protected array $dates = [
         'date' => 'date:d/m/Y',
         'due_date' => 'date:d/m/Y',
     ];

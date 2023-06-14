@@ -10,50 +10,11 @@ Integrate your Laravel application with [InvoiceXpress](https://invoicexpress.co
 ## Concept
 
 This package can be used on 2 different layers:
-- interacting directly with the API endpoint.
 - via the provided Models.
+- interacting directly with the API endpoint.
 
-When interacting directly, you can, for example, create an Item using:
-```php
-use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
+Using the former allows you to **transparently** create, update and delete entities both in your application's database and in InvoiceXpress.
 
-// Define a new ItemData data object
-$data = ItemData::from([...]);
-
-// Create
-$itemData = InvoiceXpress::items()->create($data);
-
-// Update
-$itemData->description = "improved description";
-InvoiceXpress::items()->update($itemData);
-
-// Delete
-InvoiceXpress::items()->delete($itemData->getId());
-```
-on the other hand, doing the same via the Model would look like:
-```php
-use Squarebit\InvoiceXpress\API\Data\ItemData;
-
-// Define a new ItemData data object
-$data = ItemData::from([...]);
-
-// Create
-$item = (new IxItem())->fromData($data)
-    ->save();
-
-// Update
-$item->description = "improved description";
-$item->save();
-
-// Delete
-$item->delete();
-```
-
-Using this "Model" approach allows you to **transparently** create, update and delete entities **both in your application's database and in InvoiceXpress.**
-
-For this to work, you should:
-- publish and run the migrations (see below)
-- set `persist => true` in the config file (see below)
 
 ## Installation
 
@@ -100,7 +61,11 @@ If you set it to `true`, make sure you ran the migrations.
 ## Usage
 
 ### Option 1 - Via the model layer
-**With this approach, the package handles both local and remote changes to the entities.**
+With this approach, the package handles **both local and remote changes to the entities.**
+
+This however is **not enabled by default**. To enable it:
+- publish and run the migrations (see _Installation_)
+- set `persist => true` in the config file (see _Installation_)
 
 You can get a specific Item and update it:
 ```php
@@ -121,9 +86,30 @@ Or even delete it:
 ```php
 $item->delete();
 ```
+---
 
-### Option 2 - Directly with the endpoints
-With this approach, only remote changes are handled. If you want, you'll have to managed local changes (in your databse) manually. 
+#### Invoice lifecycle:
+```php
+$invoice = (new IxInvoice())
+    ->setClient(IxClient::findOrFail(1234)) // set the invoice's client
+    ->addItem(IxItem::find(2345)) // add an IxItem model
+    ->addItem(ItemData::from([....])) // you can also add from an ItemData
+    ->addItems([  // or from an array
+        ItemData::from([...]),
+        IxItem::find(3579),
+        ...
+    ])
+    ->save(); // creates the new invoice (locally and in InvoiceXpress)
+    ->finalizeDocument() // formally registers the invoice
+    ->email(); // email the invoice to the client
+    
+$receipt = $invoice
+    ->pay() // issue a receipt of payment
+    ->email(); // email that receipt to the client;
+```
+---
+### Option 2 - Directly using the endpoints
+With this approach, **only remote changes are handled**. If you want, you'll have to manage local changes (in your database) manually. 
 
 You can get a specific Item and update it:
 ```php
@@ -144,6 +130,46 @@ Or even delete it:
 ```php
 InvoiceXpress::items()->delete(1234);
 ```
+
+#### Invoice lifecycle:
+
+```php
+use Squarebit\InvoiceXpress\API\Data\ClientData;
+use Squarebit\InvoiceXpress\API\Data\InvoiceData;
+use Squarebit\InvoiceXpress\API\Data\ItemData;
+use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
+
+$invoiceEndpoint = InvoiceXpress::invoices();
+$invoiceEndpoint->create(
+    EntityTypeEnum::Invoice,
+    InvoiceData::from([
+        ...
+        'client' => ClientData::from([
+            ...
+        ]),
+        'items' => [
+            ItemData::from([])
+        ]
+    ]))
+    ->setClient(IxClient::findOrFail(1234)) // set the invoice's client
+    ->setClient(IxClient::findOrFail(1234)) // or set it from the
+    ->addItem(IxItem::find(2345)) // add an IxItem model
+    ->addItem(ItemData::from([....])) // you can also add from an ItemData
+    ->addItems([  // or from an array
+        ItemData::from([...]),
+        IxItem::find(3579),
+        ...
+    ])
+    ->save(); // creates the new invoice (locally and in InvoiceXpress)
+    ->finalizeDocument() // formally registers the invoice
+    ->email(); // email the invoice to the client
+    
+$receipt = $invoice
+    ->pay() // issue a receipt of payment
+    ->email(); // email that receipt to the client;
+```
+
 ### You can mix both options, if you want
 ```php
 $itemsEndpoint = InvoiceXpress::items();

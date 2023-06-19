@@ -7,6 +7,7 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/invoices
  */
 
+use Squarebit\InvoiceXpress\API\Data\Filters\InvoiceListFilter;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\ChangesState;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
@@ -24,34 +25,28 @@ use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
  */
 class InvoicesEndpoint extends Endpoint
 {
-    /** @uses Lists<InvoiceQueryFilter> */
+    /** @use Lists<InvoiceListFilter, InvoiceData> */
     use Lists;
 
-    /** @uses GetsWithType<InvoiceData> */
+    /** @use GetsWithType<InvoiceData> */
     use GetsWithType;
 
-    /** @uses CreatesWithType<InvoiceData> */
+    /** @use CreatesWithType<InvoiceData> */
     use CreatesWithType;
 
-    /** @uses UpdatesWithType<InvoiceData> */
+    /** @use UpdatesWithType<InvoiceData> */
     use UpdatesWithType;
 
-    /** @uses SendsByEmail<InvoiceData> */
     use SendsByEmail;
-
-    /** @uses GeneratesPDF<InvoiceData> */
     use GeneratesPDF;
 
-    /** @uses ChangesState<InvoiceData> */
+    /** @use ChangesState<InvoiceData> */
     use ChangesState;
 
-    /** @uses GetsQRCode<InvoiceData> */
     use GetsQRCode;
-
-    /** @uses GeneratesAndCancelsPayment<InvoiceData> */
     use GeneratesAndCancelsPayment;
 
-    /** @uses RelatedDocuments<InvoiceData> */
+    /** @use RelatedDocuments<InvoiceData> */
     use RelatedDocuments;
 
     public const ENDPOINT_CONFIG = 'invoice';

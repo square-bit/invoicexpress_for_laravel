@@ -37,6 +37,9 @@ class InvoiceData extends EntityData
         'rate',
     ];
 
+    /**
+     * @param  DataCollection<int, ItemData>  $items
+     */
     public function __construct(
         public Optional|int $id,
         #[WithCast(EnumCast::class)]

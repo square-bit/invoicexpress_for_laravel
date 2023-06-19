@@ -11,6 +11,9 @@ use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
+/**
+ * @template T of EntityData
+ */
 trait FindsByName
 {
     public const FIND_BY_NAME = 'find-by-name';
@@ -20,6 +23,8 @@ trait FindsByName
     abstract protected function getEntityType(): EntityTypeEnum;
 
     /**
+     * @return T
+     *
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */

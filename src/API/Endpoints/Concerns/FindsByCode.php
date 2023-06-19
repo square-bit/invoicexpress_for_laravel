@@ -12,7 +12,7 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
 /**
- * @template TData of EntityData
+ * @template T of EntityData
  */
 trait FindsByCode
 {
@@ -23,6 +23,8 @@ trait FindsByCode
     abstract protected function getEntityType(): EntityTypeEnum;
 
     /**
+     * @return T
+     *
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */

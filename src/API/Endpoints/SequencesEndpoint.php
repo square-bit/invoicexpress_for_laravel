@@ -8,6 +8,7 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  */
 
 use Spatie\LaravelData\Data;
+use Squarebit\InvoiceXpress\API\Data\Filters\Base\QueryFilter;
 use Squarebit\InvoiceXpress\API\Data\SequenceData;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GetsWithType;
@@ -20,15 +21,18 @@ use Squarebit\InvoiceXpress\API\Endpoints\Concerns\SetsCurrent;
  */
 class SequencesEndpoint extends Endpoint
 {
+    /** @use Lists<QueryFilter, SequenceData> */
     use Lists;
 
-    /** @uses GetsWithType<SequenceData> */
+    /** @use GetsWithType<SequenceData> */
     use GetsWithType;
 
-    /** @uses CreatesWithType<SequenceData> */
+    /** @use CreatesWithType<SequenceData> */
     use CreatesWithType;
 
     use SetsCurrent;
+
+    /** @use Registers<SequenceData> */
     use Registers;
 
     public const ENDPOINT_CONFIG = 'sequence';

@@ -8,6 +8,9 @@ use Squarebit\InvoiceXpress\API\Enums\CountryEnum;
 use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\Models\IxClient;
 
+/**
+ * @template-extends Factory<IxClient>
+ */
 class IxClientFactory extends Factory
 {
     protected $model = IxClient::class;

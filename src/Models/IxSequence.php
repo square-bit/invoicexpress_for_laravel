@@ -7,6 +7,11 @@ use Squarebit\InvoiceXpress\API\Data\SequenceData;
 use Squarebit\InvoiceXpress\API\Endpoints\SequencesEndpoint;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 
+/**
+ * @property ?int $id
+ *
+ * @template-extends IxModel<SequenceData>
+ */
 class IxSequence extends IxModel
 {
     protected EntityTypeEnum $entityType = EntityTypeEnum::Sequence;
@@ -26,8 +31,12 @@ class IxSequence extends IxModel
 
     public function setCurrent(): bool
     {
+        if ($this->id === null) {
+            return false;
+        }
+
         try {
-            $this->getEndpoint()->setCurrent($this->getKey());
+            $this->getEndpoint()->setCurrent($this->id);
 
             return true;
         } catch (RequestException) {

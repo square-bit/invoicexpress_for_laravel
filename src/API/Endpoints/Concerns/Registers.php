@@ -7,16 +7,20 @@
 namespace Squarebit\InvoiceXpress\API\Endpoints\Concerns;
 
 use Illuminate\Http\Client\RequestException;
+use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Squarebit\InvoiceXpress\API\Data\EntityListData;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
+/**
+ * @template T of EntityData
+ */
 trait Registers
 {
-    use Lists;
-
     public const REGISTER = 'register';
 
     /**
+     * @return EntityListData<T>
+     *
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */

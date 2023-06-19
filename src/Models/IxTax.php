@@ -8,6 +8,9 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\TaxCodeEnum;
 use Squarebit\InvoiceXpress\API\Enums\TaxRegionEnum;
 
+/**
+ * @template-extends IxModel<TaxData>
+ */
 class IxTax extends IxModel
 {
     protected EntityTypeEnum $entityType = EntityTypeEnum::Tax;

@@ -24,6 +24,7 @@ abstract class IxModel extends Model
 {
     use WithData{ getData as getBaseData; }
 
+    /** @var Endpoint<T> */
     protected Endpoint $endpoint;
 
     protected EntityTypeEnum $entityType;
@@ -37,6 +38,9 @@ abstract class IxModel extends Model
 
     protected $guarded = [];
 
+    /**
+     * @return Endpoint<T>
+     */
     abstract public function getEndpoint(): Endpoint;
 
     public function __construct(array $attributes = [])
@@ -75,7 +79,10 @@ abstract class IxModel extends Model
         return $data;
     }
 
-    public static function find($id, $columns = ['*'])
+    /**
+     * @return IxModel<T>|Collection<int, IxModel<T>>|null
+     */
+    public static function find(int $id, array $columns = ['*']): self|Collection|null
     {
         $instance = new static();
         if ($found = $instance->findLocally($id, $columns)) {
@@ -168,7 +175,10 @@ abstract class IxModel extends Model
         return parent::save($options);
     }
 
-    protected function findLocally($id, array $columns = ['*']): static|Collection|null
+    /**
+     * @return IxModel<T>|Collection<int, IxModel<T>>|null
+     */
+    protected function findLocally(int $id, array $columns = ['*']): self|Collection|null
     {
         if (! $this->persist) {
             return null;

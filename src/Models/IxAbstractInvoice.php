@@ -21,9 +21,12 @@ use Squarebit\InvoiceXpress\Concerns\SettlesDocument;
 use Squarebit\InvoiceXpress\Models\Scopes\InvoiceTypeScope;
 
 /**
+ * @property ?InvoiceTypeEnum $type
  * @property float $total
  * @property DataCollection<ItemData> $items
  * @property ?ClientData $client
+ *
+ * @template-extends IxModel<InvoiceData>
  */
 class IxAbstractInvoice extends IxModel
 {

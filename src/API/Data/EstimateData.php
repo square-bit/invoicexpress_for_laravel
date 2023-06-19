@@ -21,6 +21,9 @@ use Squarebit\InvoiceXpress\InvoiceXpress;
 #[MapName(SnakeCaseMapper::class)]
 class EstimateData extends EntityData
 {
+    /**
+     * @param  DataCollection<int, ItemData>  $items
+     */
     public function __construct(
         public Optional|int $id,
         #[WithCast(EnumCast::class)]

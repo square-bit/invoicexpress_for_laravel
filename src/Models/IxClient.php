@@ -9,6 +9,9 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
+/**
+ * @template-extends IxModel<ClientData>
+ */
 class IxClient extends IxModel
 {
     protected EntityTypeEnum $entityType = EntityTypeEnum::Client;

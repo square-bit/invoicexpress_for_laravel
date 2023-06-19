@@ -9,6 +9,9 @@ use Squarebit\InvoiceXpress\Models\IxAbstractGuide;
 
 class GuideTypeScope implements Scope
 {
+    /**
+     * @param  Builder<IxAbstractGuide>  $builder
+     */
     public function apply(Builder $builder, Model $model): void
     {
         if ($model instanceof IxAbstractGuide) {

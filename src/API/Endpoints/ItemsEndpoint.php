@@ -7,6 +7,7 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/items
  */
 
+use Squarebit\InvoiceXpress\API\Data\Filters\ItemListFilter;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Deletes;
@@ -20,19 +21,18 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
  */
 class ItemsEndpoint extends Endpoint
 {
-    /** @uses Lists<ItemListFilter> */
+    /** @use Lists<ItemListFilter, ItemData> */
     use Lists;
 
-    /** @uses GetsWithType<ItemData> */
+    /** @use GetsWithType<ItemData> */
     use GetsWithType {get as getWithType; }
 
-    /** @uses UpdatesWithType<ItemData> */
+    /** @use UpdatesWithType<ItemData> */
     use UpdatesWithType {update as updateWithType; }
 
-    /** @uses CreatesWithType<ItemData> */
+    /** @use CreatesWithType<ItemData> */
     use CreatesWithType {create as createWithType; }
 
-    /** @uses IXApiDelete<ItemData> */
     use Deletes;
 
     public const ENDPOINT_CONFIG = 'item';
@@ -49,6 +49,7 @@ class ItemsEndpoint extends Endpoint
 
     public function get(int|EntityTypeEnum $entityType, ?int $id = null): ItemData
     {
+        /** @phpstan-ignore-next-line */
         return $id
             ? $this->getWithType($entityType, $id)
             : $this->getWithType(EntityTypeEnum::Item, $id);
@@ -56,6 +57,7 @@ class ItemsEndpoint extends Endpoint
 
     public function create(ItemData|EntityTypeEnum $entityType, ?ItemData $data = null): ItemData
     {
+        /** @phpstan-ignore-next-line */
         return $data
             ? $this->createWithType($entityType, $data)
             : $this->createWithType(EntityTypeEnum::Item, $entityType);

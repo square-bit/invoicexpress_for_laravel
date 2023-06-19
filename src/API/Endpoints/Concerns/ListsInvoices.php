@@ -17,6 +17,8 @@ trait ListsInvoices
     public const LIST_INVOICES = 'list-invoices';
 
     /**
+     * @return EntityListData<InvoiceData>
+     *
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */

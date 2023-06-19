@@ -7,6 +7,7 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/guides
  */
 
+use Squarebit\InvoiceXpress\API\Data\Filters\GuideListFilter;
 use Squarebit\InvoiceXpress\API\Data\GuideData;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\ChangesState;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
@@ -25,19 +26,19 @@ class GuidesEndpoint extends Endpoint
     use SendsByEmail;
     use GeneratesPDF;
 
-    /** @uses GetsWithType<GuideData> */
+    /** @use GetsWithType<GuideData> */
     use GetsWithType;
 
-    /** @uses Lists<GuideQueryFilter> */
+    /** @use Lists<GuideListFilter, GuideData> */
     use Lists;
 
-    /** @uses CreatesWithType<GuideData> */
+    /** @use CreatesWithType<GuideData> */
     use CreatesWithType;
 
-    /** @uses UpdatesWithType<GuideData> */
+    /** @use UpdatesWithType<GuideData> */
     use UpdatesWithType;
 
-    /** @uses ChangesState<GuideData> */
+    /** @use ChangesState<GuideData> */
     use ChangesState;
 
     use GetsQRCode;

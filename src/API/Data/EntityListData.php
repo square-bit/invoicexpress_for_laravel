@@ -11,7 +11,7 @@ use Spatie\LaravelData\Optional;
 /**
  * @template T of EntityData
  *
- * @property array<T> $items
+ * @property array<int, T> $items
  */
 #[MapName(SnakeCaseMapper::class)]
 class EntityListData extends Data
@@ -23,7 +23,7 @@ class EntityListData extends Data
     }
 
     /**
-     * @return Collection<T>
+     * @return Collection<int, T>
      */
     public function items(): Collection
     {

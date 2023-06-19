@@ -9,6 +9,9 @@ use Squarebit\InvoiceXpress\Models\IxAbstractEstimate;
 
 class EstimateTypeScope implements Scope
 {
+    /**
+     * @param  Builder<IxAbstractEstimate>  $builder
+     */
     public function apply(Builder $builder, Model $model): void
     {
         if ($model instanceof IxAbstractEstimate) {

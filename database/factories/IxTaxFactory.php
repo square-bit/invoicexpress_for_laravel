@@ -7,6 +7,9 @@ use Squarebit\InvoiceXpress\API\Enums\TaxCodeEnum;
 use Squarebit\InvoiceXpress\API\Enums\TaxRegionEnum;
 use Squarebit\InvoiceXpress\Models\IxTax;
 
+/**
+ * @template-extends Factory<IxTax>
+ */
 class IxTaxFactory extends Factory
 {
     protected $model = IxTax::class;

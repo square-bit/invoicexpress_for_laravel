@@ -9,6 +9,9 @@ use Squarebit\InvoiceXpress\Models\IxAbstractInvoice;
 
 class InvoiceTypeScope implements Scope
 {
+    /**
+     * @param  Builder<IxAbstractInvoice>  $builder
+     */
     public function apply(Builder $builder, Model $model): void
     {
         if ($model instanceof IxAbstractInvoice) {

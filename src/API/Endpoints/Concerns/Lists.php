@@ -1,18 +1,16 @@
 <?php
-/**
- * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
- * Squarebit, Lda - Portugal - www.square-bit.com
- */
 
 namespace Squarebit\InvoiceXpress\API\Endpoints\Concerns;
 
 use Illuminate\Http\Client\RequestException;
+use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Squarebit\InvoiceXpress\API\Data\EntityListData;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\QueryFilter;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
 /**
- * @template T of QueryFilter|null
+ * @template Q of ?QueryFilter
+ * @template T of EntityData
  */
 trait Lists
 {
@@ -21,7 +19,8 @@ trait Lists
     protected const PAGINATION_TAG = 'pagination';
 
     /**
-     * @param  T|QueryFilter|null  $filter
+     * @param  Q|null  $filter
+     * @return EntityListData<T>
      *
      * @throws RequestException
      * @throws UnknownAPIMethodException
@@ -36,6 +35,9 @@ trait Lists
         return $this->handleListResponse($data);
     }
 
+    /**
+     * @return EntityListData<T>
+     */
     protected function handleListResponse(array $response): EntityListData
     {
         // The response array contains 2 keys: 'pagination' and a variable one depending

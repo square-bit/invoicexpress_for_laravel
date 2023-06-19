@@ -27,9 +27,12 @@ use Squarebit\InvoiceXpress\Concerns\RefusesDocument;
 use Squarebit\InvoiceXpress\Models\Scopes\EstimateTypeScope;
 
 /**
+ * @property ?EstimateTypeEnum $type
  * @property float $total
- * @property DataCollection<EstimateData> $items
+ * @property DataCollection<ItemData> $items
  * @property ?ClientData $client
+ *
+ * @template-extends IxModel<EstimateData>
  */
 class IxAbstractEstimate extends IxModel
 {

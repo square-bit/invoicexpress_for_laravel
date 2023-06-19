@@ -12,14 +12,14 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Throwable;
 
 /**
- * @template TData of EntityData
+ * @template T of EntityData
  */
 trait GetsWithType
 {
     public const GET = 'get';
 
     /**
-     * @return TData|EntityData
+     * @return T
      *
      * @throws RequestException
      * @throws Throwable

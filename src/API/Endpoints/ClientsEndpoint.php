@@ -23,27 +23,25 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
  */
 class ClientsEndpoint extends Endpoint
 {
-    /** @uses Lists<void> */
+    /** @use Lists<null, ClientData> */
     use Lists;
 
-    /** @uses GetsWithType<ClientData> */
+    /** @use GetsWithType<ClientData> */
     use GetsWithType {get as getWithType; }
 
-    /** @uses CreatesWithType<ClientData> */
+    /** @use CreatesWithType<ClientData> */
     use CreatesWithType {create as createWithType; }
 
-    /** @uses UpdatesWithType<ClientData> */
+    /** @use UpdatesWithType<ClientData> */
     use UpdatesWithType {update as updateWithType; }
 
-    /** @uses FindsByCode<ClientData> */
+    /** @use FindsByCode<ClientData> */
     use FindsByCode;
 
-    /** @uses FindsByName<ClientData> */
+    /** @use FindsByName<ClientData> */
     use FindsByName;
 
-    /** @uses ListsInvoices<ClientData> */
     use ListsInvoices;
-
     use Deletes;
 
     public const ENDPOINT_CONFIG = 'client';
@@ -65,6 +63,7 @@ class ClientsEndpoint extends Endpoint
 
     public function get(int|EntityTypeEnum $entityType, ?int $id = null): ClientData
     {
+        /** @phpstan-ignore-next-line */
         return $id
             ? $this->getWithType($entityType, $id)
             : $this->getWithType($this->getEntityType(), $id);
@@ -72,6 +71,7 @@ class ClientsEndpoint extends Endpoint
 
     public function create(ClientData|EntityTypeEnum $entityType, ?ClientData $data = null): ClientData
     {
+        /** @phpstan-ignore-next-line */
         return $data
             ? $this->createWithType($entityType, $data)
             : $this->createWithType($this->getEntityType(), $entityType);

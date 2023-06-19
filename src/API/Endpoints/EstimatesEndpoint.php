@@ -9,6 +9,7 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
 
 use Spatie\LaravelData\Data;
 use Squarebit\InvoiceXpress\API\Data\EstimateData;
+use Squarebit\InvoiceXpress\API\Data\Filters\EstimateListFilter;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\ChangesState;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GeneratesPDF;
@@ -23,21 +24,21 @@ use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
 class EstimatesEndpoint extends Endpoint
 {
     use SendsByEmail;
-
-    /** @uses GeneratesPDF<EstimateData> */
     use GeneratesPDF;
 
-    /** @uses GetsWithType<EstimateData> */
+    /** @use GetsWithType<EstimateData> */
     use GetsWithType;
 
+    /** @use Lists<EstimateListFilter, EstimateData> */
     use Lists;
 
-    /** @uses \Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType<EstimateData> */
+    /** @use CreatesWithType<EstimateData> */
     use CreatesWithType;
 
-    /** @uses UpdatesWithType<EstimateData> */
+    /** @use UpdatesWithType<EstimateData> */
     use UpdatesWithType;
 
+    /** @use ChangesState<EstimateData> */
     use ChangesState;
 
     public const ENDPOINT_CONFIG = 'estimate';

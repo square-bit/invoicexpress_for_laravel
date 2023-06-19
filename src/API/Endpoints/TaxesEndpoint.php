@@ -7,6 +7,7 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/taxes
  */
 
+use Squarebit\InvoiceXpress\API\Data\Filters\Base\QueryFilter;
 use Squarebit\InvoiceXpress\API\Data\TaxData;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Deletes;
@@ -20,15 +21,16 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
  */
 class TaxesEndpoint extends Endpoint
 {
+    /** @use Lists<QueryFilter, TaxData> */
     use Lists;
 
-    /** @uses GetsWithType<TaxData> */
+    /** @use GetsWithType<TaxData> */
     use GetsWithType {get as getWithType; }
 
-    /** @uses UpdatesWithType<TaxData> */
+    /** @use UpdatesWithType<TaxData> */
     use UpdatesWithType {update as updateWithType; }
 
-    /** @uses CreatesWithType<TaxData> */
+    /** @use CreatesWithType<TaxData> */
     use CreatesWithType {create as createWithType; }
 
     use Deletes;
@@ -47,6 +49,7 @@ class TaxesEndpoint extends Endpoint
 
     public function get(int|EntityTypeEnum $entityType, ?int $id = null): TaxData
     {
+        /** @phpstan-ignore-next-line */
         return $id
             ? $this->getWithType($entityType, $id)
             : $this->getWithType(EntityTypeEnum::Tax, $id);
@@ -54,6 +57,7 @@ class TaxesEndpoint extends Endpoint
 
     public function create(TaxData|EntityTypeEnum $entityType, ?TaxData $data = null): TaxData
     {
+        /** @phpstan-ignore-next-line */
         return $data
             ? $this->createWithType($entityType, $data)
             : $this->createWithType(EntityTypeEnum::Tax, $entityType);

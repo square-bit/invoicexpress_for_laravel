@@ -30,7 +30,7 @@ class ItemData extends EntityData
         public Optional|int $id,
         public string $name,
         public ?string $description,
-        public string $unitPrice,
+        public float $unitPrice,
         public ?string $unit,
         public ?float $quantity,
         public TaxData $tax,

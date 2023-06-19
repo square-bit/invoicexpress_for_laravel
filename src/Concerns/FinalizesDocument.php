@@ -14,8 +14,7 @@ trait FinalizesDocument
 
     public function finalizeDocument(): static
     {
-        $this->changeStateTo(DocumentEventEnum::Finalized)
-            ->saveLocally();
+        $this->changeStateTo(DocumentEventEnum::Finalized);
 
         return $this;
     }

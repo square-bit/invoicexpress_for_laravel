@@ -7,6 +7,7 @@
 namespace Squarebit\InvoiceXpress\Concerns;
 
 use Illuminate\Support\Collection;
+use Spatie\LaravelData\DataCollection;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\Models\IxItem;
 
@@ -23,7 +24,10 @@ trait HasItems
         $itemData->quantity = $quantity;
         $itemData->unitPrice = $value ?? $itemData->unitPrice;
 
-        $this->items->add($itemData->except('id'));
+        $items = $this->items?->all() ?? [];
+        $items[] = $itemData->except('id');
+
+        $this->items = new DataCollection(ItemData::class, $items);
 
         return $this;
     }

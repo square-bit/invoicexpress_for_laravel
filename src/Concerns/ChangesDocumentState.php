@@ -19,6 +19,9 @@ trait ChangesDocumentState
             StateData::event($event)
         );
 
-        return $this->fromData($data);
+        $this->fromData($data)
+            ->saveLocally();
+
+        return $this;
     }
 }

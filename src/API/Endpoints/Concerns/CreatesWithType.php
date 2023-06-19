@@ -30,7 +30,7 @@ trait CreatesWithType
         $response = $this->call(
             action: static::CREATE,
             urlParams: ['type' => $entityType->toUrlVariable()],
-            bodyData: [$entityType->value => $data->toArray()]
+            bodyData: [$entityType->value => $data->toCreateData()]
         );
 
         return $this->responseToDataObject($response[$entityType->value]);

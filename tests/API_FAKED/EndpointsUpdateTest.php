@@ -53,3 +53,28 @@ it('can call UPDATE on an endpoint - faked', function (string $entity, string $a
     ['invoices', InvoicesEndpoint::UPDATE, EntityTypeEnum::CreditNote, InvoiceData::class],
     ['invoices', InvoicesEndpoint::UPDATE, EntityTypeEnum::DebitNote, InvoiceData::class],
 ]);
+
+it('can call one-arg UPDATE on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, string $entityDataClass) {
+    /** @var Endpoint $endpoint */
+    $endpoint = InvoiceXpress::$entity();
+    $cfg = $endpoint->getEndpointConfig($action);
+
+    $requestSample = getRequestSample(class_basename($endpoint), $action);
+    $id = $requestSample['id'];
+    $urlParams = ['id' => $id, 'type' => $type?->toUrlVariable()];
+
+    Http::preventStrayRequests()
+        ->fake([
+            UriTemplate::expand($cfg->getUrl(), $urlParams) => Http::response(),
+        ]);
+
+    $data = $entityDataClass::from($requestSample);
+
+    expect($endpoint->update($data))
+        ->not()->toThrow(Exception::class)
+        ->and($endpoint->getResponseCode() === 200);
+})->with([
+    ['items', ItemsEndpoint::UPDATE, EntityTypeEnum::Item, ItemData::class],
+    ['clients', ClientsEndpoint::UPDATE, EntityTypeEnum::Client, ClientData::class],
+    ['taxes', TaxesEndpoint::UPDATE, EntityTypeEnum::Tax, TaxData::class],
+]);

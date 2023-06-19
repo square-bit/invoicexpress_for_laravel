@@ -6,6 +6,8 @@
 
 namespace Squarebit\InvoiceXpress\Models;
 
+use Spatie\LaravelData\DataCollection;
+use Squarebit\InvoiceXpress\API\Data\ClientData;
 use Squarebit\InvoiceXpress\API\Data\GuideData;
 use Squarebit\InvoiceXpress\API\Endpoints\GuidesEndpoint;
 use Squarebit\InvoiceXpress\API\Enums\GuideStatusEnum;
@@ -18,7 +20,13 @@ use Squarebit\InvoiceXpress\Concerns\FinalizesDocument;
 use Squarebit\InvoiceXpress\Concerns\GetsPdfDocument;
 use Squarebit\InvoiceXpress\Concerns\HasClient;
 use Squarebit\InvoiceXpress\Concerns\HasItems;
+use Squarebit\InvoiceXpress\Models\Scopes\GuideTypeScope;
 
+/**
+ * @property float $total
+ * @property DataCollection<GuideData> $items
+ * @property ?ClientData $client
+ */
 class IxAbstractGuide extends IxModel
 {
     use EmailsDocument;
@@ -47,8 +55,18 @@ class IxAbstractGuide extends IxModel
 
     protected $table = 'ix_guides';
 
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new GuideTypeScope());
+    }
+
     public function getEndpoint(): GuidesEndpoint
     {
         return new GuidesEndpoint();
+    }
+
+    public function getGuideType(): GuideTypeEnum
+    {
+        return GuideTypeEnum::from($this->entityType->toStudlyCase());
     }
 }

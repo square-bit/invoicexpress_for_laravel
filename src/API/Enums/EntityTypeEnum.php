@@ -32,4 +32,9 @@ enum EntityTypeEnum: string
     {
         return Str::plural($this->value);
     }
+
+    public function toStudlyCase(): string
+    {
+        return Str::studly($this->value);
+    }
 }

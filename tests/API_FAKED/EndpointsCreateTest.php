@@ -58,3 +58,30 @@ it('can call CREATE on an endpoint - faked', function (string $entity, string $a
     ['invoices', InvoicesEndpoint::CREATE, EntityTypeEnum::DebitNote, InvoiceData::class],
     ['sequences', SequencesEndpoint::CREATE, EntityTypeEnum::Sequence, SequenceData::class],
 ]);
+
+it('can call one-arg CREATE on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, string $entityDataClass) {
+    /** @var Endpoint $endpoint */
+    $endpoint = InvoiceXpress::$entity();
+    $cfg = $endpoint->getEndpointConfig($action);
+
+    $requestSample = getRequestSample(class_basename($endpoint), $action);
+    $responseSample = getResponseSample(class_basename($endpoint), $action, $type);
+    $urlParams = ['type' => $type?->toUrlVariable()];
+
+    Http::preventStrayRequests()
+        ->fake([
+            UriTemplate::expand($cfg->getUrl(), $urlParams) => Http::response($responseSample),
+        ]);
+
+    $data = $entityDataClass::from($requestSample);
+
+    expect($result = $endpoint->create($data))
+        ->not()->toThrow(Exception::class)
+        ->toBeInstanceOf($entityDataClass)
+        ->and($result->toArray())
+        ->toMatchArrayRecursive(reset($responseSample));
+})->with([
+    ['items', ItemsEndpoint::CREATE, EntityTypeEnum::Item, ItemData::class],
+    ['clients', ClientsEndpoint::CREATE, EntityTypeEnum::Client, ClientData::class],
+    ['taxes', TaxesEndpoint::CREATE, EntityTypeEnum::Tax, TaxData::class],
+]);

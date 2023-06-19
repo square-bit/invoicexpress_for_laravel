@@ -31,7 +31,7 @@ it('sends document via email', function (string $model) {
     $instance = new $model();
     $instance->id = random_int(1, 1000);
 
-    $instance->client = IxClientFactory::new()->make();
+    $instance->client = IxClientFactory::new()->make()->getData();
 
     expect(fn () => $instance->email())
         ->not()->toThrow(Exception::class);

@@ -9,7 +9,7 @@ namespace Squarebit\InvoiceXpress\API\Endpoints\Concerns;
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
-use Throwable;
+use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
 /**
  * @template T of EntityData
@@ -22,7 +22,7 @@ trait UpdatesWithType
      * @param  T  $data
      *
      * @throws RequestException
-     * @throws Throwable
+     * @throws UnknownAPIMethodException
      */
     public function update(EntityTypeEnum $entityType, EntityData $data): void
     {
@@ -32,7 +32,7 @@ trait UpdatesWithType
                 'type' => $entityType->toUrlVariable(),
                 'id' => $data->getId(),
             ],
-            bodyData: [$entityType->value => $data->toArray()]
+            bodyData: [$entityType->value => $data->toUpdateData()]
         );
     }
 }

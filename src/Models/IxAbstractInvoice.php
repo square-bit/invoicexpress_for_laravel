@@ -2,9 +2,11 @@
 
 namespace Squarebit\InvoiceXpress\Models;
 
+use Spatie\LaravelData\DataCollection;
+use Squarebit\InvoiceXpress\API\Data\ClientData;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
+use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceStatusEnum;
 use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
 use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
@@ -16,9 +18,13 @@ use Squarebit\InvoiceXpress\Concerns\GetsPdfDocument;
 use Squarebit\InvoiceXpress\Concerns\HasClient;
 use Squarebit\InvoiceXpress\Concerns\HasItems;
 use Squarebit\InvoiceXpress\Concerns\SettlesDocument;
-use Squarebit\InvoiceXpress\Models\Casts\ClientCast;
-use Squarebit\InvoiceXpress\Models\Casts\ItemsCast;
+use Squarebit\InvoiceXpress\Models\Scopes\InvoiceTypeScope;
 
+/**
+ * @property float $total
+ * @property DataCollection<ItemData> $items
+ * @property ?ClientData $client
+ */
 class IxAbstractInvoice extends IxModel
 {
     use EmailsDocument;
@@ -29,8 +35,6 @@ class IxAbstractInvoice extends IxModel
     use GetsPdfDocument;
     use HasClient;
     use HasItems;
-
-    protected EntityTypeEnum $entityType;
 
     protected string $dataClass = InvoiceData::class;
 
@@ -43,8 +47,8 @@ class IxAbstractInvoice extends IxModel
         'tax_exemption_reason' => TaxExemptionCodeEnum::class,
         'date' => 'date:d/m/Y',
         'due_date' => 'date:d/m/Y',
-        'client' => ClientCast::class,
-        'items' => ItemsCast::class,
+        'client' => ClientData::class,
+        'items' => DataCollection::class.':'.ItemData::class,
         'mb_reference' => 'json',
     ];
 
@@ -53,8 +57,18 @@ class IxAbstractInvoice extends IxModel
         'items',
     ];
 
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new InvoiceTypeScope());
+    }
+
     public function getEndpoint(): InvoicesEndpoint
     {
         return new InvoicesEndpoint();
+    }
+
+    public function getInvoiceType(): InvoiceTypeEnum
+    {
+        return InvoiceTypeEnum::from($this->entityType->toStudlyCase());
     }
 }

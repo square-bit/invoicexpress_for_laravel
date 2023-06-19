@@ -15,7 +15,11 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\InvoiceXpress;
 use Throwable;
 
-/** @phpstan-consistent-constructor */
+/**
+ * @template T of EntityData
+ *
+ * @phpstan-consistent-constructor
+ */
 abstract class IxModel extends Model
 {
     use WithData{ getData as getBaseData; }
@@ -24,6 +28,7 @@ abstract class IxModel extends Model
 
     protected EntityTypeEnum $entityType;
 
+    /** @var class-string<T> */
     protected string $dataClass;
 
     protected bool $persist = false;
@@ -59,6 +64,9 @@ abstract class IxModel extends Model
         return $this->persist;
     }
 
+    /**
+     * @return T
+     */
     public function getData(): EntityData
     {
         /** @var EntityData $data */
@@ -139,11 +147,9 @@ abstract class IxModel extends Model
     {
         try {
             if (filled($this->getData()->getId())) {
-                // update
                 /** @phpstan-ignore-next-line */
                 $this->endpoint->update($this->entityType, $this->getData());
             } else {
-                // create
                 $this->fromData($this->createRemotely());
             }
 

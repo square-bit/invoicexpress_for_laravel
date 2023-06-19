@@ -16,7 +16,7 @@ it('gets pdf document', function (string $model) {
     $instance = new $model();
     $instance->id = random_int(1, 1000);
 
-    $instance->client = IxClientFactory::new()->make();
+    $instance->client = IxClientFactory::new()->make()->getData();
 
     $sample = getResponseSample(class_basename($instance->getEndpoint()), $instance->getEndpoint()::GENERATE_PDF);
     Http::fake([
@@ -39,7 +39,7 @@ it('fails to get pdf document', function (string $model) {
     $instance = new $model();
     $instance->id = random_int(1, 1000);
 
-    $instance->client = IxClientFactory::new()->make();
+    $instance->client = IxClientFactory::new()->make()->getData();
 
     $instance->setGetPdfMaxRetries(random_int(1, 3));
     $sample = getResponseSample(class_basename($instance->getEndpoint()), $instance->getEndpoint()::GENERATE_PDF);

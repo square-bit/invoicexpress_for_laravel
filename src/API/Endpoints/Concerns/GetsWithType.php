@@ -19,7 +19,7 @@ trait GetsWithType
     public const GET = 'get';
 
     /**
-     * @return TData
+     * @return TData|EntityData
      *
      * @throws RequestException
      * @throws Throwable

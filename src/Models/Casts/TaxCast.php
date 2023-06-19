@@ -7,11 +7,11 @@
 namespace Squarebit\InvoiceXpress\Models\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Illuminate\Database\Eloquent\InvalidCastException;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use InvalidArgumentException;
-use Squarebit\InvoiceXpress\API\Data\ItemData;
-use Squarebit\InvoiceXpress\Models\IxItem;
+use Illuminate\Support\Str;
+use Squarebit\InvoiceXpress\API\Data\TaxData;
+use Squarebit\InvoiceXpress\Models\IxTax;
 
 class TaxCast implements CastsAttributes
 {
@@ -20,15 +20,16 @@ class TaxCast implements CastsAttributes
      *
      * @param  array<string, mixed>  $attributes
      */
-    public function get(Model $model, string $key, mixed $value, array $attributes): Collection
+    public function get(Model $model, string $key, mixed $value, array $attributes): ?TaxData
     {
-        return collect(is_string($value) ? json_decode($value, true) : $value)
-            ->map(fn ($item) => match (true) {
-                $item instanceof IxItem => $item->getData(),
-                $item instanceof ItemData => $item,
-                is_array($item) => ItemData::from($item),
-                default => throw new InvalidArgumentException('The given entry cannot be converted to an ItemData instance'),
-            });
+        return match (true) {
+            $value instanceof IxTax => $value->getData(),
+            $value instanceof TaxData => $value,
+            is_array($value) => TaxData::from($value),
+            is_string($value) => TaxData::from(json_decode($value, true)),
+            is_null($value) => null,
+            default => throw new InvalidCastException($model, $key.'=>'.Str::limit($value, 25), static::class),
+        };
     }
 
     /**
@@ -38,10 +39,15 @@ class TaxCast implements CastsAttributes
      */
     public function set(Model $model, string $key, mixed $value, array $attributes)
     {
-        if (! $value instanceof Collection && ! is_array($value)) {
-            throw new InvalidArgumentException('The given value is not a collection of ItemData instances.');
-        }
+        $value = match (true) {
+            $value instanceof IxTax => $value->getData(),
+            $value instanceof TaxData => $value,
+            is_array($value) => TaxData::from($value),
+            is_string($value) => TaxData::from(json_decode($value, true)),
+            is_null($value) => null,
+            default => throw new InvalidCastException($model, $key.'=>'.Str::limit($value, 25), static::class),
+        };
 
-        return $value->toArray();
+        return [$key => $value?->toJson()];
     }
 }

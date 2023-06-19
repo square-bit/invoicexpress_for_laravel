@@ -5,6 +5,7 @@ namespace Squarebit\InvoiceXpress\Models;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\API\Endpoints\ItemsEndpoint;
 use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Models\Casts\TaxCast;
 
 class IxItem extends IxModel
 {
@@ -13,7 +14,7 @@ class IxItem extends IxModel
     protected string $dataClass = ItemData::class;
 
     protected $casts = [
-        'tax' => 'json',
+        'tax' => TaxCast::class,
     ];
 
     public function getEndpoint(): ItemsEndpoint

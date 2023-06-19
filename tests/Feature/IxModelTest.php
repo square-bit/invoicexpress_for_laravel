@@ -25,20 +25,20 @@ use Squarebit\InvoiceXpress\Models\IxTax;
 use Squarebit\InvoiceXpress\Models\IxTransport;
 
 dataset('find_create_update_models', [
-    //    'Item' => [IxItem::class, 'description'],
-    //    'Client' => [IxClient::class, 'observations'],
+    'Item' => [IxItem::class, 'description'],
+    'Client' => [IxClient::class, 'observations'],
     'Tax' => [IxTax::class, 'name'],
     'Invoice - Invoice' => [IxInvoice::class, 'observations'],
     'Invoice - Simplified invoice' => [IxSimplifiedInvoice::class, 'reference'],
-    //    'Invoice - Invoice receipt' => [IxInvoiceReceipt::class, 'reference'],
-    //    'Invoice - Debit note' => [IxDebitNote::class, 'reference'],
-    //    'Invoice - Credit note' => [IxCreditNote::class, 'reference'],
-    //    'Estimate - Quote' => [IxQuote::class, 'observations'],
-    //    'Estimate - Proforma' => [IxProforma::class, 'reference'],
-    //    'Estimate - Fees note' => [IxFeesNote::class, 'reference'],
-    //    'Guide - Shipping' => [IxShipping::class, 'observations'],
-    //    'Guide - Transport' => [IxTransport::class, 'reference'],
-    //    'Guide - Devolution' => [IxDebitNote::class, 'reference'],
+    'Invoice - Invoice receipt' => [IxInvoiceReceipt::class, 'reference'],
+    'Invoice - Debit note' => [IxDebitNote::class, 'reference'],
+    'Invoice - Credit note' => [IxCreditNote::class, 'reference'],
+    'Estimate - Quote' => [IxQuote::class, 'observations'],
+    'Estimate - Proforma' => [IxProforma::class, 'reference'],
+    'Estimate - Fees note' => [IxFeesNote::class, 'reference'],
+    'Guide - Shipping' => [IxShipping::class, 'observations'],
+    'Guide - Transport' => [IxTransport::class, 'reference'],
+    'Guide - Devolution' => [IxDebitNote::class, 'reference'],
 ]);
 
 dataset('delete_models', [
@@ -82,7 +82,7 @@ it('can create an IxModel', function (bool $persistLocally, string $model) {
     expect($instance->save())->toBeTrue()
         ->and($instance->exists)->toBe($persistLocally)
         ->and($instance->toArray())->toMatchArrayRecursive(reset($responseSample))
-        ->and($model::count())->toBe($persistLocally ? 1 : 0);
+        ->and($model::withoutGlobalScopes()->count())->toBe($persistLocally ? 1 : 0);
 
 })->with([
     'persist locally' => [true],

@@ -21,6 +21,22 @@ use Squarebit\InvoiceXpress\InvoiceXpress;
 #[MapName(SnakeCaseMapper::class)]
 class InvoiceData extends EntityData
 {
+    public const CREATE_PROPERTIES = [
+        'date',
+        'dueDate',
+        'reference',
+        'observations',
+        'retention',
+        'taxExemption',
+        'sequenceId',
+        'manualSequenceNumber',
+        'mbReference',
+        'ownerInvoiceId',
+        'taxExemptionReason',
+        'currencyCode',
+        'rate',
+    ];
+
     public function __construct(
         public Optional|int $id,
         #[WithCast(EnumCast::class)]
@@ -28,11 +44,11 @@ class InvoiceData extends EntityData
         public Optional|bool $archived,
         public Optional|InvoiceTypeEnum $type,
         public ?string $sequenceId,
-        public Optional|string $sequenceNumber,
-        public Optional|string $invertedSequenceNumber,
+        public null|Optional|string $sequenceNumber,
+        public null|Optional|string $invertedSequenceNumber,
         public null|Optional|string $manualSequenceNumber,
         public null|Optional|int $ownerInvoiceId,
-        public Optional|string $atcud,
+        public null|Optional|string $atcud,
         #[WithCast(EnumCast::class)]
         public null|Optional|TaxExemptionCodeEnum $taxExemption,
         public null|Optional|TaxExemptionCodeEnum $taxExemptionReason,
@@ -45,14 +61,14 @@ class InvoiceData extends EntityData
         public ?string $reference,
         public ?string $observations,
         public ?string $retention,
-        public Optional|string $permalink,
-        public Optional|string $saftHash,
-        public Optional|float $sum,
-        public Optional|float $discount,
-        public Optional|float $beforeTaxes,
-        public Optional|float $taxes,
-        public Optional|float $total,
-        public Optional|string $currency,
+        public null|Optional|string $permalink,
+        public null|Optional|string $saftHash,
+        public null|Optional|float $sum,
+        public null|Optional|float $discount,
+        public null|Optional|float $beforeTaxes,
+        public null|Optional|float $taxes,
+        public null|Optional|float $total,
+        public null|Optional|string $currency,
         public null|Optional|string $currencyCode,
         public null|Optional|float $rate,
         public ClientData $client,
@@ -61,5 +77,20 @@ class InvoiceData extends EntityData
         public null|Optional|int|array $mbReference,
     ) {
         $this->date ??= now();
+    }
+
+    public static function getCreateProperties(): array
+    {
+        return array_merge(
+            self::CREATE_PROPERTIES,
+            self::prefixProperties('items', ItemData::getUseProperties()),
+            self::prefixProperties('client', ClientData::getUseProperties()),
+        );
+    }
+
+    public function toCreateData(): static
+    {
+        return static::from($this)
+            ->only(...self::getCreateProperties());
     }
 }

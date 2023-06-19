@@ -13,6 +13,15 @@ use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 #[MapName(SnakeCaseMapper::class)]
 class ClientData extends EntityData
 {
+    public const USE_PROPERTIES = [
+        'name',
+        'description',
+        'unitPrice',
+        'unit',
+        'quantity',
+        'tax.name',
+    ];
+
     public function __construct(
         public Optional|int $id,
         public string $name,
@@ -36,5 +45,10 @@ class ClientData extends EntityData
         public ?TaxExemptionCodeEnum $taxExemptionCode,
         public ?string $openAccountLink,
     ) {
+    }
+
+    public static function getUseProperties(): array
+    {
+        return self::USE_PROPERTIES;
     }
 }

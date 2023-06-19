@@ -13,8 +13,11 @@ trait HasClient
 {
     public function setClient(ClientData|IxClient|array $client): static
     {
-        //        $clientData = $client instanceof IxClient ? $client->getData() : $client;
-        $this->client = $client instanceof IxClient ? $client->getData() : $client; //$clientData->except('id');
+        $this->client = match (true) {
+            $client instanceof IxClient => $client->getData(),
+            $client instanceof ClientData => $client,
+            is_array($client) => ClientData::from($client),
+        };
 
         return $this;
     }

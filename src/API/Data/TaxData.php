@@ -14,6 +14,14 @@ use Squarebit\InvoiceXpress\API\Enums\TaxRegionEnum;
 #[MapName(SnakeCaseMapper::class)]
 class TaxData extends EntityData
 {
+    public const CREATE_PROPERTIES = [
+        'name',
+        'value',
+        'region',
+        'code',
+        'defaultTax',
+    ];
+
     public function __construct(
         public Optional|int $id,
         public string $name,

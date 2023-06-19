@@ -27,13 +27,13 @@ class ClientsEndpoint extends Endpoint
     use Lists;
 
     /** @uses GetsWithType<ClientData> */
-    use GetsWithType;
+    use GetsWithType {get as getWithType; }
 
     /** @uses CreatesWithType<ClientData> */
-    use CreatesWithType;
+    use CreatesWithType {create as createWithType; }
 
     /** @uses UpdatesWithType<ClientData> */
-    use UpdatesWithType;
+    use UpdatesWithType {update as updateWithType; }
 
     /** @uses FindsByCode<ClientData> */
     use FindsByCode;
@@ -61,5 +61,27 @@ class ClientsEndpoint extends Endpoint
     protected function getEntityType(): EntityTypeEnum
     {
         return EntityTypeEnum::Client;
+    }
+
+    public function get(int|EntityTypeEnum $entityType, ?int $id = null): ClientData
+    {
+        return $id
+            ? $this->getWithType($entityType, $id)
+            : $this->getWithType($this->getEntityType(), $id);
+    }
+
+    public function create(ClientData|EntityTypeEnum $entityType, ?ClientData $data = null): ClientData
+    {
+        return $data
+            ? $this->createWithType($entityType, $data)
+            : $this->createWithType($this->getEntityType(), $entityType);
+
+    }
+
+    public function update(ClientData|EntityTypeEnum $entityType, ?ClientData $data = null): void
+    {
+        $data
+            ? $this->updateWithType($entityType, $data)
+            : $this->updateWithType($this->getEntityType(), $entityType);
     }
 }

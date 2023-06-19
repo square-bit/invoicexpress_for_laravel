@@ -20,7 +20,7 @@ class EmailClientData extends Data
     ) {
     }
 
-    public static function fromEmail(string $email): static
+    public static function fromEmail(string $email): self
     {
         return new self(
             email: $email,

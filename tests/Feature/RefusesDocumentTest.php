@@ -16,7 +16,7 @@ it('refuses document', function (string $model) {
     $instance = new $model();
     $instance->id = random_int(1, 1000);
 
-    $instance->client = IxClientFactory::new()->make();
+    $instance->client = IxClientFactory::new()->make()->getData();
 
     Http::fake([
         '*' => Http::response(getResponseSample(

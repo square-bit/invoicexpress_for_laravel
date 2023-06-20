@@ -1,9 +1,9 @@
 # InvoiceXpress integration for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/square-bit/invoicexpress-for-laravel.svg?style=flat-square)](https://packagist.org/packages/square-bit/invoicexpress-for-laravel)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/square-bit/invoicexpress-for-laravel/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/square-bit/invoicexpress-for-laravel/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/square-bit/invoicexpress-for-laravel/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/square-bit/invoicexpress-for-laravel/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/square-bit/invoicexpress-for-laravel.svg?style=flat-square)](https://packagist.org/packages/square-bit/invoicexpress-for-laravel)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/square-bit/invoicexpress_for_laravel.svg?style=flat-square)](https://packagist.org/packages/square-bit/invoicexpress_for_laravel)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/square-bit/invoicexpress_for_laravel/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/square-bit/invoicexpress_for_laravel/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/square-bit/invoicexpress_for_laravel/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/square-bit/invoicexpress_for_laravel/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/square-bit/invoicexpress_for_laravel.svg?style=flat-square)](https://packagist.org/packages/square-bit/invoicexpress_for_laravel)
 
 Integrate your Laravel application with [InvoiceXpress](https://invoicexpress.com/)' API
 

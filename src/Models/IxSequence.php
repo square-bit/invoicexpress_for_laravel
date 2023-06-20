@@ -31,10 +31,6 @@ class IxSequence extends IxModel
 
     public function setCurrent(): bool
     {
-        if ($this->id === null) {
-            return false;
-        }
-
         try {
             $this->getEndpoint()->setCurrent($this->id);
 

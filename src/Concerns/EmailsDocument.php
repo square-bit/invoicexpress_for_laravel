@@ -21,7 +21,7 @@ trait EmailsDocument
         bool $includeLogo = true
     ): static {
 
-        $clientData = EmailClientData::fromEmail($client->email ?? $this->client->email ?? $this->client['email']);
+        $clientData = EmailClientData::fromEmail($client->email ?? $this->client->email);
 
         $this->getEndpoint()->sendByEmail(
             $this->getEntityType(),

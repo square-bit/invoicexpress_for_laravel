@@ -2,6 +2,8 @@
 
 namespace Squarebit\InvoiceXpress\API\Endpoints\Config;
 
+use Exception;
+
 class EndpointConfig
 {
     protected ?array $endpointData = null;
@@ -10,7 +12,13 @@ class EndpointConfig
         public string $object,
         public string $action,
     ) {
-        $this->endpointData = EndpointsConfig::get($object.'.'.$action);
+        throw_unless(
+            is_array($cfg = EndpointsConfig::get($object.'.'.$action)),
+            Exception::class,
+            "Endpoints config '".$object.'.'.$action."' must be an array"
+        );
+
+        $this->endpointData = $cfg;
     }
 
     public function getMethod(): string

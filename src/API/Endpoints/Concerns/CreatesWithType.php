@@ -12,15 +12,15 @@ use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
 /**
- * @template TData of EntityData
+ * @template T of EntityData
  */
 trait CreatesWithType
 {
     public const CREATE = 'create';
 
     /**
-     * @param  TData  $data
-     * @return TData
+     * @param  T  $data
+     * @return T
      *
      * @throws RequestException
      * @throws UnknownAPIMethodException

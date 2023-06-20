@@ -6,6 +6,7 @@
 
 namespace Squarebit\InvoiceXpress\Concerns;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\DataCollection;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
@@ -25,6 +26,7 @@ trait HasItems
         $itemData->quantity = $quantity;
         $itemData->unitPrice = $value ?? $itemData->unitPrice;
 
+        /** @phpstan-ignore-next-line */
         $items = $this->items?->all() ?? [];
         $items[] = $itemData->except('id');
 
@@ -39,7 +41,7 @@ trait HasItems
      */
     public function addItems(array|Collection $items): static
     {
-        collect($items)->each(fn ($item) => $this->addItem($item));
+        collect($items)->each(fn ($item) => $this->addItem(...Arr::wrap($item)));
 
         return $this;
     }

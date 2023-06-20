@@ -16,7 +16,7 @@ it('accepts document', function (string $model) {
     $instance = new $model();
     $instance->id = random_int(1, 1000);
 
-    $instance->client = IxClientFactory::new()->make();
+    $instance->setClient(IxClientFactory::new()->make());
 
     Http::fake([
         '*' => Http::response(getResponseSample(

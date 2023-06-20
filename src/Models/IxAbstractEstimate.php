@@ -56,7 +56,7 @@ class IxAbstractEstimate extends IxModel
         'status' => EstimateStatusEnum::class,
         'type' => EstimateTypeEnum::class,
         'tax_exemption' => TaxExemptionCodeEnum::class,
-        'client' => 'json',
+        'client' => ClientData::class,
         'items' => DataCollection::class.':'.ItemData::class,
         'mb_reference' => 'json',
         'date' => 'date:d/m/Y',

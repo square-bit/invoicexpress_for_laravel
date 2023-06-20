@@ -153,7 +153,6 @@ $invoiceEndpoint->create(
         ]
     ]))
     ->setClient(IxClient::findOrFail(1234)) // set the invoice's client
-    ->setClient(IxClient::findOrFail(1234)) // or set it from the
     ->addItem(IxItem::find(2345)) // add an IxItem model
     ->addItem(ItemData::from([....])) // you can also add from an ItemData
     ->addItems([  // or from an array

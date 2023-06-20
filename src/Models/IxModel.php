@@ -73,7 +73,7 @@ abstract class IxModel extends Model
      */
     public function getData(): EntityData
     {
-        /** @var EntityData $data */
+        /** @var T $data */
         $data = $this->getBaseData();
 
         return $data;

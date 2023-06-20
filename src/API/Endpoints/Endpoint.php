@@ -11,14 +11,14 @@ use Squarebit\InvoiceXpress\API\Endpoints\Config\EndpointConfig;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
 /**
- * @template TData of Data
+ * @template T of Data
  */
 abstract class Endpoint
 {
     protected ?int $lastResponseCode;
 
     /**
-     * @return TData
+     * @return T
      */
     abstract protected function responseToDataObject(array $data): Data;
 

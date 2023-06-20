@@ -49,16 +49,14 @@ class TaxesEndpoint extends Endpoint
 
     public function get(int|EntityTypeEnum $entityType, ?int $id = null): TaxData
     {
-        /** @phpstan-ignore-next-line */
-        return $id
-            ? $this->getWithType($entityType, $id)
-            : $this->getWithType(EntityTypeEnum::Tax, $id);
+        return is_int($entityType) // @phpstan-ignore-line
+            ? $this->getWithType(EntityTypeEnum::Tax, $id)
+            : $this->getWithType($entityType, $id);
     }
 
     public function create(TaxData|EntityTypeEnum $entityType, ?TaxData $data = null): TaxData
     {
-        /** @phpstan-ignore-next-line */
-        return $data
+        return $entityType instanceof EntityTypeEnum // @phpstan-ignore-line
             ? $this->createWithType($entityType, $data)
             : $this->createWithType(EntityTypeEnum::Tax, $entityType);
 
@@ -66,7 +64,7 @@ class TaxesEndpoint extends Endpoint
 
     public function update(TaxData|EntityTypeEnum $entityType, ?TaxData $data = null): void
     {
-        $data
+        $entityType instanceof EntityTypeEnum
             ? $this->updateWithType($entityType, $data)
             : $this->updateWithType(EntityTypeEnum::Tax, $entityType);
     }

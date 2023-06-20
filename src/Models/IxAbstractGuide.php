@@ -46,7 +46,7 @@ class IxAbstractGuide extends IxModel
         'status' => GuideStatusEnum::class,
         'tax_exemption' => TaxExemptionCodeEnum::class,
         'tax_exemption_reason' => TaxExemptionCodeEnum::class,
-        'client' => 'json',
+        'client' => ClientData::class,
         'items' => DataCollection::class.':'.ItemData::class,
         'address_from' => 'json',
         'address_to' => 'json',

@@ -61,18 +61,28 @@ class ClientsEndpoint extends Endpoint
         return EntityTypeEnum::Client;
     }
 
+    /**
+     * @param  ($entityType is int ? null : int)  $id
+     *
+     * @throws \Illuminate\Http\Client\RequestException
+     * @throws \Throwable
+     */
     public function get(int|EntityTypeEnum $entityType, ?int $id = null): ClientData
     {
-        /** @phpstan-ignore-next-line */
-        return $id
-            ? $this->getWithType($entityType, $id)
-            : $this->getWithType($this->getEntityType(), $id);
+        return is_int($entityType) // @phpstan-ignore-line
+            ? $this->getWithType($this->getEntityType(), $id)
+            : $this->getWithType($entityType, $id);
     }
 
+    /**
+     * @param  ($entityType is ClientData ? null : ClientData)  $data
+     *
+     * @throws \Illuminate\Http\Client\RequestException
+     * @throws \Throwable
+     */
     public function create(ClientData|EntityTypeEnum $entityType, ?ClientData $data = null): ClientData
     {
-        /** @phpstan-ignore-next-line */
-        return $data
+        return $entityType instanceof EntityTypeEnum // @phpstan-ignore-line
             ? $this->createWithType($entityType, $data)
             : $this->createWithType($this->getEntityType(), $entityType);
 
@@ -80,7 +90,7 @@ class ClientsEndpoint extends Endpoint
 
     public function update(ClientData|EntityTypeEnum $entityType, ?ClientData $data = null): void
     {
-        $data
+        $entityType instanceof EntityTypeEnum
             ? $this->updateWithType($entityType, $data)
             : $this->updateWithType($this->getEntityType(), $entityType);
     }

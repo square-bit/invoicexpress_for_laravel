@@ -50,7 +50,7 @@ class TaxesEndpoint extends Endpoint
     public function get(int|EntityTypeEnum $entityType, ?int $id = null): TaxData
     {
         return is_int($entityType) // @phpstan-ignore-line
-            ? $this->getWithType(EntityTypeEnum::Tax, $id)
+            ? $this->getWithType(EntityTypeEnum::Tax, $entityType)
             : $this->getWithType($entityType, $id);
     }
 

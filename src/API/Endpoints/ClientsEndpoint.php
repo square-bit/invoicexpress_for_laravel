@@ -62,15 +62,13 @@ class ClientsEndpoint extends Endpoint
     }
 
     /**
-     * @param  ($entityType is int ? null : int)  $id
-     *
      * @throws \Illuminate\Http\Client\RequestException
      * @throws \Throwable
      */
     public function get(int|EntityTypeEnum $entityType, ?int $id = null): ClientData
     {
         return is_int($entityType) // @phpstan-ignore-line
-            ? $this->getWithType($this->getEntityType(), $id)
+            ? $this->getWithType($this->getEntityType(), $entityType)
             : $this->getWithType($entityType, $id);
     }
 

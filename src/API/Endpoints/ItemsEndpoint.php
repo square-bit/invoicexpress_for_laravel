@@ -50,7 +50,7 @@ class ItemsEndpoint extends Endpoint
     public function get(int|EntityTypeEnum $entityType, ?int $id = null): ItemData
     {
         return is_int($entityType) // @phpstan-ignore-line
-            ? $this->getWithType(EntityTypeEnum::Item, $id)
+            ? $this->getWithType(EntityTypeEnum::Item, $entityType)
             : $this->getWithType($entityType, $id);
     }
 

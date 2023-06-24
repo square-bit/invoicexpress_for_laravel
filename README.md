@@ -89,8 +89,9 @@ $item->delete();
 ---
 
 #### Invoice lifecycle:
+
 ```php
-$invoice = (new IxInvoice())
+use Squarebit\InvoiceXpress\API\Data\PdfData;$invoice = (new IxInvoice())
     ->setClient(IxClient::findOrFail(1234)) // set the invoice's client
     ->addItem(IxItem::find(2345)) // add an IxItem model
     ->addItem(ItemData::from([....])) // you can also add from an ItemData
@@ -102,10 +103,15 @@ $invoice = (new IxInvoice())
     ->save(); // creates the new invoice (locally and in InvoiceXpress)
     ->finalizeDocument() // formally registers the invoice
     ->email(); // email the invoice to the client
-    
+
+// Store the pdf locally
+$pdf = $invoice->getPdf()->pdfUrl;
+Storage::put('file.jpg', $pdf);
+
+// Pay the invoice and email the receipt
 $receipt = $invoice
-    ->pay() // issue a receipt of payment
-    ->email(); // email that receipt to the client;
+    ->pay()
+    ->email();
 ```
 ---
 ### Option 2 - Directly using the endpoints
@@ -134,11 +140,13 @@ InvoiceXpress::items()->delete(1234);
 #### Invoice lifecycle:
 
 ```php
-use Squarebit\InvoiceXpress\API\Data\ClientData;use Squarebit\InvoiceXpress\API\Data\InvoiceData;use Squarebit\InvoiceXpress\API\Data\ItemData;use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
+use Squarebit\InvoiceXpress\API\Data\ClientData;use Squarebit\InvoiceXpress\API\Data\EmailClientData;use Squarebit\InvoiceXpress\API\Data\EmailData;use Squarebit\InvoiceXpress\API\Data\InvoiceData;use Squarebit\InvoiceXpress\API\Data\ItemData;use Squarebit\InvoiceXpress\API\Data\PartialPaymentData;use Squarebit\InvoiceXpress\API\Data\StateData;use Squarebit\InvoiceXpress\Enums\DocumentEventEnum;use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 $invoiceEndpoint = InvoiceXpress::invoices();
-$invoiceEndpoint->create(
-    EntityTypeEnum::Invoice,
+
+// Create an Invoice
+$invoiceData = $invoiceEndpoint->create(
+    EntityTypeEnum::SimplifiedInvoice,
     InvoiceData::from([
         ...
         'client' => ClientData::from([
@@ -147,22 +155,46 @@ $invoiceEndpoint->create(
         'items' => [
             ItemData::from([])
         ]
-    ]))
-    ->setClient(IxClient::findOrFail(1234)) // set the invoice's client
-    ->addItem(IxItem::find(2345)) // add an IxItem model
-    ->addItem(ItemData::from([....])) // you can also add from an ItemData
-    ->addItems([  // or from an array
-        ItemData::from([...]),
-        IxItem::find(3579),
-        ...
     ])
-    ->save(); // creates the new invoice (locally and in InvoiceXpress)
-    ->finalizeDocument() // formally registers the invoice
-    ->email(); // email the invoice to the client
-    
-$receipt = $invoice
-    ->pay() // issue a receipt of payment
-    ->email(); // email that receipt to the client;
+);
+
+// Formally register it
+$invoiceEndpoint->changeState(
+    EntityTypeEnum::SimplifiedInvoice,
+    $invoiceData->id,
+    StateData::from([
+        'state' => DocumentEventEnum::Finalized
+    ])
+);
+
+// Email the Invoice
+$invoiceEndpoint->sendByEmail(
+    EntityTypeEnum::SimplifiedInvoice,
+    $invoiceData->id,
+    EmailData::from([
+        'client_data' => EmailClientData::from([
+            'email' => 'someone@somewhere.com'
+        ])
+        'subject' => '...',
+        'body' => '...',
+        'cc' => '...',
+        'bcc' => '...',
+    ])
+);
+
+// Get the pdf
+$pdfData = $invoiceEndpoint->generatePDF($invoiceData->id)
+
+// Pay the invoice (in total)
+$receiptData = $invoiceEndpoint->generatePayment([
+    EntityTypeEnum::SimplifiedInvoice,
+    $invoiceData->id,
+    PartialPaymentData::from([
+        'amount' => $invoiceData->total,
+    ])
+])
+
+ 
 ```
 
 ### You can mix both options, if you want

@@ -91,7 +91,9 @@ $item->delete();
 #### Invoice lifecycle:
 
 ```php
-use Squarebit\InvoiceXpress\API\Data\PdfData;$invoice = (new IxInvoice())
+use Squarebit\InvoiceXpress\API\Data\PdfData;
+
+$invoice = (new IxInvoice())
     ->setClient(IxClient::findOrFail(1234)) // set the invoice's client
     ->addItem(IxItem::find(2345)) // add an IxItem model
     ->addItem(ItemData::from([....])) // you can also add from an ItemData
@@ -183,7 +185,7 @@ $invoiceEndpoint->sendByEmail(
     EmailData::from([
         'client_data' => EmailClientData::from([
             'email' => 'someone@somewhere.com'
-        ])
+        ]),
         'subject' => '...',
         'body' => '...',
         'cc' => '...',

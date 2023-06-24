@@ -1,9 +1,6 @@
 <?php
-/**
- * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
- * Squarebit, Lda - Portugal - www.square-bit.com
- */
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Http;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\API\Endpoints\ClientsEndpoint;
@@ -58,6 +55,9 @@ it('will fail to find a nonexistent IxModel', function (string $model) {
     // fail to find the item since we'll get a 404
     expect($model::find($id))->toBeNull()
         ->and($model::count())->toBe(0);
+
+    expect(fn () => $model::findOrFail($id))
+        ->toThrow(ModelNotFoundException::class);
 
 })->with('find_create_update_models');
 
@@ -287,4 +287,31 @@ it('cannot accept data of a different class', function (string $model) {
     'IxInvoice' => [IxInvoice::class],
     'IxSimplifiedInvoice' => [IxSimplifiedInvoice::class],
     'IxShipping' => [IxShipping::class],
+]);
+
+it('can sync all from remote', function (string $model) {
+    config(['invoicexpress-for-laravel.eloquent.persist' => true]);
+    $instance = (new $model());
+    $endpoint = $instance->getEndpoint();
+    $responseSample = getResponseSample(class_basename($endpoint), $endpoint::LIST);
+    $responseSample2 = null;
+    try {
+        $responseSample2 = getResponseSample(class_basename($endpoint), $endpoint::LIST.'_2');
+    } catch (Exception) {
+    }
+
+    Http::fake([
+        'https://*.app.invoicexpress.com/*' => Http::sequence()
+            ->push($responseSample)
+            ->push($responseSample2)
+            ->whenEmpty(Http::response(null, 404)),
+    ]);
+    expect(fn () => $model::syncAllFromRemote())
+        ->not()->toThrow(Exception::class)
+        ->and($model::count())->toBeGreaterThan(0);
+})->with([
+    'IxInvoice' => [IxInvoice::class],
+    'IxShipping' => [IxShipping::class],
+    'IxQuote' => [IxQuote::class],
+    'IxItem' => [IxItem::class],
 ]);

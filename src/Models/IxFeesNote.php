@@ -2,7 +2,7 @@
 
 namespace Squarebit\InvoiceXpress\Models;
 
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 
 class IxFeesNote extends IxQuote
 {

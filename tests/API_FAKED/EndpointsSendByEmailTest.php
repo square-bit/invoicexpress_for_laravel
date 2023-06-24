@@ -7,7 +7,7 @@ use Squarebit\InvoiceXpress\API\Endpoints\Endpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\EstimatesEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\GuidesEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can call SEND_BY_EMAIL on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type) {

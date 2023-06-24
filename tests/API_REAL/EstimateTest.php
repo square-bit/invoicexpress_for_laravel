@@ -1,17 +1,13 @@
 <?php
-/**
- * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
- * Squarebit, Lda - Portugal - www.square-bit.com
- */
 
 use Squarebit\InvoiceXpress\API\Data\EntityListData;
 use Squarebit\InvoiceXpress\API\Data\EstimateData;
 use Squarebit\InvoiceXpress\API\Data\Filters\EstimateListFilter;
 use Squarebit\InvoiceXpress\API\Data\StateData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentEventEnum;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\EstimateStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\ItemUnitEnum;
+use Squarebit\InvoiceXpress\Enums\DocumentEventEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\EstimateStatusEnum;
+use Squarebit\InvoiceXpress\Enums\ItemUnitEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can go through an Estimate lifecycle', function (EntityTypeEnum $docType, array $data) {

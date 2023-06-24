@@ -3,8 +3,8 @@
 namespace Squarebit\InvoiceXpress\Models;
 
 use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Concerns\PaysDocument;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 
 class IxInvoice extends IxAbstractInvoice
 {

@@ -1,15 +1,37 @@
 {
-  "items": [
-    {
-      "id": 402322,
-      "name": "Large",
-      "description": "foo",
-      "unit_price": 24.3902,
-      "unit": "service",
-      "tax": {
-        "name": "IVA23",
-        "value": 23
-      }
-    }
-  ]
+    "items": [
+        {
+            "id": 402322,
+            "name": "Small",
+            "description": "foo",
+            "unit_price": 24.39,
+            "unit": "service",
+            "tax": {
+            "name": "IVA23",
+            "value": 23
+            }
+        },
+        {
+              "id": 402323,
+              "name": "Medium",
+              "description": "foo",
+              "unit_price": 124.39,
+              "unit": "service",
+              "tax": {
+                  "name": "IVA23",
+                  "value": 23
+              }
+        },
+        {
+            "id": 402324,
+            "name": "Large",
+            "description": "foo",
+            "unit_price": 224.39,
+            "unit": "service",
+            "tax": {
+                "name": "IVA23",
+                "value": 23
+            }
+        }
+    ]
 }

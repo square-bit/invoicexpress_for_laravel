@@ -13,9 +13,9 @@ use Spatie\LaravelData\DataCollection;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
 use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
+use Squarebit\InvoiceXpress\Enums\InvoiceStatusEnum;
+use Squarebit\InvoiceXpress\Enums\InvoiceTypeEnum;
+use Squarebit\InvoiceXpress\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\InvoiceXpress;
 
 #[MapName(SnakeCaseMapper::class)]

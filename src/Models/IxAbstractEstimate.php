@@ -1,8 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
- * Squarebit, Lda - Portugal - www.square-bit.com
- */
 
 namespace Squarebit\InvoiceXpress\Models;
 
@@ -11,10 +7,6 @@ use Squarebit\InvoiceXpress\API\Data\ClientData;
 use Squarebit\InvoiceXpress\API\Data\EstimateData;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\API\Endpoints\EstimatesEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\EstimateStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\EstimateTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\Concerns\AcceptsDocument;
 use Squarebit\InvoiceXpress\Concerns\CancelsDocument;
 use Squarebit\InvoiceXpress\Concerns\DeletesDocument;
@@ -24,6 +16,10 @@ use Squarebit\InvoiceXpress\Concerns\GetsPdfDocument;
 use Squarebit\InvoiceXpress\Concerns\HasClient;
 use Squarebit\InvoiceXpress\Concerns\HasItems;
 use Squarebit\InvoiceXpress\Concerns\RefusesDocument;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\EstimateStatusEnum;
+use Squarebit\InvoiceXpress\Enums\EstimateTypeEnum;
+use Squarebit\InvoiceXpress\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\Models\Scopes\EstimateTypeScope;
 
 /**

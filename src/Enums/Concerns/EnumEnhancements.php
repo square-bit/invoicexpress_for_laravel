@@ -1,10 +1,6 @@
 <?php
-/**
- * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
- * Squarebit, Lda - Portugal - www.square-bit.com
- */
 
-namespace Squarebit\InvoiceXpress\API\Enums\Concerns;
+namespace Squarebit\InvoiceXpress\Enums\Concerns;
 
 trait EnumEnhancements
 {
@@ -23,5 +19,19 @@ trait EnumEnhancements
         }
 
         return $values;
+    }
+
+    /**
+     * Returns enum values as an associative array.
+     */
+    public static function options(): array
+    {
+        return collect(static::cases())
+            ->mapWithKeys(fn ($case, $key) => [$case->value => $case->label()])->all();
+    }
+
+    public function label(): string
+    {
+        return $this->value;
     }
 }

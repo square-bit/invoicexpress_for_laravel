@@ -1,8 +1,12 @@
 <?php
+/**
+ * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
+ * Squarebit, Lda - Portugal - www.square-bit.com
+ */
 
-namespace Squarebit\InvoiceXpress\API\Enums;
+namespace Squarebit\InvoiceXpress\Enums;
 
-use Squarebit\InvoiceXpress\API\Enums\Concerns\EnumEnhancements;
+use Squarebit\InvoiceXpress\Enums\Concerns\EnumEnhancements;
 
 enum TaxExemptionCodeEnum: string
 {

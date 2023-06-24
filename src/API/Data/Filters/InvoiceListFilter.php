@@ -12,8 +12,8 @@ use Squarebit\InvoiceXpress\API\Data\Filters\Base\PaginationFilter;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\QueryFilter;
 use Squarebit\InvoiceXpress\API\Data\Transformers\BoolToStringTransformer;
 use Squarebit\InvoiceXpress\API\Data\Transformers\EnumArrayTransformer;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
+use Squarebit\InvoiceXpress\Enums\InvoiceStatusEnum;
+use Squarebit\InvoiceXpress\Enums\InvoiceTypeEnum;
 
 #[MapName(SnakeCaseMapper::class)]
 class InvoiceListFilter extends QueryFilter

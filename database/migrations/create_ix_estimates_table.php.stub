@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Squarebit\InvoiceXpress\API\Enums\EstimateStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\EstimateTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
+use Squarebit\InvoiceXpress\Enums\EstimateStatusEnum;
+use Squarebit\InvoiceXpress\Enums\EstimateTypeEnum;
+use Squarebit\InvoiceXpress\Enums\TaxExemptionCodeEnum;
 
 return new class extends Migration
 {

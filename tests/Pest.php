@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use function Pest\testDirectory;
 use PHPUnit\Framework\Assert;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Tests\TestCase;
 use Squarebit\InvoiceXpress\Tests\TestCaseWithDB;
 

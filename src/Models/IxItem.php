@@ -5,7 +5,7 @@ namespace Squarebit\InvoiceXpress\Models;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\API\Data\TaxData;
 use Squarebit\InvoiceXpress\API\Endpoints\ItemsEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 
 /**
  * @template-extends IxModel<ItemData>

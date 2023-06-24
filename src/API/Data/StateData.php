@@ -8,7 +8,7 @@ use Spatie\LaravelData\Attributes\Validation\RequiredIf;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
-use Squarebit\InvoiceXpress\API\Enums\DocumentEventEnum;
+use Squarebit\InvoiceXpress\Enums\DocumentEventEnum;
 
 #[MapName(SnakeCaseMapper::class)]
 class StateData extends Data

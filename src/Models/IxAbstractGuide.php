@@ -1,8 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
- * Squarebit, Lda - Portugal - www.square-bit.com
- */
 
 namespace Squarebit\InvoiceXpress\Models;
 
@@ -11,16 +7,17 @@ use Squarebit\InvoiceXpress\API\Data\ClientData;
 use Squarebit\InvoiceXpress\API\Data\GuideData;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\API\Endpoints\GuidesEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\GuideStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\GuideTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\Concerns\CancelsDocument;
 use Squarebit\InvoiceXpress\Concerns\DeletesDocument;
 use Squarebit\InvoiceXpress\Concerns\EmailsDocument;
 use Squarebit\InvoiceXpress\Concerns\FinalizesDocument;
 use Squarebit\InvoiceXpress\Concerns\GetsPdfDocument;
+use Squarebit\InvoiceXpress\Concerns\GetsQrCode;
 use Squarebit\InvoiceXpress\Concerns\HasClient;
 use Squarebit\InvoiceXpress\Concerns\HasItems;
+use Squarebit\InvoiceXpress\Enums\GuideStatusEnum;
+use Squarebit\InvoiceXpress\Enums\GuideTypeEnum;
+use Squarebit\InvoiceXpress\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\Models\Scopes\GuideTypeScope;
 
 /**
@@ -38,6 +35,7 @@ class IxAbstractGuide extends IxModel
     use DeletesDocument;
     use CancelsDocument;
     use GetsPdfDocument;
+    use GetsQrCode;
     use HasClient;
     use HasItems;
 

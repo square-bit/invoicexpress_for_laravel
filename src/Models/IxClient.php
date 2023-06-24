@@ -4,10 +4,10 @@ namespace Squarebit\InvoiceXpress\Models;
 
 use Squarebit\InvoiceXpress\API\Data\ClientData;
 use Squarebit\InvoiceXpress\API\Endpoints\ClientsEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\ClientSendOptionsEnum;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
+use Squarebit\InvoiceXpress\Enums\ClientSendOptionsEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\TaxExemptionCodeEnum;
 
 /**
  * @template-extends IxModel<ClientData>

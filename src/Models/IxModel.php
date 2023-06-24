@@ -5,13 +5,14 @@ namespace Squarebit\InvoiceXpress\Models;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Client\RequestException;
 use InvalidArgumentException;
 use Spatie\LaravelData\Exceptions\InvalidDataClass;
 use Spatie\LaravelData\WithData;
 use Squarebit\InvoiceXpress\API\Data\EntityData;
 use Squarebit\InvoiceXpress\API\Endpoints\Endpoint;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\InvoiceXpress;
 use Throwable;
 
@@ -80,11 +81,22 @@ abstract class IxModel extends Model
     }
 
     /**
-     * @return IxModel<T>|Collection<int, IxModel<T>>|null
+     * @return IxModel<T>|Collection<int, IxModel<T>>
      */
-    public static function find(int $id, array $columns = ['*']): self|Collection|null
+    public static function findOrFail(int $id, array $columns = ['*']): self|Collection
+    {
+        return static::find($id, $columns) ?? throw new ModelNotFoundException(
+            'No query results for model ['.static::class.'] '.$id.'.'
+        );
+    }
+
+    /**
+     * @return static|Collection<int,static>|null
+     */
+    public static function find(int $id, array $columns = ['*']): static|Collection|null
     {
         $instance = new static();
+
         if ($found = $instance->findLocally($id, $columns)) {
             return $found;
         }
@@ -93,20 +105,10 @@ abstract class IxModel extends Model
             return null;
         }
 
-        $model = $instance->fromData($data);
+        $model = $instance->fromData($data->toModelData());
         $model->saveLocally();
 
         return $model;
-    }
-
-    public function findRemotely(int $id): ?EntityData
-    {
-        try {
-            /** @phpstan-ignore-next-line */
-            return $this->endpoint->get($this->entityType, $id);
-        } catch (RequestException) {
-            return null;
-        }
     }
 
     /**
@@ -141,6 +143,29 @@ abstract class IxModel extends Model
     }
 
     /**
+     * @return static|Collection<int,static>|null
+     */
+    protected function findLocally(int $id, array $columns = ['*']): static|Collection|null
+    {
+        if (! $this->persist) {
+            return null;
+        }
+
+        /** @phpstan-ignore-next-line  */
+        return $this->newModelQuery()->find($id, $columns);
+    }
+
+    public function findRemotely(int $id): ?EntityData
+    {
+        try {
+            /** @phpstan-ignore-next-line */
+            return $this->endpoint->get($this->entityType, $id);
+        } catch (RequestException) {
+            return null;
+        }
+    }
+
+    /**
      * @throws RequestException
      * @throws Throwable
      */
@@ -148,6 +173,15 @@ abstract class IxModel extends Model
     {
         /** @phpstan-ignore-next-line */
         return $this->endpoint->create($this->entityType, $this->getData());
+    }
+
+    public function saveLocally(array $options = []): bool
+    {
+        if (! $this->persist) {
+            return true;
+        }
+
+        return parent::save($options);
     }
 
     protected function saveRemotely(): bool
@@ -166,25 +200,13 @@ abstract class IxModel extends Model
         }
     }
 
-    public function saveLocally(array $options = []): bool
+    protected function deleteLocally(): bool
     {
         if (! $this->persist) {
             return true;
         }
 
-        return parent::save($options);
-    }
-
-    /**
-     * @return IxModel<T>|Collection<int, IxModel<T>>|null
-     */
-    protected function findLocally(int $id, array $columns = ['*']): self|Collection|null
-    {
-        if (! $this->persist) {
-            return null;
-        }
-
-        return $this->newModelQuery()->find($id, $columns);
+        return parent::delete();
     }
 
     protected function deleteRemotely(): bool
@@ -197,15 +219,6 @@ abstract class IxModel extends Model
         $this->endpoint->delete($this->getKey());
 
         return true;
-    }
-
-    protected function deleteLocally(): bool
-    {
-        if (! $this->persist) {
-            return true;
-        }
-
-        return parent::delete();
     }
 
     public function fromData(EntityData|array $data): static
@@ -221,6 +234,31 @@ abstract class IxModel extends Model
         }
 
         return $this->fill($data->all());
+    }
+
+    public static function syncAllFromRemote(): void
+    {
+        $instance = new static();
+
+        /** @phpstan-ignore-next-line  */
+        $list = $instance->endpoint->list();
+        while (true) {
+            $list->items()
+                ->map(function (EntityData $data) {
+                    /** @var IxModel<T> $model */
+                    $model = (new static())->findLocally($data->getId()) ?? new static();
+
+                    return $model->fromData($data);
+                })
+                ->each(fn ($model) => $model->saveLocally());
+
+            if (! $list->hasMorePages()) {
+                break;
+            }
+
+            /** @phpstan-ignore-next-line  */
+            $list = $instance->endpoint->list($list->nextPageFilter());
+        }
     }
 
     protected function serializeDate(DateTimeInterface $date): string

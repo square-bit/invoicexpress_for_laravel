@@ -31,9 +31,9 @@
       {
         "name": "Large",
         "description": "foo",
-        "unit_price": "24.3902",
+        "unit_price": "24.39",
         "unit": "foo",
-        "quantity": "1.0",
+        "quantity": "1.00",
         "tax": {
           "id": 69166,
           "name": "IVA23",

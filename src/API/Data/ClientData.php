@@ -7,8 +7,8 @@ use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\EnumCast;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
-use Squarebit\InvoiceXpress\API\Enums\ClientSendOptionsEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
+use Squarebit\InvoiceXpress\Enums\ClientSendOptionsEnum;
+use Squarebit\InvoiceXpress\Enums\TaxExemptionCodeEnum;
 
 #[MapName(SnakeCaseMapper::class)]
 class ClientData extends EntityData
@@ -25,25 +25,25 @@ class ClientData extends EntityData
     public function __construct(
         public Optional|int $id,
         public string $name,
-        public ?string $code,
-        public ?string $language,
-        public ?string $email,
-        public ?string $address,
-        public ?string $city,
-        public ?string $postalCode,
-        public ?string $fiscalId,
-        public ?string $website,
-        public ?string $country,
-        public ?string $phone,
-        public ?string $fax,
-        public ?array $preferredContact,
-        public ?string $observations,
+        public null|Optional|string $code,
+        public null|Optional|string $language,
+        public null|Optional|string $email,
+        public null|Optional|string $address,
+        public null|Optional|string $city,
+        public null|Optional|string $postalCode,
+        public null|Optional|string $fiscalId,
+        public null|Optional|string $website,
+        public null|Optional|string $country,
+        public null|Optional|string $phone,
+        public null|Optional|string $fax,
+        public null|Optional|array $preferredContact,
+        public null|Optional|string $observations,
         #[WithCast(EnumCast::class)]
-        public ?ClientSendOptionsEnum $sendOptions,
-        public ?string $paymentDays,
+        public null|Optional|ClientSendOptionsEnum $sendOptions,
+        public null|Optional|string $paymentDays,
         #[WithCast(EnumCast::class)]
-        public ?TaxExemptionCodeEnum $taxExemptionCode,
-        public ?string $openAccountLink,
+        public null|Optional|TaxExemptionCodeEnum $taxExemptionCode,
+        public null|Optional|string $openAccountLink,
     ) {
     }
 

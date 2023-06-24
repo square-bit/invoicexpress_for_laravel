@@ -3,7 +3,7 @@
         "id": 99,
         "name": "Medium",
         "description": "foo",
-        "unit_price": 16.2602,
+        "unit_price": 16.26,
         "unit": "service",
         "tax": {
             "name": "IVA23",

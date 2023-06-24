@@ -12,7 +12,7 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
 use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
-use Squarebit\InvoiceXpress\API\Enums\PaymentMechanismEnum;
+use Squarebit\InvoiceXpress\Enums\PaymentMechanismEnum;
 use Squarebit\InvoiceXpress\InvoiceXpress;
 
 #[MapName(SnakeCaseMapper::class)]

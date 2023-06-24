@@ -5,7 +5,7 @@ namespace Squarebit\InvoiceXpress\Models;
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\SequenceData;
 use Squarebit\InvoiceXpress\API\Endpoints\SequencesEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 
 /**
  * @property ?int $id

@@ -1,8 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
- * Squarebit, Lda - Portugal - www.square-bit.com
- */
 
 use GuzzleHttp\Exception\RequestException;
 use Squarebit\InvoiceXpress\API\Data\EmailClientData;
@@ -14,12 +10,12 @@ use Squarebit\InvoiceXpress\API\Data\PartialPaymentData;
 use Squarebit\InvoiceXpress\API\Data\PdfData;
 use Squarebit\InvoiceXpress\API\Data\QRCodeData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
-use Squarebit\InvoiceXpress\API\Enums\DocumentEventEnum;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\ItemUnitEnum;
-use Squarebit\InvoiceXpress\API\Enums\PaymentMechanismEnum;
+use Squarebit\InvoiceXpress\Enums\DocumentEventEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\InvoiceStatusEnum;
+use Squarebit\InvoiceXpress\Enums\InvoiceTypeEnum;
+use Squarebit\InvoiceXpress\Enums\ItemUnitEnum;
+use Squarebit\InvoiceXpress\Enums\PaymentMechanismEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can create / get / list / update / delete an invoice', function (EntityTypeEnum $entityType, array $data) {

@@ -7,9 +7,9 @@ use Squarebit\InvoiceXpress\API\Data\PartialPaymentData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
 use Squarebit\InvoiceXpress\API\Endpoints\Endpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\PaymentMechanismEnum;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\PaymentMechanismEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can call GENERATE_PAYMENT on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, PaymentMechanismEnum $payment) {

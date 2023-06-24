@@ -14,7 +14,7 @@ use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Deletes;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\GetsWithType;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 
 /**
  * @template-extends Endpoint<TaxData>

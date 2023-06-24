@@ -19,8 +19,8 @@ use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\ItemsEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\SequencesEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\TaxesEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
+use Squarebit\InvoiceXpress\Enums\InvoiceStatusEnum;
+use Squarebit\InvoiceXpress\Enums\InvoiceTypeEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can call LIST on an endpoint - faked', function (string $entity, string $action, ?string $filter) {
@@ -32,10 +32,10 @@ it('can call LIST on an endpoint - faked', function (string $entity, string $act
 
     Http::preventStrayRequests()
         ->fake([
-            UriTemplate::expand($cfg->getUrl(), []) => Http::response($responseSample),
+            UriTemplate::expand($cfg->getUrl(), []).'*' => Http::response($responseSample),
         ]);
 
-    expect($data = $endpoint->list($filter ? $filter::from([]) : null))
+    expect($data = $endpoint->list($filter ? $filter::from(['per_page' => 1]) : null))
         ->not()->toThrow(Exception::class)
         ->toBeInstanceOf(EntityListData::class)
         ->and($data->items()->toArray())

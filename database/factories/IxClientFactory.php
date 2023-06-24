@@ -3,9 +3,9 @@
 namespace Squarebit\InvoiceXpress\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Squarebit\InvoiceXpress\API\Enums\ClientSendOptionsEnum;
-use Squarebit\InvoiceXpress\API\Enums\CountryEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
+use Squarebit\InvoiceXpress\Enums\ClientSendOptionsEnum;
+use Squarebit\InvoiceXpress\Enums\CountryEnum;
+use Squarebit\InvoiceXpress\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\Models\IxClient;
 
 /**
@@ -38,7 +38,6 @@ class IxClientFactory extends Factory
             'send_options' => collect(ClientSendOptionsEnum::values())->random(),
             'payment_days' => random_int(1, 365),
             'tax_exemption_code' => collect(TaxExemptionCodeEnum::values())->random(),
-
         ];
     }
 }

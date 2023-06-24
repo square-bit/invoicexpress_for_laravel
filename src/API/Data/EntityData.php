@@ -30,4 +30,9 @@ abstract class EntityData extends Data
     {
         return $this;
     }
+
+    public function toModelData(): static
+    {
+        return $this;
+    }
 }

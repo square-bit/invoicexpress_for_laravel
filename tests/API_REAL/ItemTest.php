@@ -1,13 +1,10 @@
 <?php
-/**
- * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
- * Squarebit, Lda - Portugal - www.square-bit.com
- */
+
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\EntityListData;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\PaginationFilter;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
-use Squarebit\InvoiceXpress\API\Enums\ItemUnitEnum;
+use Squarebit\InvoiceXpress\Enums\ItemUnitEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can create / update /delete an Item', function (array $itemData) {

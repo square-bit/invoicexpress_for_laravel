@@ -2,8 +2,8 @@
 
 namespace Squarebit\InvoiceXpress\Models;
 
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Concerns\UnsettlesDocument;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 
 class IxDebitNote extends IxAbstractInvoice
 {

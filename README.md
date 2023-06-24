@@ -134,11 +134,7 @@ InvoiceXpress::items()->delete(1234);
 #### Invoice lifecycle:
 
 ```php
-use Squarebit\InvoiceXpress\API\Data\ClientData;
-use Squarebit\InvoiceXpress\API\Data\InvoiceData;
-use Squarebit\InvoiceXpress\API\Data\ItemData;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
-use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
+use Squarebit\InvoiceXpress\API\Data\ClientData;use Squarebit\InvoiceXpress\API\Data\InvoiceData;use Squarebit\InvoiceXpress\API\Data\ItemData;use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 $invoiceEndpoint = InvoiceXpress::invoices();
 $invoiceEndpoint->create(

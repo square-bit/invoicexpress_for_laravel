@@ -7,15 +7,14 @@ use Spatie\LaravelData\Optional;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\DateIntervalFilter;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\QueryFilter;
 use Squarebit\InvoiceXpress\API\Data\Transformers\BoolToStringTransformer;
-use Squarebit\InvoiceXpress\API\Enums\GuideStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\GuideTypeEnum;
+use Squarebit\InvoiceXpress\Enums\GuideStatusEnum;
 
 class GuideListFilter extends QueryFilter
 {
     public function __construct(
         public Optional|string $text,
 
-        /** @var Optional|array<GuideTypeEnum> */
+        /** @var Optional|array<\Squarebit\InvoiceXpress\Enums\GuideTypeEnum> */
         public Optional|array $type,
 
         /** @var Optional|array<GuideStatusEnum> */

@@ -4,9 +4,9 @@ namespace Squarebit\InvoiceXpress\Models;
 
 use Squarebit\InvoiceXpress\API\Data\TaxData;
 use Squarebit\InvoiceXpress\API\Endpoints\TaxesEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxCodeEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxRegionEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\TaxCodeEnum;
+use Squarebit\InvoiceXpress\Enums\TaxRegionEnum;
 
 /**
  * @template-extends IxModel<TaxData>

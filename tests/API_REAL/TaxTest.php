@@ -1,12 +1,9 @@
 <?php
-/**
- * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
- * Squarebit, Lda - Portugal - www.square-bit.com
- */
+
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\TaxData;
-use Squarebit\InvoiceXpress\API\Enums\TaxCodeEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxRegionEnum;
+use Squarebit\InvoiceXpress\Enums\TaxCodeEnum;
+use Squarebit\InvoiceXpress\Enums\TaxRegionEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can create / update /delete a Tax', function (array $taxData) {

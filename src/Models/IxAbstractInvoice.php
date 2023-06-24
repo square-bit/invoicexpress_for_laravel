@@ -7,17 +7,18 @@ use Squarebit\InvoiceXpress\API\Data\ClientData;
 use Squarebit\InvoiceXpress\API\Data\InvoiceData;
 use Squarebit\InvoiceXpress\API\Data\ItemData;
 use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\InvoiceTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\Concerns\CancelsDocument;
 use Squarebit\InvoiceXpress\Concerns\DeletesDocument;
 use Squarebit\InvoiceXpress\Concerns\EmailsDocument;
 use Squarebit\InvoiceXpress\Concerns\FinalizesDocument;
 use Squarebit\InvoiceXpress\Concerns\GetsPdfDocument;
+use Squarebit\InvoiceXpress\Concerns\GetsQrCode;
 use Squarebit\InvoiceXpress\Concerns\HasClient;
 use Squarebit\InvoiceXpress\Concerns\HasItems;
 use Squarebit\InvoiceXpress\Concerns\SettlesDocument;
+use Squarebit\InvoiceXpress\Enums\InvoiceStatusEnum;
+use Squarebit\InvoiceXpress\Enums\InvoiceTypeEnum;
+use Squarebit\InvoiceXpress\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\Models\Scopes\InvoiceTypeScope;
 
 /**
@@ -36,6 +37,7 @@ class IxAbstractInvoice extends IxModel
     use DeletesDocument;
     use SettlesDocument;
     use GetsPdfDocument;
+    use GetsQrCode;
     use HasClient;
     use HasItems;
 

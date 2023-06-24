@@ -31,9 +31,9 @@
             {
                 "name": "Pencil",
                 "description": "The best pencil in the world",
-                "unit_price": "2.0244",
+                "unit_price": "2.02",
                 "unit": null,
-                "quantity": "1.0",
+                "quantity": "1.00",
                 "tax": {
                     "id": 349454,
                     "name": "IVA23",

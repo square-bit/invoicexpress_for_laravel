@@ -15,7 +15,7 @@ use Squarebit\InvoiceXpress\API\Endpoints\GuidesEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\InvoicesEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\ItemsEndpoint;
 use Squarebit\InvoiceXpress\API\Endpoints\TaxesEndpoint;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can call UPDATE on an endpoint - faked', function (string $entity, string $action, EntityTypeEnum $type, string $entityDataClass) {

@@ -1,15 +1,12 @@
 <?php
-/**
- * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
- * Squarebit, Lda - Portugal - www.square-bit.com
- */
+
 use Squarebit\InvoiceXpress\API\Data\GuideData;
 use Squarebit\InvoiceXpress\API\Data\StateData;
-use Squarebit\InvoiceXpress\API\Enums\CountryEnum;
-use Squarebit\InvoiceXpress\API\Enums\DocumentEventEnum;
-use Squarebit\InvoiceXpress\API\Enums\EntityTypeEnum;
-use Squarebit\InvoiceXpress\API\Enums\EstimateStatusEnum;
-use Squarebit\InvoiceXpress\API\Enums\ItemUnitEnum;
+use Squarebit\InvoiceXpress\Enums\CountryEnum;
+use Squarebit\InvoiceXpress\Enums\DocumentEventEnum;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
+use Squarebit\InvoiceXpress\Enums\EstimateStatusEnum;
+use Squarebit\InvoiceXpress\Enums\ItemUnitEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can go through an Guide lifecycle', function (EntityTypeEnum $docType, array $data) {

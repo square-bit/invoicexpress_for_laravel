@@ -1,15 +1,12 @@
 <?php
-/**
- * Copyright (c) 2023.  - open-sourced software licensed under the MIT license.
- * Squarebit, Lda - Portugal - www.square-bit.com
- */
+
 use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\ClientData;
 use Squarebit\InvoiceXpress\API\Data\EntityListData;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\PaginationFilter;
-use Squarebit\InvoiceXpress\API\Enums\ClientLanguageEnum;
-use Squarebit\InvoiceXpress\API\Enums\ClientSendOptionsEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxExemptionCodeEnum;
+use Squarebit\InvoiceXpress\Enums\ClientLanguageEnum;
+use Squarebit\InvoiceXpress\Enums\ClientSendOptionsEnum;
+use Squarebit\InvoiceXpress\Enums\TaxExemptionCodeEnum;
 use Squarebit\InvoiceXpress\Facades\InvoiceXpress;
 
 it('can create / get / findByCode|Name / list / update / delete a client', function (array $clientData) {

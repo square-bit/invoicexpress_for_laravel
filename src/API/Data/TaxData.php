@@ -8,8 +8,8 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\LaravelData\Optional;
 use Squarebit\InvoiceXpress\API\Data\Transformers\BoolToIntTransformer;
 use Squarebit\InvoiceXpress\API\Data\Transformers\BoolToNumericStringTransformer;
-use Squarebit\InvoiceXpress\API\Enums\TaxCodeEnum;
-use Squarebit\InvoiceXpress\API\Enums\TaxRegionEnum;
+use Squarebit\InvoiceXpress\Enums\TaxCodeEnum;
+use Squarebit\InvoiceXpress\Enums\TaxRegionEnum;
 
 #[MapName(SnakeCaseMapper::class)]
 class TaxData extends EntityData
@@ -27,8 +27,8 @@ class TaxData extends EntityData
         public string $name,
         #[WithTransformer(BoolToNumericStringTransformer::class)]
         public Optional|float $value,
-        public Optional|TaxRegionEnum $region,
-        public Optional|TaxCodeEnum $code,
+        public null|Optional|TaxRegionEnum $region,
+        public null|Optional|TaxCodeEnum $code,
         #[WithTransformer(BoolToIntTransformer::class)]
         public Optional|bool $defaultTax,
     ) {

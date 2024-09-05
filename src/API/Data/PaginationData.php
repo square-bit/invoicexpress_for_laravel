@@ -14,6 +14,5 @@ class PaginationData extends Data
         public int $totalPages,
         public int $totalEntries,
         public int $perPage,
-    ) {
-    }
+    ) {}
 }

@@ -52,8 +52,7 @@ class ItemData extends EntityData
         public Optional|float $tax_amount,
         public Optional|float $discount_amount,
         public Optional|float $total,
-    ) {
-    }
+    ) {}
 
     public function toCreateData(): static
     {

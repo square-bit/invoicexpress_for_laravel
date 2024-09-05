@@ -21,19 +21,19 @@ use Squarebit\InvoiceXpress\API\Endpoints\Concerns\SetsCurrent;
  */
 class SequencesEndpoint extends Endpoint
 {
-    /** @use Lists<QueryFilter, SequenceData> */
-    use Lists;
+    /** @use CreatesWithType<SequenceData> */
+    use CreatesWithType;
 
     /** @use GetsWithType<SequenceData> */
     use GetsWithType;
 
-    /** @use CreatesWithType<SequenceData> */
-    use CreatesWithType;
-
-    use SetsCurrent;
+    /** @use Lists<QueryFilter, SequenceData> */
+    use Lists;
 
     /** @use Registers<SequenceData> */
     use Registers;
+
+    use SetsCurrent;
 
     public const ENDPOINT_CONFIG = 'sequence';
 

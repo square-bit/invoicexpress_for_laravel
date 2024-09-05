@@ -11,8 +11,8 @@ use Squarebit\InvoiceXpress\Enums\Concerns\EnumEnhancements;
 
 enum EstimateTypeEnum: string
 {
-    use EnumEnhancements;
     use ConvertsToEntityTypeEnum;
+    use EnumEnhancements;
 
     case Quote = 'Quote';
     case Proforma = 'Proforma';

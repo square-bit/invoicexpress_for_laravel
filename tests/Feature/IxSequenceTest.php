@@ -19,7 +19,7 @@ it('can create a Sequence', function (bool $persistLocally) {
 
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
 
-    $instance = new IxSequence();
+    $instance = new IxSequence;
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
 
@@ -44,7 +44,7 @@ it('can create a Sequence', function (bool $persistLocally) {
 it('can find a Sequence', function (bool $persistLocally) {
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
 
-    $instance = new IxSequence();
+    $instance = new IxSequence;
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
     $responseSample = getResponseSample(class_basename($endpoint), $endpoint::GET, $type);
@@ -68,7 +68,7 @@ it('can set a Sequence as default', function (bool $persistLocally) {
 
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
 
-    $instance = new IxSequence();
+    $instance = new IxSequence;
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
     $GETResponseSample = getResponseSample(class_basename($endpoint), $endpoint::GET, $type);
@@ -97,7 +97,7 @@ it('can fail to update a Sequence', function (bool $persistLocally) {
 
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
 
-    $instance = new IxSequence();
+    $instance = new IxSequence;
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
     $GETResponseSample = getResponseSample(class_basename($endpoint), $endpoint::GET, $type);
@@ -120,7 +120,7 @@ it('can refresh a Sequence from API', function (bool $persistLocally) {
 
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
 
-    $instance = new IxSequence();
+    $instance = new IxSequence;
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
     $responseSample = getResponseSample(class_basename($endpoint), $endpoint::GET, $instance->getEntityType());

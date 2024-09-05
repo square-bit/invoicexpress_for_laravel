@@ -26,7 +26,7 @@ class IxClient extends IxModel
 
     public function getEndpoint(): ClientsEndpoint
     {
-        return new ClientsEndpoint();
+        return new ClientsEndpoint;
     }
 
     public function delete(): bool

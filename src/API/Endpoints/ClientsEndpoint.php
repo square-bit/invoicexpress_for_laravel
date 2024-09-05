@@ -23,17 +23,10 @@ use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
  */
 class ClientsEndpoint extends Endpoint
 {
-    /** @use Lists<null, ClientData> */
-    use Lists;
-
-    /** @use GetsWithType<ClientData> */
-    use GetsWithType {get as getWithType; }
-
     /** @use CreatesWithType<ClientData> */
     use CreatesWithType {create as createWithType; }
 
-    /** @use UpdatesWithType<ClientData> */
-    use UpdatesWithType {update as updateWithType; }
+    use Deletes;
 
     /** @use FindsByCode<ClientData> */
     use FindsByCode;
@@ -41,8 +34,15 @@ class ClientsEndpoint extends Endpoint
     /** @use FindsByName<ClientData> */
     use FindsByName;
 
+    /** @use GetsWithType<ClientData> */
+    use GetsWithType {get as getWithType; }
+
+    /** @use Lists<null, ClientData> */
+    use Lists;
+
     use ListsInvoices;
-    use Deletes;
+    /** @use UpdatesWithType<ClientData> */
+    use UpdatesWithType {update as updateWithType; }
 
     public const ENDPOINT_CONFIG = 'client';
 

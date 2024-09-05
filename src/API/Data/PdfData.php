@@ -9,6 +9,5 @@ class PdfData extends Data
     public function __construct(
         public ?string $pdfUrl,
         public ?bool $signed,
-    ) {
-    }
+    ) {}
 }

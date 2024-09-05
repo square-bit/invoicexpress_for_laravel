@@ -11,8 +11,8 @@ use Squarebit\InvoiceXpress\Enums\Concerns\EnumEnhancements;
 
 enum InvoiceTypeEnum: string
 {
-    use EnumEnhancements;
     use ConvertsToEntityTypeEnum;
+    use EnumEnhancements;
 
     case Invoice = 'Invoice';
     case InvoiceReceipt = 'InvoiceReceipt';

@@ -24,7 +24,7 @@ beforeEach(fn () => Http::fake());
 it('sends document via email', function (string $model) {
 
     /** @var EmailsDocument $instance */
-    $instance = new $model();
+    $instance = new $model;
     $instance->id = random_int(1, 1000);
 
     $instance->setClient(IxClientFactory::new()->make());

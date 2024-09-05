@@ -61,6 +61,5 @@ class SequenceData extends EntityData
         public Optional|int $currentVatMossReceiptNumber, // 0,
         public Optional|int $currentVatMossReceiptSequenceId, // 146099
         public Optional|string $currentVatMossReceiptValidationCode, // 'N/A'
-    ) {
-    }
+    ) {}
 }

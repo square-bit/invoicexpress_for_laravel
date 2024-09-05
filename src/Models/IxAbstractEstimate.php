@@ -32,15 +32,15 @@ use Squarebit\InvoiceXpress\Models\Scopes\EstimateTypeScope;
  */
 class IxAbstractEstimate extends IxModel
 {
+    use AcceptsDocument;
+    use CancelsDocument;
+    use DeletesDocument;
     use EmailsDocument;
     use FinalizesDocument;
-    use DeletesDocument;
-    use AcceptsDocument;
-    use RefusesDocument;
-    use CancelsDocument;
     use GetsPdfDocument;
     use HasClient;
     use HasItems;
+    use RefusesDocument;
 
     protected EntityTypeEnum $entityType = EntityTypeEnum::Quote;
 
@@ -61,12 +61,12 @@ class IxAbstractEstimate extends IxModel
 
     protected static function booted(): void
     {
-        static::addGlobalScope(new EstimateTypeScope());
+        static::addGlobalScope(new EstimateTypeScope);
     }
 
     public function getEndpoint(): EstimatesEndpoint
     {
-        return new EstimatesEndpoint();
+        return new EstimatesEndpoint;
     }
 
     public function getEstimateType(): EstimateTypeEnum

@@ -13,6 +13,5 @@ class SaftData extends Data
     public function __construct(
         public Optional|string $url,
         public Optional|string $message,
-    ) {
-    }
+    ) {}
 }

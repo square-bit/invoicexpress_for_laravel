@@ -12,7 +12,7 @@ use Squarebit\InvoiceXpress\Models\IxSimplifiedInvoice;
 
 it('settles document', function (string $model) {
     /** @var SettlesDocument $instance */
-    $instance = new $model();
+    $instance = new $model;
     $instance->id = random_int(1, 1000);
 
     $instance->setClient(IxClientFactory::new()->make());

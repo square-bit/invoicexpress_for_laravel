@@ -8,7 +8,7 @@ use Squarebit\InvoiceXpress\Models\IxDebitNote;
 
 it('unsettles document', function (string $model) {
     /** @var UnsettlesDocument $instance */
-    $instance = new $model();
+    $instance = new $model;
     $instance->id = random_int(1, 1000);
 
     $instance->setClient(IxClientFactory::new()->make());

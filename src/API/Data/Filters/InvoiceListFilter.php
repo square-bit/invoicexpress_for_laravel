@@ -44,6 +44,5 @@ class InvoiceListFilter extends QueryFilter
         public Optional|string $reference,
 
         public Optional|PaginationFilter $pagination,
-    ) {
-    }
+    ) {}
 }

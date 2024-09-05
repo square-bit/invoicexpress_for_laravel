@@ -12,8 +12,8 @@ trait EmailsDocument
         ?IxClient $client = null,
         ?string $subject = null,
         ?string $body = null,
-        string $cc = null,
-        string $bcc = null,
+        ?string $cc = null,
+        ?string $bcc = null,
         bool $includeLogo = true
     ): static {
 

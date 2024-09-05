@@ -26,7 +26,7 @@ class IxSequence extends IxModel
 
     public function getEndpoint(): SequencesEndpoint
     {
-        return new SequencesEndpoint();
+        return new SequencesEndpoint;
     }
 
     public function setCurrent(): bool

@@ -31,15 +31,15 @@ use Squarebit\InvoiceXpress\Models\Scopes\InvoiceTypeScope;
  */
 class IxAbstractInvoice extends IxModel
 {
-    use EmailsDocument;
-    use FinalizesDocument;
     use CancelsDocument;
     use DeletesDocument;
-    use SettlesDocument;
+    use EmailsDocument;
+    use FinalizesDocument;
     use GetsPdfDocument;
     use GetsQrCode;
     use HasClient;
     use HasItems;
+    use SettlesDocument;
 
     protected string $dataClass = InvoiceData::class;
 
@@ -64,12 +64,12 @@ class IxAbstractInvoice extends IxModel
 
     protected static function booted(): void
     {
-        static::addGlobalScope(new InvoiceTypeScope());
+        static::addGlobalScope(new InvoiceTypeScope);
     }
 
     public function getEndpoint(): InvoicesEndpoint
     {
-        return new InvoicesEndpoint();
+        return new InvoicesEndpoint;
     }
 
     public function getInvoiceType(): InvoiceTypeEnum

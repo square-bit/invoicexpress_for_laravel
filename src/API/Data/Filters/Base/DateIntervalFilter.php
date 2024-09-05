@@ -14,6 +14,5 @@ class DateIntervalFilter extends Data
     public function __construct(
         public Optional|Carbon $from,
         public Optional|Carbon $to,
-    ) {
-    }
+    ) {}
 }

@@ -9,7 +9,7 @@ use Squarebit\InvoiceXpress\Models\IxQuote;
 
 it('refuses document', function (string $model) {
     /** @var RefusesDocument $instance */
-    $instance = new $model();
+    $instance = new $model;
     $instance->id = random_int(1, 1000);
 
     $instance->setClient(IxClientFactory::new()->make());

@@ -11,8 +11,8 @@ use Squarebit\InvoiceXpress\Enums\Concerns\EnumEnhancements;
 
 enum GuideTypeEnum: string
 {
-    use EnumEnhancements;
     use ConvertsToEntityTypeEnum;
+    use EnumEnhancements;
 
     case Shipping = 'Shipping';
     case Transport = 'Transport';

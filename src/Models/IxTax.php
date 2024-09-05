@@ -24,6 +24,6 @@ class IxTax extends IxModel
 
     public function getEndpoint(): TaxesEndpoint
     {
-        return new TaxesEndpoint();
+        return new TaxesEndpoint;
     }
 }

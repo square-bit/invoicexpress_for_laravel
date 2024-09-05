@@ -6,7 +6,7 @@ use Squarebit\InvoiceXpress\Models\IxModel;
 
 it('can set/unset persistance', function (bool $persistLocally) {
 
-    $instance = new TestModel();
+    $instance = new TestModel;
     expect($instance->isPersistingLocally())->toBe(config('invoicexpress-for-laravel.eloquent.persist'));
 
     $instance->persistLocally($persistLocally);
@@ -21,6 +21,6 @@ class TestModel extends IxModel
 {
     public function getEndpoint(): Endpoint
     {
-        return new ClientsEndpoint();
+        return new ClientsEndpoint;
     }
 }

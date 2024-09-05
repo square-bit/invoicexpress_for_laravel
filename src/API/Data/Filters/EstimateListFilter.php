@@ -39,6 +39,5 @@ class EstimateListFilter extends QueryFilter
         public Optional|string $reference,
 
         public Optional|PaginationFilter $pagination,
-    ) {
-    }
+    ) {}
 }

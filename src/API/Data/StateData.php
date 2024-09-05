@@ -19,8 +19,7 @@ class StateData extends Data
         #[Required]
         #[RequiredIf('state', 'canceled')]
         public Optional|string $message,
-    ) {
-    }
+    ) {}
 
     public static function event(DocumentEventEnum $event): self
     {

@@ -19,6 +19,6 @@ trait PaysDocument
             PartialPaymentData::of($amount, $date ?? now(), $mechanism)
         );
 
-        return (new IxReceipt())->fromData($receiptData);
+        return (new IxReceipt)->fromData($receiptData);
     }
 }

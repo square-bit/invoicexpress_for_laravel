@@ -12,7 +12,7 @@ use Squarebit\InvoiceXpress\Models\IxTransport;
 
 it('gets qr code', function (string $model) {
     /** @var GetsPdfDocument $instance */
-    $instance = new $model();
+    $instance = new $model;
     $instance->id = random_int(1, 1000);
 
     $instance->setClient(IxClientFactory::new()->make());

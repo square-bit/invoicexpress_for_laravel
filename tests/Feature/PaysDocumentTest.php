@@ -10,7 +10,7 @@ use Squarebit\InvoiceXpress\Models\IxSimplifiedInvoice;
 it('pays the simplified invoice', function (string $model) {
 
     /** @var PaysDocument $instance */
-    $payable = new $model();
+    $payable = new $model;
     $payable->id = random_int(1, 1000);
     $payable->total = 123.45;
 

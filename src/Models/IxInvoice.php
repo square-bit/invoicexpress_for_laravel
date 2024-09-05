@@ -14,6 +14,6 @@ class IxInvoice extends IxAbstractInvoice
 
     public function getEndpoint(): InvoicesEndpoint
     {
-        return new InvoicesEndpoint();
+        return new InvoicesEndpoint;
     }
 }

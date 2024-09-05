@@ -9,7 +9,7 @@ use Squarebit\InvoiceXpress\Models\IxQuote;
 
 it('gets pdf document', function (string $model) {
     /** @var GetsPdfDocument $instance */
-    $instance = new $model();
+    $instance = new $model;
     $instance->id = random_int(1, 1000);
 
     $instance->setClient(IxClientFactory::new()->make());
@@ -32,7 +32,7 @@ it('gets pdf document', function (string $model) {
 
 it('fails to get pdf document', function (string $model) {
     /** @var GetsPdfDocument $instance */
-    $instance = new $model();
+    $instance = new $model;
     $instance->id = random_int(1, 1000);
 
     $instance->setClient(IxClientFactory::new()->make());

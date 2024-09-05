@@ -23,7 +23,11 @@ use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
  */
 class EstimatesEndpoint extends Endpoint
 {
-    use SendsByEmail;
+    /** @use ChangesState<EstimateData> */
+    use ChangesState;
+    /** @use CreatesWithType<EstimateData> */
+    use CreatesWithType;
+
     use GeneratesPDF;
 
     /** @use GetsWithType<EstimateData> */
@@ -32,14 +36,10 @@ class EstimatesEndpoint extends Endpoint
     /** @use Lists<EstimateListFilter, EstimateData> */
     use Lists;
 
-    /** @use CreatesWithType<EstimateData> */
-    use CreatesWithType;
+    use SendsByEmail;
 
     /** @use UpdatesWithType<EstimateData> */
     use UpdatesWithType;
-
-    /** @use ChangesState<EstimateData> */
-    use ChangesState;
 
     public const ENDPOINT_CONFIG = 'estimate';
 

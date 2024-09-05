@@ -25,29 +25,29 @@ use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
  */
 class InvoicesEndpoint extends Endpoint
 {
-    /** @use Lists<InvoiceListFilter, InvoiceData> */
-    use Lists;
-
-    /** @use GetsWithType<InvoiceData> */
-    use GetsWithType;
+    /** @use ChangesState<InvoiceData> */
+    use ChangesState;
 
     /** @use CreatesWithType<InvoiceData> */
     use CreatesWithType;
 
-    /** @use UpdatesWithType<InvoiceData> */
-    use UpdatesWithType;
+    use GeneratesAndCancelsPayment;
 
-    use SendsByEmail;
     use GeneratesPDF;
 
-    /** @use ChangesState<InvoiceData> */
-    use ChangesState;
-
     use GetsQRCode;
-    use GeneratesAndCancelsPayment;
+    /** @use GetsWithType<InvoiceData> */
+    use GetsWithType;
+
+    /** @use Lists<InvoiceListFilter, InvoiceData> */
+    use Lists;
 
     /** @use RelatedDocuments<InvoiceData> */
     use RelatedDocuments;
+    use SendsByEmail;
+
+    /** @use UpdatesWithType<InvoiceData> */
+    use UpdatesWithType;
 
     public const ENDPOINT_CONFIG = 'invoice';
 

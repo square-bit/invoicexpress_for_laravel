@@ -58,6 +58,5 @@ class EstimateData extends EntityData
         #[DataCollectionOf(ItemData::class)]
         public DataCollection $items,
         public ?string $mbReference,
-    ) {
-    }
+    ) {}
 }

@@ -7,6 +7,4 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\PaginationFilter;
 
 #[MapName(SnakeCaseMapper::class)]
-class ClientListInvoicesFilter extends PaginationFilter
-{
-}
+class ClientListInvoicesFilter extends PaginationFilter {}

@@ -21,19 +21,19 @@ use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
  */
 class TaxesEndpoint extends Endpoint
 {
-    /** @use Lists<QueryFilter, TaxData> */
-    use Lists;
-
-    /** @use GetsWithType<TaxData> */
-    use GetsWithType {get as getWithType; }
-
-    /** @use UpdatesWithType<TaxData> */
-    use UpdatesWithType {update as updateWithType; }
-
     /** @use CreatesWithType<TaxData> */
     use CreatesWithType {create as createWithType; }
 
     use Deletes;
+
+    /** @use GetsWithType<TaxData> */
+    use GetsWithType {get as getWithType; }
+
+    /** @use Lists<QueryFilter, TaxData> */
+    use Lists;
+
+    /** @use UpdatesWithType<TaxData> */
+    use UpdatesWithType {update as updateWithType; }
 
     public const ENDPOINT_CONFIG = 'tax';
 

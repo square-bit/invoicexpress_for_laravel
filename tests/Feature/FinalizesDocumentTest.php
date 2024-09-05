@@ -18,7 +18,7 @@ use Squarebit\InvoiceXpress\Models\IxTransport;
 
 it('finalizes document', function (string $model) {
     /** @var FinalizesDocument $instance */
-    $instance = new $model();
+    $instance = new $model;
     $instance->id = random_int(1, 1000);
 
     $instance->setClient(IxClientFactory::new()->make());

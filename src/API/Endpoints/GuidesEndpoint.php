@@ -23,8 +23,14 @@ use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
  */
 class GuidesEndpoint extends Endpoint
 {
-    use SendsByEmail;
+    /** @use ChangesState<GuideData> */
+    use ChangesState;
+    /** @use CreatesWithType<GuideData> */
+    use CreatesWithType;
+
     use GeneratesPDF;
+
+    use GetsQRCode;
 
     /** @use GetsWithType<GuideData> */
     use GetsWithType;
@@ -32,16 +38,10 @@ class GuidesEndpoint extends Endpoint
     /** @use Lists<GuideListFilter, GuideData> */
     use Lists;
 
-    /** @use CreatesWithType<GuideData> */
-    use CreatesWithType;
+    use SendsByEmail;
 
     /** @use UpdatesWithType<GuideData> */
     use UpdatesWithType;
-
-    /** @use ChangesState<GuideData> */
-    use ChangesState;
-
-    use GetsQRCode;
 
     public const ENDPOINT_CONFIG = 'guide';
 

@@ -31,6 +31,5 @@ class TaxData extends EntityData
         public null|Optional|TaxCodeEnum $code,
         #[WithTransformer(BoolToIntTransformer::class)]
         public Optional|bool $defaultTax,
-    ) {
-    }
+    ) {}
 }

@@ -66,14 +66,14 @@ it('can create an IxModel', function (bool $persistLocally, string $model) {
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
 
     /** @var IxModel $instance */
-    $instance = (new $model());
+    $instance = (new $model);
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
 
     $requestSample = getRequestSample(class_basename($endpoint), $endpoint::CREATE);
     $responseSample = getResponseSample(class_basename($endpoint), $endpoint::CREATE, $type);
 
-    $instance = (new $model())
+    $instance = (new $model)
         ->fromData($requestSample);
 
     Http::fake([
@@ -94,7 +94,7 @@ it('can find an IxModel', function (bool $persistLocally, string $model) {
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
 
     /** @var IxModel $instance */
-    $instance = (new $model());
+    $instance = (new $model);
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
     $responseSample = getResponseSample(class_basename($endpoint), $endpoint::GET, $type);
@@ -119,7 +119,7 @@ it('can update an IxModel', function (bool $persistLocally, string $model, strin
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
 
     /** @var IxModel $instance */
-    $instance = (new $model());
+    $instance = (new $model);
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
     $requestSample = getRequestSample(class_basename($endpoint), $endpoint::UPDATE);
@@ -154,7 +154,7 @@ it('can fail to update an IxModel', function (bool $persistLocally, string $mode
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
 
     /** @var IxModel $instance */
-    $instance = (new $model());
+    $instance = (new $model);
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
     $requestSample = getRequestSample(class_basename($endpoint), $endpoint::UPDATE);
@@ -182,7 +182,7 @@ it('can refresh an IxModel from API', function (bool $persistLocally, string $mo
 
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
     /** @var IxModel $instance */
-    $instance = (new $model());
+    $instance = (new $model);
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
     $requestSample = getRequestSample(class_basename($endpoint), $endpoint::UPDATE);
@@ -210,7 +210,7 @@ it('can refresh an IxModel from API', function (bool $persistLocally, string $mo
 it('can delete an IxModel', function (bool $persistLocally, string $model) {
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
     /** @var IxModel $instance */
-    $instance = (new $model());
+    $instance = (new $model);
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
     $GETresponseSample = getResponseSample(class_basename($endpoint), $endpoint::GET, $type);
@@ -219,7 +219,7 @@ it('can delete an IxModel', function (bool $persistLocally, string $model) {
         'https://*.app.invoicexpress.com/*.json?*' => Http::response(),
     ]);
 
-    $instance = (new $model())
+    $instance = (new $model)
         ->fromData(reset($GETresponseSample));
     $instance->save();
 
@@ -238,10 +238,10 @@ it('can delete an IxModel', function (bool $persistLocally, string $model) {
 
 it('cannot delete an IxModel without an id', function (bool $persistLocally, string $model) {
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
-    $endpoint = (new $model())->getEndpoint();
+    $endpoint = (new $model)->getEndpoint();
     $createSample = getRequestSample(class_basename($endpoint), $endpoint::CREATE);
 
-    $instance = (new $model())
+    $instance = (new $model)
         ->fromData($createSample);
 
     expect($instance)->exists->toBeFalse()
@@ -254,7 +254,7 @@ it('cannot delete an IxModel without an id', function (bool $persistLocally, str
 it('cannot delete an IxModel if API does not support it', function (bool $persistLocally, string $model) {
     config(['invoicexpress-for-laravel.eloquent.persist' => $persistLocally]);
     /** @var IxModel $instance */
-    $instance = (new $model());
+    $instance = (new $model);
     $endpoint = $instance->getEndpoint();
     $type = $instance->getEntityType();
     $GETresponseSample = getResponseSample(class_basename($endpoint), $endpoint::GET, $type);
@@ -263,7 +263,7 @@ it('cannot delete an IxModel if API does not support it', function (bool $persis
         'https://*.app.invoicexpress.com/*.json?*' => Http::response(),
     ]);
 
-    $instance = (new $model())
+    $instance = (new $model)
         ->fromData(reset($GETresponseSample));
     $instance->save();
 
@@ -281,7 +281,7 @@ it('cannot delete an IxModel if API does not support it', function (bool $persis
 it('cannot accept data of a different class', function (string $model) {
     $data = ItemData::from(['name' => fake()->name, 'unit_price' => random_int(1, 10), 'tax' => ['name' => 'IVA23']]);
 
-    expect(fn () => (new $model())->fromData($data))
+    expect(fn () => (new $model)->fromData($data))
         ->toThrow(InvalidArgumentException::class);
 })->with([
     'IxInvoice' => [IxInvoice::class],
@@ -291,7 +291,7 @@ it('cannot accept data of a different class', function (string $model) {
 
 it('can sync all from remote', function (string $model) {
     config(['invoicexpress-for-laravel.eloquent.persist' => true]);
-    $instance = (new $model());
+    $instance = (new $model);
     $endpoint = $instance->getEndpoint();
     $responseSample = getResponseSample(class_basename($endpoint), $endpoint::LIST);
     $responseSample2 = null;

@@ -21,19 +21,19 @@ use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
  */
 class ItemsEndpoint extends Endpoint
 {
-    /** @use Lists<ItemListFilter, ItemData> */
-    use Lists;
-
-    /** @use GetsWithType<ItemData> */
-    use GetsWithType {get as getWithType; }
-
-    /** @use UpdatesWithType<ItemData> */
-    use UpdatesWithType {update as updateWithType; }
-
     /** @use CreatesWithType<ItemData> */
     use CreatesWithType {create as createWithType; }
 
     use Deletes;
+
+    /** @use GetsWithType<ItemData> */
+    use GetsWithType {get as getWithType; }
+
+    /** @use Lists<ItemListFilter, ItemData> */
+    use Lists;
+
+    /** @use UpdatesWithType<ItemData> */
+    use UpdatesWithType {update as updateWithType; }
 
     public const ENDPOINT_CONFIG = 'item';
 

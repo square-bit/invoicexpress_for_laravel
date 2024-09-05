@@ -27,8 +27,7 @@ class PartialPaymentData extends Data
         public Optional|PaymentMechanismEnum $paymentMechanism,
         public Optional|string $note,
         public Optional|string $serie,
-    ) {
-    }
+    ) {}
 
     public static function of(float $amount, ?Carbon $date = null, ?PaymentMechanismEnum $mechanism = null): self
     {

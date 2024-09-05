@@ -30,10 +30,10 @@ use Squarebit\InvoiceXpress\Models\Scopes\GuideTypeScope;
  */
 class IxAbstractGuide extends IxModel
 {
+    use CancelsDocument;
+    use DeletesDocument;
     use EmailsDocument;
     use FinalizesDocument;
-    use DeletesDocument;
-    use CancelsDocument;
     use GetsPdfDocument;
     use GetsQrCode;
     use HasClient;
@@ -59,12 +59,12 @@ class IxAbstractGuide extends IxModel
 
     protected static function booted(): void
     {
-        static::addGlobalScope(new GuideTypeScope());
+        static::addGlobalScope(new GuideTypeScope);
     }
 
     public function getEndpoint(): GuidesEndpoint
     {
-        return new GuidesEndpoint();
+        return new GuidesEndpoint;
     }
 
     public function getGuideType(): GuideTypeEnum

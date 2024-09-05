@@ -16,6 +16,5 @@ class AddressData extends Data
         public ?string $postalCode,
         public ?string $detail,
         public ?string $city,
-    ) {
-    }
+    ) {}
 }

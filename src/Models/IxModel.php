@@ -95,7 +95,7 @@ abstract class IxModel extends Model
      */
     public static function find(int $id, array $columns = ['*']): static|Collection|null
     {
-        $instance = new static();
+        $instance = new static;
 
         if ($found = $instance->findLocally($id, $columns)) {
             return $found;
@@ -238,7 +238,7 @@ abstract class IxModel extends Model
 
     public static function syncAllFromRemote(): void
     {
-        $instance = new static();
+        $instance = new static;
 
         /** @phpstan-ignore-next-line  */
         $list = $instance->endpoint->list();
@@ -246,7 +246,7 @@ abstract class IxModel extends Model
             $list->items()
                 ->map(function (EntityData $data) {
                     /** @var IxModel<T> $model */
-                    $model = (new static())->findLocally($data->getId()) ?? new static();
+                    $model = (new static)->findLocally($data->getId()) ?? new static;
 
                     return $model->fromData($data);
                 })

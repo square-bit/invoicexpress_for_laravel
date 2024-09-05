@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use function Pest\testDirectory;
 use PHPUnit\Framework\Assert;
 use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Tests\TestCase;
 use Squarebit\InvoiceXpress\Tests\TestCaseWithDB;
+
+use function Pest\testDirectory;
 
 const TEST_REAL_API = false;
 

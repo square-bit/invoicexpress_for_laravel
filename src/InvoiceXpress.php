@@ -19,41 +19,41 @@ class InvoiceXpress
 
     public function clients(): ClientsEndpoint
     {
-        return new ClientsEndpoint();
+        return new ClientsEndpoint;
     }
 
     public function items(): ItemsEndpoint
     {
-        return new ItemsEndpoint();
+        return new ItemsEndpoint;
     }
 
     public function sequences(): SequencesEndpoint
     {
-        return new SequencesEndpoint();
+        return new SequencesEndpoint;
     }
 
     public function taxes(): TaxesEndpoint
     {
-        return new TaxesEndpoint();
+        return new TaxesEndpoint;
     }
 
     public function saft(): SaftEndpoint
     {
-        return new SaftEndpoint();
+        return new SaftEndpoint;
     }
 
     public function invoices(): InvoicesEndpoint
     {
-        return new InvoicesEndpoint();
+        return new InvoicesEndpoint;
     }
 
     public function guides(): GuidesEndpoint
     {
-        return new GuidesEndpoint();
+        return new GuidesEndpoint;
     }
 
     public function estimates(): EstimatesEndpoint
     {
-        return new EstimatesEndpoint();
+        return new EstimatesEndpoint;
     }
 }

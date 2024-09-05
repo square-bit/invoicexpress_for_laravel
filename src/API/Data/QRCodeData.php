@@ -13,6 +13,5 @@ class QRCodeData extends Data
     public function __construct(
         public ?string $url,
         public Optional|string $status,
-    ) {
-    }
+    ) {}
 }

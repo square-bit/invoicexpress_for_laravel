@@ -94,6 +94,5 @@ class GuideData extends EntityData
         #[WithCast(DateTimeInterfaceCast::class, format: InvoiceXpress::DATE_TIME_FORMAT)]
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: InvoiceXpress::DATE_TIME_FORMAT, setTimeZone: 'Europe/Lisbon')]
         public Optional|Carbon $loadedAt, // '02/12/2017 19:00:00',
-    ) {
-    }
+    ) {}
 }

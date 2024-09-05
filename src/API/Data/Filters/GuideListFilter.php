@@ -31,6 +31,5 @@ class GuideListFilter extends QueryFilter
         public Optional|int $page,
 
         public Optional|int $perPage,
-    ) {
-    }
+    ) {}
 }

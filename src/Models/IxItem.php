@@ -22,6 +22,6 @@ class IxItem extends IxModel
 
     public function getEndpoint(): ItemsEndpoint
     {
-        return new ItemsEndpoint();
+        return new ItemsEndpoint;
     }
 }

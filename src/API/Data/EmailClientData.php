@@ -17,8 +17,7 @@ class EmailClientData extends Data
         public ?string $email,
         #[WithTransformer(BoolToIntTransformer::class)]
         public bool $save = false,
-    ) {
-    }
+    ) {}
 
     public static function fromEmail(string $email): self
     {

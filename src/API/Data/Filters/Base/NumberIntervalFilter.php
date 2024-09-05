@@ -13,6 +13,5 @@ class NumberIntervalFilter extends Data
     public function __construct(
         public Optional|float $from,
         public Optional|float $to,
-    ) {
-    }
+    ) {}
 }

@@ -49,14 +49,14 @@ class ItemsEndpoint extends Endpoint
 
     public function get(int|EntityTypeEnum $entityType, ?int $id = null): ItemData
     {
-        return is_int($entityType) // @phpstan-ignore-line
+        return is_int($entityType)
             ? $this->getWithType(EntityTypeEnum::Item, $entityType)
             : $this->getWithType($entityType, $id);
     }
 
     public function create(ItemData|EntityTypeEnum $entityType, ?ItemData $data = null): ItemData
     {
-        return $entityType instanceof EntityTypeEnum // @phpstan-ignore-line
+        return $entityType instanceof EntityTypeEnum
             ? $this->createWithType($entityType, $data)
             : $this->createWithType(EntityTypeEnum::Item, $entityType);
 

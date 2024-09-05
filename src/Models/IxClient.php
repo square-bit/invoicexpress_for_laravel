@@ -10,6 +10,23 @@ use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 use Squarebit\InvoiceXpress\Enums\TaxExemptionCodeEnum;
 
 /**
+ * @property null|string $address
+ * @property null|string $city
+ * @property null|string $code
+ * @property null|string $country
+ * @property null|string $email
+ * @property null|string $fax
+ * @property null|string $fiscal_id
+ * @property null|string $name
+ * @property null|string $observations
+ * @property null|string $payment_days
+ * @property null|string $phone
+ * @property null|string $postal_code
+ * @property null|array $preferred_contact
+ * @property null|ClientSendOptionsEnum $send_options
+ * @property null|TaxExemptionCodeEnum $tax_exemption_code
+ * @property null|string $website
+ *
  * @template-extends IxModel<ClientData>
  */
 class IxClient extends IxModel

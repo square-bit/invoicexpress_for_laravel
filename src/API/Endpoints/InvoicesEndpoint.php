@@ -32,10 +32,9 @@ class InvoicesEndpoint extends Endpoint
     use CreatesWithType;
 
     use GeneratesAndCancelsPayment;
-
     use GeneratesPDF;
-
     use GetsQRCode;
+
     /** @use GetsWithType<InvoiceData> */
     use GetsWithType;
 
@@ -44,6 +43,7 @@ class InvoicesEndpoint extends Endpoint
 
     /** @use RelatedDocuments<InvoiceData> */
     use RelatedDocuments;
+
     use SendsByEmail;
 
     /** @use UpdatesWithType<InvoiceData> */

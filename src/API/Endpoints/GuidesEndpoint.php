@@ -25,11 +25,11 @@ class GuidesEndpoint extends Endpoint
 {
     /** @use ChangesState<GuideData> */
     use ChangesState;
+
     /** @use CreatesWithType<GuideData> */
     use CreatesWithType;
 
     use GeneratesPDF;
-
     use GetsQRCode;
 
     /** @use GetsWithType<GuideData> */

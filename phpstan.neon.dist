@@ -10,6 +10,9 @@ parameters:
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: true
-    checkMissingIterableValueType: false
+    ignoreErrors:
+        -
+            path: .
+            identifier: missingType.iterableValue
     excludePaths:
     	- src/Concerns/EnumEnhancements.php

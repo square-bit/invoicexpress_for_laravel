@@ -9,6 +9,12 @@ use Squarebit\InvoiceXpress\Enums\TaxCodeEnum;
 use Squarebit\InvoiceXpress\Enums\TaxRegionEnum;
 
 /**
+ * @property null|string $code
+ * @property null|array $defaultTax
+ * @property null|string $name
+ * @property null|string $region
+ * @property null|float $value
+ *
  * @template-extends IxModel<TaxData>
  */
 class IxTax extends IxModel

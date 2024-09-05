@@ -25,6 +25,7 @@ class EstimatesEndpoint extends Endpoint
 {
     /** @use ChangesState<EstimateData> */
     use ChangesState;
+
     /** @use CreatesWithType<EstimateData> */
     use CreatesWithType;
 

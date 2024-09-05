@@ -41,6 +41,7 @@ class ClientsEndpoint extends Endpoint
     use Lists;
 
     use ListsInvoices;
+
     /** @use UpdatesWithType<ClientData> */
     use UpdatesWithType {update as updateWithType; }
 
@@ -67,7 +68,7 @@ class ClientsEndpoint extends Endpoint
      */
     public function get(int|EntityTypeEnum $entityType, ?int $id = null): ClientData
     {
-        return is_int($entityType) // @phpstan-ignore-line
+        return is_int($entityType)
             ? $this->getWithType($this->getEntityType(), $entityType)
             : $this->getWithType($entityType, $id);
     }
@@ -80,7 +81,7 @@ class ClientsEndpoint extends Endpoint
      */
     public function create(ClientData|EntityTypeEnum $entityType, ?ClientData $data = null): ClientData
     {
-        return $entityType instanceof EntityTypeEnum // @phpstan-ignore-line
+        return $entityType instanceof EntityTypeEnum
             ? $this->createWithType($entityType, $data)
             : $this->createWithType($this->getEntityType(), $entityType);
 

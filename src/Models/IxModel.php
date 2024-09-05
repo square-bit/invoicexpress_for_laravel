@@ -23,6 +23,7 @@ use Throwable;
  */
 abstract class IxModel extends Model
 {
+    /** @use WithData<T> */
     use WithData{ getData as getBaseData; }
 
     /** @var Endpoint<T> */

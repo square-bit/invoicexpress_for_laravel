@@ -19,7 +19,7 @@ class ClientData extends EntityData
         'unitPrice',
         'unit',
         'quantity',
-        'tax.name',
+        //        'tax.name',
     ];
 
     public function __construct(
@@ -44,8 +44,7 @@ class ClientData extends EntityData
         #[WithCast(EnumCast::class)]
         public null|Optional|TaxExemptionCodeEnum $taxExemptionCode,
         public null|Optional|string $openAccountLink,
-    ) {
-    }
+    ) {}
 
     public static function getUseProperties(): array
     {

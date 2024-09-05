@@ -32,7 +32,7 @@ it('can create / get / findByCode|Name / list / update / delete a client', funct
         ->toThrow(RequestException::class);
 
     // list invoices
-    expect(fn () => InvoiceXpress::clients()->listInvoices())
+    expect(fn () => InvoiceXpress::clients()->listInvoices($client->id))
         ->not()->toThrow(RequestException::class);
 
     // list

@@ -17,7 +17,7 @@ class IxItemFactory extends Factory
         return [
             'name' => fake()->name,
             'description' => fake()->text,
-            'unitPrice' => fake()->randomFloat(2),
+            'unit_price' => fake()->randomFloat(2),
             'unit' => 'unit',
             'tax' => IxTaxFactory::new()->make()->toArray(),
         ];

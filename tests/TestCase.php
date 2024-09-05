@@ -20,7 +20,7 @@ class TestCase extends Orchestra
             fn (string $modelName) => 'Squarebit\\InvoiceXpress\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
 
-        Http::preventStrayRequests()->fake([]);
+        TEST_REAL_API === false && Http::preventStrayRequests()->fake([]);
     }
 
     protected function getPackageProviders($app)

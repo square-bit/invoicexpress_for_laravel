@@ -51,7 +51,7 @@ dataset(
                 'date' => now()->addDay()->format(\Squarebit\InvoiceXpress\InvoiceXpress::DATE_FORMAT),
                 'due_date' => now()->addDays(random_int(10,
                     30))->format(\Squarebit\InvoiceXpress\InvoiceXpress::DATE_FORMAT),
-                'reference' => fake()->colorName,
+                'reference' => fake()->colorName(),
                 'observations' => fake()->text(128),
                 'address_from' => [
                     'detail' => 'Rua 5',

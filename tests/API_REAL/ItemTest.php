@@ -39,7 +39,7 @@ it('can create / update /delete an Item', function (array $itemData) {
 })->with([
     [
         [
-            'name' => fake()->colorName,
+            'name' => fake()->colorName(),
             'description' => fake()->text(128),
             'unit_price' => fake()->randomFloat(2, 0, 100),
             'unit' => collect(ItemUnitEnum::values())->random(),

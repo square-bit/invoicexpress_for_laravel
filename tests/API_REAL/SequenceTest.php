@@ -24,5 +24,5 @@ it('can create / get / update / delete a Sequence', function (string $name) {
         ->not()->toThrow(RequestException::class);
 
 })->with([
-    fake()->colorName,
+    fake()->colorName(),
 ])->skip(! TEST_REAL_API);

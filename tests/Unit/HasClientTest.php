@@ -6,8 +6,26 @@ use Squarebit\InvoiceXpress\Models\IxSimplifiedInvoice;
 
 it('can set a client', function () {
 
-    $invoice = new IxSimplifiedInvoice();
+    $invoice = new IxSimplifiedInvoice;
     $client = IxClientFactory::new()->make();
+
+    expect($invoice->setClient($client))
+        ->client->toBeInstanceOf(ClientData::class);
+});
+
+it('can set a client from ClientData', function () {
+
+    $invoice = new IxSimplifiedInvoice;
+    $client = IxClientFactory::new()->make()->getData();
+
+    expect($invoice->setClient($client))
+        ->client->toBeInstanceOf(ClientData::class);
+});
+
+it('can set a client from array', function () {
+
+    $invoice = new IxSimplifiedInvoice;
+    $client = IxClientFactory::new()->make()->toArray();
 
     expect($invoice->setClient($client))
         ->client->toBeInstanceOf(ClientData::class);
@@ -15,7 +33,7 @@ it('can set a client', function () {
 
 it('can get a client', function () {
 
-    $invoice = new IxSimplifiedInvoice();
+    $invoice = new IxSimplifiedInvoice;
     $client = IxClientFactory::new()->make();
     $invoice->client = $client->getData();
 

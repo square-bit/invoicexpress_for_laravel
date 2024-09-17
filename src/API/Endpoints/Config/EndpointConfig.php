@@ -3,14 +3,16 @@
 namespace Squarebit\InvoiceXpress\API\Endpoints\Config;
 
 use Exception;
+use Squarebit\InvoiceXpress\API\Data\AccountConfig;
 
 class EndpointConfig
 {
     protected ?array $endpointData = null;
 
     public function __construct(
-        public string $object,
-        public string $action,
+        protected AccountConfig $accountConfig,
+        protected string $object,
+        protected string $action,
     ) {
         throw_unless(
             is_array($cfg = EndpointsConfig::get($object.'.'.$action)),
@@ -29,14 +31,14 @@ class EndpointConfig
     public function getUrl(?array $queryParams = []): string
     {
         $queryParams = array_merge(
-            ['api_key' => config('invoicexpress-for-laravel.account.api_key')],
+            ['api_key' => $this->accountConfig->apiKey],
             $queryParams
         );
 
         return 'https://'.
-            config('invoicexpress-for-laravel.account.name').
+            $this->accountConfig->name.
             '.'.
-            config('invoicexpress-for-laravel.service_endpoint').
+            $this->accountConfig->serviceEndpoint.
             '/'.
             $this->endpointData['path'].
             '?'.

@@ -7,6 +7,7 @@ use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Spatie\LaravelData\Data;
+use Squarebit\InvoiceXpress\API\Data\AccountConfig;
 use Squarebit\InvoiceXpress\API\Endpoints\Config\EndpointConfig;
 use Squarebit\InvoiceXpress\API\Exceptions\UnknownAPIMethodException;
 
@@ -17,6 +18,8 @@ abstract class Endpoint
 {
     protected ?int $lastResponseCode;
 
+    protected AccountConfig $config;
+
     /**
      * @return T
      */
@@ -24,9 +27,14 @@ abstract class Endpoint
 
     abstract protected function getEndpointName(): string;
 
+    public function __construct(?AccountConfig $accountConfig = null)
+    {
+        $this->config = $accountConfig ?? AccountConfig::default();
+    }
+
     public function getEndpointConfig(string $action): EndpointConfig
     {
-        return new EndpointConfig($this->getEndpointName(), $action);
+        return new EndpointConfig($this->config, $this->getEndpointName(), $action);
     }
 
     /**

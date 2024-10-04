@@ -37,7 +37,7 @@ class TaxData extends EntityData
     {
         return self::from([
             'name' => 'IVA23',
-            'code' => 'NOR'
+            'code' => 'NOR',
         ]);
     }
 

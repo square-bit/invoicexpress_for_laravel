@@ -32,4 +32,20 @@ class TaxData extends EntityData
         #[WithTransformer(BoolToIntTransformer::class)]
         public Optional|bool $defaultTax,
     ) {}
+
+    public static function IVA23(): self
+    {
+        return self::from([
+            'name' => 'IVA23',
+            'code' => 'NOR'
+        ]);
+    }
+
+    public static function IVA0(): self
+    {
+        return self::from([
+            'name' => 'IVA0',
+            'code' => 'ISE',
+        ]);
+    }
 }

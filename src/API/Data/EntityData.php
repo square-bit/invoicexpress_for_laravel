@@ -9,6 +9,12 @@ abstract class EntityData extends Data
 {
     public Optional|int $id;
 
+    public const CREATE_PROPERTIES = null;
+
+    public const UPDATE_PROPERTIES = null;
+
+    public const USE_PROPERTIES = null;
+
     public function getId(): ?int
     {
         return $this->id instanceof Optional ? null : $this->id;
@@ -23,12 +29,23 @@ abstract class EntityData extends Data
 
     public function toCreateData(): static
     {
-        return $this;
+        return static::CREATE_PROPERTIES
+            ? static::from($this)->only(...static::CREATE_PROPERTIES)
+            : static::from($this);
     }
 
     public function toUpdateData(): static
     {
-        return $this;
+        return static::UPDATE_PROPERTIES
+            ? static::from($this)->only(...static::UPDATE_PROPERTIES)
+            : static::from($this);
+    }
+
+    public function toUseData(): static
+    {
+        return static::USE_PROPERTIES
+            ? static::from($this)->only(...static::USE_PROPERTIES)
+            : static::from($this);
     }
 
     public function toModelData(): static

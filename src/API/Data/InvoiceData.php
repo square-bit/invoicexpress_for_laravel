@@ -85,15 +85,15 @@ class InvoiceData extends EntityData
     public static function getCreateProperties(): array
     {
         return array_merge(
-            self::CREATE_PROPERTIES,
-            self::prefixProperties('items', ItemData::getUseProperties()),
-            self::prefixProperties('client', ClientData::getUseProperties()),
+            static::CREATE_PROPERTIES,
+            static::prefixProperties('items', ItemData::getUseProperties()),
+            static::prefixProperties('client', ClientData::CREATE_PROPERTIES),
         );
     }
 
     public function toCreateData(): static
     {
         return static::from($this)
-            ->only(...self::getCreateProperties());
+            ->only(...static::getCreateProperties());
     }
 }

@@ -15,11 +15,22 @@ class ClientData extends EntityData
 {
     public const USE_PROPERTIES = [
         'name',
-        'description',
-        'unitPrice',
-        'unit',
-        'quantity',
-        //        'tax.name',
+        'code',
+    ];
+
+    public const CREATE_PROPERTIES = [
+        'name',
+        'code',
+        'email',
+        'address',
+        'city',
+        'postalCode',
+        'country',
+        'fiscalId',
+        'website',
+        'phone',
+        'fax',
+        'observations',
     ];
 
     public function __construct(
@@ -45,9 +56,4 @@ class ClientData extends EntityData
         public null|Optional|TaxExemptionCodeEnum $taxExemptionCode,
         public null|Optional|string $openAccountLink,
     ) {}
-
-    public static function getUseProperties(): array
-    {
-        return self::USE_PROPERTIES;
-    }
 }

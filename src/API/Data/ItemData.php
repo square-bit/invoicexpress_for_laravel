@@ -16,7 +16,14 @@ class ItemData extends EntityData
         'description',
         'unitPrice',
         'unit',
-        'tax.name',
+    ];
+
+    public const UPDATE_PROPERTIES = [
+        'id',
+        'name',
+        'description',
+        'unitPrice',
+        'unit',
     ];
 
     public const USE_PROPERTIES = [
@@ -25,7 +32,6 @@ class ItemData extends EntityData
         'unitPrice',
         'unit',
         'quantity',
-        'tax.name',
     ];
 
     public const MODEL_PROPERTIES = [
@@ -35,7 +41,6 @@ class ItemData extends EntityData
         'unitPrice',
         'unit',
         'quantity',
-        'tax.*',
     ];
 
     public function __construct(
@@ -54,32 +59,19 @@ class ItemData extends EntityData
         public Optional|float $total,
     ) {}
 
-    public function toCreateData(): static
+    protected static function getCreateProperties(): array
     {
-        return static::from($this)
-            ->only(...self::CREATE_PROPERTIES);
+        return array_merge(
+            static::CREATE_PROPERTIES,
+            static::prefixProperties('tax', TaxData::getUseProperties()),
+        );
     }
 
-    public function toUpdateData(): static
+    protected static function getUseProperties(): array
     {
-        return static::from($this)
-            ->only(
-                'id',
-                ...self::CREATE_PROPERTIES
-            );
-    }
-
-    public function toModelData(): static
-    {
-        return static::from($this)
-            ->only(
-                'id',
-                ...self::MODEL_PROPERTIES
-            );
-    }
-
-    public static function getUseProperties(): array
-    {
-        return self::USE_PROPERTIES;
+        return array_merge(
+            static::USE_PROPERTIES,
+            static::prefixProperties('tax', TaxData::getUseProperties()),
+        );
     }
 }

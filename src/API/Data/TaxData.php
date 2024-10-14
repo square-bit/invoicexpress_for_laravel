@@ -22,6 +22,10 @@ class TaxData extends EntityData
         'defaultTax',
     ];
 
+    public const USE_PROPERTIES = [
+        'name',
+    ];
+
     public function __construct(
         public Optional|int $id,
         public string $name,
@@ -38,14 +42,16 @@ class TaxData extends EntityData
         return self::from([
             'name' => 'IVA23',
             'code' => 'NOR',
+            'value' => number_format(23.0, 1),
         ]);
     }
 
     public static function IVA0(): self
     {
         return self::from([
-            'name' => 'IVA0',
+            'name' => 'Isento',
             'code' => 'ISE',
+            'value' => number_format(0.0, 1),
         ]);
     }
 }

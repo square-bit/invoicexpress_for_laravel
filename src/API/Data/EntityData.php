@@ -9,11 +9,11 @@ abstract class EntityData extends Data
 {
     public Optional|int $id;
 
-    public const CREATE_PROPERTIES = null;
+    public const CREATE_PROPERTIES = [];
 
-    public const UPDATE_PROPERTIES = null;
+    public const UPDATE_PROPERTIES = [];
 
-    public const USE_PROPERTIES = null;
+    public const USE_PROPERTIES = [];
 
     public function getId(): ?int
     {
@@ -27,24 +27,39 @@ abstract class EntityData extends Data
             ->all();
     }
 
+    protected static function getCreateProperties(): array
+    {
+        return static::CREATE_PROPERTIES;
+    }
+
+    protected static function getUpdateProperties(): array
+    {
+        return static::UPDATE_PROPERTIES;
+    }
+
+    protected static function getUseProperties(): array
+    {
+        return static::USE_PROPERTIES;
+    }
+
     public function toCreateData(): static
     {
-        return static::CREATE_PROPERTIES
-            ? static::from($this)->only(...static::CREATE_PROPERTIES)
+        return count($data = static::getCreateProperties())
+            ? static::from($this)->only(...$data)
             : static::from($this);
     }
 
     public function toUpdateData(): static
     {
-        return static::UPDATE_PROPERTIES
-            ? static::from($this)->only(...static::UPDATE_PROPERTIES)
+        return count($data = static::getUpdateProperties())
+            ? static::from($this)->only(...$data)
             : static::from($this);
     }
 
     public function toUseData(): static
     {
-        return static::USE_PROPERTIES
-            ? static::from($this)->only(...static::USE_PROPERTIES)
+        return count($data = static::getUseProperties())
+            ? static::from($this)->only(...$data)
             : static::from($this);
     }
 

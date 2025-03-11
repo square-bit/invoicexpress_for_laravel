@@ -23,12 +23,16 @@ trait CreatesWithType
      */
     public function create(EntityTypeEnum $entityType, EntityData $data): EntityData
     {
+        $data = [$entityType->value => $data->toCreateData()->toArray()];
+        return $this->callApi($entityType, $data);
+    }
+
+    public function callApi(EntityTypeEnum $entityType, array $data): EntityData{
         $response = $this->call(
             action: static::CREATE,
             urlParams: ['type' => $entityType->toUrlVariable()],
-            bodyData: [$entityType->value => $data->toCreateData()->toArray()]
+            bodyData: $data
         );
-
         return $this->responseToDataObject($response[$entityType->value]);
     }
 }

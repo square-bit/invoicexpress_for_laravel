@@ -2,7 +2,6 @@
 .phpunit.cache
 .DS_Store
 build
-composer.lock
 coverage
 docs
 phpunit.xml
@@ -10,3 +9,4 @@ phpstan.neon
 testbench.yaml
 vendor
 node_modules
+.env

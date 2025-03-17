@@ -10,7 +10,7 @@
         </testsuite>
     </testsuites>
     <php>
-        <env name="IX_ACCOUNT_NAME" value="integrislda" force="true"/>
+        <env name="IX_ACCOUNT_NAME" value="squarebit" force="true"/>
         <env name="IX_API_KEY" value="asfedasdadewqdewd" force="true"/>
         <env name="DB_CONNECTION" value="sqlite"/>
         <env name="DB_DATABASE" value=":memory:"/>

@@ -21,18 +21,17 @@ trait CreatesWithType
      * @throws RequestException
      * @throws UnknownAPIMethodException
      */
-    public function create(EntityTypeEnum $entityType, EntityData $data): EntityData
+    public function create(EntityTypeEnum $entityType, EntityData $data, array $extraData = []): EntityData
     {
-        $data = [$entityType->value => $data->toCreateData()->toArray()];
-        return $this->callApi($entityType, $data);
-    }
-
-    public function callApi(EntityTypeEnum $entityType, array $data): EntityData{
         $response = $this->call(
             action: static::CREATE,
             urlParams: ['type' => $entityType->toUrlVariable()],
-            bodyData: $data
+            bodyData: [
+                $entityType->value => $data->toCreateData()->toArray(),
+                ...$extraData,
+            ]
         );
+
         return $this->responseToDataObject($response[$entityType->value]);
     }
 }

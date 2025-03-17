@@ -30,7 +30,7 @@ class InvoicesEndpoint extends Endpoint
     use ChangesState;
 
     /** @use CreatesWithType<InvoiceData> */
-    use CreatesWithType {create as createWithType; }
+    use CreatesWithType { create as createWithType; }
 
     use GeneratesAndCancelsPayment;
     use GeneratesPDF;
@@ -62,11 +62,13 @@ class InvoicesEndpoint extends Endpoint
         return static::ENDPOINT_CONFIG;
     }
 
-    public function create(EntityTypeEnum $entityType, InvoiceData $data, ?string $proprietaryUid): InvoiceData {
-        $data = [$entityType->value => $data->toCreateData()->toArray()];
-        if($proprietaryUid){
-            $data['proprietary_uid'] = $proprietaryUid;
+    public function create(EntityTypeEnum $entityType, InvoiceData $data, ?string $proprietaryUid = null): InvoiceData
+    {
+        $extra = [];
+        if ($proprietaryUid) {
+            $extra['proprietary_uid'] = $proprietaryUid;
         }
-        return $this->callApi($entityType, $data);
+
+        return $this->createWithType($entityType, $data, $extra);
     }
 }

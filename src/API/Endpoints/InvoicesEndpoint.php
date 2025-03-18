@@ -19,6 +19,7 @@ use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Lists;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\RelatedDocuments;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\SendsByEmail;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\UpdatesWithType;
+use Squarebit\InvoiceXpress\Enums\EntityTypeEnum;
 
 /**
  * @template-extends Endpoint<InvoiceData>
@@ -29,7 +30,7 @@ class InvoicesEndpoint extends Endpoint
     use ChangesState;
 
     /** @use CreatesWithType<InvoiceData> */
-    use CreatesWithType;
+    use CreatesWithType { create as createWithType; }
 
     use GeneratesAndCancelsPayment;
     use GeneratesPDF;
@@ -59,5 +60,15 @@ class InvoicesEndpoint extends Endpoint
     protected function getEndpointName(): string
     {
         return static::ENDPOINT_CONFIG;
+    }
+
+    public function create(EntityTypeEnum $entityType, InvoiceData $data, ?string $proprietaryUid = null): InvoiceData
+    {
+        $extra = [];
+        if ($proprietaryUid) {
+            $extra['proprietary_uid'] = $proprietaryUid;
+        }
+
+        return $this->createWithType($entityType, $data, $extra);
     }
 }

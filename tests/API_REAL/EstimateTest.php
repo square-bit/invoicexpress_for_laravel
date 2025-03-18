@@ -76,7 +76,7 @@ dataset(
                         'unit_price' => random_int(10, 200),
                         // 'quantity' => random_int(1, 5),
                         'unit' => collect(ItemUnitEnum::values())->random(),
-                        //'discount' => collect([5, 10, 15, 20, 50])->random(),
+                        // 'discount' => collect([5, 10, 15, 20, 50])->random(),
                         'tax' => [
                             'name' => 'IVA23',
                         ],

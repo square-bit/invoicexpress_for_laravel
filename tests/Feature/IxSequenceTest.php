@@ -114,7 +114,7 @@ it('can fail to update a Sequence', function (bool $persistLocally) {
 })->with([
     'persist locally' => [true],
     "don't persist locally" => [false],
-]); //->depends('it can create a Sequence');
+]); // ->depends('it can create a Sequence');
 
 it('can refresh a Sequence from API', function (bool $persistLocally) {
 

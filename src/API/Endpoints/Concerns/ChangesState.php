@@ -29,7 +29,7 @@ trait ChangesState
                 'type' => $entityType->toUrlVariable(),
                 'id' => $id,
             ],
-            bodyData: [$entityType->value => $data->toArray()]
+            bodyData: [$entityType->toDataKey() => $data->toArray()]
         );
 
         return $this->responseToDataObject($response[$entityType->value]);

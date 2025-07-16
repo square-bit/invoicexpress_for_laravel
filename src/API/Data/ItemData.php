@@ -14,6 +14,7 @@ class ItemData extends EntityData
     public const CREATE_PROPERTIES = [
         'name',
         'description',
+        'quantity',
         'unitPrice',
         'unit',
     ];
@@ -22,6 +23,7 @@ class ItemData extends EntityData
         'id',
         'name',
         'description',
+        'quantity',
         'unitPrice',
         'unit',
     ];
@@ -63,6 +65,14 @@ class ItemData extends EntityData
     {
         return array_merge(
             static::CREATE_PROPERTIES,
+            static::prefixProperties('tax', TaxData::getUseProperties()),
+        );
+    }
+
+    protected static function getUpdateProperties(): array
+    {
+        return array_merge(
+            static::UPDATE_PROPERTIES,
             static::prefixProperties('tax', TaxData::getUseProperties()),
         );
     }

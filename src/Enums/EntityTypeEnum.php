@@ -42,4 +42,14 @@ enum EntityTypeEnum: string
     {
         return Str::studly($this->value);
     }
+
+    public function toDataKey(): string
+    {
+        return match ($this) {
+            self::Invoice, self::SimplifiedInvoice, self::InvoiceReceipt, self::VatMossInvoice, self::VatMossCreditNote, self::VatMossReceipt, self::CreditNote, self::DebitNote, self::Receipt, self::CashInvoice => self::Invoice->value,
+            self::Quote, self::Proforma, self::FeesNote => self::Quote->value,
+            self::Shipping, self::Transport, self::Devolution => self::Shipping->value,
+            default => $this->value,
+        };
+    }
 }

@@ -28,7 +28,7 @@ trait UpdatesWithType
                 'type' => $entityType->toUrlVariable(),
                 'id' => $data->getId(),
             ],
-            bodyData: [$entityType->value => $data->toUpdateData()]
+            bodyData: [$entityType->toDataKey() => $data->toUpdateData()->toArray()]
         );
     }
 }

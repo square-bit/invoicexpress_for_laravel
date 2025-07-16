@@ -37,6 +37,8 @@ class InvoiceData extends EntityData
         'rate',
     ];
 
+    public const UPDATE_PROPERTIES = self::CREATE_PROPERTIES;
+
     /**
      * @param  DataCollection<int, ItemData>  $items
      */
@@ -88,6 +90,15 @@ class InvoiceData extends EntityData
             static::CREATE_PROPERTIES,
             static::prefixProperties('items', ItemData::getCreateProperties()),
             static::prefixProperties('client', ClientData::getCreateProperties()),
+        );
+    }
+
+    public static function getUpdateProperties(): array
+    {
+        return array_merge(
+            static::UPDATE_PROPERTIES,
+            static::prefixProperties('items', ItemData::getUpdateProperties()),
+            static::prefixProperties('client', ClientData::getUpdateProperties()),
         );
     }
 

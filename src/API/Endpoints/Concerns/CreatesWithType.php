@@ -27,7 +27,7 @@ trait CreatesWithType
             action: static::CREATE,
             urlParams: ['type' => $entityType->toUrlVariable()],
             bodyData: [
-                $entityType->value => $data->toCreateData()->toArray(),
+                $entityType->toDataKey() => $data->toCreateData()->toArray(),
                 ...$extraData,
             ]
         );

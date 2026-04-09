@@ -2,6 +2,11 @@
 
 All notable changes to `invoicexpress_for_laravel` will be documented in this file.
 
+## Support for Laravel 13 - 2026-04-09
+
+Adds support for Laravel 13.
+(Version numbering reflects Laravel support)
+
 ## v1.0 - 2025-08-25
 
 ### What's Changed

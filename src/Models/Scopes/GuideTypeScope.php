@@ -7,15 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 use Squarebit\InvoiceXpress\Models\IxAbstractGuide;
 
+/**
+ * @implements Scope<IxAbstractGuide>
+ */
 class GuideTypeScope implements Scope
 {
-    /**
-     * @param  Builder<IxAbstractGuide>  $builder
-     */
     public function apply(Builder $builder, Model $model): void
     {
-        if ($model instanceof IxAbstractGuide) {
-            $builder->where('type', $model->getGuideType()->value);
-        }
+        $builder->where('type', $model->getGuideType()->value);
     }
 }

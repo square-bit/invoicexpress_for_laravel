@@ -23,7 +23,7 @@ use Squarebit\InvoiceXpress\Models\Scopes\GuideTypeScope;
 /**
  * @property ?GuideTypeEnum $type
  * @property float $total
- * @property DataCollection<ItemData> $items
+ * @property DataCollection<int, ItemData> $items
  * @property ?ClientData $client
  *
  * @template-extends IxModel<GuideData>

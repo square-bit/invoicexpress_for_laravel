@@ -82,7 +82,7 @@ abstract class IxModel extends Model
     }
 
     /**
-     * @return IxModel<T>|Collection<int, IxModel<T>>
+     * @return static|Collection<int, static>
      */
     public static function findOrFail(int $id, array $columns = ['*']): self|Collection
     {
@@ -246,7 +246,7 @@ abstract class IxModel extends Model
         while (true) {
             $list->items()
                 ->map(function (EntityData $data) {
-                    /** @var IxModel<T> $model */
+                    /** @var static $model */
                     $model = (new static)->findLocally($data->getId()) ?? new static;
 
                     return $model->fromData($data);

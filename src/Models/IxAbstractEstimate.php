@@ -25,7 +25,7 @@ use Squarebit\InvoiceXpress\Models\Scopes\EstimateTypeScope;
 /**
  * @property ?EstimateTypeEnum $type
  * @property float $total
- * @property DataCollection<ItemData> $items
+ * @property DataCollection<int, ItemData> $items
  * @property ?ClientData $client
  *
  * @template-extends IxModel<EstimateData>

@@ -7,6 +7,8 @@ parameters:
         - src
         - config
         - database
+    configDirectories:
+        - config
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: true
@@ -15,4 +17,4 @@ parameters:
             path: .
             identifier: missingType.iterableValue
     excludePaths:
-    	- src/Concerns/EnumEnhancements.php
+    	- src/Concerns/EnumEnhancements.php (?)

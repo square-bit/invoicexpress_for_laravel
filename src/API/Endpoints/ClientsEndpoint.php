@@ -7,6 +7,7 @@ namespace Squarebit\InvoiceXpress\API\Endpoints;
  * https://invoicexpress.com/api-v2/clients
  */
 
+use Illuminate\Http\Client\RequestException;
 use Squarebit\InvoiceXpress\API\Data\ClientData;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\CreatesWithType;
 use Squarebit\InvoiceXpress\API\Endpoints\Concerns\Deletes;
@@ -63,7 +64,7 @@ class ClientsEndpoint extends Endpoint
     }
 
     /**
-     * @throws \Illuminate\Http\Client\RequestException
+     * @throws RequestException
      * @throws \Throwable
      */
     public function get(int|EntityTypeEnum $entityType, ?int $id = null): ClientData
@@ -76,7 +77,7 @@ class ClientsEndpoint extends Endpoint
     /**
      * @param  ($entityType is ClientData ? null : ClientData)  $data
      *
-     * @throws \Illuminate\Http\Client\RequestException
+     * @throws RequestException
      * @throws \Throwable
      */
     public function create(ClientData|EntityTypeEnum $entityType, ?ClientData $data = null): ClientData

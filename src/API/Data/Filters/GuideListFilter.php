@@ -8,13 +8,14 @@ use Squarebit\InvoiceXpress\API\Data\Filters\Base\DateIntervalFilter;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\QueryFilter;
 use Squarebit\InvoiceXpress\API\Data\Transformers\BoolToStringTransformer;
 use Squarebit\InvoiceXpress\Enums\GuideStatusEnum;
+use Squarebit\InvoiceXpress\Enums\GuideTypeEnum;
 
 class GuideListFilter extends QueryFilter
 {
     public function __construct(
         public Optional|string $text,
 
-        /** @var Optional|array<\Squarebit\InvoiceXpress\Enums\GuideTypeEnum> */
+        /** @var Optional|array<GuideTypeEnum> */
         public Optional|array $type,
 
         /** @var Optional|array<GuideStatusEnum> */

@@ -11,6 +11,8 @@ use Squarebit\InvoiceXpress\API\Data\Filters\Base\NumberIntervalFilter;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\PaginationFilter;
 use Squarebit\InvoiceXpress\API\Data\Filters\Base\QueryFilter;
 use Squarebit\InvoiceXpress\API\Data\Transformers\BoolToStringTransformer;
+use Squarebit\InvoiceXpress\Enums\EstimateStatusEnum;
+use Squarebit\InvoiceXpress\Enums\EstimateTypeEnum;
 
 #[MapName(SnakeCaseMapper::class)]
 class EstimateListFilter extends QueryFilter
@@ -18,10 +20,10 @@ class EstimateListFilter extends QueryFilter
     public function __construct(
         public Optional|string $text,
 
-        /** @var Optional|array<\Squarebit\InvoiceXpress\Enums\EstimateTypeEnum> */
+        /** @var Optional|array<EstimateTypeEnum> */
         public Optional|array $type,
 
-        /** @var Optional|array<\Squarebit\InvoiceXpress\Enums\EstimateStatusEnum> */
+        /** @var Optional|array<EstimateStatusEnum> */
         public Optional|array $status,
 
         public Optional|DateIntervalFilter $date,

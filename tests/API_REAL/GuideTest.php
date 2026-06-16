@@ -47,10 +47,10 @@ dataset(
                 // against the real InvoiceXpress endpoints, we might be sending a past datetime (due
                 // to timezone differences). This will not be a problem when we use this package
                 // in a project with a proper timezone configuration set in config/app.php.
-                'loaded_at' => now()->addDay()->format(\Squarebit\InvoiceXpress\InvoiceXpress::DATE_TIME_FORMAT),
-                'date' => now()->addDay()->format(\Squarebit\InvoiceXpress\InvoiceXpress::DATE_FORMAT),
+                'loaded_at' => now()->addDay()->format(Squarebit\InvoiceXpress\InvoiceXpress::DATE_TIME_FORMAT),
+                'date' => now()->addDay()->format(Squarebit\InvoiceXpress\InvoiceXpress::DATE_FORMAT),
                 'due_date' => now()->addDays(random_int(10,
-                    30))->format(\Squarebit\InvoiceXpress\InvoiceXpress::DATE_FORMAT),
+                    30))->format(Squarebit\InvoiceXpress\InvoiceXpress::DATE_FORMAT),
                 'reference' => fake()->colorName(),
                 'observations' => fake()->text(128),
                 'address_from' => [

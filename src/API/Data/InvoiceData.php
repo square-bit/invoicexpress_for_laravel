@@ -98,7 +98,7 @@ class InvoiceData extends EntityData
         return array_merge(
             static::UPDATE_PROPERTIES,
             static::prefixProperties('items', ItemData::getUpdateProperties()),
-            static::prefixProperties('client', ClientData::getUpdateProperties()),
+            static::prefixProperties('client', ClientData::getUseProperties()),
         );
     }
 

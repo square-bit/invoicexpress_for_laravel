@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(composer show *)",
+      "Bash(php -v)",
+      "Bash(composer update *)",
+      "Bash(grep -iA2 conflict)",
+      "Bash(composer require *)",
+      "Bash(composer audit *)",
+      "Bash(composer test *)",
+      "WebFetch(domain:docs.invoicexpress.com)",
+      "Bash(vendor/bin/pest tests/API_FAKED/EndpointsUpdateTest.php)",
+      "Bash(XDEBUG_MODE=off vendor/bin/pest tests/API_FAKED)",
+      "Bash(XDEBUG_MODE=off php vendor/bin/pest tests/API_FAKED/EndpointsUpdateTest.php --no-coverage)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(XDEBUG_MODE=off php vendor/bin/pest tests/API_FAKED/TmpClientUpdateProofTest.php --no-coverage)",
+      "Bash(XDEBUG_MODE=off php vendor/bin/pest tests/API_FAKED --no-coverage)",
+      "Bash(XDEBUG_MODE=off php vendor/bin/phpstan analyse src/API/Data/InvoiceData.php --no-progress)"
+    ]
+  }
+}
